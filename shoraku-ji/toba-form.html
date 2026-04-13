@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>塔婆の申込み - 勝楽寺</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .kuyo-set { background: var(--green-pale); border: 2px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+    .kuyo-set__num { font-size: 0.8rem; font-weight: 700; color: var(--green); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .kuyo-set__num::before { content: ''; display: block; width: 24px; height: 24px; border-radius: 50%; background: var(--green); color: var(--white); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .kuyo-set .form-group { margin-bottom: 14px; }
+    .kuyo-set .form-group:last-child { margin-bottom: 0; }
+    .kuyo-set .form-input { font-size: 0.95rem; padding: 12px 14px; }
+    .kuyo-set .form-label { font-size: 0.85rem; }
+    .honsu-row { display: flex; align-items: center; gap: 8px; }
+    .honsu-row select { width: auto; min-width: 80px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">トップに戻る</a>
+
+    <header class="page-header">
+      <p class="page-header__temple">東京町田 勝楽寺</p>
+      <h1 class="page-header__title">塔婆の申込み</h1>
+    </header>
+
+    <!-- Progress -->
+    <div class="progress" id="progress">
+      <div class="progress__bar is-current" data-p="1"></div>
+      <div class="progress__bar" data-p="2"></div>
+      <div class="progress__bar" data-p="3"></div>
+      <div class="progress__bar" data-p="4"></div>
+      <div class="progress__bar" data-p="5"></div>
+      <div class="progress__bar" data-p="6"></div>
+      <span class="progress__label" id="progress-label">1 / 6</span>
+    </div>
+
+    <!-- Step 1: 該当区分 -->
+    <div class="form-step is-active" data-step="1">
+      <h2 class="step-title">該当するものをお選びください</h2>
+      <div class="option-list">
+        <div class="option-item" data-deadline="2026-05-17">
+          <input type="radio" name="tobaType" id="type-keigai" value="5/17 地上境内墓地の方">
+          <label for="type-keigai">5/17（日）地上境内墓地の方</label>
+        </div>
+        <div class="option-item" data-deadline="2026-06-17">
+          <input type="radio" name="tobaType" id="type-noukotsu" value="6/17 納骨堂・釈迦堂の方">
+          <label for="type-noukotsu">6/17（水）納骨堂・釈迦堂の方</label>
+        </div>
+        <div class="option-item" data-deadline="2026-07-17">
+          <input type="radio" name="tobaType" id="type-nibon" value="7/17 新盆の方">
+          <label for="type-nibon">7/17（金）新盆の方<span style="display:block;font-size:0.8rem;color:var(--text-light);margin-top:4px;font-weight:400;">新盆とは、故人が亡くなって初めて迎えるお盆のことです</span></label>
+        </div>
+      </div>
+      <div class="form-error" id="error-step1">該当するものをお選びください</div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--primary" onclick="nextStep(1)">次へ</button>
+      </div>
+    </div>
+
+    <!-- Step 2: 法要ご出席 -->
+    <div class="form-step" data-step="2">
+      <h2 class="step-title">当日法要にはご出席されますか？</h2>
+      <div class="option-list">
+        <div class="option-item">
+          <input type="radio" name="attendance" id="att-yes" value="出席する">
+          <label for="att-yes">出席する</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="attendance" id="att-no" value="欠席する">
+          <label for="att-no">欠席する</label>
+        </div>
+      </div>
+      <div class="form-error" id="error-step2">ご出席の有無をお選びください</div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--secondary" onclick="prevStep(2)">戻る</button>
+        <button type="button" class="btn btn--primary" onclick="nextStep(2)">次へ</button>
+      </div>
+    </div>
+
+    <!-- Step 3: 施主さまのお名前 -->
+    <div class="form-step" data-step="3">
+      <h2 class="step-title">施主さまのお名前</h2>
+      <div class="form-group">
+        <label class="form-label" for="seshu-name">お名前<span class="required">必須</span></label>
+        <input type="text" class="form-input" id="seshu-name" placeholder="例：勝楽 太郎">
+        <div class="form-error" id="error-seshu-name">お名前をご入力ください</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="seshu-kana">よみがな<span class="required">必須</span></label>
+        <input type="text" class="form-input" id="seshu-kana" placeholder="例：しょうらく たろう">
+        <div class="form-error" id="error-seshu-kana">よみがなをご入力ください</div>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--secondary" onclick="prevStep(3)">戻る</button>
+        <button type="button" class="btn btn--primary" onclick="nextStep(3)">次へ</button>
+      </div>
+    </div>
+
+    <!-- Step 4: ご供養される対象数 -->
+    <div class="form-step" data-step="4">
+      <h2 class="step-title">ご供養される対象数をお選びください</h2>
+      <p class="section__lead">例：先祖代々・祖母・祖父 = 3</p>
+      <div class="option-list">
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-1" value="1"><label for="kuyo-1">1</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-2" value="2"><label for="kuyo-2">2</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-3" value="3"><label for="kuyo-3">3</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-4" value="4"><label for="kuyo-4">4</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-5" value="5"><label for="kuyo-5">5</label></div>
+      </div>
+      <div class="form-error" id="error-step4">対象数をお選びください</div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--secondary" onclick="prevStep(4)">戻る</button>
+        <button type="button" class="btn btn--primary" onclick="nextStep(4)">次へ</button>
+      </div>
+    </div>
+
+    <!-- Step 5: 供養詳細（動的生成） -->
+    <div class="form-step" data-step="5">
+      <h2 class="step-title">ご供養の詳細</h2>
+      <p class="form-hint form-hint--danger" style="margin-bottom: 20px;">読み上げる順番でご記載ください</p>
+      <div id="kuyo-sets"></div>
+      <div class="form-error" id="error-step5">すべての項目をご入力ください</div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--secondary" onclick="prevStep(5)">戻る</button>
+        <button type="button" class="btn btn--primary" onclick="nextStep(5)">次へ</button>
+      </div>
+    </div>
+
+    <!-- Step 6: お伝えしたい内容 -->
+    <div class="form-step" data-step="6">
+      <h2 class="step-title">お伝えされたい内容をご記載ください</h2>
+      <div class="form-group">
+        <textarea class="form-input" id="message" placeholder="ご質問やご要望がございましたらこちらにお書きください"></textarea>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--secondary" onclick="prevStep(6)">戻る</button>
+        <button type="button" class="btn btn--primary" onclick="showConfirm()">確認画面へ</button>
+      </div>
+    </div>
+
+    <!-- Confirm -->
+    <div class="form-step" data-step="confirm">
+      <h2 class="step-title">入力内容のご確認</h2>
+      <p class="section__lead">内容をご確認のうえ「申込みする」を押してください</p>
+      <table class="confirm-table" id="confirm-table"></table>
+      <div class="btn-row">
+        <button type="button" class="btn btn--secondary" onclick="backToEdit()">修正する</button>
+        <button type="button" class="btn btn--primary" onclick="submitForm()">申込みする</button>
+      </div>
+    </div>
+
+    <!-- Complete -->
+    <div class="form-step" data-step="complete">
+      <div class="complete">
+        <div class="complete__icon"></div>
+        <h2 class="complete__title">お申込みが完了しました</h2>
+        <p class="complete__desc">
+          塔婆のお申込みありがとうございます。<br>
+          内容を確認のうえ、お寺より<br>
+          ご連絡させていただきます。
+        </p>
+      </div>
+      <div class="mt-24">
+        <a href="index.html" class="btn btn--secondary">トップに戻る</a>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <p class="page-footer__name">勝楽寺</p>
+      <p style="font-size: 0.85rem; color: #666; margin-top: 4px;">東京都町田市</p>
+    </footer>
+  </div>
+
+  <script>
+    // 日付が過ぎた選択肢を無効化
+    (function() {
+      var today = new Date();
+      today.setHours(0,0,0,0);
+      document.querySelectorAll('.option-item[data-deadline]').forEach(function(item) {
+        var deadline = new Date(item.getAttribute('data-deadline') + 'T00:00:00');
+        if (today > deadline) {
+          var input = item.querySelector('input');
+          var label = item.querySelector('label');
+          input.disabled = true;
+          item.style.opacity = '0.4';
+          item.style.pointerEvents = 'none';
+          label.style.cursor = 'default';
+          label.insertAdjacentHTML('beforeend', '<span style="display:block;font-size:0.8rem;color:var(--danger);margin-top:4px;">受付は終了しました</span>');
+        }
+      });
+    })();
+
+    var currentStep = 1;
+    var totalSteps = 6;
+
+    function getVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+    function getRadio(name) { var c = document.querySelector('input[name="'+name+'"]:checked'); return c ? c.value : ''; }
+    function showError(id) { var el = document.getElementById(id); if(el) el.style.display='block'; }
+    function hideError(id) { var el = document.getElementById(id); if(el) el.style.display='none'; }
+
+    function goToStep(step) {
+      document.querySelectorAll('.form-step').forEach(function(s){ s.classList.remove('is-active'); });
+      var t = document.querySelector('.form-step[data-step="'+step+'"]');
+      if(t) t.classList.add('is-active');
+      if(typeof step === 'number') {
+        currentStep = step;
+        document.querySelectorAll('.progress__bar').forEach(function(b){
+          var s = parseInt(b.getAttribute('data-p'));
+          b.classList.remove('is-done','is-current');
+          if(s < step) b.classList.add('is-done');
+          if(s === step) b.classList.add('is-current');
+        });
+        document.getElementById('progress-label').textContent = step + ' / ' + totalSteps;
+        document.getElementById('progress').style.display = 'flex';
+      } else {
+        document.getElementById('progress').style.display = 'none';
+      }
+      window.scrollTo(0,0);
+    }
+
+    // 供養セットを動的生成
+    function buildKuyoSets(count) {
+      var container = document.getElementById('kuyo-sets');
+      container.innerHTML = '';
+      for (var i = 1; i <= count; i++) {
+        var honsuOptions = '';
+        for (var h = 1; h <= 10; h++) {
+          honsuOptions += '<option value="'+h+'">'+h+'</option>';
+        }
+        container.innerHTML +=
+          '<div class="kuyo-set">' +
+            '<div class="kuyo-set__num">' + i + '件目</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">ご供養される方<span class="required">必須</span></label>' +
+              '<input type="text" class="form-input" id="kuyo-target-'+i+'" placeholder="">' +
+              '<p class="form-hint mt-8">例：○○家先祖代々 / 故人名（俗名で構いません）</p>' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">塔婆を上げる方のお名前<span class="required">必須</span></label>' +
+              '<textarea class="form-input" id="kuyo-names-'+i+'" rows="3" placeholder="例：&#10;勝楽 太郎（しょうらく たろう）&#10;勝楽 花子（しょうらく はなこ）"></textarea>' +
+              '<p class="form-hint mt-8">読み上げる順番でお一人一行ずつ</p>' +
+              '<p class="form-hint form-hint--danger mt-8">連名でのお申込みはお受けしておりません</p>' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">本数</label>' +
+              '<div class="honsu-row">' +
+                '<select class="form-input" id="kuyo-honsu-'+i+'">' + honsuOptions + '</select>' +
+                '<span>本</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      }
+    }
+
+    function nextStep(from) {
+      if(from===1) { if(!getRadio('tobaType')){ showError('error-step1'); return; } hideError('error-step1'); }
+      if(from===2) { if(!getRadio('attendance')){ showError('error-step2'); return; } hideError('error-step2'); }
+      if(from===3) {
+        var v = true;
+        if(!getVal('seshu-name')){ showError('error-seshu-name'); v=false; } else { hideError('error-seshu-name'); }
+        if(!getVal('seshu-kana')){ showError('error-seshu-kana'); v=false; } else { hideError('error-seshu-kana'); }
+        if(!v) return;
+      }
+      if(from===4) {
+        if(!getRadio('kuyoCount')){ showError('error-step4'); return; }
+        hideError('error-step4');
+        buildKuyoSets(parseInt(getRadio('kuyoCount')));
+      }
+      if(from===5) {
+        var count = parseInt(getRadio('kuyoCount'));
+        var valid = true;
+        for (var i = 1; i <= count; i++) {
+          if(!getVal('kuyo-target-'+i) || !getVal('kuyo-names-'+i)) { valid = false; }
+        }
+        if(!valid) { showError('error-step5'); return; }
+        hideError('error-step5');
+      }
+      goToStep(from+1);
+    }
+
+    function prevStep(from) { goToStep(from-1); }
+
+    function escapeHtml(s) { var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+    function row(l,v) { return '<tr><th>'+escapeHtml(l)+'</th><td>'+escapeHtml(v).replace(/\n/g,'<br>')+'</td></tr>'; }
+
+    function collectKuyoData() {
+      var count = parseInt(getRadio('kuyoCount'));
+      var sets = [];
+      for (var i = 1; i <= count; i++) {
+        sets.push({
+          target: getVal('kuyo-target-'+i),
+          names: getVal('kuyo-names-'+i),
+          honsu: getVal('kuyo-honsu-'+i)
+        });
+      }
+      return sets;
+    }
+
+    function collectData() {
+      return {
+        tobaType: getRadio('tobaType'),
+        attendance: getRadio('attendance'),
+        seshuName: getVal('seshu-name'),
+        seshuKana: getVal('seshu-kana'),
+        kuyoCount: getRadio('kuyoCount'),
+        kuyoSets: collectKuyoData(),
+        message: getVal('message')
+      };
+    }
+
+    function showConfirm() {
+      var d = collectData();
+      var html = '';
+      html += row('該当区分', d.tobaType);
+      html += row('法要のご出席', d.attendance);
+      html += row('施主さまのお名前', d.seshuName + '（' + d.seshuKana + '）');
+
+      d.kuyoSets.forEach(function(set, idx) {
+        html += '<tr><th colspan="2" style="background:var(--green-light); font-weight:700; color:var(--green-dark); padding:10px 8px;">' + (idx+1) + '件目</th></tr>';
+        html += row('ご供養される方', set.target);
+        html += '<tr><th>塔婆を上げる方</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
+        html += row('本数', set.honsu + '本');
+      });
+
+      if(d.message) html += row('お伝えしたい内容', d.message);
+      document.getElementById('confirm-table').innerHTML = html;
+      goToStep('confirm');
+    }
+
+    function backToEdit() { goToStep(6); }
+
+    // ===== GAS送信URL =====
+    var GAS_URL = 'https://script.google.com/a/macros/syuu-go.com/s/AKfycbyOaTxTTaoX8nnNwbOt_qtFqhqT9-V7h6HEjxQu00VQq05Q3GggNkoWwGVUGTNXNQ9m/exec';
+
+    function submitForm() {
+      var btn = document.querySelector('.form-step[data-step="confirm"] .btn--primary');
+      btn.textContent = '送信中...';
+      btn.disabled = true;
+
+      var d = collectData();
+
+      // GASへの送信（form POST方式でCORS回避）
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = GAS_URL;
+      form.target = 'gas-iframe';
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'payload';
+      input.value = JSON.stringify(d);
+      form.appendChild(input);
+
+      // 非表示iframeで送信（画面遷移しない）
+      var iframe = document.getElementById('gas-iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.name = 'gas-iframe';
+        iframe.id = 'gas-iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
+
+      form.style.display = 'none';
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+
+      // 送信後に完了画面へ
+      setTimeout(function() {
+        btn.textContent = '申込みする';
+        btn.disabled = false;
+        goToStep('complete');
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
