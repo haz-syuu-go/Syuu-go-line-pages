@@ -335,7 +335,7 @@
   <img src="books.JPG" alt="お経本" style="width:100%; border-radius:14px; margin-bottom:28px;">
   <div class="intro-box">
     <div class="intro-icon"><svg width="48" height="48"><use href="#ic-pray" stroke="#2e7d32"/></svg></div>
-    <p>ご法事前にご確認いただきたいことを<br>まとめております。<br>ぜひご参考にご覧ください。<br><br>
+    <p>ご法事前にご確認いただきたいことを<br>まとめております。<br>ご親族・ご家族にも共有いただけます。<br>参考にご覧ください。<br><br>
     ご不明点はいつでも<br><strong>LINEやお電話でご連絡ください。</strong></p>
   </div>
 
@@ -343,7 +343,7 @@
   <div class="tabs-wrap">
     <div class="tab-btns">
       <button class="tab-btn active" onclick="switchTab('shijukunichi')">
-        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-candle" stroke="#fff"/></svg></span>四十九日
+        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-candle" stroke="#fff"/></svg></span>四十九日(納骨法要)
       </button>
       <button class="tab-btn" onclick="switchTab('nenki')">
         <span class="tab-icon"><svg width="24" height="24"><use href="#ic-beads" stroke="#2e7d32"/></svg></span>年回忌法要
@@ -357,10 +357,18 @@
     <div class="tab-panel active" id="panel-shijukunichi">
       <div class="tab-panel-header">
         <svg width="36" height="36"><use href="#ic-candle" stroke="#1b5e20"/></svg>
-        <h3 class="tab-panel-title">四十九日法要チェックリスト</h3>
+        <h3 class="tab-panel-title">四十九日(納骨法要)チェックリスト</h3>
       </div>
       <h4 style="font-size:16px; font-weight:900; color:var(--green-dark); margin-bottom:12px; padding-left:4px;">必ずお持ちいただきたいもの</h4>
       <ul class="checklist" id="list-shijukunichi">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">ご遺骨</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>四十九日法要・納骨法要の際は、お骨をお忘れなくお持ちください。</span></div></div>
+        </li>
         <li>
           <div class="check-row" onclick="toggleCheck(this)">
             <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
@@ -417,7 +425,7 @@
         </li>
       </ul>
       <div class="progress-bar-wrap">
-        <div class="progress-text" id="progress-shijukunichi">チェック：0 / 6</div>
+        <div class="progress-text" id="progress-shijukunichi">チェック：0 / 7</div>
         <div class="progress-bar"><div class="progress-fill" id="fill-shijukunichi"></div></div>
       </div>
     </div>
@@ -680,6 +688,10 @@
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>小さな子ども連れでも大丈夫ですか？<span class="chevron">▼</span></button>
       <div class="faq-a"><div class="faq-a-inner">もちろんです。<strong>お子さま連れでも安心してお越しください。</strong>故人も喜ばれることと思います。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>祖父と祖母の法事を一緒にできますか？<span class="chevron">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">はい、<strong>併修（へいしゅう）として一緒にお勤めすることが可能です。</strong>ご家族のご都合に合わせて柔軟に対応いたしますので、お気軽にご相談ください。</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>お布施の目安について<span class="chevron">▼</span></button>
