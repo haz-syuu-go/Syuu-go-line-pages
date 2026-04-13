@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お布施について｜真宗大谷派 西岸寺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --green-dark: #1b5e20;
+    --gray: #666;
+    --border: #e0e0e0;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.9;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 44px 20px 36px;
+  }
+  .header .temple-name { font-size: 14px; letter-spacing: 3px; opacity: .8; margin-bottom: 8px; }
+  .header h1 { font-size: 26px; font-weight: 900; letter-spacing: 2px; line-height: 1.4; }
+  .header p.sub { font-size: 15px; margin-top: 12px; opacity: .85; line-height: 1.7; }
+
+  section { padding: 44px 20px; max-width: 520px; margin: 0 auto; }
+  .section-title { text-align: center; font-size: 22px; font-weight: 900; color: var(--green-dark); margin-bottom: 8px; letter-spacing: 1px; }
+  .divider { width: 44px; height: 3px; background: var(--green); margin: 0 auto 28px; border-radius: 2px; }
+
+  .ofuse-intro {
+    background: var(--green-pale);
+    border-radius: var(--radius);
+    padding: 28px 20px;
+    text-align: center;
+    border: 1px solid #c8e6c9;
+    margin-bottom: 36px;
+  }
+  .ofuse-intro p {
+    font-size: 16px;
+    line-height: 2;
+  }
+
+  .ofuse-section {
+    margin-bottom: 36px;
+  }
+  .ofuse-section h2 {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ofuse-section p {
+    font-size: 16px;
+    line-height: 2;
+    margin-bottom: 12px;
+  }
+
+  .ofuse-box {
+    background: #fff;
+    border: 2px solid var(--green);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .ofuse-box h3 {
+    font-size: 17px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+  .ofuse-box p {
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 0;
+  }
+
+  .fuse-list {
+    list-style: none;
+    margin: 0 0 20px;
+  }
+  .fuse-list li {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  .fuse-list li:last-child { border-bottom: none; }
+  .fuse-list li strong {
+    display: block;
+    font-size: 17px;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+
+  .highlight-box {
+    background: var(--green-pale);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    margin: 28px 0;
+  }
+  .highlight-box p {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1.9;
+    margin-bottom: 0;
+  }
+
+  .note-box {
+    background: #fff;
+    border: 2px solid var(--green);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 24px 0;
+  }
+  .note-box p {
+    font-size: 15px;
+    line-height: 2;
+    margin-bottom: 0;
+  }
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 32px auto 0;
+    padding: 14px 28px;
+    border: 2px solid var(--green);
+    border-radius: 30px;
+    max-width: 320px;
+  }
+
+  .contact-banner {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 32px 20px;
+    margin-top: 40px;
+  }
+  .contact-banner p {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+  .contact-banner .btn-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #06c755;
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 4px;
+  }
+  .contact-banner .btn-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 4px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+  }
+  .footer .name { font-weight: 700; margin-bottom: 4px; color: var(--green-dark); }
+</style>
+</head>
+<body>
+
+<svg style="display:none">
+  <symbol id="ic-beads" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="8" r="3.5"/><circle cx="15" cy="10.5" r="3"/><circle cx="9" cy="17" r="3"/><circle cx="7" cy="25" r="3"/><circle cx="9" cy="33" r="3"/><circle cx="15" cy="39" r="3"/><circle cx="24" cy="41" r="3.5"/><circle cx="33" cy="39" r="3"/><circle cx="39" cy="33" r="3"/><circle cx="41" cy="25" r="3"/><circle cx="39" cy="17" r="3"/><circle cx="33" cy="10.5" r="3"/><path d="M24 41v-6"/><circle cx="24" cy="33" r="2"/>
+  </symbol>
+  <symbol id="ic-pray" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 6v6M24 12c-3 4-3 10 0 14M24 12c3 4 3 10 0 14M18 30h12M16 36h16M20 42h8"/>
+  </symbol>
+  <symbol id="ic-envelope" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="12" width="36" height="24" rx="3"/><path d="M6 12l18 14 18-14"/>
+  </symbol>
+  <symbol id="ic-heart" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 42s-16-10-16-22a10 10 0 0116-8 10 10 0 0116 8c0 12-16 22-16 22z"/>
+  </symbol>
+</svg>
+
+<header class="header">
+  <div class="temple-name">真宗大谷派 西岸寺</div>
+  <h1>お布施について</h1>
+  <p class="sub">ご不明な点はお気軽にご相談ください</p>
+</header>
+
+<section>
+  <div class="ofuse-intro">
+    <svg width="48" height="48"><use href="#ic-beads" stroke="#2e7d32"/></svg>
+    <p style="margin-top:12px;">お布施は仏さまへの<strong>感謝の気持ち</strong>を<br>かたちにしたものです。<br>金額に決まりはございません。</p>
+  </div>
+
+  <div class="ofuse-section">
+    <h2><svg width="24" height="24"><use href="#ic-pray" stroke="#2e7d32"/></svg> お布施とは</h2>
+    <p>お布施は、僧侶への労働対価と捉えていらっしゃる方が少なくないかもしれませんが、本来お布施は自身の財や持ち物を他者へ施す行為を指すものであり、みなさまからいただいたお布施は<strong>寺院のご本尊にお供えするもの</strong>でもあります。</p>
+    <p>仏教では「財施・法施・無畏施」という3つの布施行を実践することで、救いに至るための行為、すなわち<strong>「与える」こと</strong>を意味しています。</p>
+  </div>
+
+  <div class="ofuse-section">
+    <h2><svg width="24" height="24"><use href="#ic-heart" stroke="#2e7d32"/></svg> 支え、支えられ</h2>
+    <p>私たちは仏の教えを説き、みなさまの苦しみや悲しみに寄り添うことが勤めであり、日々の修行でもあります。同時に、みなさまもお布施を通じて仏の修行を行っているということでもあります。</p>
+    <p>お一人お一人のお気持ちをいただくことによって、お寺はこの地において長い年月にわたり受け継がれてまいりました。</p>
+  </div>
+
+  <div class="ofuse-section">
+    <h2><svg width="24" height="24"><use href="#ic-beads" stroke="#2e7d32"/></svg> 3つの布施行</h2>
+    <ul class="fuse-list">
+      <li>
+        <strong>財施（ざいせ）</strong>
+        自身の財・衣類・食物などを寄進すること。
+      </li>
+      <li>
+        <strong>法施（ほうせ）</strong>
+        仏の教えを説き、伝えること。
+      </li>
+      <li>
+        <strong>無畏施（むいせ）</strong>
+        人々の恐れや不安をとりのぞき、安らぎを与えること。
+      </li>
+    </ul>
+    <p>私たちは日々のお勤め、仏の教えを説く法施、みなさまの不安をとりのぞき心の平穏をお届けする無畏施を通じて、仏道修行を積ませていただいています。</p>
+  </div>
+
+  <div class="ofuse-section">
+    <h2><svg width="24" height="24"><use href="#ic-envelope" stroke="#2e7d32"/></svg> お布施の金額について</h2>
+    <p>お布施はみなさまのお志です。無理のない範囲でお納めいただければと考えており、金額を明示するものではございません。</p>
+    <p>「お気持ちと言われてもわからない」という方には、あくまで目安ではございますが、金額感をお伝えしております。</p>
+
+    <div class="highlight-box">
+      <p>目安については<br><strong>住職に直接おたずねください。</strong><br>丁寧にご説明いたします。</p>
+    </div>
+  </div>
+
+  <div class="ofuse-section">
+    <p>お布施は対価ではございません。ご先祖様を供養し、故人様を弔い、今を懸命に生きるみなさまのよりどころとして、末永くあり続けるために。<strong>行の一環としてお布施をお考えいただければ幸いです。</strong></p>
+  </div>
+
+  <div class="note-box">
+    <p>お布施は、「僧侶へ感謝の気持ちを表すために渡す金銭」、「僧侶への労働対価」と捉えていらっしゃる方が少なくないと思いますが、本来お布施は、自身の財や持ち物を他者へ施す行為を指すものであり、みなさまからいただいたお布施は<strong>寺院のご本尊にお供えするもの</strong>でもあります。</p>
+  </div>
+
+  <a href="houji.html" class="back-link">← ご法事の準備ガイドに戻る</a>
+</section>
+
+<div class="contact-banner">
+  <p>お布施に関するご質問も<br>お気軽にお問い合わせください。</p>
+  <a href="https://lin.ee/WqZAuqu" class="btn-line">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .348-.281.63-.63.63h-2.02v1.318h2.02c.349 0 .63.284.63.63 0 .349-.281.631-.63.631h-2.65a.63.63 0 01-.63-.631V8.282a.63.63 0 01.63-.63h2.65c.349 0 .63.283.63.63 0 .349-.281.631-.63.631h-2.02v1.32h2.02zm-3.91 3.21a.63.63 0 01-.63.63.63.63 0 01-.51-.262l-2.786-3.79v3.422a.63.63 0 01-1.261 0V8.282a.63.63 0 01.63-.63c.2 0 .381.095.51.262l2.786 3.79V8.282a.63.63 0 011.261 0v4.791zm-6.485.63a.63.63 0 01-.63-.63V8.282a.63.63 0 011.261 0v4.791a.63.63 0 01-.63.63zm-2.146 0h-2.65a.63.63 0 01-.631-.63V8.282a.63.63 0 011.261 0v4.161h2.02c.349 0 .63.284.63.63 0 .349-.281.631-.63.631zM12 2C6.477 2 2 5.92 2 10.667c0 4.27 3.79 7.853 8.907 8.531.347.075.819.229.938.525.107.272.07.696.035.97l-.152.913c-.046.272-.213 1.065.933.58 1.146-.484 6.18-3.64 8.434-6.232C22.768 14.067 22 12.463 22 10.667 22 5.92 17.523 2 12 2z"/></svg>
+    LINEで相談する
+  </a>
+  <a href="tel:0947-42-2769" class="btn-tel">
+    <svg width="20" height="20" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6h20l2 10-7 6a28 28 0 01-10-10l6-7z"/></svg>
+    電話で相談する
+  </a>
+</div>
+
+<footer class="footer">
+  <p class="name">真宗大谷派 西岸寺</p>
+  <p>〒826-0042 福岡県田川市川宮1513-7</p>
+</footer>
+
+</body>
+</html>

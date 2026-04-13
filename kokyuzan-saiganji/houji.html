@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご法事の準備ガイド｜真宗大谷派 西岸寺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --green-dark: #1b5e20;
+    --gold: #b8860b;
+    --gold-light: #f5ecd4;
+    --gray: #666;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --check-green: #4caf50;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.9;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 44px 20px 36px;
+  }
+  .header .temple-name { font-size: 14px; letter-spacing: 3px; opacity: .8; margin-bottom: 8px; }
+  .header h1 { font-size: 28px; font-weight: 900; letter-spacing: 2px; line-height: 1.4; }
+  .header .header-icon { margin: 16px auto 0; }
+  .header .header-icon svg { margin: 0 auto; display: block; }
+  .header p.sub { font-size: 15px; margin-top: 12px; opacity: .85; line-height: 1.7; }
+
+  /* ── Section common ── */
+  section { padding: 44px 20px; }
+  .section-title { text-align: center; font-size: 24px; font-weight: 900; color: var(--green-dark); margin-bottom: 8px; letter-spacing: 1px; }
+  .section-sub { text-align: center; font-size: 15px; color: var(--gray); margin-bottom: 28px; line-height: 1.7; }
+  .divider { width: 44px; height: 3px; background: var(--green); margin: 0 auto 28px; border-radius: 2px; }
+
+  /* ── Intro ── */
+  .intro-box {
+    max-width: 520px; margin: 0 auto 32px;
+    background: var(--green-pale); border-radius: var(--radius);
+    padding: 24px; text-align: center; border: 1px solid #c8e6c9;
+  }
+  .intro-box .intro-icon { margin-bottom: 12px; }
+  .intro-box .intro-icon svg { margin: 0 auto; display: block; }
+  .intro-box p { font-size: 16px; color: var(--green-dark); line-height: 1.9; }
+  .intro-box strong { color: var(--green); }
+
+  /* ── Tabs ── */
+  .tabs-wrap { max-width: 520px; margin: 0 auto; }
+  .tab-btns {
+    display: flex; border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden; border: 2px solid var(--green); border-bottom: none;
+  }
+  .tab-btn {
+    flex: 1; padding: 16px 8px; text-align: center; font-size: 15px; font-weight: 700;
+    cursor: pointer; background: #fff; color: var(--green); border: none;
+    border-right: 1px solid var(--border); transition: all .2s; font-family: inherit; line-height: 1.4;
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn.active { background: var(--green); color: #fff; }
+  .tab-btn.active svg { stroke: #fff; }
+  .tab-btn .tab-icon { display: flex; justify-content: center; margin-bottom: 6px; }
+
+  /* ── Tab content ── */
+  .tab-panel {
+    display: none; border: 2px solid var(--green); border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius); padding: 24px 20px; background: #fff;
+  }
+  .tab-panel.active { display: block; }
+  .tab-panel-header { text-align: center; margin-bottom: 20px; }
+  .tab-panel-header svg { margin: 0 auto 8px; display: block; }
+  .tab-panel-title { font-size: 20px; font-weight: 900; color: var(--green-dark); }
+  .tab-panel-desc { font-size: 15px; color: var(--gray); text-align: center; margin-bottom: 24px; line-height: 1.7; }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; }
+  .checklist li { padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .checklist li:last-child { border-bottom: none; }
+  .check-row { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+  .check-box {
+    width: 28px; height: 28px; border: 2.5px solid var(--green-light);
+    border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    margin-top: 2px; transition: all .2s; background: #fff;
+  }
+  .check-box.checked { background: var(--check-green); border-color: var(--check-green); }
+  .check-box svg { width: 16px; height: 16px; opacity: 0; transition: opacity .2s; }
+  .check-box.checked svg { opacity: 1; }
+  .check-row.checked .item-name { text-decoration: line-through; color: var(--gray); }
+  .check-label { flex: 1; }
+  .check-label .item-name { font-size: 17px; font-weight: 700; color: #333; display: flex; align-items: center; gap: 8px; }
+  .check-label .item-name .item-icon { display: none; }
+
+  /* ── Note accordion ── */
+  .check-note-toggle {
+    margin-top: 6px; background: none; border: none; cursor: pointer;
+    font-family: inherit; font-size: 14px; font-weight: 600; color: var(--green);
+    display: flex; align-items: center; gap: 4px; padding: 4px 0;
+  }
+  .check-note-toggle .toggle-chevron { transition: transform .2s; font-size: 11px; }
+  .check-note-toggle.open .toggle-chevron { transform: rotate(180deg); }
+  .check-note {
+    max-height: 0; overflow: hidden; transition: max-height .3s ease;
+    margin-top: 0;
+  }
+  .check-note.open { margin-top: 6px; }
+  .check-note-inner {
+    background: none; border-radius: 0; padding: 8px 0 0 0;
+    font-size: 15px; color: var(--gray); line-height: 1.7;
+  }
+  .check-note-inner .note-icon { display: none; }
+
+  /* ── Progress ── */
+  .progress-bar-wrap { max-width: 520px; margin: 20px auto 0; padding: 16px 20px; background: var(--gray-light); border-radius: var(--radius); text-align: center; }
+  .progress-text { font-size: 15px; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; }
+  .progress-bar { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--check-green); border-radius: 5px; transition: width .3s; width: 0%; }
+
+  /* ── Flow timeline ── */
+  .bg-warm { background: var(--gray-light); }
+  .flow-section { max-width: 520px; margin: 0 auto; }
+  .flow-item { display: flex; gap: 16px; position: relative; padding-bottom: 28px; }
+  .flow-item:last-child { padding-bottom: 0; }
+  .flow-num {
+    width: 40px; height: 40px; background: var(--green); color: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; flex-shrink: 0; position: relative; z-index: 1;
+  }
+  .flow-item:not(:last-child) .flow-num::after {
+    content: ""; position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+    width: 3px; height: calc(100% + 28px - 40px); background: var(--green-light);
+  }
+  .flow-content { padding-top: 4px; }
+  .flow-content h3 { font-size: 18px; font-weight: 700; color: #333; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .flow-content h3 svg { flex-shrink: 0; }
+  .flow-content p { font-size: 15px; color: var(--gray); line-height: 1.8; }
+
+  /* ── Info cards ── */
+  .info-cards { max-width: 520px; margin: 0 auto; display: grid; gap: 14px; }
+  .info-card { background: #fff; border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; gap: 16px; align-items: flex-start; }
+  .info-card .card-icon { flex-shrink: 0; }
+  .info-card .card-icon svg { width: 36px; height: 36px; }
+  .info-card h3 { font-size: 18px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
+  .info-card p { font-size: 16px; color: var(--gray); line-height: 1.8; }
+
+  /* ── FAQ ── */
+  .faq-section { max-width: 520px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    width: 100%; background: none; border: none; text-align: left;
+    padding: 18px 0; font-size: 17px; font-weight: 700; color: #333;
+    cursor: pointer; display: flex; align-items: center; gap: 12px;
+    font-family: inherit; line-height: 1.6;
+  }
+  .faq-q .q-badge {
+    background: var(--green); color: #fff; width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 900; flex-shrink: 0;
+  }
+  .faq-q .chevron { margin-left: auto; transition: transform .2s; flex-shrink: 0; font-size: 13px; color: var(--gray); }
+  .faq-q.open .chevron { transform: rotate(180deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+  .faq-a-inner { padding: 0 0 18px 40px; font-size: 16px; color: var(--gray); line-height: 1.9; }
+  .faq-a-inner strong { color: var(--green-dark); }
+
+  /* ── Contact ── */
+  .contact-section { background: var(--green-pale); }
+  .contact-inner { max-width: 520px; margin: 0 auto; }
+  .contact-lead { text-align: center; font-size: 16px; color: var(--gray); margin-bottom: 24px; line-height: 1.8; }
+  .contact-box { background: #fff; border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  .contact-box h3 { font-size: 17px; font-weight: 700; color: var(--green-dark); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .contact-box ul { list-style: none; font-size: 16px; color: var(--gray); line-height: 2; }
+  .contact-btns { display: grid; gap: 10px; }
+  .contact-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 18px; border-radius: var(--radius); font-size: 17px; font-weight: 700;
+    text-decoration: none; text-align: center; transition: opacity .2s;
+  }
+  .contact-btn:hover { opacity: .85; }
+  .contact-btn svg { flex-shrink: 0; }
+  .contact-btn.line { background: #06c755; color: #fff; }
+  .contact-btn.tel { background: #fff; color: var(--green-dark); border: 2px solid var(--green); }
+  .contact-btn.mail { background: #fff; color: var(--green-dark); border: 2px solid var(--border); }
+  .map-wrap { border-radius: var(--radius); overflow: hidden; margin-top: 16px; }
+  .map-wrap iframe { width: 100%; height: 240px; border: 0; }
+
+  /* ── Footer ── */
+  .footer { text-align: center; padding: 36px 20px; font-size: 13px; color: var(--gray); }
+  .footer .name { font-size: 15px; font-weight: 700; color: #333; margin-bottom: 4px; }
+
+  @media (min-width: 600px) {
+    section { padding: 56px 24px; }
+    .header { padding: 56px 24px 44px; }
+    .header h1 { font-size: 32px; }
+    .tab-btn { font-size: 16px; padding: 18px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SVG Icon definitions ============ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ic-beads" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="8" r="3"/><circle cx="16" cy="10" r="2.5"/><circle cx="10" cy="16" r="2.5"/>
+    <circle cx="8" cy="24" r="2.5"/><circle cx="10" cy="32" r="2.5"/><circle cx="16" cy="38" r="2.5"/>
+    <circle cx="24" cy="40" r="2.5"/><circle cx="32" cy="38" r="2.5"/><circle cx="38" cy="32" r="2.5"/>
+    <circle cx="40" cy="24" r="2.5"/><circle cx="38" cy="16" r="2.5"/><circle cx="32" cy="10" r="2.5"/>
+    <path d="M24 40v-8"/><circle cx="24" cy="36" r="1.5"/>
+  </symbol>
+  <symbol id="ic-pray" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 6v10"/><path d="M18 18l6-6 6 6"/><path d="M18 18v16c0 2 2 4 6 6 4-2 6-4 6-6V18"/><path d="M18 26h12"/><path d="M20 42h8"/>
+  </symbol>
+  <symbol id="ic-candle" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 8c-1 3-3 5-3 8 0 2 1.5 3.5 3 3.5s3-1.5 3-3.5c0-3-2-5-3-8z"/>
+    <rect x="20" y="20" width="8" height="20" rx="1"/><path d="M16 40h16"/>
+  </symbol>
+  <symbol id="ic-lantern" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 6h4"/><path d="M24 6v4"/>
+    <ellipse cx="24" cy="24" rx="10" ry="14"/><path d="M14 24h20"/><path d="M24 10v28"/>
+    <path d="M20 38h8"/><path d="M22 38v4"/><path d="M26 38v4"/>
+  </symbol>
+  <symbol id="ic-money" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="10" width="32" height="28" rx="2"/><path d="M8 10l16 14L40 10"/>
+  </symbol>
+  <symbol id="ic-flower" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="18" r="4"/><circle cx="24" cy="10" r="4"/><circle cx="30" cy="14" r="4"/>
+    <circle cx="30" cy="22" r="4"/><circle cx="18" cy="22" r="4"/><circle cx="18" cy="14" r="4"/>
+    <path d="M24 22v18"/><path d="M20 32c-4-2-6-4-8-4"/><path d="M28 28c4-2 6-2 8-1"/>
+  </symbol>
+  <symbol id="ic-tablet" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="14" y="6" width="20" height="32" rx="3"/><rect x="18" y="12" width="12" height="18" rx="1"/>
+    <path d="M12 42h24"/><path d="M16 38h16v4H16z"/>
+  </symbol>
+  <symbol id="ic-photo" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="6" width="32" height="32" rx="2"/><rect x="12" y="10" width="24" height="24" rx="1"/>
+    <circle cx="24" cy="20" r="5"/><path d="M16 34c0-4 4-7 8-7s8 3 8 7"/><path d="M18 42l6-4 6 4"/>
+  </symbol>
+  <symbol id="ic-offering" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="26" r="10"/><path d="M24 16c0-4 2-8 6-10"/><path d="M22 17c-2-2-2-5-1-8"/>
+    <path d="M10 38h28"/><path d="M14 42h20"/>
+  </symbol>
+  <symbol id="ic-incense" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 6c-1 4-2 6 0 10s1 6 0 10"/><path d="M20 6c-1 4-2 6 0 10s1 6 0 10"/>
+    <path d="M28 6c-1 4-2 6 0 10s1 6 0 10"/><rect x="14" y="36" width="20" height="6" rx="2"/>
+  </symbol>
+  <symbol id="ic-dining" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="24" r="14"/><path d="M16 14v8c0 2 2 3 3 3h0v13"/><path d="M16 18h6"/>
+    <path d="M34 14c0 0-1 6-2 8s-1 3-1 3h0v13"/>
+  </symbol>
+  <symbol id="ic-gift" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="18" width="32" height="6" rx="1"/><rect x="10" y="24" width="28" height="16" rx="1"/>
+    <path d="M24 18v22"/><path d="M24 18c-3-6-10-8-10-4s7 4 10 4"/><path d="M24 18c3-6 10-8 10-4s-7 4-10 4"/>
+  </symbol>
+  <symbol id="ic-phone" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 8c0 0-2 0-2 4s4 12 10 18 14 10 18 10 4-2 4-2l-6-6-4 4c-2 0-8-4-12-8s-8-10-8-12l4-4z"/>
+  </symbol>
+  <symbol id="ic-clock" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="24" r="16"/><path d="M24 14v10l6 6"/>
+  </symbol>
+  <symbol id="ic-car" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="18" width="40" height="14" rx="3"/><path d="M10 18l5-8h18l5 8"/>
+    <circle cx="14" cy="34" r="3"/><circle cx="34" cy="34" r="3"/><path d="M17 32h14"/>
+  </symbol>
+  <symbol id="ic-suit" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 6h12l-2 8h-8z"/><path d="M14 14h20v24c0 2-2 4-4 4H18c-2 0-4-2-4-4V14z"/>
+    <path d="M20 14l4 8 4-8"/><path d="M24 22v10"/>
+  </symbol>
+  <symbol id="ic-bulb" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 4c-8 0-14 6-14 14 0 5 3 10 8 12v6h12v-6c5-2 8-7 8-12 0-8-6-14-14-14z"/>
+    <path d="M20 40h8"/><path d="M22 44h4"/><path d="M24 18v6"/><path d="M20 22h8"/>
+  </symbol>
+  <symbol id="ic-note" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 40l2-8L34 8l6 6L16 38z"/><path d="M28 14l6 6"/>
+  </symbol>
+  <symbol id="ic-clipboard" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="10" y="8" width="28" height="34" rx="2"/><path d="M18 8v-2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/>
+    <path d="M16 20h16"/><path d="M16 28h12"/><path d="M16 36h8"/>
+  </symbol>
+  <symbol id="ic-chat" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 10h32v22H20l-8 8v-8H8z" rx="2"/><path d="M16 18h16"/><path d="M16 24h10"/>
+  </symbol>
+  <symbol id="ic-grave" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="16" y="8" width="16" height="24" rx="8 8 0 0"/><path d="M24 14v10"/><path d="M20 20h8"/>
+    <rect x="12" y="32" width="24" height="4" rx="1"/><path d="M10 40h28"/><path d="M14 36h20v4H14z"/>
+  </symbol>
+  <symbol id="ic-temple" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 4l16 12H8z"/><path d="M12 16v22"/><path d="M36 16v22"/>
+    <path d="M8 38h32"/><path d="M20 38v-10h8v10"/><path d="M24 8v4"/>
+  </symbol>
+  <symbol id="ic-mail" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="12" width="36" height="24" rx="2"/><path d="M6 12l18 14 18-14"/>
+  </symbol>
+  <symbol id="ic-pin" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 44s-14-12-14-22a14 14 0 1 1 28 0c0 10-14 22-14 22z"/><circle cx="24" cy="22" r="5"/>
+  </symbol>
+  <symbol id="ic-wlantern" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 4h4"/><path d="M24 4v6"/><ellipse cx="24" cy="24" rx="8" ry="14"/>
+    <path d="M20 38h8"/><path d="M24 10v28"/>
+  </symbol>
+  <symbol id="ic-fire" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 4c-2 6-8 12-8 20a8 8 0 0 0 16 0c0-8-6-14-8-20z"/>
+    <path d="M24 28c-1 2-3 4-3 6a3 3 0 0 0 6 0c0-2-2-4-3-6z"/><path d="M12 40h24"/>
+  </symbol>
+  <symbol id="ic-home" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 22L24 8l16 14"/><path d="M12 20v18h24V20"/><rect x="20" y="28" width="8" height="10"/>
+  </symbol>
+</svg>
+
+<!-- Header -->
+<header class="header">
+  <p class="temple-name">真宗大谷派 西岸寺</p>
+  <h1>ご法事の準備ガイド</h1>
+  <div class="header-icon"><svg width="48" height="48"><use href="#ic-beads" stroke="#fff"/></svg></div>
+  <p class="sub">初めての方でも安心して<br>ご準備いただけるように</p>
+</header>
+
+<!-- イントロ -->
+<section>
+  <div class="intro-box">
+    <div class="intro-icon"><svg width="48" height="48"><use href="#ic-pray" stroke="#2e7d32"/></svg></div>
+    <p>ご法事前にご確認いただきたいことを<br>まとめております。<br>ぜひご参考にご覧ください。<br><br>
+    ご不明点はいつでも<br><strong>LINEやお電話でご連絡ください。</strong></p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-wrap">
+    <div class="tab-btns">
+      <button class="tab-btn active" onclick="switchTab('shijukunichi')">
+        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-candle" stroke="#fff"/></svg></span>四十九日
+      </button>
+      <button class="tab-btn" onclick="switchTab('nenki')">
+        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-beads" stroke="#2e7d32"/></svg></span>年回忌法要
+      </button>
+      <button class="tab-btn" onclick="switchTab('hatsubon')">
+        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-lantern" stroke="#2e7d32"/></svg></span>新盆（初盆）
+      </button>
+    </div>
+
+    <!-- ====== 四十九日 ====== -->
+    <div class="tab-panel active" id="panel-shijukunichi">
+      <div class="tab-panel-header">
+        <svg width="36" height="36"><use href="#ic-candle" stroke="#1b5e20"/></svg>
+        <h3 class="tab-panel-title">四十九日法要チェックリスト</h3>
+      </div>
+      <h4 style="font-size:16px; font-weight:900; color:var(--green-dark); margin-bottom:12px; padding-left:4px;">必ずお持ちいただきたいもの</h4>
+      <ul class="checklist" id="list-shijukunichi">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">「法名軸」もしくは「過去帳」か「繰り出し位牌」</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>故人の法名と没年月日などが書かれています。「どれを持って行ったらよいか、よく分からない」場合は、ご遠慮なく住職へお尋ねください。</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">故人のお写真</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>ご自宅にあるもので結構です。額縁に入れてお持ちください。</span></div></div>
+        </li>
+      </ul>
+      <h4 style="font-size:16px; font-weight:900; color:var(--gray); margin:20px 0 12px; padding-left:4px;">任意</h4>
+      <ul class="checklist">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">お花・御供物</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>お寺ではお花・御供物のご用意を行っておりません。（自由にお持ち込みいただいて構いません。）</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">法事後のお食事の有無</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>ご家族・ご親族とお会いできるたいせつなお時間です。ご法事後、そのままお寺にてお食事いただくことも可能です。（手配などはご法事まえにご相談させていただきます。）</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">返礼品（引き出物）</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>ご参列の方の人数分をご用意ください。お茶・海苔・タオルなどが一般的です。</span></div></div>
+        </li>
+      </ul>
+      <h4 style="font-size:16px; font-weight:900; color:var(--gray); margin:20px 0 12px; padding-left:4px;">その他</h4>
+      <ul class="checklist">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">お布施</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>目安など、ご質問は<strong>住職よりお答えしております。遠慮なくご相談ください。</strong></span><br><a href="ofuse.html" style="display:inline-flex; align-items:center; gap:4px; color:var(--green); font-weight:700; font-size:13px; margin-top:6px; text-decoration:none; border-bottom:1px solid var(--green);">お布施について詳しくはこちら →</a></div></div>
+        </li>
+      </ul>
+      <div class="progress-bar-wrap">
+        <div class="progress-text" id="progress-shijukunichi">チェック：0 / 6</div>
+        <div class="progress-bar"><div class="progress-fill" id="fill-shijukunichi"></div></div>
+      </div>
+    </div>
+
+    <!-- ====== 年回忌法要 ====== -->
+    <div class="tab-panel" id="panel-nenki">
+      <div class="tab-panel-header">
+        <svg width="36" height="36"><use href="#ic-beads" stroke="#1b5e20"/></svg>
+        <h3 class="tab-panel-title">年回忌法要チェックリスト</h3>
+      </div>
+      <p class="tab-panel-desc">一周忌・三回忌・七回忌・十三回忌など<br>節目ごとの大切な法要です</p>
+      <h4 style="font-size:16px; font-weight:900; color:var(--green-dark); margin-bottom:12px; padding-left:4px;">必ずお持ちいただきたいもの</h4>
+      <ul class="checklist" id="list-nenki">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">「法名軸」もしくは「過去帳」か「繰り出し位牌」</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>故人の法名と没年月日などが書かれています。「どれを持って行ったらよいか、よく分からない」場合は、ご遠慮なく住職へお尋ねください。</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">故人のお写真</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>ご自宅にあるもので結構です。額縁に入れてお持ちください。</span></div></div>
+        </li>
+      </ul>
+      <h4 style="font-size:16px; font-weight:900; color:var(--gray); margin:20px 0 12px; padding-left:4px;">任意</h4>
+      <ul class="checklist">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">お花・御供物</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>お寺ではお花・御供物のご用意を行っておりません。（自由にお持ち込みいただいて構いません。）</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">法事後のお食事の有無</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>ご家族・ご親族とお会いできるたいせつなお時間です。ご法事後、そのままお寺にてお食事いただくことも可能です。（手配などはご法事まえにご相談させていただきます。）</span></div></div>
+        </li>
+      </ul>
+      <h4 style="font-size:16px; font-weight:900; color:var(--gray); margin:20px 0 12px; padding-left:4px;">その他</h4>
+      <ul class="checklist">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">お布施</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>目安など、ご質問は<strong>住職よりお答えしております。遠慮なくご相談ください。</strong></span><br><a href="ofuse.html" style="display:inline-flex; align-items:center; gap:4px; color:var(--green); font-weight:700; font-size:13px; margin-top:6px; text-decoration:none; border-bottom:1px solid var(--green);">お布施について詳しくはこちら →</a></div></div>
+        </li>
+      </ul>
+      <div class="progress-bar-wrap">
+        <div class="progress-text" id="progress-nenki">チェック：0 / 5</div>
+        <div class="progress-bar"><div class="progress-fill" id="fill-nenki"></div></div>
+      </div>
+      <div style="margin-top:24px; background:var(--green-pale); border-radius:var(--radius); padding:20px;">
+        <h4 style="font-size:17px; font-weight:900; color:var(--green-dark); margin-bottom:12px; text-align:center; display:flex; align-items:center; justify-content:center; gap:8px;">
+          <svg width="20" height="20"><use href="#ic-clipboard" stroke="#1b5e20"/></svg> 年回忌の早見表
+        </h4>
+        <table style="width:100%; border-collapse:collapse; font-size:15px;">
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 4px; font-weight:700;">一周忌</td><td style="padding:8px 4px; color:var(--gray);">亡くなって<strong>1年後</strong></td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 4px; font-weight:700;">三回忌</td><td style="padding:8px 4px; color:var(--gray);">亡くなって<strong>2年後</strong></td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 4px; font-weight:700;">七回忌</td><td style="padding:8px 4px; color:var(--gray);">亡くなって<strong>6年後</strong></td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 4px; font-weight:700;">十三回忌</td><td style="padding:8px 4px; color:var(--gray);">亡くなって<strong>12年後</strong></td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 4px; font-weight:700;">十七回忌</td><td style="padding:8px 4px; color:var(--gray);">亡くなって<strong>16年後</strong></td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 4px; font-weight:700;">二十五回忌</td><td style="padding:8px 4px; color:var(--gray);">亡くなって<strong>24年後</strong></td></tr>
+          <tr><td style="padding:8px 4px; font-weight:700;">三十三回忌</td><td style="padding:8px 4px; color:var(--gray);">亡くなって<strong>32年後</strong>（弔い上げ）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ====== 新盆（初盆） ====== -->
+    <div class="tab-panel" id="panel-hatsubon">
+      <div class="tab-panel-header">
+        <svg width="36" height="36"><use href="#ic-lantern" stroke="#1b5e20"/></svg>
+        <h3 class="tab-panel-title">新盆（初盆）チェックリスト</h3>
+      </div>
+      <p class="tab-panel-desc">四十九日を過ぎてから初めて迎えるお盆です。</p>
+      <h4 style="font-size:16px; font-weight:900; color:var(--green-dark); margin-bottom:12px; padding-left:4px;">必ずお持ちいただきたいもの</h4>
+      <ul class="checklist" id="list-hatsubon">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">「法名軸」もしくは「過去帳」か「繰り出し位牌」</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>故人の法名と没年月日などが書かれています。「どれを持って行ったらよいか、よく分からない」場合は、ご遠慮なく住職へお尋ねください。</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">故人のお写真</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>ご自宅にあるもので結構です。額縁に入れてお持ちください。</span></div></div>
+        </li>
+      </ul>
+      <h4 style="font-size:16px; font-weight:900; color:var(--gray); margin:20px 0 12px; padding-left:4px;">任意</h4>
+      <ul class="checklist">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">お花・御供物</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>お寺ではお花・御供物のご用意を行っておりません。（自由にお持ち込みいただいて構いません。）</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">白紋天（白い提灯）</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>初盆のみ使用する白い提灯です。仏具店やホームセンターでお求めいただけます。</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">盆提灯</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>ご親戚やご知人からいただくことも多いです。ご自宅に飾ります。</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">精霊棚（盆棚）の準備</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>お飾りの仕方がわからない場合は、お気軽にお寺にお尋ねください。</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">迎え火・送り火の準備</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>おがら（麻の茎）をご用意ください。焙烙（ほうろく）があると便利です。</span></div></div>
+        </li>
+      </ul>
+      <h4 style="font-size:16px; font-weight:900; color:var(--gray); margin:20px 0 12px; padding-left:4px;">その他</h4>
+      <ul class="checklist">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">お布施</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>目安など、ご質問は<strong>住職よりお答えしております。遠慮なくご相談ください。</strong></span><br><a href="ofuse.html" style="display:inline-flex; align-items:center; gap:4px; color:var(--green); font-weight:700; font-size:13px; margin-top:6px; text-decoration:none; border-bottom:1px solid var(--green);">お布施について詳しくはこちら →</a></div></div>
+        </li>
+      </ul>
+      <div class="progress-bar-wrap">
+        <div class="progress-text" id="progress-hatsubon">チェック：0 / 7</div>
+        <div class="progress-bar"><div class="progress-fill" id="fill-hatsubon"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ご法事の流れ -->
+<section class="bg-warm">
+  <h2 class="section-title">ご法事の流れ</h2>
+  <div class="divider"></div>
+  <div class="flow-section">
+    <div class="flow-item">
+      <div class="flow-num">1</div>
+      <div class="flow-content">
+        <h3><svg width="20" height="20"><use href="#ic-phone" stroke="#2e7d32"/></svg> 日程のご相談・ご予約</h3>
+        <p>LINE・お電話にてご連絡ください。<br>ご希望の日時を調整いたします。</p>
+        <a href="https://liff.line.me/2009625756-QSxV60j5?unique_key=pCJQFu&ts=1776092971" style="display:inline-flex; align-items:center; gap:8px; background:#06c755; color:#fff; padding:12px 24px; border-radius:30px; font-size:15px; font-weight:700; text-decoration:none; margin-top:12px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .348-.281.63-.63.63h-2.02v1.318h2.02c.349 0 .63.284.63.63 0 .349-.281.631-.63.631h-2.65a.63.63 0 01-.63-.631V8.282a.63.63 0 01.63-.63h2.65c.349 0 .63.283.63.63 0 .349-.281.631-.63.631h-2.02v1.32h2.02zm-3.91 3.21a.63.63 0 01-.63.63.63.63 0 01-.51-.262l-2.786-3.79v3.422a.63.63 0 01-1.261 0V8.282a.63.63 0 01.63-.63c.2 0 .381.095.51.262l2.786 3.79V8.282a.63.63 0 011.261 0v4.791zm-6.485.63a.63.63 0 01-.63-.63V8.282a.63.63 0 011.261 0v4.791a.63.63 0 01-.63.63zm-2.146 0h-2.65a.63.63 0 01-.631-.63V8.282a.63.63 0 011.261 0v4.161h2.02c.349 0 .63.284.63.63 0 .349-.281.631-.63.631zM12 2C6.477 2 2 5.92 2 10.667c0 4.27 3.79 7.853 8.907 8.531.347.075.819.229.938.525.107.272.07.696.035.97l-.152.913c-.046.272-.213 1.065.933.58 1.146-.484 6.18-3.64 8.434-6.232C22.768 14.067 22 12.463 22 10.667 22 5.92 17.523 2 12 2z"/></svg>
+          日程を相談する
+        </a>
+        <div style="background:#fff; border:2px solid var(--green); border-radius:10px; padding:16px; margin-top:12px;">
+          <p style="margin:0; font-size:15px; line-height:1.8;"><strong style="color:var(--green-dark);">ご希望の3ヶ月前、遅くとも1ヶ月前には日程をご相談ください。</strong>土日は特にご希望が多くございます。お早めにご連絡いただけると安心です。</p>
+        </div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">2</div>
+      <div class="flow-content">
+        <h3><svg width="20" height="20"><use href="#ic-clipboard" stroke="#2e7d32"/></svg> 準備物の確認</h3>
+        <p>上のチェックリストで<br>ひとつずつご確認ください。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">3</div>
+      <div class="flow-content">
+        <h3><svg width="20" height="20"><use href="#ic-car" stroke="#2e7d32"/></svg> 当日ご集合（15分前）</h3>
+        <p><strong>法要開始の15分前</strong>にお越しください。<br><strong>駐車場がございます</strong>ので、お車でどうぞ。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">4</div>
+      <div class="flow-content">
+        <h3><svg width="20" height="20"><use href="#ic-pray" stroke="#2e7d32"/></svg> 受付</h3>
+        <p>本堂にて受付をいたします。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">5</div>
+      <div class="flow-content">
+        <h3><svg width="20" height="20"><use href="#ic-beads" stroke="#2e7d32"/></svg> 読経・お焼香</h3>
+        <p>ご参列の皆様にお焼香いただきます。<br><small style="color:var(--gray)">※ご法事全体のお時間：約40分〜1時間程度</small></p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">6</div>
+      <div class="flow-content">
+        <h3><svg width="20" height="20"><use href="#ic-chat" stroke="#2e7d32"/></svg> 法話</h3>
+        <p>住職よりお話をさせていただきます。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">7</div>
+      <div class="flow-content">
+        <h3><svg width="20" height="20"><use href="#ic-grave" stroke="#2e7d32"/></svg> お墓参り</h3>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">8</div>
+      <div class="flow-content">
+        <h3><svg width="20" height="20"><use href="#ic-dining" stroke="#2e7d32"/></svg> お食事（任意）</h3>
+        <p>ご家族・ご親族とお会いできるたいせつなお時間です。<br>ご法事後、そのままお寺にてお食事いただくことも可能です。<br>（手配などはご法事まえにご相談させていただきます。）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 当日について -->
+<section>
+  <h2 class="section-title">当日について</h2>
+  <div class="divider"></div>
+  <div class="info-cards">
+    <div class="info-card">
+      <div class="card-icon"><svg width="36" height="36"><use href="#ic-clock" stroke="#2e7d32"/></svg></div>
+      <div><h3>集合時間</h3><p>法要開始の<strong>15分前</strong>までにお越しください。<br>余裕をもってお越しいただくと安心です。</p></div>
+    </div>
+    <div class="info-card">
+      <div class="card-icon"><svg width="36" height="36"><use href="#ic-car" stroke="#2e7d32"/></svg></div>
+      <div><h3>駐車場</h3><p>境内に<strong>駐車スペースがございます。</strong><br>お車でお越しいただけます。</p></div>
+    </div>
+    <div class="info-card">
+      <div class="card-icon"><svg width="36" height="36"><use href="#ic-clock" stroke="#2e7d32"/></svg></div>
+      <div><h3>所要時間</h3><p>読経・お焼香を含め<br><strong>約40分〜1時間程度</strong>です。</p></div>
+    </div>
+    <div class="info-card" style="background:#fff; border:2px solid var(--green);">
+      <div class="card-icon"><svg width="36" height="36"><use href="#ic-money" stroke="#2e7d32"/></svg></div>
+      <div>
+        <h3>お布施について</h3>
+        <p>目安については、<strong>住職に直接おたずねください。</strong><br>丁寧にご説明いたします。</p>
+        <a href="ofuse.html" style="display:inline-flex; align-items:center; gap:6px; color:var(--green); font-weight:700; font-size:14px; margin-top:8px; text-decoration:none; border-bottom:1px solid var(--green);">詳しくはこちら →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- よくある質問 -->
+<section class="bg-warm">
+  <h2 class="section-title">よくある質問</h2>
+  <div class="divider"></div>
+  <div class="faq-section">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>会場使用料はかかりますか？<span class="chevron">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner"><strong>会場使用料はいただいておりません。</strong>供花料としてお気持ちをお納めいただいております。お花はお寺でご用意いたします。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>何回忌まで法要をすればよいですか？<span class="chevron">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">一般的には<strong>三十三回忌</strong>をもって「弔い上げ」とされることが多いですが、ご家庭のご事情に合わせて柔軟にご相談ください。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>駐車場はありますか？<span class="chevron">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">はい、<strong>境内に駐車スペースがございます。</strong>お車でお越しいただけます。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>法要の日程はいつ頃決めればよいですか？<span class="chevron">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner"><strong>1〜2ヶ月前</strong>にはご相談いただけると、ご希望の日時で調整しやすくなります。特にお盆やお彼岸の時期は混み合いますので、お早めにご連絡ください。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>お寺での法要と自宅での法要、<br>どちらがよいですか？<span class="chevron">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">どちらでも結構です。お寺での法要は<strong>会場使用料はいただいておりません</strong>ので、お気軽にご利用ください。ご自宅への出張法要も承っております。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>小さな子ども連れでも大丈夫ですか？<span class="chevron">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">もちろんです。<strong>お子さま連れでも安心してお越しください。</strong>故人も喜ばれることと思います。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="q-badge">Q</span>お布施の目安について<span class="chevron">▼</span></button>
+      <div class="faq-a"><div class="faq-a-inner">目安など、ご質問は<strong>住職よりお答えしております。遠慮なくご相談ください。</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section class="contact-section">
+  <h2 class="section-title">お問い合わせ</h2>
+  <div class="divider"></div>
+  <div class="contact-inner">
+    <p class="contact-lead">ご法事に関するご相談は<br>どんなことでもお気軽にお問い合わせください。</p>
+    <div class="contact-box">
+      <h3><svg width="22" height="22"><use href="#ic-temple" stroke="#1b5e20"/></svg> 真宗大谷派 西岸寺</h3>
+      <ul>
+        <li style="display:flex;align-items:center;gap:6px;"><svg width="16" height="16"><use href="#ic-pin" stroke="#4caf50"/></svg> 〒826-0042 福岡県田川市川宮1513-7</li>
+        <li style="display:flex;align-items:center;gap:6px;"><svg width="16" height="16"><use href="#ic-phone" stroke="#4caf50"/></svg> 0947-42-2769</li>
+        <li style="display:flex;align-items:center;gap:6px;"><svg width="16" height="16"><use href="#ic-mail" stroke="#4caf50"/></svg> muryo-n@poppy.ocn.ne.jp</li>
+      </ul>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps?q=福岡県田川市川宮1513-7+西岸寺&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="contact-btns" style="margin-top:16px;">
+      <a href="https://lin.ee/WqZAuqu" class="contact-btn line"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .348-.281.63-.63.63h-2.02v1.318h2.02c.349 0 .63.284.63.63 0 .349-.281.631-.63.631h-2.65a.63.63 0 01-.63-.631V8.282a.63.63 0 01.63-.63h2.65c.349 0 .63.283.63.63 0 .349-.281.631-.63.631h-2.02v1.32h2.02zm-3.91 3.21a.63.63 0 01-.63.63.63.63 0 01-.51-.262l-2.786-3.79v3.422a.63.63 0 01-1.261 0V8.282a.63.63 0 01.63-.63c.2 0 .381.095.51.262l2.786 3.79V8.282a.63.63 0 011.261 0v4.791zm-6.485.63a.63.63 0 01-.63-.63V8.282a.63.63 0 011.261 0v4.791a.63.63 0 01-.63.63zm-2.146 0h-2.65a.63.63 0 01-.631-.63V8.282a.63.63 0 011.261 0v4.161h2.02c.349 0 .63.284.63.63 0 .349-.281.631-.63.631zM12 2C6.477 2 2 5.92 2 10.667c0 4.27 3.79 7.853 8.907 8.531.347.075.819.229.938.525.107.272.07.696.035.97l-.152.913c-.046.272-.213 1.065.933.58 1.146-.484 6.18-3.64 8.434-6.232C22.768 14.067 22 12.463 22 10.667 22 5.92 17.523 2 12 2z"/></svg> LINEで問い合わせる</a>
+      <a href="tel:0947-42-2769" class="contact-btn tel"><svg width="20" height="20"><use href="#ic-phone" stroke="#1b5e20"/></svg> 電話で相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p class="name">真宗大谷派 西岸寺</p>
+  <p>〒826-0042 福岡県田川市川宮1513-7</p>
+</footer>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.querySelectorAll('svg use').forEach(u => u.setAttribute('stroke','#2e7d32'));
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  event.currentTarget.querySelectorAll('svg use').forEach(u => u.setAttribute('stroke','#fff'));
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+function toggleCheck(row) {
+  row.querySelector('.check-box').classList.toggle('checked');
+  row.classList.toggle('checked');
+  updateProgress();
+}
+
+function updateProgress() {
+  ['shijukunichi','nenki','hatsubon'].forEach(id => {
+    const panel = document.getElementById('panel-' + id);
+    if (!panel) return;
+    const total = panel.querySelectorAll('.check-box').length;
+    const checked = panel.querySelectorAll('.check-box.checked').length;
+    const t = document.getElementById('progress-' + id);
+    const f = document.getElementById('fill-' + id);
+    if (t) t.textContent = 'チェック：' + checked + ' / ' + total;
+    if (f) f.style.width = (total > 0 ? (checked / total * 100) : 0) + '%';
+  });
+}
+
+function toggleNote(btn) {
+  const note = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  if (isOpen) {
+    btn.classList.remove('open');
+    btn.innerHTML = '<span class="toggle-chevron">▼</span> 詳しく見る';
+    note.style.maxHeight = null;
+    note.classList.remove('open');
+  } else {
+    btn.classList.add('open');
+    btn.innerHTML = '<span class="toggle-chevron" style="transform:rotate(180deg)">▼</span> 閉じる';
+    note.style.maxHeight = note.scrollHeight + 'px';
+    note.classList.add('open');
+  }
+}
+
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.style.maxHeight = null;
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    ans.style.maxHeight = ans.scrollHeight + 'px';
+  }
+}
+</script>
+</body>
+</html>
