@@ -647,6 +647,8 @@
       <div class="slider" data-slider="jusan">
         <div class="slider-track">
           <img src="jusan.jpg" alt="13まいり">
+          <img src="13-3.jpg" alt="13まいり">
+          <img src="13-4.jpg" alt="13まいり">
         </div>
         <div class="slider-dots">
           <button class="slider-dot active"></button>
@@ -868,12 +870,23 @@ function switchTab(tab) {
 /* ── Photo Slider ── */
 document.querySelectorAll('.slider').forEach(function(slider) {
   var track = slider.querySelector('.slider-track');
-  var dots = slider.querySelectorAll('.slider-dot');
+  var dotsWrap = slider.querySelector('.slider-dots');
   var imgs = track.querySelectorAll('img');
-  var current = 0;
   var total = imgs.length;
+  var current = 0;
   var startX = 0;
   var dragging = false;
+
+  // Rebuild dots to match image count
+  if (dotsWrap) {
+    dotsWrap.innerHTML = '';
+    for (var i = 0; i < total; i++) {
+      var b = document.createElement('button');
+      b.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dotsWrap.appendChild(b);
+    }
+  }
+  var dots = slider.querySelectorAll('.slider-dot');
 
   function goTo(i) {
     current = (i + total) % total;
@@ -894,8 +907,8 @@ document.querySelectorAll('.slider').forEach(function(slider) {
     dragging = false;
   }, {passive: true});
 
-  /* Auto-play every 4s */
-  setInterval(function() { goTo(current + 1); }, 4000);
+  /* Auto-play every 2s */
+  setInterval(function() { goTo(current + 1); }, 2000);
 });
 </script>
 
