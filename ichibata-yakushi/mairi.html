@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>2・4歳まいり／13歳まいり｜一畑薬師</title>
+<title>2才児まいり・4才児まいり／13まいり｜一畑薬師</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -312,6 +312,19 @@
   .video-wrap iframe {
     width: 100%; aspect-ratio: 16 / 9; border: 0; display: block;
   }
+  .video-link {
+    display: block; position: relative; width: 100%; aspect-ratio: 16 / 9;
+  }
+  .video-link img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .video-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 64px; height: 64px; background: rgba(0,0,0,.7); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .video-play::after {
+    content: ''; border-style: solid; border-width: 12px 0 12px 22px;
+    border-color: transparent transparent transparent #fff; margin-left: 4px;
+  }
 
   /* ── Access ── */
   .bg-warm { background: var(--bg-warm); }
@@ -399,7 +412,7 @@
   <img class="hero-photo" src="hero.jpg" alt="一畑薬師 さい参り">
   <div class="hero-overlay">
     <p class="temple-name">一畑薬師</p>
-    <h1>2・4歳まいり<br>13歳まいり</h1>
+    <h1>2才児・4才児まいり<br>13まいり</h1>
     <p class="hero-sub">令和8年（2026年）ご案内</p>
   </div>
 </div>
@@ -417,7 +430,10 @@
   </div>
 
   <div class="video-wrap" style="margin-bottom:32px">
-    <iframe src="https://www.youtube.com/embed/gSwzsFOD_pg" title="一畑薬師 さい参り" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <a href="https://www.youtube.com/watch?v=gSwzsFOD_pg" target="_blank" rel="noopener" class="video-link">
+      <img src="https://img.youtube.com/vi/gSwzsFOD_pg/hqdefault.jpg" alt="一畑薬師 さい参り 動画">
+      <span class="video-play"></span>
+    </a>
   </div>
 
   <div class="section-sub">
@@ -431,23 +447,23 @@
         <span class="tab-icon">
           <svg width="28" height="28" style="color:#fff"><use href="#ic-child"/></svg>
         </span>
-        <span class="tab-age">2・4歳</span>
+        <span class="tab-age">2才児・4才児</span>
         <span class="tab-label">まいり</span>
       </button>
       <button class="tab-btn" onclick="switchTab('jusan')">
         <span class="tab-icon">
           <svg width="28" height="28" style="color:var(--primary)"><use href="#ic-temple"/></svg>
         </span>
-        <span class="tab-age">13歳</span>
+        <span class="tab-age">13</span>
         <span class="tab-label">まいり</span>
       </button>
     </div>
 
-    <!-- ====== 2・4歳まいり ====== -->
+    <!-- ====== 2才児・4才児まいり ====== -->
     <div class="tab-panel active" id="panel-kodomo">
       <div class="slider" data-slider="kodomo">
         <div class="slider-track">
-          <img src="kodomo.jpg" alt="2・4歳まいり">
+          <img src="kodomo.jpg" alt="2才児・4才児まいり">
         </div>
         <div class="slider-dots">
           <button class="slider-dot active"></button>
@@ -470,14 +486,14 @@
           </div>
           <div class="age-cards">
             <div class="age-card">
-              <div class="age-card-label">2歳</div>
+              <div class="age-card-label">2才児</div>
               <div class="age-card-info">
                 <span class="age-type">数え年</span><span>令和7年生まれ</span>
                 <span class="age-type" style="margin-top:4px">満年齢</span><span>令和6年生まれ</span>
               </div>
             </div>
             <div class="age-card">
-              <div class="age-card-label">4歳</div>
+              <div class="age-card-label">4才児</div>
               <div class="age-card-info">
                 <span class="age-type">数え年</span><span>令和5年生まれ</span>
                 <span class="age-type" style="margin-top:4px">満年齢</span><span>令和4年生まれ</span>
@@ -509,10 +525,10 @@
             ご祈念時間（各回約20分）
           </div>
           <ul class="time-list">
-            <li class="time-item special"><span class="time-badge">10:00</span><span class="time-desc">お子様特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">11:00</span><span class="time-desc">お子様特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">12:00</span><span class="time-desc">お子様特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">13:30</span><span class="time-desc">お子様特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">10:00</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">11:00</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">12:00</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">13:30</span><span class="time-desc">お子さま特別祈願</span></li>
           </ul>
           <p class="price-note" style="margin-top: 10px;">当日10〜15分前に受付をお済ませください</p>
         </div>
@@ -575,11 +591,11 @@
       </div>
     </div>
 
-    <!-- ====== 13歳まいり ====== -->
+    <!-- ====== 13まいり ====== -->
     <div class="tab-panel" id="panel-jusan">
       <div class="slider" data-slider="jusan">
         <div class="slider-track">
-          <img src="jusan.jpg" alt="13歳まいり">
+          <img src="jusan.jpg" alt="13まいり">
         </div>
         <div class="slider-dots">
           <button class="slider-dot active"></button>
@@ -635,10 +651,10 @@
             ご祈念時間（各回約20分）
           </div>
           <ul class="time-list">
-            <li class="time-item special"><span class="time-badge">10:00</span><span class="time-desc">お子様特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">11:00</span><span class="time-desc">お子様特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">12:00</span><span class="time-desc">お子様特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">13:30</span><span class="time-desc">お子様特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">10:00</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">11:00</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">12:00</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">13:30</span><span class="time-desc">お子さま特別祈願</span></li>
           </ul>
           <p class="price-note" style="margin-top: 10px;">当日10〜15分前に受付をお済ませください</p>
         </div>
