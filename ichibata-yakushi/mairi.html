@@ -192,22 +192,24 @@
   }
 
   /* ── Price cards ── */
-  .price-cards { display: grid; gap: 12px; margin-bottom: 12px; }
+  .price-cards { display: grid; gap: 16px; margin-bottom: 12px; }
   .price-card {
-    background: var(--white); border: 2px solid var(--border); border-radius: 12px;
-    padding: 14px; display: flex; align-items: center; gap: 14px;
-    overflow: hidden;
+    background: var(--white); border: 2px solid var(--border); border-radius: 14px;
+    padding: 0; display: flex; flex-direction: column; overflow: hidden;
   }
   .price-card-img {
-    width: 96px; height: 96px; border-radius: 10px; object-fit: cover; flex-shrink: 0;
+    width: 100%; aspect-ratio: 4 / 3; object-fit: contain; display: block;
     background: var(--primary-pale);
   }
-  .price-card-body { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+  .price-card-body {
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 14px 18px 18px;
+  }
   .price-amount {
-    font-size: 22px; font-weight: 900; color: var(--primary);
+    font-size: 24px; font-weight: 900; color: var(--primary);
     white-space: nowrap;
   }
-  .price-desc { font-size: 14px; color: var(--text-sub); line-height: 1.6; }
+  .price-desc { font-size: 15px; color: var(--text-sub); line-height: 1.6; }
   .price-note { font-size: 14px; color: var(--text-sub); line-height: 1.7; }
 
   /* ── Age cards ── */
@@ -569,7 +571,7 @@
               </div>
             </div>
           </div>
-          <p class="price-note">下附品の内容は金額によって異なります</p>
+          <p class="price-note">下附品の内容はご祈念内容によって異なります</p>
         </div>
 
         <!-- 庭草踏み行事 -->
@@ -713,7 +715,7 @@
               </div>
             </div>
           </div>
-          <p class="price-note">下附品の内容は金額によって異なります</p>
+          <p class="price-note">下附品の内容はご祈念内容によって異なります</p>
         </div>
 
         <!-- 十三まいりとは -->
