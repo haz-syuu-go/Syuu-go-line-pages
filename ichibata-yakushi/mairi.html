@@ -272,7 +272,7 @@
   .time-item .time-desc { font-size: 15px; color: var(--text-sub); }
   /* Special prayer highlight */
   .time-item.special { background: var(--primary-pale); border-radius: 10px; padding: 12px; margin: 4px 0; border-bottom: none; }
-  .time-item.special .time-badge { background: var(--accent); }
+  .time-item.special .time-badge { background: #fff; color: var(--primary); border: 2px solid var(--primary); }
   .time-item.special .time-desc { font-weight: 700; color: var(--primary-dark); font-size: 16px; }
   .time-group-label {
     font-size: 12px; font-weight: 700; color: var(--text-sub); letter-spacing: 1px;
@@ -284,6 +284,11 @@
   .apply-card.line-apply { border-color: #06c755; background: #f0faf3; }
   .apply-card.line-apply .apply-num { background: #06c755; }
   .apply-card.line-apply h4 { color: #06c755; }
+  .line-apply-btn {
+    display: inline-block; background: #06c755; color: #fff; font-weight: 700;
+    font-size: 15px; padding: 8px 24px; border-radius: 24px; margin-top: 8px;
+    text-align: center; letter-spacing: .5px;
+  }
 
   /* ── CTA Button ── */
   .cta-wrap { max-width: 520px; margin: 0 auto; }
@@ -406,8 +411,8 @@
       <svg width="40" height="40" style="color:var(--primary)"><use href="#ic-sparkle"/></svg>
     </div>
     <p>
-      お子さまの<strong>健やかな成長</strong>を<br>
-      薬師如来さまにご祈願いたします
+      お子様の<strong>無事成長</strong>をお薬師さまにご祈念します。<br>
+      「目のやくし」「子どもの無事成長の仏さま」で<br>有名な一畑薬師の特別行事です。
     </p>
   </div>
 
@@ -542,13 +547,14 @@
             お申込み方法
           </div>
           <div class="apply-cards">
-            <div class="apply-card line-apply">
+            <a href="https://liff.line.me/2006722517-EKaZv5db?calendar_salon_id=11753&ts=1776231446" class="apply-card line-apply" style="text-decoration:none; color:inherit; display:flex;">
               <span class="apply-num">1</span>
               <div>
                 <h4>LINE申込</h4>
                 <p>事前にLINEで決済後、当日に画面をご提示</p>
+                <span class="line-apply-btn">LINEで申込む</span>
               </div>
-            </div>
+            </a>
             <div class="apply-card">
               <span class="apply-num">2</span>
               <div>
@@ -667,13 +673,14 @@
             お申込み方法
           </div>
           <div class="apply-cards">
-            <div class="apply-card line-apply">
+            <a href="https://liff.line.me/2006722517-EKaZv5db?calendar_salon_id=11883&ts=1776231446" class="apply-card line-apply" style="text-decoration:none; color:inherit; display:flex;">
               <span class="apply-num">1</span>
               <div>
                 <h4>LINE申込</h4>
                 <p>事前にLINEで決済後、当日に画面をご提示</p>
+                <span class="line-apply-btn">LINEで申込む</span>
               </div>
-            </div>
+            </a>
             <div class="apply-card">
               <span class="apply-num">2</span>
               <div>
@@ -699,7 +706,7 @@
 <!-- ============ CTA ============ -->
 <section style="padding-top:0">
   <div class="cta-wrap">
-    <a href="#" class="cta-btn line">
+    <a id="cta-line" href="https://liff.line.me/2006722517-EKaZv5db?calendar_salon_id=11753&ts=1776231446" class="cta-btn line">
       <svg width="24" height="24" style="color:#fff"><use href="#ic-line"/></svg>
       LINEでお申込み
     </a>
@@ -749,6 +756,15 @@ function switchTab(tab) {
   event.currentTarget.classList.add('active');
   event.currentTarget.querySelectorAll('svg').forEach(function(s) { s.style.color = '#fff'; });
   document.getElementById('panel-' + tab).classList.add('active');
+
+  var ctaLine = document.getElementById('cta-line');
+  if (ctaLine) {
+    var urls = {
+      kodomo: 'https://liff.line.me/2006722517-EKaZv5db?calendar_salon_id=11753&ts=1776231446',
+      jusan: 'https://liff.line.me/2006722517-EKaZv5db?calendar_salon_id=11883&ts=1776231446'
+    };
+    ctaLine.href = urls[tab] || urls.kodomo;
+  }
 }
 
 /* ── Photo Slider ── */
