@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>2・4歳まいり／13歳まいり｜一畑薬師</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #8b2252;
+    --primary-light: #b8446e;
+    --primary-pale: #fdf2f7;
+    --primary-dark: #6b1a3f;
+    --accent: #d4a03c;
+    --accent-light: #faf3e0;
+    --white: #fff;
+    --text: #333;
+    --text-sub: #666;
+    --border: #e8d8df;
+    --bg-warm: #fefbfc;
+    --radius: 16px;
+    --shadow: 0 2px 16px rgba(139,34,82,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.9;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-photo {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    display: block;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .hero-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(107,26,63,0.85));
+    padding: 32px 20px 28px;
+    color: var(--white);
+  }
+  .hero-overlay .temple-name {
+    font-size: 13px; letter-spacing: 4px; opacity: .85; margin-bottom: 6px;
+  }
+  .hero-overlay h1 {
+    font-size: 26px; font-weight: 900; letter-spacing: 2px; line-height: 1.5;
+  }
+  .hero-overlay .hero-sub {
+    font-size: 14px; opacity: .8; margin-top: 8px; line-height: 1.7;
+  }
+
+  /* ── Section common ── */
+  section { padding: 48px 20px; }
+  .section-title {
+    text-align: center; font-size: 24px; font-weight: 900;
+    color: var(--primary-dark); margin-bottom: 8px; letter-spacing: 1px;
+  }
+  .section-sub {
+    text-align: center; font-size: 15px; color: var(--text-sub);
+    margin-bottom: 28px; line-height: 1.8;
+  }
+  .divider {
+    width: 44px; height: 3px; background: var(--primary);
+    margin: 0 auto 28px; border-radius: 2px;
+  }
+  .content-wrap { max-width: 520px; margin: 0 auto; }
+
+  /* ── Intro banner ── */
+  .intro-banner {
+    max-width: 520px; margin: 0 auto 32px;
+    background: linear-gradient(135deg, var(--primary-pale), var(--accent-light));
+    border-radius: var(--radius); padding: 28px 24px;
+    text-align: center; border: 1px solid var(--border);
+  }
+  .intro-banner .intro-icon { margin-bottom: 12px; }
+  .intro-banner p { font-size: 16px; color: var(--primary-dark); line-height: 1.9; }
+  .intro-banner strong { color: var(--primary); }
+
+  /* ── Tabs ── */
+  .tabs-wrap { max-width: 520px; margin: 0 auto; }
+  .tab-btns {
+    display: flex; border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden; border: 2.5px solid var(--primary); border-bottom: none;
+  }
+  .tab-btn {
+    flex: 1; padding: 18px 8px; text-align: center; font-size: 16px; font-weight: 700;
+    cursor: pointer; background: var(--white); color: var(--primary);
+    border: none; border-right: 1px solid var(--border);
+    transition: all .25s; font-family: inherit; line-height: 1.4;
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn.active { background: var(--primary); color: var(--white); }
+  .tab-btn .tab-icon { display: flex; justify-content: center; margin-bottom: 6px; }
+  .tab-btn .tab-age { display: block; font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+  .tab-btn .tab-label { display: block; font-size: 13px; font-weight: 600; margin-top: 2px; }
+
+  /* ── Tab panel ── */
+  .tab-panel {
+    display: none; border: 2.5px solid var(--primary); border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius); padding: 0; background: var(--white);
+    overflow: hidden;
+  }
+  .tab-panel.active { display: block; }
+
+  /* ── Panel photo slider ── */
+  .panel-photo {
+    width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;
+  }
+  .slider {
+    position: relative; overflow: hidden; width: 100%;
+  }
+  .slider-track {
+    display: flex; transition: transform .4s ease;
+  }
+  .slider-track img {
+    width: 100%; aspect-ratio: 16 / 9; object-fit: cover; flex-shrink: 0;
+  }
+  .slider-dots {
+    display: flex; justify-content: center; gap: 8px;
+    padding: 12px 0; background: var(--white);
+  }
+  .slider-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border); border: none; cursor: pointer;
+    padding: 0; transition: all .25s;
+  }
+  .slider-dot.active {
+    background: var(--primary); width: 24px; border-radius: 4px;
+  }
+
+  .panel-body { padding: 28px 22px 32px; }
+
+  .panel-title {
+    text-align: center; font-size: 22px; font-weight: 900;
+    color: var(--primary-dark); margin-bottom: 6px;
+  }
+  .panel-desc {
+    text-align: center; font-size: 15px; color: var(--text-sub);
+    margin-bottom: 28px; line-height: 1.8;
+  }
+
+  /* ── Info block ── */
+  .info-block { margin-bottom: 28px; }
+  .info-block-title {
+    font-size: 17px; font-weight: 700; color: var(--primary);
+    margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    padding-bottom: 8px; border-bottom: 2px solid var(--primary-pale);
+  }
+  .info-block-title .ib-icon {
+    width: 32px; height: 32px; background: var(--primary);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── Date/Time cards ── */
+  .date-card {
+    background: var(--primary-pale); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 12px;
+  }
+  .date-card-title {
+    font-size: 13px; font-weight: 700; color: var(--primary);
+    margin-bottom: 4px; letter-spacing: 1px;
+  }
+  .date-card .date-days {
+    font-size: 16px; font-weight: 600; line-height: 1.7;
+    display: flex; flex-wrap: wrap; gap: 4px 0;
+  }
+  .date-card .date-days .day {
+    white-space: nowrap;
+  }
+  .date-card .date-note {
+    font-size: 14px; color: var(--text-sub); font-weight: 400; margin-top: 4px;
+  }
+
+  /* ── Price cards ── */
+  .price-cards { display: grid; gap: 10px; margin-bottom: 12px; }
+  .price-card {
+    background: var(--white); border: 2px solid var(--border); border-radius: 12px;
+    padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+  }
+  .price-amount {
+    font-size: 20px; font-weight: 900; color: var(--primary);
+    white-space: nowrap; min-width: 90px;
+  }
+  .price-desc { font-size: 14px; color: var(--text-sub); line-height: 1.6; }
+  .price-note { font-size: 14px; color: var(--text-sub); line-height: 1.7; }
+
+  /* ── Age cards ── */
+  .age-cards { display: grid; gap: 10px; margin-bottom: 12px; }
+  .age-card {
+    background: var(--accent-light); border-radius: 12px;
+    padding: 16px 20px; display: flex; align-items: center; gap: 16px;
+  }
+  .age-card-label {
+    font-size: 22px; font-weight: 900; color: var(--primary);
+    min-width: 50px; text-align: center;
+  }
+  .age-card-info { font-size: 14px; color: var(--text); line-height: 1.7; }
+  .age-card-info span { display: block; }
+  .age-card-info .age-type { font-size: 12px; color: var(--text-sub); }
+
+  /* ── Feature list ── */
+  .feature-list { list-style: none; }
+  .feature-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+  }
+  .feature-item:last-child { border-bottom: none; }
+  .feature-icon {
+    width: 44px; height: 44px; background: var(--primary-pale);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .feature-text h4 { font-size: 16px; font-weight: 700; color: var(--primary-dark); margin-bottom: 2px; }
+  .feature-text p { font-size: 15px; color: var(--text-sub); line-height: 1.7; }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--accent-light), #fff8e8);
+    border-radius: var(--radius); padding: 24px; margin-bottom: 28px;
+    border: 1px solid #e8d9a8;
+  }
+  .highlight-box h4 {
+    font-size: 17px; font-weight: 700; color: var(--accent);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+  }
+  .highlight-box p { font-size: 15px; line-height: 1.8; color: var(--text); }
+
+  /* ── Apply section ── */
+  .apply-cards { display: grid; gap: 12px; margin-bottom: 16px; }
+  .apply-card {
+    background: var(--white); border-radius: 12px; padding: 20px;
+    border: 2px solid var(--border); display: flex; align-items: flex-start; gap: 14px;
+    transition: border-color .2s;
+  }
+  .apply-card .apply-num {
+    width: 32px; height: 32px; background: var(--primary);
+    border-radius: 50%; color: var(--white); display: flex; align-items: center;
+    justify-content: center; font-size: 15px; font-weight: 900; flex-shrink: 0;
+  }
+  .apply-card h4 { font-size: 16px; font-weight: 700; color: var(--primary-dark); margin-bottom: 2px; }
+  .apply-card p { font-size: 14px; color: var(--text-sub); line-height: 1.7; }
+
+  /* ── Schedule list ── */
+  .time-list { list-style: none; }
+  .time-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .time-item:last-child { border-bottom: none; }
+  .time-badge {
+    background: var(--primary); color: var(--white); border-radius: 8px;
+    padding: 4px 12px; font-size: 14px; font-weight: 700; white-space: nowrap;
+    min-width: 62px; text-align: center;
+  }
+  .time-item .time-desc { font-size: 15px; color: var(--text-sub); }
+  /* Special prayer highlight */
+  .time-item.special { background: var(--primary-pale); border-radius: 10px; padding: 12px; margin: 4px 0; border-bottom: none; }
+  .time-item.special .time-badge { background: var(--accent); }
+  .time-item.special .time-desc { font-weight: 700; color: var(--primary-dark); font-size: 16px; }
+  .time-group-label {
+    font-size: 12px; font-weight: 700; color: var(--text-sub); letter-spacing: 1px;
+    margin: 14px 0 4px; padding-left: 2px;
+  }
+  .time-group-label:first-child { margin-top: 0; }
+
+  /* ── Apply card LINE highlight ── */
+  .apply-card.line-apply { border-color: #06c755; background: #f0faf3; }
+  .apply-card.line-apply .apply-num { background: #06c755; }
+  .apply-card.line-apply h4 { color: #06c755; }
+
+  /* ── CTA Button ── */
+  .cta-wrap { max-width: 520px; margin: 0 auto; }
+  .cta-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 20px; border-radius: var(--radius);
+    font-size: 18px; font-weight: 700; text-decoration: none;
+    text-align: center; transition: opacity .2s; font-family: inherit;
+    border: none; cursor: pointer;
+  }
+  .cta-btn:hover { opacity: .85; }
+  .cta-btn.line { background: #06c755; color: var(--white); }
+  .cta-btn.tel { background: var(--white); color: var(--primary-dark); border: 2px solid var(--primary); margin-top: 10px; }
+
+  /* ── Video ── */
+  .video-wrap {
+    max-width: 520px; margin: 0 auto;
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .video-wrap iframe {
+    width: 100%; aspect-ratio: 16 / 9; border: 0; display: block;
+  }
+
+  /* ── Access ── */
+  .bg-warm { background: var(--bg-warm); }
+  .access-card {
+    background: var(--white); border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .access-card h3 {
+    font-size: 17px; font-weight: 700; color: var(--primary-dark);
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .access-card p { font-size: 16px; color: var(--text-sub); line-height: 2; }
+  .map-wrap { border-radius: var(--radius); overflow: hidden; margin-top: 16px; }
+  .map-wrap iframe { width: 100%; height: 240px; border: 0; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center; padding: 36px 20px;
+    font-size: 13px; color: var(--text-sub);
+  }
+  .footer .name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+
+  /* ── Responsive ── */
+  @media (min-width: 600px) {
+    section { padding: 56px 24px; }
+    .hero-overlay h1 { font-size: 30px; }
+    .tab-btn { font-size: 17px; padding: 20px 12px; }
+    .tab-btn .tab-age { font-size: 24px; }
+    .panel-body { padding: 32px 28px 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SVG Icon definitions ============ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- Child / Kids -->
+  <symbol id="ic-child" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>
+  </symbol>
+  <!-- Calendar -->
+  <symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+  </symbol>
+  <!-- Clock -->
+  <symbol id="ic-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+  </symbol>
+  <!-- Yen (円) -->
+  <symbol id="ic-yen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h6M9 13h6"/>
+  </symbol>
+  <!-- Document / Application -->
+  <symbol id="ic-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+  </symbol>
+  <!-- Pray / Temple -->
+  <symbol id="ic-temple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2L3 9h18zM5 9v11h14V9"/><path d="M9 20v-6h6v6"/>
+  </symbol>
+  <!-- Sparkle -->
+  <symbol id="ic-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/>
+  </symbol>
+  <!-- Walk / Footsteps -->
+  <symbol id="ic-walk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="5" r="2"/><path d="M10 22l2-7 2 7M14 13l2 3M10 13l-2 3M10 10l2 3 2-3"/>
+  </symbol>
+  <!-- Map pin -->
+  <symbol id="ic-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+  <!-- Phone -->
+  <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </symbol>
+  <!-- LINE icon -->
+  <symbol id="ic-line" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M19.365 9.863c.349 0 .63.285.63.631 0 .346-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+  </symbol>
+</svg>
+
+<!-- ============ Hero ============ -->
+<div class="hero">
+  <img class="hero-photo" src="hero.jpg" alt="一畑薬師 さい参り">
+  <div class="hero-overlay">
+    <p class="temple-name">一畑薬師</p>
+    <h1>2・4歳まいり<br>13歳まいり</h1>
+    <p class="hero-sub">令和8年（2026年）ご案内</p>
+  </div>
+</div>
+
+<!-- ============ Intro ============ -->
+<section>
+  <div class="intro-banner">
+    <div class="intro-icon">
+      <svg width="40" height="40" style="color:var(--primary)"><use href="#ic-sparkle"/></svg>
+    </div>
+    <p>
+      お子さまの<strong>健やかな成長</strong>を<br>
+      薬師如来さまにご祈願いたします
+    </p>
+  </div>
+
+  <div class="video-wrap" style="margin-bottom:32px">
+    <iframe src="https://www.youtube.com/embed/gSwzsFOD_pg" title="一畑薬師 さい参り" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="section-sub">
+    それぞれのタブを押して<br>詳しい内容をご覧ください
+  </div>
+
+  <!-- ====== Tabs ====== -->
+  <div class="tabs-wrap">
+    <div class="tab-btns">
+      <button class="tab-btn active" onclick="switchTab('kodomo')">
+        <span class="tab-icon">
+          <svg width="28" height="28" style="color:#fff"><use href="#ic-child"/></svg>
+        </span>
+        <span class="tab-age">2・4歳</span>
+        <span class="tab-label">まいり</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('jusan')">
+        <span class="tab-icon">
+          <svg width="28" height="28" style="color:var(--primary)"><use href="#ic-temple"/></svg>
+        </span>
+        <span class="tab-age">13歳</span>
+        <span class="tab-label">まいり</span>
+      </button>
+    </div>
+
+    <!-- ====== 2・4歳まいり ====== -->
+    <div class="tab-panel active" id="panel-kodomo">
+      <div class="slider" data-slider="kodomo">
+        <div class="slider-track">
+          <img src="kodomo.jpg" alt="2・4歳まいり">
+        </div>
+        <div class="slider-dots">
+          <button class="slider-dot active"></button>
+          <button class="slider-dot"></button>
+          <button class="slider-dot"></button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <h3 class="panel-title">二才児まいり・四才児まいり</h3>
+        <p class="panel-desc">
+          数え年2才でお詣りし<br>4才で成長のお礼をいたします
+        </p>
+
+        <!-- 対象年齢 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-child"/></svg></span>
+            対象のお子さま
+          </div>
+          <div class="age-cards">
+            <div class="age-card">
+              <div class="age-card-label">2歳</div>
+              <div class="age-card-info">
+                <span class="age-type">数え年</span><span>令和7年生まれ</span>
+                <span class="age-type" style="margin-top:4px">満年齢</span><span>令和6年生まれ</span>
+              </div>
+            </div>
+            <div class="age-card">
+              <div class="age-card-label">4歳</div>
+              <div class="age-card-info">
+                <span class="age-type">数え年</span><span>令和5年生まれ</span>
+                <span class="age-type" style="margin-top:4px">満年齢</span><span>令和4年生まれ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 開催日程 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-calendar"/></svg></span>
+            開催日程（令和8年）
+          </div>
+          <div class="date-card">
+            <p class="date-card-title">4月</p>
+            <div class="date-days"><span class="day">25日（土）・</span><span class="day">26日（日）・</span><span class="day">29日（水）</span></div>
+          </div>
+          <div class="date-card">
+            <p class="date-card-title">5月</p>
+            <div class="date-days"><span class="day">2日（土）・</span><span class="day">3日（日）・</span><span class="day">4日（月）・</span><span class="day">5日（火）・</span><span class="day">6日（水）</span></div>
+          </div>
+        </div>
+
+        <!-- ご祈念時間 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-clock"/></svg></span>
+            ご祈念時間（各回約20分）
+          </div>
+          <ul class="time-list">
+            <li class="time-item special"><span class="time-badge">10:00</span><span class="time-desc">お子様特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">11:00</span><span class="time-desc">お子様特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">12:00</span><span class="time-desc">お子様特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">13:30</span><span class="time-desc">お子様特別祈願</span></li>
+          </ul>
+          <p class="price-note" style="margin-top: 10px;">当日10〜15分前に受付をお済ませください</p>
+        </div>
+
+        <!-- ご祈念内容 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-yen"/></svg></span>
+            ご祈念内容
+          </div>
+          <div class="price-cards">
+            <div class="price-card"><span class="price-amount">3,000円</span><span class="price-desc">お守り・お供物</span></div>
+            <div class="price-card"><span class="price-amount">5,000円</span><span class="price-desc">お守り・お供物・記念品</span></div>
+            <div class="price-card"><span class="price-amount">10,000円</span><span class="price-desc">お守り・お供物・特別記念品</span></div>
+          </div>
+          <p class="price-note">下附品の内容は金額によって異なります</p>
+        </div>
+
+        <!-- 庭草踏み行事 -->
+        <div class="highlight-box">
+          <h4>
+            <svg width="22" height="22" style="color:var(--accent)"><use href="#ic-walk"/></svg>
+            庭草踏み行事
+          </h4>
+          <p>法要後、お子さまとご両親が本堂の周囲を行列して歩く一畑薬師の伝統行事です。お子さまの健やかな成長をお祈りします。</p>
+        </div>
+
+        <!-- 申込方法 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-doc"/></svg></span>
+            お申込み方法
+          </div>
+          <div class="apply-cards">
+            <div class="apply-card line-apply">
+              <span class="apply-num">1</span>
+              <div>
+                <h4>LINE申込</h4>
+                <p>事前にLINEで決済後、当日に画面をご提示</p>
+              </div>
+            </div>
+            <div class="apply-card">
+              <span class="apply-num">2</span>
+              <div>
+                <h4>窓口申込</h4>
+                <p>当日、受付窓口にてお申込み・お支払い</p>
+              </div>
+            </div>
+            <div class="apply-card">
+              <span class="apply-num">3</span>
+              <div>
+                <h4>郵送対応</h4>
+                <p>当日ご参加いただけない場合は、ご祈祷後〜後日ご郵送いたします。5/6最終日にご祈祷後、ご郵送いたします。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====== 13歳まいり ====== -->
+    <div class="tab-panel" id="panel-jusan">
+      <div class="slider" data-slider="jusan">
+        <div class="slider-track">
+          <img src="jusan.jpg" alt="13歳まいり">
+        </div>
+        <div class="slider-dots">
+          <button class="slider-dot active"></button>
+          <button class="slider-dot"></button>
+          <button class="slider-dot"></button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <h3 class="panel-title">十三まいり</h3>
+        <p class="panel-desc">
+          身体と心が大人へ向かう大切な節目<br>
+          十二支の一巡り、最初の厄年です
+        </p>
+
+        <!-- 対象年齢 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-child"/></svg></span>
+            対象のお子さま
+          </div>
+          <div class="age-cards">
+            <div class="age-card">
+              <div class="age-card-label">13歳</div>
+              <div class="age-card-info">
+                <span class="age-type">数え年13歳</span><span>平成26年（2014年）生まれ</span>
+                <span class="age-type" style="margin-top:4px">満年齢13歳</span><span>平成25年（2013年）生まれ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 開催日程 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-calendar"/></svg></span>
+            開催日程（令和8年）
+          </div>
+          <div class="date-card">
+            <p class="date-card-title">4月</p>
+            <div class="date-days"><span class="day">25日（土）・</span><span class="day">26日（日）・</span><span class="day">29日（水）</span></div>
+          </div>
+          <div class="date-card">
+            <p class="date-card-title">5月</p>
+            <div class="date-days"><span class="day">2日（土）・</span><span class="day">3日（日）・</span><span class="day">4日（月）・</span><span class="day">5日（火）・</span><span class="day">6日（水）</span></div>
+          </div>
+        </div>
+
+        <!-- ご祈念時間 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-clock"/></svg></span>
+            ご祈念時間（各回約20分）
+          </div>
+          <ul class="time-list">
+            <li class="time-item special"><span class="time-badge">10:00</span><span class="time-desc">お子様特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">11:00</span><span class="time-desc">お子様特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">12:00</span><span class="time-desc">お子様特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">13:30</span><span class="time-desc">お子様特別祈願</span></li>
+          </ul>
+          <p class="price-note" style="margin-top: 10px;">当日10〜15分前に受付をお済ませください</p>
+        </div>
+
+        <!-- ご祈念内容 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-yen"/></svg></span>
+            ご祈念内容
+          </div>
+          <div class="price-cards">
+            <div class="price-card"><span class="price-amount">3,000円</span><span class="price-desc">お守り・お供物</span></div>
+            <div class="price-card"><span class="price-amount">5,000円</span><span class="price-desc">お守り・お供物・記念品</span></div>
+            <div class="price-card"><span class="price-amount">10,000円</span><span class="price-desc">お守り・お供物・特別記念品</span></div>
+          </div>
+          <p class="price-note">下附品の内容は金額によって異なります</p>
+        </div>
+
+        <!-- 十三まいりとは -->
+        <div class="highlight-box">
+          <h4>
+            <svg width="22" height="22" style="color:var(--accent)"><use href="#ic-sparkle"/></svg>
+            十三まいりとは
+          </h4>
+          <p>13歳は十二支が一巡りする節目の年。身体と心が大人へと向かうこの時期に、薬師如来さまに知恵と健康をご祈願いたします。</p>
+        </div>
+
+        <!-- 申込方法 -->
+        <div class="info-block">
+          <div class="info-block-title">
+            <span class="ib-icon"><svg width="18" height="18" style="color:#fff"><use href="#ic-doc"/></svg></span>
+            お申込み方法
+          </div>
+          <div class="apply-cards">
+            <div class="apply-card line-apply">
+              <span class="apply-num">1</span>
+              <div>
+                <h4>LINE申込</h4>
+                <p>事前にLINEで決済後、当日に画面をご提示</p>
+              </div>
+            </div>
+            <div class="apply-card">
+              <span class="apply-num">2</span>
+              <div>
+                <h4>窓口申込</h4>
+                <p>当日、受付窓口にてお申込み・お支払い</p>
+              </div>
+            </div>
+            <div class="apply-card">
+              <span class="apply-num">3</span>
+              <div>
+                <h4>郵送対応</h4>
+                <p>当日ご参加いただけない場合は、ご祈祷後〜後日ご郵送いたします。5/6最終日にご祈祷後、ご郵送いたします。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section style="padding-top:0">
+  <div class="cta-wrap">
+    <a href="#" class="cta-btn line">
+      <svg width="24" height="24" style="color:#fff"><use href="#ic-line"/></svg>
+      LINEでお申込み
+    </a>
+    <a href="tel:0853670111" class="cta-btn tel">
+      <svg width="20" height="20" style="color:var(--primary)"><use href="#ic-phone"/></svg>
+      電話でお問い合わせ
+    </a>
+  </div>
+</section>
+
+<!-- ============ Access ============ -->
+<section class="bg-warm">
+  <h2 class="section-title">アクセス</h2>
+  <div class="divider"></div>
+  <div class="content-wrap">
+    <div class="access-card">
+      <h3>
+        <svg width="22" height="22" style="color:var(--primary)"><use href="#ic-map"/></svg>
+        一畑寺（一畑薬師）
+      </h3>
+      <p>
+        〒691-0074<br>
+        島根県出雲市小境町803番地<br>
+        TEL：0853-67-0111
+      </p>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=一畑薬師&output=embed" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="footer">
+  <p class="name">一畑寺（一畑薬師）</p>
+  <p>&copy; 2026 一畑薬師</p>
+</footer>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) {
+    b.classList.remove('active');
+    b.querySelectorAll('svg').forEach(function(s) { s.style.color = 'var(--primary)'; });
+  });
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+
+  event.currentTarget.classList.add('active');
+  event.currentTarget.querySelectorAll('svg').forEach(function(s) { s.style.color = '#fff'; });
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+/* ── Photo Slider ── */
+document.querySelectorAll('.slider').forEach(function(slider) {
+  var track = slider.querySelector('.slider-track');
+  var dots = slider.querySelectorAll('.slider-dot');
+  var imgs = track.querySelectorAll('img');
+  var current = 0;
+  var total = imgs.length;
+  var startX = 0;
+  var dragging = false;
+
+  function goTo(i) {
+    current = (i + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, idx) { d.classList.toggle('active', idx === current); });
+  }
+
+  dots.forEach(function(dot, idx) {
+    dot.addEventListener('click', function() { goTo(idx); });
+  });
+
+  /* Swipe */
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; dragging = true; }, {passive: true});
+  track.addEventListener('touchend', function(e) {
+    if (!dragging) return;
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+    dragging = false;
+  }, {passive: true});
+
+  /* Auto-play every 4s */
+  setInterval(function() { goTo(current + 1); }, 4000);
+});
+</script>
+
+</body>
+</html>
