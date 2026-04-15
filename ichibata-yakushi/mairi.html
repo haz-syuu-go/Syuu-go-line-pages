@@ -85,11 +85,14 @@
   .intro-banner {
     max-width: 520px; margin: 0 auto 32px;
     background: linear-gradient(135deg, var(--primary-pale), var(--accent-light));
-    border-radius: var(--radius); padding: 28px 24px;
+    border-radius: var(--radius); padding: 0 0 28px;
     text-align: center; border: 1px solid var(--border);
+    overflow: hidden;
   }
-  .intro-banner .intro-icon { margin-bottom: 12px; }
-  .intro-banner p { font-size: 16px; color: var(--primary-dark); line-height: 1.9; }
+  .intro-banner .intro-img {
+    width: 100%; display: block; margin-bottom: 20px;
+  }
+  .intro-banner p { font-size: 16px; color: var(--primary-dark); line-height: 1.9; padding: 0 24px; }
   .intro-banner strong { color: var(--primary); }
 
   /* ── Tabs ── */
@@ -189,14 +192,20 @@
   }
 
   /* ── Price cards ── */
-  .price-cards { display: grid; gap: 10px; margin-bottom: 12px; }
+  .price-cards { display: grid; gap: 12px; margin-bottom: 12px; }
   .price-card {
     background: var(--white); border: 2px solid var(--border); border-radius: 12px;
-    padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+    padding: 14px; display: flex; align-items: center; gap: 14px;
+    overflow: hidden;
   }
+  .price-card-img {
+    width: 96px; height: 96px; border-radius: 10px; object-fit: cover; flex-shrink: 0;
+    background: var(--primary-pale);
+  }
+  .price-card-body { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
   .price-amount {
-    font-size: 20px; font-weight: 900; color: var(--primary);
-    white-space: nowrap; min-width: 90px;
+    font-size: 22px; font-weight: 900; color: var(--primary);
+    white-space: nowrap;
   }
   .price-desc { font-size: 14px; color: var(--text-sub); line-height: 1.6; }
   .price-note { font-size: 14px; color: var(--text-sub); line-height: 1.7; }
@@ -420,9 +429,7 @@
 <!-- ============ Intro ============ -->
 <section>
   <div class="intro-banner">
-    <div class="intro-icon">
-      <svg width="40" height="40" style="color:var(--primary)"><use href="#ic-sparkle"/></svg>
-    </div>
+    <img src="13-2.png" alt="一畑薬師 さい参り" class="intro-img">
     <p>
       お子様の<strong>無事成長</strong>をお薬師さまにご祈念します。<br>
       「目のやくし」「子どもの無事成長の仏さま」で有名な一畑薬師の特別行事です。
@@ -540,9 +547,27 @@
             ご祈念内容
           </div>
           <div class="price-cards">
-            <div class="price-card"><span class="price-amount">3,000円</span><span class="price-desc">お守り・お供物</span></div>
-            <div class="price-card"><span class="price-amount">5,000円</span><span class="price-desc">お守り・お供物・記念品</span></div>
-            <div class="price-card"><span class="price-amount">10,000円</span><span class="price-desc">お守り・お供物・特別記念品</span></div>
+            <div class="price-card">
+              <img src="24-3000.png" alt="3,000円 ご祈念内容" class="price-card-img">
+              <div class="price-card-body">
+                <span class="price-amount">3,000円</span>
+                <span class="price-desc">お守り・お供物</span>
+              </div>
+            </div>
+            <div class="price-card">
+              <img src="24-5000.png" alt="5,000円 ご祈念内容" class="price-card-img">
+              <div class="price-card-body">
+                <span class="price-amount">5,000円</span>
+                <span class="price-desc">お守り・お供物・記念品</span>
+              </div>
+            </div>
+            <div class="price-card">
+              <img src="24-10000.png" alt="10,000円 ご祈念内容" class="price-card-img">
+              <div class="price-card-body">
+                <span class="price-amount">10,000円</span>
+                <span class="price-desc">お守り・お供物・特別記念品</span>
+              </div>
+            </div>
           </div>
           <p class="price-note">下附品の内容は金額によって異なります</p>
         </div>
@@ -651,10 +676,10 @@
             ご祈念時間（各回約20分）
           </div>
           <ul class="time-list">
-            <li class="time-item special"><span class="time-badge">10:00</span><span class="time-desc">お子さま特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">11:00</span><span class="time-desc">お子さま特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">12:00</span><span class="time-desc">お子さま特別祈願</span></li>
-            <li class="time-item special"><span class="time-badge">13:30</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">09:45</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">10:45</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">11:45</span><span class="time-desc">お子さま特別祈願</span></li>
+            <li class="time-item special"><span class="time-badge">13:15</span><span class="time-desc">お子さま特別祈願</span></li>
           </ul>
           <p class="price-note" style="margin-top: 10px;">当日10〜15分前に受付をお済ませください</p>
         </div>
@@ -666,9 +691,27 @@
             ご祈念内容
           </div>
           <div class="price-cards">
-            <div class="price-card"><span class="price-amount">3,000円</span><span class="price-desc">お守り・お供物</span></div>
-            <div class="price-card"><span class="price-amount">5,000円</span><span class="price-desc">お守り・お供物・記念品</span></div>
-            <div class="price-card"><span class="price-amount">10,000円</span><span class="price-desc">お守り・お供物・特別記念品</span></div>
+            <div class="price-card">
+              <img src="13-3000.png" alt="3,000円 ご祈念内容" class="price-card-img">
+              <div class="price-card-body">
+                <span class="price-amount">3,000円</span>
+                <span class="price-desc">お守り・お供物</span>
+              </div>
+            </div>
+            <div class="price-card">
+              <img src="13-5000.png" alt="5,000円 ご祈念内容" class="price-card-img">
+              <div class="price-card-body">
+                <span class="price-amount">5,000円</span>
+                <span class="price-desc">お守り・お供物・記念品</span>
+              </div>
+            </div>
+            <div class="price-card">
+              <img src="13-10000.png" alt="10,000円 ご祈念内容" class="price-card-img">
+              <div class="price-card-body">
+                <span class="price-amount">10,000円</span>
+                <span class="price-desc">お守り・お供物・特別記念品</span>
+              </div>
+            </div>
           </div>
           <p class="price-note">下附品の内容は金額によって異なります</p>
         </div>
