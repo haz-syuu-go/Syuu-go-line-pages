@@ -97,11 +97,19 @@
     border:1px solid var(--border);
     border-radius:20px;
     box-shadow:0 24px 60px -20px rgba(0,0,0,.12);
-    padding:22px 28px;
-    display:flex;align-items:center;gap:20px;
-    height:132px;
+    padding:18px 28px 20px;
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;
+    min-height:132px;
     overflow:hidden;
     transition:box-shadow .3s var(--ease),border-color .3s var(--ease);
+  }
+  .prompt-box .prompt-label{
+    flex-basis:100%;
+    margin-bottom:0;
+    font-size:13px;
+    font-weight:700;
+    color:var(--text-muted);
+    letter-spacing:.08em;
   }
   .prompt-box:hover{
     border-color:var(--accent-soft);
@@ -160,7 +168,6 @@
       width:100%;
       max-width:100%;
     }
-    .prompt-hook .prompt-label{font-size:14px;margin-bottom:10px}
     .prompt-box{
       aspect-ratio:1/1;
       height:auto;
@@ -169,6 +176,7 @@
       gap:0;
       border-radius:22px;
       flex-direction:column;
+      flex-wrap:nowrap;
       align-items:stretch;
       justify-content:space-between;
       width:100%;
@@ -176,6 +184,12 @@
       min-width:0;
       box-sizing:border-box;
       overflow:hidden;
+    }
+    .prompt-box .prompt-label{
+      flex:0 0 auto;
+      font-size:13px;
+      margin-bottom:0;
+      letter-spacing:.05em;
     }
     .prompt-text{
       flex:1 1 auto;
@@ -348,6 +362,12 @@
     display:block;
     font-weight:500;
     color:var(--text-primary);
+  }
+  .hero-sub .hero-sub-emph{
+    font-weight:900;
+    color:var(--accent-deep);
+    background:linear-gradient(transparent 62%,var(--accent-soft) 62%);
+    padding:0 2px;
   }
   .hero.is-loaded .hero-sub{opacity:1;transform:translateY(0)}
   .hero-meta{
@@ -550,7 +570,7 @@
 
   /* ===== HERO SLIDESHOW (auto fade) ===== */
   .hero-slideshow{
-    margin:72px auto 0;
+    margin:56px auto 56px;
     max-width:640px;
     width:100%;
     position:relative;
@@ -597,21 +617,24 @@
     transition:opacity .4s ease;
   }
   .slideshow-dots{
-    position:absolute;
-    bottom:14px;right:18px;
-    z-index:3;
-    display:flex;gap:5px;
+    margin-top:18px;
+    display:flex;gap:8px;
+    justify-content:center;
   }
   .slideshow-dot{
-    width:7px;height:7px;
+    width:9px;height:9px;
     border-radius:50%;
-    background:rgba(255,255,255,.5);
-    transition:background .3s,transform .3s;
+    background:var(--border);
+    border:none;
+    padding:0;
+    transition:background .3s,transform .3s,width .3s;
     cursor:pointer;
   }
+  .slideshow-dot:hover{background:var(--accent-soft)}
   .slideshow-dot.is-active{
-    background:#fff;
-    transform:scale(1.3);
+    background:var(--accent);
+    width:24px;
+    border-radius:999px;
   }
   @media(max-width:640px){
     .hero-slideshow{margin-top:36px;max-width:100%}
@@ -1112,6 +1135,23 @@
   }
   .day-intro-body:last-child{margin-bottom:0}
   .day-intro-body b{color:var(--text-primary);font-weight:700}
+  .day-intro-note{
+    display:flex;align-items:flex-start;gap:10px;
+    margin-top:16px;
+    padding:14px 18px;
+    background:var(--accent-soft);
+    border-left:3px solid var(--accent);
+    border-radius:8px;
+    font-size:13px;
+    line-height:1.8;
+    color:var(--accent-deep);
+  }
+  .day-intro-note b{color:var(--accent-deep);font-weight:900}
+  .day-intro-note .icon{color:var(--accent);font-size:18px;flex-shrink:0;margin-top:2px}
+  @media(max-width:640px){
+    .day-intro-note{font-size:12px;padding:12px 14px;gap:8px}
+    .day-intro-note .icon{font-size:16px}
+  }
   @media(max-width:640px){
     .day-intro{margin-bottom:24px}
     .day-intro-title{font-size:20px}
@@ -2032,8 +2072,8 @@
 
     <!-- ===== PROMPT HOOK ===== -->
     <div class="prompt-hook" aria-label="AI活用の問いかけ">
-      <div class="prompt-label">寺社でチャレンジしてみたいこと</div>
       <div class="prompt-box">
+        <div class="prompt-label">寺社でチャレンジしてみたいこと</div>
         <div class="prompt-text" id="promptText"><span class="cursor"></span></div>
         <div class="prompt-actions">
           <span class="icon-btn mic" aria-hidden="true">
@@ -2048,7 +2088,7 @@
 
     <p class="hero-sub">
       <span class="hero-sub-lead">神仏集合のまち、諏訪。</span>
-      <span class="hero-sub-body">持続可能な寺社づくりのために、AI活用を学び、実践する2日間です。</span>
+      <span class="hero-sub-body">持続可能な寺社づくりのために、<b class="hero-sub-emph">地域一丸となって</b>AI活用を学び、実践する2日間の現地セミナーです。</span>
     </p>
 
     <div class="hero-slideshow" aria-label="諏訪・仏法紹隆寺・寺子屋しゅうごうの活動">
@@ -2072,8 +2112,8 @@
           <img src="images/prog_agent.jpg" alt="AIエージェント構築" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［AIエージェント構築］'}))">
         </div>
         <div class="slideshow-caption" id="slideshowCaption">仏法紹隆寺（長野県諏訪市）</div>
-        <div class="slideshow-dots" id="slideshowDots"></div>
       </div>
+      <div class="slideshow-dots" id="slideshowDots"></div>
     </div>
     <div class="hero-meta">
       <div>
@@ -2178,6 +2218,9 @@
     </h2>
     <p class="note-intro reveal reveal-delay-1">
       2026年2月、諏訪仏教青年会主催の研修会「生成AIが導く寺社活性の可能性」を、長野県岡谷市・照光寺にて開催。お寺と諏訪大社の皆さまが一堂に集い、生成AIの活用を共に学ぶ1日となりました。
+    </p>
+    <p class="note-intro reveal reveal-delay-1" style="margin-top:-20px">
+      この学びを1度きりで終わらせず、<b>諏訪が全国に先駆けて「AIを使いこなす地域」として発展していけるように</b>――その想いで、今回の<b>2日間の集中合宿</b>を企画することとなりました。
     </p>
 
     <a href="https://note.com/syuu_go/n/nc198e12c2c8f" class="note-card reveal reveal-delay-2" target="_blank" rel="noopener noreferrer">
@@ -2338,6 +2381,13 @@
       </p>
       <p class="day-intro-body">
         <b>ねらい：</b>寺社の業務に深く寄り添う「AIエージェント」を、Claudeを活用して各自の手でつくり上げます。法務・寺務・広報・檀信徒対応など、寺社のことなら何でもお任せできる「右腕」となるエージェント設計のノウハウを、実践を通じて持ち帰っていただきます。
+      </p>
+      <p class="day-intro-body">
+        <b>相談にのるだけでなく、自走して寺社の活動を下支えしてくれるAIのつくりかた</b>を、実際の事例を交えて解説します。
+      </p>
+      <p class="day-intro-note">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        当日は <b>Claudeの有料版（Pro以上）</b> を使用します。一時的にプランをアップグレードしてご参加いただける方を想定しております。
       </p>
     </div>
 
