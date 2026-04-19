@@ -1,0 +1,2931 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>諏訪まるごとAI特区 ― 寺子屋しゅうごう AI 集中合宿 | 2026年5月14日・15日 仏法紹隆寺</title>
+<meta name="description" content="2026年5月14日(木)・15日(金)、長野県諏訪市・仏法紹隆寺にて開催。宗派を越えて、寺社のAI活用を基礎から実践まで学ぶ2日間の集中合宿。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-primary:#FFFFFF;
+    --bg-secondary:#F7F5F0;
+    --text-primary:#1A1A1A;
+    --text-body:#4A4A4A;
+    --text-muted:#8A8A8A;
+    --accent:#B8860B;
+    --accent-deep:#8F6608;
+    --accent-soft:#E8DCC4;
+    --border:#EAEAEA;
+    --ease:cubic-bezier(0.22,1,0.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;min-width:0}
+  html{scroll-behavior:smooth}
+  html,body{
+    overflow-x:clip;
+    max-width:100vw;
+    width:100%;
+  }
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-weight:500;
+    background:var(--bg-primary);
+    color:var(--text-body);
+    font-size:17px;
+    line-height:1.9;
+    letter-spacing:.02em;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  img{max-width:100%;display:block}
+  section,header,footer,main{max-width:100vw;overflow-x:clip}
+  a{color:inherit}
+  .icon{width:1em;height:1em;vertical-align:-.125em;fill:currentColor}
+  .container{max-width:1200px;margin:0 auto;padding:0 32px}
+  .container-narrow{max-width:880px;margin:0 auto;padding:0 32px}
+  @media(max-width:640px){
+    .container,.container-narrow{padding:0 20px}
+  }
+
+  /* ===== NAV ===== */
+  nav.topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+    transition:background .3s var(--ease),border-color .3s var(--ease);
+    border-bottom:1px solid transparent;
+    background:rgba(255,255,255,0);
+  }
+  nav.topbar.scrolled{
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(16px);
+    border-bottom-color:var(--border);
+  }
+  nav.topbar .brand{
+    font-size:13px;font-weight:700;letter-spacing:.15em;color:var(--text-primary);
+  }
+  nav.topbar .nav-cta{
+    font-size:13px;font-weight:500;letter-spacing:.1em;
+    padding:10px 20px;
+    border:1px solid var(--text-primary);
+    color:var(--text-primary);
+    text-decoration:none;
+    transition:background .2s,color .2s;
+  }
+  nav.topbar .nav-cta:hover{background:var(--text-primary);color:#fff}
+  @media(max-width:640px){nav.topbar{padding:14px 20px}}
+
+  /* ===== PROMPT HOOK ===== */
+  .prompt-hook{
+    margin-top:16px;
+    margin-bottom:8px;
+    max-width:820px;
+    opacity:0;transform:translateY(20px);
+    animation:fadeUp .9s var(--ease) .9s forwards;
+  }
+  .prompt-hook .prompt-label{
+    font-size:clamp(15px,1.3vw,17px);
+    font-weight:700;
+    color:var(--text-primary);
+    margin-bottom:10px;
+    letter-spacing:.02em;
+  }
+  .prompt-box{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.12);
+    padding:22px 28px;
+    display:flex;align-items:center;gap:20px;
+    height:132px;
+    overflow:hidden;
+    transition:box-shadow .3s var(--ease),border-color .3s var(--ease);
+  }
+  .prompt-box:hover{
+    border-color:var(--accent-soft);
+    box-shadow:0 28px 70px -20px rgba(184,134,11,.2);
+  }
+  .prompt-text{
+    flex:1;min-width:0;
+    font-size:clamp(16px,1.6vw,20px);
+    line-height:1.55;
+    color:var(--text-muted);
+    letter-spacing:.01em;
+    height:4.65em;
+    display:flex;align-items:center;
+    overflow:hidden;
+    word-break:break-word;
+  }
+  .prompt-text > span:first-child{flex:1}
+  .prompt-text .cursor{
+    display:inline-block;
+    width:2px;height:1em;
+    background:var(--accent);
+    vertical-align:-2px;
+    margin-left:2px;
+    animation:blink 1s steps(2,end) infinite;
+  }
+  @keyframes blink{
+    0%,50%{opacity:1}51%,100%{opacity:0}
+  }
+  @keyframes fadeUp{
+    to{opacity:1;transform:translateY(0)}
+  }
+  .prompt-actions{
+    display:flex;align-items:center;gap:14px;
+    color:var(--text-muted);
+  }
+  .prompt-actions .icon-btn{
+    width:44px;height:44px;
+    display:inline-flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    transition:background .2s,color .2s;
+  }
+  .prompt-actions .icon-btn.mic:hover{
+    background:var(--bg-secondary);color:var(--text-primary);
+  }
+  .prompt-actions .icon-btn.send{
+    background:var(--accent-soft);color:var(--accent-deep);
+  }
+  .prompt-actions .icon-btn.send:hover{
+    background:var(--accent);color:#fff;
+  }
+  .prompt-actions .icon-btn svg{width:20px;height:20px;fill:currentColor}
+  @media(max-width:640px){
+    .prompt-hook{
+      margin-top:16px;
+      margin-bottom:8px;
+      width:100%;
+      max-width:100%;
+    }
+    .prompt-hook .prompt-label{font-size:14px;margin-bottom:10px}
+    .prompt-box{
+      aspect-ratio:1/1;
+      height:auto;
+      min-height:0;
+      padding:22px;
+      gap:0;
+      border-radius:22px;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:space-between;
+      width:100%;
+      max-width:100%;
+      min-width:0;
+      box-sizing:border-box;
+      overflow:hidden;
+    }
+    .prompt-text{
+      flex:1 1 auto;
+      font-size:clamp(18px,5.5vw,24px);
+      line-height:1.55;
+      height:auto;
+      min-height:0;
+      min-width:0;
+      max-width:100%;
+      display:flex;
+      align-items:flex-start;
+      padding-top:4px;
+      font-weight:500;
+      color:var(--text-primary);
+      overflow:hidden;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      letter-spacing:.01em;
+    }
+    .prompt-actions{
+      flex-direction:row;
+      gap:10px;
+      flex-shrink:0;
+      justify-content:flex-end;
+      align-items:center;
+      align-self:flex-end;
+      margin-top:auto;
+    }
+    .prompt-actions .icon-btn{width:40px;height:40px;min-width:40px}
+    .prompt-actions .icon-btn svg{width:16px;height:16px}
+  }
+
+  /* adjust hero top padding since prompt-hook sits above */
+  .hero{min-height:auto;padding-top:60px}
+  @media(max-width:840px){
+    .hero{padding:80px 24px 60px;justify-content:flex-start}
+  }
+  @media(max-width:640px){
+    .hero{padding:80px 16px 56px}
+    .hero h1{
+      font-size:clamp(60px,18vw,108px);
+      line-height:.98;
+      letter-spacing:-.03em;
+      margin-bottom:24px;
+      font-weight:900;
+    }
+    .hero-sub{font-size:16px;line-height:1.85;margin-top:24px;margin-bottom:32px;font-weight:500;color:var(--text-primary)}
+    .hero-visual{margin-top:40px;aspect-ratio:4/3;border-radius:16px}
+    .hero-cta-row{gap:10px}
+    .btn-primary,.btn-secondary{padding:14px 20px;font-size:14px;flex:1;justify-content:center}
+  }
+
+  /* ===== GRID PATTERN (lattice background) ===== */
+  .bg-grid{
+    position:relative;
+    background-color:var(--bg-primary);
+    background-image:
+      linear-gradient(to right,rgba(184,134,11,.06) 1px,transparent 1px),
+      linear-gradient(to bottom,rgba(184,134,11,.06) 1px,transparent 1px);
+    background-size:64px 64px;
+    background-position:0 0;
+  }
+  section.bg-soft.bg-grid{background-color:#FAF7F2}
+  section.bg-warm.bg-grid{background-color:var(--bg-secondary)}
+  section.bg-deep.bg-grid{background-color:#EFE7D8}
+  section.bg-cream.bg-grid{background-color:#F0E6D0}
+  @media(max-width:640px){
+    .bg-grid{background-size:40px 40px}
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;
+    padding:160px 32px 120px;
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;
+    overflow:hidden;
+    background-color:var(--bg-primary);
+    background-image:
+      linear-gradient(to right,rgba(184,134,11,.06) 1px,transparent 1px),
+      linear-gradient(to bottom,rgba(184,134,11,.06) 1px,transparent 1px);
+    background-size:64px 64px;
+  }
+  /* 浮遊デコレーション（金茶のぼかしオーブ） */
+  .hero::before,
+  .hero::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.4;
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero::before{
+    width:380px;height:380px;
+    background:radial-gradient(circle,var(--accent-soft),transparent 70%);
+    top:-80px;right:-100px;
+    animation:float-orb 14s ease-in-out infinite;
+  }
+  .hero::after{
+    width:320px;height:320px;
+    background:radial-gradient(circle,rgba(184,134,11,.25),transparent 70%);
+    bottom:80px;left:-100px;
+    animation:float-orb 18s ease-in-out infinite reverse;
+  }
+  .hero > *{position:relative;z-index:1}
+  @keyframes float-orb{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(30px,-20px) scale(1.08)}
+  }
+  @media(max-width:640px){
+    .hero::before{width:220px;height:220px;top:-60px;right:-60px;filter:blur(60px)}
+    .hero::after{width:180px;height:180px;bottom:40px;left:-60px;filter:blur(50px)}
+  }
+  @media(max-width:640px){
+    .hero{background-size:40px 40px}
+  }
+  .hero-eyebrow{
+    display:inline-block;
+    font-size:12px;letter-spacing:.35em;
+    color:var(--accent-deep);
+    padding:8px 20px;
+    border:1px solid var(--accent);
+    margin-bottom:40px;
+    align-self:flex-start;
+  }
+  .hero h1{
+    font-size:clamp(40px,8vw,128px);
+    font-weight:900;
+    line-height:1.05;
+    letter-spacing:-.01em;
+    color:var(--text-primary);
+    margin-bottom:16px;
+  }
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .char{
+    display:inline-block;
+    opacity:0;
+    transform:translateY(40px);
+  }
+  .hero.is-loaded h1 .char{
+    animation:charIn .7s var(--ease) forwards;
+  }
+  @keyframes charIn{
+    to{opacity:1;transform:translateY(0)}
+  }
+  .hero-sub{
+    font-size:clamp(16px,1.4vw,19px);
+    line-height:1.9;
+    color:var(--text-body);
+    max-width:680px;
+    margin-top:28px;
+    margin-bottom:40px;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .8s var(--ease) .8s,transform .8s var(--ease) .8s;
+  }
+  .hero.is-loaded .hero-sub{opacity:1;transform:translateY(0)}
+  .hero-meta{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-bottom:64px;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .8s var(--ease) 1s,transform .8s var(--ease) 1s;
+  }
+  .hero.is-loaded .hero-meta{opacity:1;transform:translateY(0)}
+  .hero-meta > div{
+    padding:26px 22px;
+    display:flex;flex-direction:column;gap:14px;
+    position:relative;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    box-shadow:0 12px 30px -18px rgba(0,0,0,.12);
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+  }
+  .hero-meta > div:hover{
+    transform:translateY(-3px);
+    border-color:var(--accent);
+    box-shadow:0 20px 50px -20px rgba(184,134,11,.18);
+  }
+  .hero-meta > div::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:3px;
+    background:linear-gradient(to right,var(--accent-soft),var(--accent),var(--accent-deep));
+    border-radius:18px 18px 0 0;
+    opacity:0;
+    transition:opacity .3s var(--ease);
+  }
+  .hero-meta > div:hover::before{opacity:1}
+  .hero-meta .meta-head{
+    display:flex;align-items:center;gap:10px;
+    font-size:11px;letter-spacing:.3em;
+    color:var(--accent-deep);
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  .hero-meta .meta-head .icon{
+    color:var(--accent);font-size:20px;
+  }
+  .hero-meta .meta-main{
+    font-size:clamp(20px,2.2vw,28px);
+    font-weight:700;
+    line-height:1.35;
+    color:var(--text-primary);
+    letter-spacing:-.01em;
+  }
+  .hero-meta .meta-main .ruby{
+    display:block;
+    font-size:.5em;
+    font-weight:500;
+    color:var(--text-muted);
+    letter-spacing:.05em;
+    margin-top:4px;
+    line-height:1.3;
+  }
+  .ruby-inline{
+    display:inline-block;
+    font-size:.7em;
+    font-weight:500;
+    color:var(--text-muted);
+    letter-spacing:.05em;
+    margin:0 4px 0 2px;
+    vertical-align:2px;
+  }
+  .hero-meta .meta-sub{
+    font-size:13px;
+    color:var(--text-muted);
+    line-height:1.7;
+  }
+  .hero-meta .day-badges{
+    display:flex;gap:10px;margin-top:10px;margin-bottom:8px;
+    width:100%;max-width:100%;
+  }
+  .hero-meta .day-badge{
+    flex:1 1 0%;min-width:0;max-width:100%;
+    position:relative;
+    padding:14px 10px 12px;
+    border-radius:14px;
+    text-align:center;
+    line-height:1.3;
+    overflow:hidden;
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  .hero-meta .day-badge:hover{transform:translateY(-2px)}
+  .hero-meta .day-badge-basic{
+    background:linear-gradient(135deg,#FDF5E3 0%,var(--accent-soft) 100%);
+    border:1.5px solid var(--accent);
+    box-shadow:0 8px 24px -12px rgba(184,134,11,.3);
+  }
+  .hero-meta .day-badge-advanced{
+    background:linear-gradient(135deg,var(--text-primary) 0%,#2a1f0f 100%);
+    border:1.5px solid var(--text-primary);
+    box-shadow:0 8px 24px -12px rgba(0,0,0,.5);
+  }
+  .hero-meta .day-badge .day-n{
+    display:inline-block;
+    font-size:10px;
+    letter-spacing:.22em;
+    color:var(--accent-deep);
+    font-weight:700;
+    padding:2px 8px;
+    background:rgba(255,255,255,.7);
+    border-radius:999px;
+    margin-bottom:8px;
+  }
+  .hero-meta .day-badge-advanced .day-n{
+    color:var(--accent-soft);
+    background:rgba(255,255,255,.1);
+  }
+  .hero-meta .day-badge .day-label{
+    display:block;
+    font-size:17px;
+    font-weight:900;
+    color:var(--text-primary);
+    letter-spacing:.01em;
+    margin-bottom:6px;
+  }
+  .hero-meta .day-badge-advanced .day-label{color:#fff}
+  .hero-meta .day-badge .day-time{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    color:var(--accent-deep);
+    letter-spacing:.05em;
+    font-variant-numeric:tabular-nums;
+  }
+  .hero-meta .day-badge-advanced .day-time{color:var(--accent-soft)}
+  /* 若葉マーク（初心者マーク） */
+  .hero-meta .wakaba{
+    position:absolute;
+    top:6px;right:6px;
+    width:24px;height:24px;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.15));
+    transition:transform .4s var(--ease);
+  }
+  .hero-meta .day-badge-basic:hover .wakaba{transform:scale(1.15) rotate(-8deg)}
+  /* ステップアップバッジ */
+  .hero-meta .level-up-badge{
+    position:absolute;
+    top:6px;right:6px;
+    display:inline-flex;align-items:center;gap:2px;
+    padding:3px 7px;
+    background:var(--accent);
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.1em;
+    border-radius:999px;
+    box-shadow:0 3px 10px -2px rgba(184,134,11,.5);
+    transition:transform .4s var(--ease);
+    white-space:nowrap;
+  }
+  .hero-meta .day-badge-advanced:hover .level-up-badge{transform:scale(1.08)}
+  .hero-meta .level-up-badge svg{width:9px;height:9px;fill:currentColor;flex-shrink:0}
+  @media(max-width:640px){
+    .hero-meta .day-badges{gap:8px}
+    .hero-meta .day-badge{padding:12px 8px 10px;border-radius:12px}
+    .hero-meta .day-badge .day-label{font-size:15px}
+    .hero-meta .day-badge .day-n{font-size:9px;padding:2px 6px;margin-bottom:6px}
+    .hero-meta .day-badge .day-time{font-size:10.5px}
+    .hero-meta .wakaba{width:20px;height:20px;top:5px;right:5px}
+    .hero-meta .level-up-badge{font-size:8px;padding:2px 6px;top:5px;right:5px;gap:2px}
+    .hero-meta .level-up-badge svg{width:7px;height:7px}
+  }
+  @media(max-width:840px){
+    .hero-meta{grid-template-columns:1fr;gap:12px}
+    .hero-meta > div{padding:22px 20px}
+  }
+  .hero-cta-row{
+    display:flex;flex-wrap:wrap;gap:16px;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .8s var(--ease) 1.15s,transform .8s var(--ease) 1.15s;
+  }
+  .hero.is-loaded .hero-cta-row{opacity:1;transform:translateY(0)}
+  .btn-primary,.btn-secondary{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:20px 36px;
+    font-size:15px;font-weight:500;letter-spacing:.08em;
+    text-decoration:none;
+    transition:transform .25s var(--ease),background .25s,color .25s;
+  }
+  .btn-primary{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+  .btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+  .btn-primary .arrow,.btn-secondary .arrow{transition:transform .25s var(--ease)}
+  .btn-primary:hover .arrow,.btn-secondary:hover .arrow{transform:translateX(6px)}
+  .btn-secondary{background:#fff;color:var(--text-primary);border:1px solid var(--text-primary)}
+  .btn-secondary:hover{background:var(--text-primary);color:#fff}
+
+  .hero-visual{
+    margin-top:80px;
+    aspect-ratio:16/8;
+    border-radius:24px;
+    background:var(--bg-secondary);
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.15);
+    overflow:hidden;
+    opacity:0;transform:translateY(40px);
+    transition:opacity 1s var(--ease) 1.3s,transform 1s var(--ease) 1.3s;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-muted);font-size:13px;
+  }
+  .hero.is-loaded .hero-visual{opacity:1;transform:translateY(0)}
+  .hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* ===== HERO SLIDESHOW (auto fade) ===== */
+  .hero-slideshow{
+    margin:72px auto 0;
+    max-width:640px;
+    width:100%;
+    position:relative;
+    opacity:0;transform:translateY(40px);
+    transition:opacity 1s var(--ease) 1.3s,transform 1s var(--ease) 1.3s;
+  }
+  .hero.is-loaded .hero-slideshow{opacity:1;transform:translateY(0)}
+  .slideshow-frame{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:24px;
+    overflow:hidden;
+    background:var(--bg-secondary);
+    box-shadow:0 28px 70px -24px rgba(0,0,0,.25);
+  }
+  .slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity 1.2s ease-in-out;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-muted);
+    font-size:14px;
+  }
+  .slide.is-active{opacity:1;z-index:1}
+  .slide img{
+    position:absolute;
+    inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .slideshow-caption{
+    position:absolute;
+    left:0;right:0;bottom:0;
+    z-index:2;
+    padding:24px 28px 22px;
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.02em;
+    line-height:1.4;
+    background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,.3) 50%,transparent);
+    transition:opacity .4s ease;
+  }
+  .slideshow-dots{
+    position:absolute;
+    bottom:14px;right:18px;
+    z-index:3;
+    display:flex;gap:5px;
+  }
+  .slideshow-dot{
+    width:7px;height:7px;
+    border-radius:50%;
+    background:rgba(255,255,255,.5);
+    transition:background .3s,transform .3s;
+    cursor:pointer;
+  }
+  .slideshow-dot.is-active{
+    background:#fff;
+    transform:scale(1.3);
+  }
+  @media(max-width:640px){
+    .hero-slideshow{margin-top:36px;max-width:100%}
+    .slideshow-frame{border-radius:20px}
+    .slideshow-caption{padding:16px 18px 14px;font-size:13px}
+    .slideshow-dots{bottom:10px;right:12px;gap:4px}
+    .slideshow-dot{width:6px;height:6px}
+  }
+
+  /* ===== HERO CAROUSEL (marquee slider) ===== */
+  .hero-carousel{
+    margin-top:72px;
+    margin-left:-32px;
+    margin-right:-32px;
+    position:relative;
+    overflow:hidden;
+    max-width:100vw;
+    mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);
+    opacity:0;transform:translateY(40px);
+    transition:opacity 1s var(--ease) 1.3s,transform 1s var(--ease) 1.3s;
+  }
+  .hero.is-loaded .hero-carousel{opacity:1;transform:translateY(0)}
+  .carousel-track{
+    display:flex;
+    gap:20px;
+    width:max-content;
+    animation:carousel-scroll 60s linear infinite;
+  }
+  .hero-carousel:hover .carousel-track{animation-play-state:paused}
+  @keyframes carousel-scroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(calc(-50% - 10px))}
+  }
+  .carousel-item{
+    width:clamp(200px,22vw,300px);
+    aspect-ratio:4/3;
+    flex-shrink:0;
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--bg-secondary);
+    box-shadow:0 18px 50px -20px rgba(0,0,0,.18);
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-muted);
+    font-size:13px;
+  }
+  .carousel-item img{width:100%;height:100%;object-fit:cover;display:block}
+  .carousel-item .carousel-caption{
+    position:absolute;
+    left:0;right:0;bottom:0;
+    padding:16px 20px;
+    background:linear-gradient(to top,rgba(0,0,0,.55),transparent);
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.02em;
+    line-height:1.4;
+  }
+  @media(max-width:840px){
+    .hero-carousel{margin-left:-24px;margin-right:-24px}
+  }
+  @media(max-width:640px){
+    .hero-carousel{
+      margin-top:36px;
+      margin-left:0;
+      margin-right:0;
+      overflow-x:auto;
+      overflow-y:hidden;
+      -webkit-overflow-scrolling:touch;
+      scroll-snap-type:x mandatory;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      border-radius:0;
+      mask-image:none;
+      -webkit-mask-image:none;
+      max-width:100%;
+    }
+    .hero-carousel::-webkit-scrollbar{display:none;height:0;width:0}
+    .carousel-track{
+      animation:none !important;
+      width:auto;
+      gap:10px;
+      padding:0 4px;
+    }
+    .hero-carousel:hover .carousel-track{animation:none !important}
+    .carousel-item{
+      width:72vw;
+      max-width:280px;
+      min-width:200px;
+      border-radius:14px;
+      scroll-snap-align:center;
+    }
+    .carousel-item .carousel-caption{padding:10px 12px;font-size:11px}
+  }
+
+  /* ===== SECTION BASE ===== */
+  section{padding:clamp(100px,14vw,200px) 0;position:relative;transition:background .4s ease}
+  section.bg-warm{background:var(--bg-secondary)}
+  section.bg-soft{background:#FAF7F2}
+  section.bg-deep{background:#EFE7D8}
+  section.bg-dark{background:#1A1A1A;color:#E8DCC4}
+  section.bg-cream{background:#F0E6D0}
+  section.bg-dark .section-label{color:var(--accent-soft)}
+  section.bg-dark .section-label::before{background:var(--accent-soft)}
+  section.bg-dark .h2{color:#fff}
+  section.bg-dark .h2 .accent{color:var(--accent-soft)}
+  section.bg-dark .lead{color:#D9D2C4}
+  section.bg-dark .lead .emph{color:#fff}
+  section.bg-dark .info-table{border-top-color:rgba(255,255,255,.14)}
+  section.bg-dark .info-table dl{border-bottom-color:rgba(255,255,255,.14)}
+  section.bg-dark .info-table dt{color:var(--accent-soft)}
+  section.bg-dark .info-table dd{color:#fff}
+  section.bg-dark .day-title,section.bg-dark .feature-title{color:#fff}
+  section.bg-dark .day-title .num{color:var(--accent-soft)}
+  section.bg-dark .day-date{color:#B5AE9F}
+  section.bg-dark .day-lead{color:#D9D2C4}
+  section.bg-dark .day-lead b{color:#fff}
+  section.bg-dark .day-tag{background:rgba(232,220,196,.12);color:var(--accent-soft)}
+  section.bg-dark .feature-num{color:var(--accent-soft)}
+  section.bg-dark .feature-desc{color:#D9D2C4}
+  section.bg-dark .feature-bullets li{color:#D9D2C4}
+  section.bg-dark .feature-bullets li::before{background:var(--accent-soft)}
+  section.bg-dark .feature-tools .label{color:#B5AE9F}
+  section.bg-dark .feature-tools .tag{border-color:rgba(255,255,255,.2);color:#E8DCC4}
+  section.bg-dark .feature{border-top-color:rgba(255,255,255,.1)}
+  section.bg-dark .feature:last-child{border-bottom-color:rgba(255,255,255,.1)}
+  section.bg-dark .img-frame,section.bg-dark .feature-visual{
+    background:#222;box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+  }
+  section.bg-dark .outcome-card{
+    background:rgba(255,255,255,.04);
+    border-color:rgba(255,255,255,.12);
+  }
+  section.bg-dark .outcome-card:hover{background:rgba(255,255,255,.06)}
+  section.bg-dark .outcome-text{color:#fff}
+  section.bg-dark .outcome-num{color:var(--accent-soft)}
+  section.bg-dark .related-card{
+    background:rgba(255,255,255,.04);
+    border-color:rgba(255,255,255,.14);
+  }
+  section.bg-dark .related-card h3{color:#fff}
+  section.bg-dark .related-card dl{border-top-color:rgba(255,255,255,.14)}
+  section.bg-dark .related-card dt{color:var(--accent-soft)}
+  section.bg-dark .related-card dd{color:#fff}
+  section.bg-dark .cta h2{color:#fff}
+  section.bg-dark .cta p,section.bg-dark.cta p{color:#D9D2C4}
+  .cta.bg-dark h2{color:#fff}
+  .cta.bg-dark p{color:#D9D2C4}
+  .section-label{
+    display:inline-block;
+    font-size:12px;letter-spacing:.35em;
+    color:var(--accent-deep);
+    margin-bottom:32px;
+  }
+  .section-label::before{
+    content:"";display:inline-block;width:32px;height:1px;
+    background:var(--accent);vertical-align:middle;margin-right:12px;
+  }
+  .h2{
+    font-size:clamp(32px,5.5vw,84px);
+    font-weight:900;
+    line-height:1.15;
+    letter-spacing:-.01em;
+    color:var(--text-primary);
+    margin-bottom:48px;
+  }
+  .h2 .accent{
+    background:linear-gradient(135deg,#D89A1F 0%,#B8860B 50%,#8F6608 100%);
+    background-size:200% 200%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:accent-shimmer 6s ease-in-out infinite;
+  }
+  @keyframes accent-shimmer{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+  }
+  /* ヒーローH1のAI特区もグラデーション */
+  .hero h1 .line:nth-child(2) .char{
+    background:linear-gradient(135deg,#1A1A1A 0%,#3A2A0F 50%,#1A1A1A 100%);
+    background-size:200% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .h2 .h2-sub{
+    display:block;
+    font-size:clamp(13px,1.2vw,16px);
+    font-weight:700;
+    letter-spacing:.25em;
+    color:var(--text-muted);
+    margin-top:16px;
+    line-height:1.4;
+  }
+  @media(max-width:640px){
+    .h2 .h2-sub{font-size:12px;margin-top:12px;letter-spacing:.22em}
+  }
+  .lead{
+    font-size:clamp(17px,1.4vw,19px);
+    line-height:2;
+    color:var(--text-body);
+    max-width:760px;
+    margin-bottom:32px;
+  }
+  .lead:last-child{margin-bottom:0}
+  .lead .emph{color:var(--text-primary);font-weight:500}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.is-in{opacity:1;transform:translateY(0)}
+  .reveal-delay-1{transition-delay:.15s}
+  .reveal-delay-2{transition-delay:.3s}
+
+  /* ===== CONCEPT ===== */
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+  }
+  @media(max-width:840px){
+    .two-col{grid-template-columns:1fr;gap:48px}
+  }
+  .img-frame{
+    aspect-ratio:4/3;
+    border-radius:24px;
+    background:var(--bg-secondary);
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.12);
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-muted);font-size:13px;
+  }
+  .img-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+  .img-frame:hover img{transform:scale(1.02)}
+
+  /* ===== OVERVIEW ===== */
+  .info-table{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    box-shadow:0 18px 50px -24px rgba(0,0,0,.12);
+    padding:16px 36px;
+    max-width:880px;
+    margin:0 auto;
+  }
+  @media(max-width:640px){
+    .info-table{padding:8px 20px;border-radius:14px}
+  }
+  .info-table dl{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    border-bottom:1px solid var(--border);
+    padding:24px 0;
+  }
+  .info-table dl:last-child{border-bottom:none}
+  .info-table dt{
+    font-size:13px;letter-spacing:.15em;
+    color:var(--text-muted);
+    padding-top:4px;
+  }
+  .info-table dd{
+    font-size:17px;color:var(--text-primary);
+    line-height:1.95;
+  }
+  .info-table .place-main{font-weight:500}
+  .info-table .place-venue{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:24px;
+    padding:20px;
+    background:rgba(255,255,255,.55);
+    border:1px solid var(--border);
+    border-radius:16px;
+  }
+  .info-table .place-venue-img{
+    aspect-ratio:4/3;
+    border-radius:10px;
+    overflow:hidden;
+    background:var(--bg-secondary);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-muted);font-size:12px;
+  }
+  .info-table .place-venue-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .info-table .place-venue-head{
+    font-size:17px;font-weight:700;
+    color:var(--text-primary);
+    margin-bottom:12px;
+    line-height:1.5;
+    letter-spacing:-.005em;
+  }
+  .info-table .place-venue-text p{
+    font-size:15px;line-height:1.9;
+    color:var(--text-body);
+    margin-bottom:10px;
+  }
+  .info-table .place-venue-text p:last-child{margin-bottom:0}
+  .info-table .place-venue-text b{color:var(--text-primary);font-weight:700}
+  section.bg-dark .info-table .place-venue{
+    background:rgba(255,255,255,.04);
+    border-color:rgba(255,255,255,.14);
+  }
+  section.bg-dark .info-table .place-venue-head{color:#fff}
+  section.bg-dark .info-table .place-venue-text p{color:#D9D2C4}
+  section.bg-dark .info-table .place-venue-text b{color:#fff}
+  @media(max-width:640px){
+    .info-table .place-venue{grid-template-columns:1fr;padding:14px;gap:16px}
+  }
+  @media(max-width:640px){
+    .info-table dl{grid-template-columns:1fr;gap:8px;padding:20px 0}
+  }
+
+  /* ===== CONCEPT LAYOUT ===== */
+  .concept-layout{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:64px;
+    align-items:start;
+  }
+  .concept-body .lead{margin-bottom:22px}
+  .concept-closing{
+    margin-top:36px;
+    padding:24px 32px;
+    border-left:3px solid var(--accent);
+    background:rgba(255,255,255,.6);
+    font-size:clamp(18px,2vw,22px);
+    font-weight:700;
+    line-height:1.6;
+    color:var(--text-primary);
+    letter-spacing:.02em;
+  }
+  .concept-emphasis{
+    margin:8px 0 24px;
+    font-size:clamp(16px,1.4vw,19px);
+    line-height:2;
+    color:var(--text-body);
+    letter-spacing:.01em;
+  }
+  .concept-emphasis p{
+    margin-bottom:14px;
+    color:var(--text-body);
+  }
+  .concept-emphasis p:last-child{margin-bottom:0}
+  .concept-emphasis .emph-line{
+    color:var(--text-primary);
+    font-weight:700;
+  }
+  @media(max-width:640px){
+    .concept-emphasis{font-size:15px;line-height:1.95;margin:4px 0 18px}
+    .concept-emphasis p{margin-bottom:12px}
+    .pc-only{display:none}
+  }
+  .concept-visual{position:sticky;top:120px}
+  .concept-visual .img-frame{aspect-ratio:3/4}
+  @media(max-width:840px){
+    .concept-layout{grid-template-columns:1fr;gap:40px}
+    .concept-visual{position:static;order:-1}
+    .concept-visual .img-frame{aspect-ratio:16/10}
+  }
+  @media(max-width:640px){
+    .concept-closing{padding:18px 20px;font-size:16px;margin-top:24px}
+  }
+
+  /* ===== NOTE ARTICLE CARD ===== */
+  .note-intro{
+    max-width:720px;
+    margin-bottom:40px;
+    font-size:17px;line-height:1.95;
+    color:var(--text-body);
+  }
+  .note-card{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    max-width:960px;
+    margin:0 auto;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    text-decoration:none;
+    color:inherit;
+    box-shadow:0 18px 50px -24px rgba(0,0,0,.14);
+    transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+  }
+  .note-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 28px 70px -24px rgba(0,0,0,.2);
+    border-color:var(--accent);
+  }
+  .note-card-img{
+    aspect-ratio:16/10;
+    overflow:hidden;
+    background:var(--bg-secondary);
+  }
+  .note-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+  .note-card:hover .note-card-img img{transform:scale(1.04)}
+  .note-card-body{
+    padding:36px 40px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .note-card-badge{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:.25em;
+    color:var(--accent-deep);
+    font-weight:700;
+    padding:4px 12px;
+    background:var(--accent-soft);
+    border-radius:4px;
+    margin-bottom:14px;
+    align-self:flex-start;
+  }
+  .note-card-date{
+    font-size:12px;
+    color:var(--text-muted);
+    letter-spacing:.1em;
+    margin-bottom:14px;
+  }
+  .note-card-title{
+    font-size:clamp(18px,1.8vw,22px);
+    font-weight:900;
+    line-height:1.55;
+    color:var(--text-primary);
+    margin-bottom:16px;
+    letter-spacing:-.005em;
+  }
+  .note-card-excerpt{
+    font-size:14px;
+    line-height:1.85;
+    color:var(--text-body);
+    margin-bottom:20px;
+  }
+  .note-card-footer{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:16px;
+    border-top:1px solid var(--border);
+    font-size:12px;
+    color:var(--text-muted);
+    letter-spacing:.05em;
+  }
+  .note-card-read{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13px;font-weight:700;
+    color:var(--accent-deep);
+    letter-spacing:.05em;
+  }
+  .note-card-read .icon{transition:transform .25s var(--ease)}
+  .note-card:hover .note-card-read .icon{transform:translateX(4px)}
+  @media(max-width:840px){
+    .note-card{grid-template-columns:1fr}
+    .note-card-img{aspect-ratio:16/9}
+    .note-card-body{padding:28px 26px}
+  }
+  @media(max-width:640px){
+    .note-intro{font-size:15px}
+    .note-card-body{padding:22px 20px}
+    .note-card-title{font-size:17px}
+    .note-card-excerpt{font-size:13px;line-height:1.8}
+  }
+
+  /* ===== DAY INTRO ===== */
+  .day-intro{
+    max-width:880px;
+    margin-bottom:32px;
+  }
+  .day-intro-head{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .day-intro-tag{
+    display:inline-block;
+    padding:6px 16px;
+    background:var(--accent-soft);
+    color:var(--accent-deep);
+    font-size:12px;font-weight:700;
+    letter-spacing:.15em;
+    border-radius:999px;
+  }
+  .day-intro-tag.day2{background:var(--text-primary);color:#fff}
+  .day-intro-date{
+    font-size:13px;letter-spacing:.15em;
+    color:var(--text-muted);
+    font-weight:500;
+  }
+  .day-intro-title{
+    font-size:clamp(22px,3vw,32px);
+    font-weight:900;line-height:1.35;
+    color:var(--text-primary);
+    margin-bottom:16px;
+    letter-spacing:-.005em;
+  }
+  .day-intro-body{
+    font-size:15px;line-height:1.95;
+    color:var(--text-body);
+    margin-bottom:10px;
+  }
+  .day-intro-body:last-child{margin-bottom:0}
+  .day-intro-body b{color:var(--text-primary);font-weight:700}
+  @media(max-width:640px){
+    .day-intro{margin-bottom:24px}
+    .day-intro-title{font-size:20px}
+    .day-intro-body{font-size:14px;line-height:1.9}
+  }
+
+  /* ===== STEP TIMELINE ===== */
+  .step-timeline{
+    list-style:none;
+    margin:64px 0 0;
+    padding:0;
+    position:relative;
+    max-width:880px;
+  }
+  .step-timeline::before{
+    content:"";
+    position:absolute;
+    left:34px;top:16px;bottom:16px;
+    width:2px;
+    background:linear-gradient(to bottom,var(--accent-soft) 0%,var(--accent) 100%);
+    border-radius:2px;
+  }
+  .step-timeline .step{
+    position:relative;
+    padding:0 0 64px 96px;
+    display:block;
+  }
+  .step-timeline .step:last-child{padding-bottom:0}
+  .step-timeline .step-no{
+    position:absolute;
+    left:0;top:0;
+    width:70px;height:70px;
+    border-radius:50%;
+    background:#fff;
+    border:2px solid var(--accent);
+    box-shadow:0 12px 30px -10px rgba(184,134,11,.3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;font-weight:900;
+    color:var(--accent-deep);
+    letter-spacing:.02em;
+    z-index:2;
+    transition:transform .3s var(--ease),background .3s var(--ease),color .3s var(--ease);
+  }
+  .step-timeline .step:hover .step-no{
+    transform:scale(1.05);
+    background:var(--accent);
+    color:#fff;
+  }
+  .step-timeline .step-no .level{
+    font-size:9px;font-weight:700;
+    letter-spacing:.15em;
+    color:var(--accent);
+    position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+    white-space:nowrap;
+  }
+  .step-timeline .step-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px 32px;
+    box-shadow:0 12px 40px -20px rgba(0,0,0,.1);
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  .step-timeline .step:hover .step-card{
+    transform:translateY(-2px);
+    box-shadow:0 20px 50px -20px rgba(0,0,0,.15);
+  }
+  .step-meta{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .step-tag{
+    display:inline-block;
+    padding:4px 12px;
+    background:var(--accent-soft);
+    color:var(--accent-deep);
+    font-size:11px;font-weight:700;
+    letter-spacing:.15em;
+    border-radius:999px;
+  }
+  .step-tag.day2{background:var(--text-primary);color:#fff}
+  .step-time{
+    font-size:12px;color:var(--text-muted);
+    letter-spacing:.1em;
+  }
+  .step-title{
+    font-size:clamp(22px,2.8vw,30px);
+    font-weight:900;
+    line-height:1.3;
+    color:var(--text-primary);
+    margin-bottom:14px;
+    letter-spacing:-.005em;
+  }
+  .step-desc{
+    font-size:16px;line-height:1.9;
+    color:var(--text-body);
+    margin-bottom:18px;
+  }
+  .step-bullets{
+    list-style:none;
+    margin-bottom:18px;
+  }
+  .step-bullets li{
+    font-size:15px;
+    color:var(--text-body);
+    padding-left:24px;position:relative;
+    margin-bottom:6px;line-height:1.75;
+  }
+  .step-bullets li::before{
+    content:"";position:absolute;
+    left:0;top:.7em;
+    width:14px;height:1px;background:var(--accent);
+  }
+  .step-tools{
+    display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+    padding-top:14px;
+    border-top:1px solid var(--border);
+  }
+  .step-tools .label{
+    font-size:10px;letter-spacing:.2em;color:var(--text-muted);margin-right:6px;font-weight:500;
+  }
+  .step-tools .tag{
+    display:inline-block;
+    padding:3px 12px;
+    font-size:11px;color:var(--text-body);
+    border:1px solid var(--border);
+    border-radius:999px;
+  }
+  .step-divider{
+    position:relative;
+    padding-left:96px;
+    margin:8px 0 24px;
+  }
+  .step-divider.step-divider-full{
+    padding-left:0;
+    text-align:center;
+    margin:48px 0 32px;
+    display:flex;align-items:center;gap:20px;
+  }
+  .step-divider.step-divider-full::before,
+  .step-divider.step-divider-full::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right,transparent,var(--accent-soft),transparent);
+  }
+  .step-divider-text{
+    font-size:12px;
+    letter-spacing:.3em;
+    color:var(--accent-deep);
+    font-weight:700;
+    padding:8px 18px;
+    background:var(--accent-soft);
+    border-radius:999px;
+    display:inline-block;
+    white-space:nowrap;
+  }
+  @media(max-width:640px){
+    .step-timeline{margin-top:40px}
+    .step-timeline::before{left:22px}
+    .step-timeline .step{padding:0 0 48px 60px}
+    .step-timeline .step-no{width:46px;height:46px;font-size:16px}
+    .step-timeline .step-card{padding:20px 18px;border-radius:16px}
+    .step-title{font-size:20px}
+    .step-divider{padding-left:60px}
+  }
+
+  /* ===== FEATURES / PROGRAM (sticky scroll) ===== */
+  .day-block{padding-top:80px}
+  .day-block:first-child{padding-top:0}
+  .day-header{
+    margin-bottom:80px;
+  }
+  .day-tag{
+    display:inline-block;
+    font-size:12px;letter-spacing:.3em;
+    color:var(--accent-deep);
+    padding:6px 16px;
+    background:var(--accent-soft);
+    margin-bottom:24px;
+  }
+  .day-title{
+    font-size:clamp(36px,6vw,96px);
+    font-weight:900;
+    line-height:1.05;
+    letter-spacing:-.01em;
+    color:var(--text-primary);
+    margin-bottom:24px;
+  }
+  .day-title .num{color:var(--accent)}
+  .day-date{
+    font-size:14px;letter-spacing:.2em;
+    color:var(--text-muted);
+    margin-bottom:32px;
+  }
+  .day-lead{
+    font-size:16px;line-height:1.95;
+    color:var(--text-body);
+    max-width:760px;
+  }
+  .day-lead + .day-lead{margin-top:16px}
+  .day-lead b{color:var(--text-primary);font-weight:700}
+
+  .feature-list{margin-top:64px}
+  .feature{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:start;
+    padding:80px 0;
+    border-top:1px solid var(--border);
+  }
+  .feature:last-child{border-bottom:1px solid var(--border)}
+  .feature.reverse .feature-text{order:2}
+  .feature.reverse .feature-visual{order:1}
+  @media(max-width:840px){
+    .feature,.feature.reverse{grid-template-columns:1fr;gap:40px}
+    .feature.reverse .feature-text,.feature.reverse .feature-visual{order:initial}
+  }
+  .feature-num{
+    font-size:13px;letter-spacing:.2em;
+    color:var(--accent-deep);
+    margin-bottom:20px;
+    font-weight:500;
+  }
+  .feature-title{
+    font-size:clamp(28px,3.4vw,44px);
+    font-weight:900;
+    line-height:1.2;
+    color:var(--text-primary);
+    margin-bottom:24px;
+  }
+  .feature-desc{
+    font-size:16px;line-height:1.9;
+    color:var(--text-body);
+    margin-bottom:24px;
+  }
+  .feature-bullets{
+    list-style:none;
+  }
+  .feature-bullets li{
+    font-size:15px;
+    color:var(--text-body);
+    padding-left:28px;position:relative;
+    margin-bottom:10px;line-height:1.7;
+  }
+  .feature-bullets li::before{
+    content:"";position:absolute;
+    left:0;top:.75em;
+    width:16px;height:1px;background:var(--accent);
+  }
+  .feature-tools{
+    margin-top:24px;
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  }
+  .feature-tools .label{
+    font-size:11px;letter-spacing:.2em;color:var(--text-muted);margin-right:8px;
+  }
+  .feature-tools .tag{
+    display:inline-block;
+    padding:4px 14px;
+    font-size:12px;color:var(--text-body);
+    border:1px solid var(--border);
+    border-radius:999px;
+  }
+  .feature-visual{
+    aspect-ratio:4/3;
+    border-radius:24px;
+    background:var(--bg-secondary);
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.15);
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-muted);font-size:13px;
+    position:sticky;top:120px;
+  }
+  @media(max-width:840px){.feature-visual{position:static}}
+  .feature-visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+  .feature-visual:hover img{transform:scale(1.02)}
+
+  /* ===== OUTCOME ===== */
+  .outcome-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
+    margin-top:64px;
+  }
+  @media(max-width:640px){.outcome-grid{grid-template-columns:1fr}}
+  .outcome-card{
+    padding:48px 40px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  .outcome-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.1);
+  }
+  .outcome-num{
+    font-size:13px;letter-spacing:.25em;
+    color:var(--accent);font-weight:700;
+    margin-bottom:16px;
+  }
+  .outcome-text{
+    font-size:19px;line-height:1.75;
+    color:var(--text-primary);
+    font-weight:500;
+  }
+
+  /* ===== RELATED ===== */
+  .related-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:56px;
+    max-width:880px;margin:0 auto;
+  }
+  @media(max-width:640px){.related-card{padding:32px 24px}}
+  .related-card h3{
+    font-size:clamp(20px,2.4vw,28px);
+    font-weight:700;line-height:1.5;
+    color:var(--text-primary);
+    margin-bottom:32px;
+  }
+  .related-card dl{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:16px 24px;
+    font-size:15px;
+    padding-top:24px;
+    border-top:1px solid var(--border);
+  }
+  .related-card dt{color:var(--text-muted);font-size:12px;letter-spacing:.15em;padding-top:4px}
+  .related-card dd{color:var(--text-primary)}
+  @media(max-width:640px){.related-card dl{grid-template-columns:1fr;gap:4px}}
+
+  /* ===== ABOUT (寺子屋しゅうごう) ===== */
+  .about-h2{
+    font-size:clamp(40px,6vw,88px) !important;
+    font-weight:900;
+    line-height:1.1;
+    letter-spacing:-.02em;
+    text-align:center;
+    margin-bottom:16px !important;
+  }
+  .about-h2 .accent{color:var(--accent)}
+  .about-subheading{
+    text-align:center;
+    font-size:clamp(16px,1.6vw,20px);
+    font-weight:700;
+    color:var(--accent-deep);
+    letter-spacing:.1em;
+    margin-bottom:56px;
+  }
+  .about-slider{
+    max-width:960px;
+    margin:0 auto 56px;
+  }
+  .about-tabs{
+    display:flex;
+    gap:0;
+    margin-bottom:20px;
+    border-bottom:1px solid var(--border);
+  }
+  .about-tab{
+    flex:1;
+    padding:16px 12px;
+    background:transparent;
+    border:none;
+    font-family:inherit;
+    cursor:pointer;
+    position:relative;
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    color:var(--text-muted);
+    transition:color .3s var(--ease);
+    min-width:0;
+  }
+  .about-tab:hover{color:var(--text-primary)}
+  .about-tab.is-active{color:var(--accent-deep)}
+  .about-tab::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:-1px;
+    height:3px;
+    background:var(--accent);
+    transform:scaleX(0);
+    transform-origin:center;
+    transition:transform .35s var(--ease);
+  }
+  .about-tab.is-active::after{transform:scaleX(1)}
+  .about-tab-num{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.25em;
+    opacity:.6;
+  }
+  .about-tab.is-active .about-tab-num{opacity:1}
+  .about-tab-label{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.05em;
+  }
+  .about-panels{
+    position:relative;
+    aspect-ratio:16/9;
+    border-radius:22px;
+    overflow:hidden;
+    background:var(--bg-secondary);
+    box-shadow:0 24px 60px -24px rgba(0,0,0,.18);
+  }
+  .about-panel{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity .6s var(--ease);
+    pointer-events:none;
+  }
+  .about-panel.is-active{
+    opacity:1;
+    z-index:2;
+    pointer-events:auto;
+  }
+  .about-panel img{
+    position:absolute;
+    inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .about-panel .panel-caption{
+    position:absolute;
+    left:0;right:0;bottom:0;
+    padding:24px 28px;
+    background:linear-gradient(to top,rgba(26,26,26,.82),rgba(26,26,26,.3) 70%,transparent);
+    color:#fff;
+    display:flex;flex-direction:column;gap:4px;
+  }
+  .about-panel .panel-caption-label{
+    font-size:12px;
+    letter-spacing:.25em;
+    font-weight:700;
+    color:var(--accent-soft);
+  }
+  .about-panel .panel-caption-text{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.5;
+  }
+  @media(max-width:640px){
+    .about-h2{font-size:clamp(36px,9.5vw,52px) !important}
+    .about-subheading{font-size:14px;letter-spacing:.08em;margin-bottom:36px}
+    .about-slider{margin-bottom:40px}
+    .about-tabs{gap:0;margin-bottom:14px}
+    .about-tab{padding:12px 6px;gap:3px}
+    .about-tab-num{font-size:10px;letter-spacing:.2em}
+    .about-tab-label{font-size:12px;letter-spacing:.02em;text-align:center;line-height:1.3}
+    .about-panels{border-radius:16px;aspect-ratio:4/3}
+    .about-panel .panel-caption{padding:16px 18px}
+    .about-panel .panel-caption-label{font-size:10px;letter-spacing:.2em}
+    .about-panel .panel-caption-text{font-size:13px}
+  }
+
+  /* original ABOUT stats */
+  .about-stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    margin-bottom:56px;
+    margin-top:16px;
+  }
+  .about-stat{
+    padding:32px 28px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    border-left:4px solid var(--accent);
+  }
+  .about-stat-label{
+    font-size:12px;
+    letter-spacing:.25em;
+    color:var(--accent-deep);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .about-stat-value{
+    font-size:clamp(18px,2.4vw,24px);
+    font-weight:900;
+    color:var(--text-primary);
+    line-height:1.4;
+  }
+  .about-stat-value .num{
+    font-size:1.6em;
+    color:var(--accent);
+    letter-spacing:.02em;
+    margin:0 4px;
+    font-variant-numeric:tabular-nums;
+    display:inline-block;
+    min-width:1ch;
+  }
+  .about-stat-note{
+    display:inline-block;
+    margin-top:8px;
+    font-size:12px;
+    font-weight:500;
+    color:var(--text-muted);
+    letter-spacing:.02em;
+    line-height:1.5;
+  }
+  .about-body{
+    max-width:820px;
+  }
+  .about-body p{
+    font-size:16px;
+    line-height:2;
+    color:var(--text-body);
+    margin-bottom:20px;
+  }
+  .about-body p:last-child{margin-bottom:0}
+  .about-closing{
+    margin-top:28px !important;
+    padding:22px 28px;
+    background:var(--accent-soft);
+    border-radius:12px;
+    font-size:18px !important;
+    font-weight:700;
+    color:var(--accent-deep) !important;
+    line-height:1.7 !important;
+  }
+  .about-signature{
+    margin-top:40px;
+    padding-top:24px;
+    border-top:1px solid var(--border);
+    font-size:15px;
+    color:var(--text-body);
+    letter-spacing:.03em;
+    text-align:right;
+  }
+  @media(max-width:640px){
+    .about-stats{grid-template-columns:1fr;gap:12px;margin-bottom:32px}
+    .about-stat{padding:22px 20px}
+    .about-stat-label{font-size:11px;margin-bottom:8px}
+    .about-stat-value{font-size:17px}
+    .about-body p{font-size:15px;line-height:1.95;margin-bottom:16px}
+    .about-closing{font-size:16px !important;padding:18px 20px}
+    .about-signature{font-size:13px;text-align:left}
+  }
+
+  /* ===== VOICES (参加者の声) ===== */
+  .voices-sub{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 56px;
+    font-size:16px;
+    line-height:1.9;
+    color:var(--text-body);
+  }
+  .voices-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .voice-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .voice-bubble{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px 26px;
+    font-size:15px;
+    line-height:1.9;
+    color:var(--text-body);
+    position:relative;
+    box-shadow:0 18px 50px -24px rgba(0,0,0,.1);
+    margin-bottom:24px;
+    width:100%;
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+  }
+  .voice-card:hover .voice-bubble{
+    transform:translateY(-2px);
+    border-color:var(--accent);
+    box-shadow:0 22px 60px -24px rgba(184,134,11,.18);
+  }
+  .voice-bubble::before{display:none}
+  .voice-bubble::after{
+    content:"";
+    position:absolute;
+    bottom:-9px;
+    left:50%;
+    transform:translateX(-50%) rotate(45deg);
+    width:18px;height:18px;
+    background:#fff;
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    transition:border-color .3s var(--ease);
+  }
+  .voice-card:hover .voice-bubble::after{border-color:var(--accent)}
+  .voice-avatar{
+    width:68px;height:68px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;
+    margin-top:12px;
+    border:3px solid #fff;
+    box-shadow:0 8px 20px -6px rgba(0,0,0,.12);
+    color:var(--accent-deep);
+  }
+  .voice-avatar svg{width:32px;height:32px;fill:currentColor}
+  .voice-name{
+    font-size:15px;
+    font-weight:700;
+    color:var(--text-primary);
+    margin-top:14px;
+    text-align:center;
+    line-height:1.5;
+  }
+  .voice-affiliation{
+    font-size:12px;
+    color:var(--text-muted);
+    text-align:center;
+    line-height:1.7;
+    margin-top:4px;
+    letter-spacing:.03em;
+  }
+  @media(max-width:840px){
+    .voices-grid{grid-template-columns:1fr;gap:40px;max-width:560px}
+  }
+  @media(max-width:640px){
+    .voices-sub{font-size:14px;margin-bottom:36px}
+    .voices-grid{gap:32px}
+    .voice-bubble{padding:24px 20px;font-size:14px;line-height:1.85;border-radius:16px;margin-bottom:18px}
+    .voice-bubble::before{width:28px;height:28px;font-size:20px;top:-12px;left:18px}
+    .voice-avatar{width:60px;height:60px}
+    .voice-avatar svg{width:28px;height:28px}
+    .voice-name{font-size:14px}
+    .voice-affiliation{font-size:11px}
+  }
+
+  /* ===== FAQ ===== */
+  .faq-list{
+    max-width:820px;margin:48px auto 0;
+  }
+  .faq-item{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    margin-bottom:14px;
+    overflow:hidden;
+    transition:box-shadow .3s var(--ease),border-color .3s var(--ease);
+  }
+  .faq-item[open]{
+    border-color:var(--accent);
+    box-shadow:0 12px 36px -18px rgba(184,134,11,.2);
+  }
+  .faq-item summary{
+    list-style:none;
+    padding:24px 56px 24px 28px;
+    cursor:pointer;
+    position:relative;
+    font-size:17px;font-weight:700;
+    color:var(--text-primary);
+    line-height:1.6;
+    display:flex;align-items:flex-start;gap:14px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::before{
+    content:"Q";
+    flex-shrink:0;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:28px;height:28px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    color:var(--accent-deep);
+    font-size:13px;font-weight:900;
+    letter-spacing:0;
+    margin-top:-2px;
+  }
+  .faq-item summary::after{
+    content:"";
+    position:absolute;right:24px;top:28px;
+    width:14px;height:14px;
+    border-right:2px solid var(--text-muted);
+    border-bottom:2px solid var(--text-muted);
+    transform:rotate(45deg);
+    transition:transform .3s var(--ease),border-color .3s var(--ease);
+  }
+  .faq-item[open] summary::after{
+    transform:rotate(-135deg);
+    border-color:var(--accent);
+  }
+  .faq-item .faq-body{
+    padding:0 28px 26px 70px;
+    font-size:15px;line-height:1.95;
+    color:var(--text-body);
+  }
+  .faq-item .faq-body p{margin-bottom:8px;color:var(--text-body);font-size:15px}
+  .faq-item .faq-body p:last-child{margin-bottom:0}
+  @media(max-width:640px){
+    .faq-list{margin-top:32px}
+    .faq-item summary{padding:20px 44px 20px 18px;font-size:15px;gap:10px}
+    .faq-item summary::before{width:24px;height:24px;font-size:12px}
+    .faq-item summary::after{right:18px;top:24px;width:10px;height:10px}
+    .faq-item .faq-body{padding:0 18px 22px 52px;font-size:14px}
+    .faq-item .faq-body p{font-size:14px}
+  }
+
+  /* ===== CTA ===== */
+  .cta{
+    padding:clamp(120px,16vw,220px) 0;
+    text-align:center;
+  }
+  .cta h2{
+    font-size:clamp(36px,7vw,104px);
+    font-weight:900;line-height:1.1;
+    color:var(--text-primary);
+    margin-bottom:40px;
+  }
+  .cta p{
+    font-size:16px;line-height:1.9;color:var(--text-body);
+    max-width:640px;margin:0 auto 48px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    padding:48px 32px;
+    text-align:center;
+    font-size:12px;color:var(--text-muted);letter-spacing:.12em;
+    border-top:1px solid var(--border);
+  }
+  footer .footer-url{
+    margin-top:10px;
+    letter-spacing:.05em;
+  }
+  footer .footer-url a{
+    color:var(--accent-deep);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color .25s var(--ease),color .25s var(--ease);
+  }
+  footer .footer-url a:hover{
+    color:var(--accent);
+    border-bottom-color:var(--accent);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:840px){
+    section{padding:clamp(64px,11vw,110px) 0}
+    .h2{font-size:clamp(30px,6.4vw,56px);margin-bottom:32px;line-height:1.18;letter-spacing:-.015em}
+    .container,.container-narrow{padding:0 20px}
+    .info-table{padding:12px 28px}
+    .info-table dl{grid-template-columns:160px 1fr}
+    .note-card{grid-template-columns:1fr}
+    .note-card-img{aspect-ratio:16/9}
+    .note-card-body{padding:26px 24px}
+  }
+  @media(max-width:640px){
+    html{-webkit-text-size-adjust:100%}
+    body{font-size:15px;line-height:1.85}
+    section{padding:60px 0}
+    .container,.container-narrow{padding:0 16px}
+    .h2{font-size:clamp(30px,8vw,44px);margin-bottom:24px;line-height:1.15;letter-spacing:-.015em;font-weight:900}
+    .lead{font-size:15px;line-height:1.9}
+    .section-label{font-size:11px;margin-bottom:18px;letter-spacing:.22em}
+    .section-label::before{width:18px;margin-right:8px}
+    nav.topbar{padding:10px 16px}
+    nav.topbar .brand{font-size:12px;letter-spacing:.1em}
+    nav.topbar .nav-cta{padding:8px 12px;font-size:11px}
+    .info-table{padding:4px 18px;border-radius:14px}
+    .info-table dl{grid-template-columns:1fr;gap:4px;padding:14px 0}
+    .info-table dt{font-size:11px;letter-spacing:.2em}
+    .info-table dd{font-size:14px;line-height:1.85}
+    .outcome-grid{gap:14px;margin-top:32px;grid-template-columns:1fr}
+    .outcome-card{padding:24px 20px}
+    .outcome-num{font-size:12px;margin-bottom:8px}
+    .outcome-text{font-size:15px;line-height:1.7}
+    footer{padding:28px 16px;font-size:11px}
+    .cta{padding:72px 0}
+    .cta h2{font-size:clamp(36px,9.5vw,52px);margin-bottom:24px;line-height:1.1;letter-spacing:-.02em;font-weight:900}
+    .cta p{font-size:14px;margin-bottom:24px}
+    .hero-meta{margin-bottom:40px}
+    .hero-meta > div{padding:18px 16px}
+    .hero-meta .meta-head{font-size:10px;letter-spacing:.22em;gap:6px}
+    .hero-meta .meta-head .icon{font-size:16px}
+    .hero-meta .meta-main{font-size:17px;line-height:1.4}
+    .hero-meta .meta-sub{font-size:12px;line-height:1.65}
+    .hero-meta .day-badges{gap:6px}
+    .hero-meta .day-badge{padding:7px 8px}
+    .hero-meta .day-badge .day-n{font-size:10px}
+    .hero-meta .day-badge .day-label{font-size:13px}
+    .info-table .place-venue{padding:10px;gap:10px;border-radius:10px}
+    .info-table .place-venue-head{font-size:14px;margin-bottom:6px}
+    .info-table .place-venue-text p{font-size:13px;line-height:1.8}
+    .two-col,.concept-layout{gap:28px}
+    .img-frame,.feature-visual{border-radius:14px}
+    .step-meta{gap:6px}
+    .step-tag{padding:3px 9px;font-size:10px;letter-spacing:.1em}
+    .step-time{font-size:11px}
+    .step-desc{font-size:14px;line-height:1.8;margin-bottom:12px}
+    .step-bullets li{font-size:13px;padding-left:18px;line-height:1.7}
+    .step-tools{padding-top:10px}
+    .step-tools .label{font-size:9px;letter-spacing:.15em}
+    .step-tools .tag{padding:2px 9px;font-size:10px}
+    .day-intro{margin-bottom:16px}
+    .day-intro-head{gap:10px;margin-bottom:12px}
+    .day-intro-tag{padding:4px 10px;font-size:10px;letter-spacing:.1em}
+    .day-intro-date{font-size:11px}
+    .step-divider{margin:2px 0 14px}
+    .step-divider-text{font-size:10px;letter-spacing:.22em;padding:4px 10px}
+    .note-intro{font-size:14px;line-height:1.85;margin-bottom:28px}
+    .note-card{border-radius:14px}
+    .note-card-img{aspect-ratio:16/10}
+    .note-card-body{padding:20px 18px}
+    .note-card-badge{font-size:10px;letter-spacing:.2em;padding:3px 10px;margin-bottom:10px}
+    .note-card-date{font-size:11px;margin-bottom:10px}
+    .note-card-title{font-size:16px;line-height:1.55;margin-bottom:12px}
+    .note-card-excerpt{font-size:13px;line-height:1.8;margin-bottom:16px}
+    .note-card-footer{font-size:11px;padding-top:12px}
+    .note-card-read{font-size:12px}
+    .concept-closing{padding:16px 18px;font-size:15px;margin-top:20px}
+    .about-stats{grid-template-columns:1fr;gap:10px;margin-bottom:28px}
+    .about-stat{padding:20px 18px;border-radius:12px}
+    .about-stat-label{font-size:10px;letter-spacing:.2em;margin-bottom:6px}
+    .about-stat-value{font-size:16px;line-height:1.4}
+    .about-body p{font-size:14px;line-height:1.9;margin-bottom:14px}
+    .about-closing{font-size:15px !important;padding:16px 18px !important;margin-top:20px !important}
+    .about-signature{font-size:12px;margin-top:28px;padding-top:18px;text-align:left}
+    .faq-list{margin-top:28px}
+    .faq-item{border-radius:12px;margin-bottom:10px}
+    .faq-item summary{padding:16px 38px 16px 16px;font-size:14px;gap:8px;line-height:1.55}
+    .faq-item summary::before{width:22px;height:22px;font-size:11px;margin-top:0}
+    .faq-item summary::after{right:14px;top:22px;width:9px;height:9px;border-width:2px}
+    .faq-item .faq-body{padding:0 16px 18px 46px;font-size:13px;line-height:1.85}
+    .faq-item .faq-body p{font-size:13px}
+    /* hero carousel overflow safety */
+    .hero-carousel{margin-top:32px}
+    .carousel-track{gap:10px}
+    .carousel-item{width:210px;border-radius:12px}
+    .carousel-item .carousel-caption{padding:10px 12px;font-size:11px}
+  }
+
+  /* ===== STICKY CTA FOOTER ===== */
+  .sticky-cta{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    z-index:40;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:saturate(180%) blur(16px);
+    -webkit-backdrop-filter:saturate(180%) blur(16px);
+    border-top:1px solid var(--border);
+    box-shadow:0 -12px 40px -16px rgba(0,0,0,.12);
+    padding:12px 20px;
+    padding-bottom:max(12px,env(safe-area-inset-bottom));
+    transform:translateY(120%);
+    opacity:0;
+    transition:transform .45s var(--ease),opacity .4s var(--ease);
+    pointer-events:none;
+  }
+  .sticky-cta.is-visible{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .sticky-cta-inner{
+    max-width:720px;
+    margin:0 auto;
+    display:flex;gap:10px;
+  }
+  .sticky-cta .sticky-btn{
+    flex:1;
+    padding:14px 20px;
+    font-size:14px;
+    justify-content:center;
+    letter-spacing:.06em;
+    min-height:52px;
+  }
+  .sticky-cta .sticky-btn .icon{font-size:14px}
+  @media(max-width:640px){
+    .sticky-cta{padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+    .sticky-cta-inner{gap:8px}
+    .sticky-cta .sticky-btn{padding:12px 14px;font-size:13px;min-height:48px;gap:6px}
+  }
+  /* body padding to avoid overlap */
+  body{padding-bottom:0}
+  body.has-sticky{padding-bottom:84px}
+  @media(max-width:640px){body.has-sticky{padding-bottom:76px}}
+
+  /* reduced motion */
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation:none !important;
+      transition:none !important;
+    }
+    .reveal,.hero .hero-sub,.hero .hero-meta,.hero .hero-cta-row,.hero .hero-visual,.hero h1 .char{
+      opacity:1 !important;transform:none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="topbar" id="topbar">
+  <div class="brand">寺子屋しゅうごう</div>
+  <a href="#cta" class="nav-cta">参加予約</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="hero">
+  <div class="container">
+    <h1 id="hero-h1">
+      <span class="line" data-text="諏訪まるごと"></span>
+      <span class="line" data-text="AI特区"></span>
+    </h1>
+
+    <!-- ===== PROMPT HOOK ===== -->
+    <div class="prompt-hook" aria-label="AI活用の問いかけ">
+      <div class="prompt-label">寺社でチャレンジしてみたいこと</div>
+      <div class="prompt-box">
+        <div class="prompt-text" id="promptText"><span class="cursor"></span></div>
+        <div class="prompt-actions">
+          <span class="icon-btn mic" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.4 2.72 6.2 6 6.7V21h2v-3.3c3.28-.5 6-3.3 6-6.7h-1.7z"/></svg>
+          </span>
+          <span class="icon-btn send" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 12l1.4-1.4L11 16.2V4h2v12.2l5.6-5.6L20 12l-8 8-8-8z" transform="rotate(-90 12 12)"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+<div class="hero-slideshow" aria-label="諏訪・仏法紹隆寺・寺子屋しゅうごうの活動">
+      <div class="slideshow-frame">
+        <div class="slide is-active" data-caption="仏法紹隆寺（長野県諏訪市）">
+          <img src="images/hero_buppo-shoryuji.jpg" alt="仏法紹隆寺 外観" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［仏法紹隆寺の外観］'}))">
+        </div>
+        <div class="slide" data-caption="神仏習合のまち・諏訪">
+          <img src="images/concept_suwa.jpg" alt="諏訪の風景" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［諏訪の風景］'}))">
+        </div>
+        <div class="slide" data-caption="かつて200人の僧侶が学んだ学問所">
+          <img src="images/venue_hondo.jpg" alt="仏法紹隆寺 本堂" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［仏法紹隆寺 本堂］'}))">
+        </div>
+        <div class="slide" data-caption="寺子屋しゅうごう・AI勉強会">
+          <img src="images/prog_chat.jpg" alt="AI講義の様子" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［AI講義の様子］'}))">
+        </div>
+        <div class="slide" data-caption="画像・PDFつくりのAI実習">
+          <img src="images/prog_creator1.jpg" alt="生成AI実習" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［生成AI実習］'}))">
+        </div>
+        <div class="slide" data-caption="寺社のためのAIエージェント">
+          <img src="images/prog_agent.jpg" alt="AIエージェント構築" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［AIエージェント構築］'}))">
+        </div>
+        <div class="slideshow-caption" id="slideshowCaption">仏法紹隆寺（長野県諏訪市）</div>
+        <div class="slideshow-dots" id="slideshowDots"></div>
+      </div>
+    </div>
+
+    <p class="hero-sub">
+      神仏集合のまち、諏訪。<br>
+      持続可能な寺社づくりのために、AI活用を学び、実践する2日間です。
+    </p>
+    <div class="hero-meta">
+      <div>
+        <div class="meta-head">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm0 4h10v2H7V6zm-2 4h14v10H5V10z"/></svg>
+          日時
+        </div>
+        <div class="meta-main">2026年<br>5月14日(木)・15日(金)</div>
+        <div class="day-badges">
+          <div class="day-badge day-badge-basic" aria-label="1日目 基礎編 初心者歓迎">
+            <svg class="wakaba" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 1.5 L22.5 22 L12 16.8 Z" fill="#F5C518"/>
+              <path d="M12 1.5 L1.5 22 L12 16.8 Z" fill="#1E8E3E"/>
+            </svg>
+            <span class="day-n">1日目</span>
+            <span class="day-label">基礎編</span>
+            <span class="day-time">13:00〜16:00</span>
+          </div>
+          <div class="day-badge day-badge-advanced" aria-label="2日目 発展編 ステップアップ">
+            <span class="level-up-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14l5-5 5 5z"/></svg>
+              STEP UP
+            </span>
+            <span class="day-n">2日目</span>
+            <span class="day-label">発展編</span>
+            <span class="day-time">11:00〜15:00</span>
+          </div>
+        </div>
+        <div class="meta-sub">※ 単日参加もOK</div>
+      </div>
+      <div>
+        <div class="meta-head">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          場所
+        </div>
+        <div class="meta-main">仏法紹隆寺<span class="ruby">ぶっぽうしょうりゅうじ</span></div>
+        <div class="meta-sub">長野県諏訪市<br>真言宗智山派・空海開基の古刹</div>
+      </div>
+      <div>
+        <div class="meta-head">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          参加対象
+        </div>
+        <div class="meta-main">寺社関係者・寺族<br>神職・神社関係者</div>
+        <div class="meta-sub">宗派不問／神職・神社関係者も歓迎<br>AI初学者から実践者まで</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== CONCEPT ===== -->
+<section id="concept" class="bg-soft">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">コンセプト</div>
+    </div>
+    <h2 class="h2 reveal" style="max-width:880px">
+      なぜ、<span class="accent">諏訪なのか</span>
+    </h2>
+    <div class="concept-layout">
+      <div class="concept-body">
+        <p class="lead reveal reveal-delay-1">
+          諏訪は、千数百年にわたり神と仏が同居してきた、日本でも稀有な<span class="emph">「神仏習合」の地</span>。神社と寺院、土着の信仰と外来の教え、それらを対立としてではなく一つの祈りとして抱き続けてきた包容力こそが、この土地の智慧でした。
+        </p>
+        <p class="lead reveal reveal-delay-2">
+          いま、私たちの目の前にも、似た構図の問いがあります。<span class="emph">「伝統 × 生成AI」「祈りの場 × テクノロジー」</span>―。<br>
+          一見、遠く見えるものを、どう融け合わせ、寺の営みを次代へ手渡す力に変えていくか。
+        </p>
+        <p class="lead reveal reveal-delay-2">
+          この問いに最初に向き合う場として、<span class="emph">諏訪以上にふさわしい土地はない</span>と考えています。
+        </p>
+        <p class="lead reveal reveal-delay-2" style="margin-bottom:16px">
+          本合宿のねらいは――
+        </p>
+        <div class="concept-emphasis reveal reveal-delay-2">
+          <p>持続可能な寺社を築き、<br class="pc-only"><span class="emph-line">千年の祈りを未来へ手渡していくこと。</span></p>
+          <p>そのためにAIをじょうずに使いこなす力を、<br class="pc-only">まずは<span class="emph-line">諏訪エリア一丸となって育んでいくこと。</span></p>
+        </div>
+        <p class="lead reveal reveal-delay-2">
+          諏訪を起点にこの動きを広げ、全国の寺社、そして地域社会全体へとつなげていくための第一歩になれば幸いです。
+        </p>
+      </div>
+      <div class="concept-visual reveal reveal-delay-1">
+        <div class="img-frame">
+          <img src="images/concept_suwa.jpg" alt="諏訪の風景" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［画像：諏訪の風景］'}))">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRECEDENT (note article) ===== -->
+<section id="precedent">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">これまでの歩み</div>
+    </div>
+    <h2 class="h2 reveal">
+      神仏習合の<br>
+      <span class="accent">AI勉強会</span>
+      <span class="h2-sub">2026年3月</span>
+    </h2>
+    <p class="note-intro reveal reveal-delay-1">
+      2026年2月、諏訪仏教青年会主催の研修会「生成AIが導く寺社活性の可能性」を、長野県岡谷市・照光寺にて開催。お寺と諏訪大社の皆さまが一堂に集い、生成AIの活用を共に学ぶ1日となりました。
+    </p>
+
+    <a href="https://note.com/syuu_go/n/nc198e12c2c8f" class="note-card reveal reveal-delay-2" target="_blank" rel="noopener noreferrer">
+      <div class="note-card-img">
+        <img src="https://assets.st-note.com/production/uploads/images/256044086/6b20f22ff9c4e20606c26d6c4abfe099.jpeg" alt="神仏習合と生成AI〜お寺と諏訪大社、一丸となって生成AIを学ぶ〜" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［note記事カバー画像］'}))">
+      </div>
+      <div class="note-card-body">
+        <span class="note-card-badge">開催レポート</span>
+        <div class="note-card-date">2026年3月3日　note記事</div>
+        <h3 class="note-card-title">
+          神仏習合と生成AI<br>
+          〜お寺と諏訪大社、一丸となって生成AIを学ぶ〜<br>
+          諏訪仏教青年会
+        </h3>
+        <p class="note-card-excerpt">
+          宗派も宗教も越えて、地域の未来を一丸となって考える「神仏習合のまち、諏訪」。あったらいいねをカタチにする凄まじいパワーが漲るこの地で、お寺と諏訪大社が一同に集い、生成AIを学ぶ貴重な1日になりました。
+        </p>
+        <div class="note-card-footer">
+          <span>寺子屋しゅうごう　内藤</span>
+          <span class="note-card-read">
+            noteで読む
+            <svg class="icon" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== PROGRAM / FEATURES ===== -->
+<section class="bg-warm" id="program">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">プログラム</div>
+    </div>
+    <h2 class="h2 reveal">
+      2日間で、<br>
+      AIを<span class="accent">使いこなす</span>側へ
+    </h2>
+
+    <p class="lead reveal reveal-delay-1" style="margin-top:-8px;margin-bottom:0">
+      基礎からはじまり、実践まで一気通貫。<br>
+      ステップごとに積み上げながら、自坊で使える「AI活用の実践知」を持ち帰ります。
+    </p>
+
+    <!-- 1日目 intro -->
+    <div class="day-intro reveal" style="margin-top:72px">
+      <div class="day-intro-head">
+        <span class="day-intro-tag">1日目 ／ 基礎編</span>
+        <span class="day-intro-date">2026年5月14日(木) 13:00〜16:00</span>
+      </div>
+      <h3 class="day-intro-title">
+        チャット型AIの、基礎基本を固める日
+      </h3>
+      <p class="day-intro-body">
+        <b>対象：</b>「ChatGPT、Claude、Gemini…寺社ではどれを使えばいい?」「AIってあまり信用ならないでしょ」「寺社で使えるイメージが持てない」――そんな気持ちをお持ちで、なんとなく使っている方向けの基礎固め内容です。
+      </p>
+      <p class="day-intro-body">
+        <b>ねらい：</b>カンタンですぐに寺社の即戦力になれる「チャット型AI」の基礎基本を整理し、AIを「壁打ち相手」だけでなく画像・PDF・動画・音声まで広げて活用する実践力を養います。今まで諦めていたことを寺社で実現するための1日です。
+      </p>
+    </div>
+
+    <!-- STEP TIMELINE -->
+    <div class="step-timeline">
+
+      <div class="step reveal">
+        <div class="step-no">01</div>
+        <div class="step-card">
+          <div class="step-meta">
+            <span class="step-tag">1日目 前半</span>
+            <span class="step-time">90分</span>
+          </div>
+          <h4 class="step-title">チャット型AIの基礎固め</h4>
+          <p class="step-desc">
+            ChatGPT・Claude・Geminiの違いを体系的に整理。寺社の現場で使える「チャット型AI」を厳選し、「なんとなく使う」から「目的を持って使いこなす」段階への第一歩を踏み出す。
+          </p>
+          <ul class="step-bullets">
+            <li>3つのチャット型AIの違いと選び方</li>
+            <li>寺社の業務で最初に使うべき機能</li>
+            <li>失敗しないプロンプトの書き方</li>
+          </ul>
+          <div class="step-tools">
+            <span class="label">使用ツール</span>
+            <span class="tag">ChatGPT</span>
+            <span class="tag">Claude</span>
+            <span class="tag">Gemini</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step reveal reveal-delay-1">
+        <div class="step-no">02</div>
+        <div class="step-card">
+          <div class="step-meta">
+            <span class="step-tag">1日目 後半-1</span>
+            <span class="step-time">90分</span>
+          </div>
+          <h4 class="step-title">寺社の専属クリエイターをつくる ①</h4>
+          <p class="step-desc">
+            画像・PDF生成へのAI活用。これまで「専門家がいなくて頼めなかった」「コスト・時間が見合わなかった」業務を、寺社の中で実現する手法を学ぶ。
+          </p>
+          <ul class="step-bullets">
+            <li>法要案内・行事ポスターをAIで作成</li>
+            <li>檀家通信PDFの自動生成</li>
+            <li>著作権と素材の扱い方</li>
+          </ul>
+          <div class="step-tools">
+            <span class="label">使用ツール</span>
+            <span class="tag">NotebookLM</span>
+            <span class="tag">Manus</span>
+            <span class="tag">Claude</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step reveal reveal-delay-2">
+        <div class="step-no">03</div>
+        <div class="step-card">
+          <div class="step-meta">
+            <span class="step-tag">1日目 後半-2</span>
+            <span class="step-time">90分</span>
+          </div>
+          <h4 class="step-title">寺社の専属クリエイターをつくる ②</h4>
+          <p class="step-desc">
+            動画・スライド・SNS投稿などへの応用編。AIを「壁打ち相手」だけでなく、寺社の発信を支えるクリエイティブパートナーとして活用する実践演習。
+          </p>
+          <ul class="step-bullets">
+            <li>法話の動画化・ショート化</li>
+            <li>スライドの自動生成とブラッシュアップ</li>
+            <li>SNS投稿のネタ出し〜仕上げまで</li>
+          </ul>
+          <div class="step-tools">
+            <span class="label">使用ツール</span>
+            <span class="tag">NotebookLM</span>
+            <span class="tag">Manus</span>
+            <span class="tag">Claude</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="step-divider reveal step-divider-full">
+      <span class="step-divider-text">基礎から発展へ</span>
+    </div>
+
+    <!-- 2日目 intro (横幅いっぱい) -->
+    <div class="day-intro reveal" style="margin-top:56px;margin-bottom:32px">
+      <div class="day-intro-head">
+        <span class="day-intro-tag day2">2日目 ／ 発展編</span>
+        <span class="day-intro-date">2026年5月15日(金) 11:00〜15:00</span>
+      </div>
+      <h3 class="day-intro-title">
+        寺社の右腕＝AIエージェントを、つくりあげる日
+      </h3>
+      <p class="day-intro-body">
+        <b>対象：</b>チャット型AI・生成AIをひと通り使いこなしてきた方、次のステップに進みたい方。
+      </p>
+      <p class="day-intro-body">
+        <b>ねらい：</b>寺社の業務に深く寄り添う「AIエージェント」を、Claudeを活用して各自の手でつくり上げます。法務・寺務・広報・檀信徒対応など、寺社のことなら何でもお任せできる「右腕」となるエージェント設計のノウハウを、実践を通じて持ち帰っていただきます。
+      </p>
+    </div>
+
+    <div class="step-timeline">
+      <div class="step reveal">
+        <div class="step-no">04</div>
+        <div class="step-card">
+          <div class="step-meta">
+            <span class="step-tag day2">2日目 終日</span>
+            <span class="step-time">1日</span>
+          </div>
+          <h4 class="step-title">AIエージェントをつくろう</h4>
+          <p class="step-desc">
+            「寺社のことなら何でもお任せ」できる、寺社の右腕＝AIエージェントを構築する発展編。1日目で学んだチャット型AI・生成AIの知識を土台に、自坊の業務に寄り添うAIを各自の手でつくり上げる。
+          </p>
+          <ul class="step-bullets">
+            <li>自坊業務のタスク棚卸しと優先度設計</li>
+            <li>Claudeエージェントの構築と検証</li>
+            <li>持ち帰って運用するための仕組みづくり</li>
+          </ul>
+          <div class="step-tools">
+            <span class="label">使用ツール</span>
+            <span class="tag">Claude</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OVERVIEW ===== -->
+<section id="overview" class="bg-deep">
+  <div class="container-narrow">
+    <div class="reveal">
+      <div class="section-label">開催概要</div>
+    </div>
+    <h2 class="h2 reveal">開催概要</h2>
+    <div class="info-table reveal reveal-delay-1">
+      <dl><dt>名称</dt><dd>諏訪まるごとAI特区 ― 寺子屋しゅうごう AI 集中合宿</dd></dl>
+      <dl><dt>日時</dt><dd>
+        1日目：2026年5月14日(木) <b>13:00〜16:00</b>　基礎編<br>
+        2日目：2026年5月15日(金) <b>11:00〜15:00</b>　発展編
+      </dd></dl>
+      <dl><dt>会場</dt><dd>
+        <div class="place-main">仏法紹隆寺<span class="ruby-inline">ぶっぽうしょうりゅうじ</span>　長野県諏訪市</div>
+        <div class="place-venue">
+          <div class="place-venue-img">
+            <img src="images/venue_hondo.jpg" alt="仏法紹隆寺 本堂" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［画像：仏法紹隆寺の本堂・境内］'}))">
+          </div>
+          <div class="place-venue-text">
+            <div class="place-venue-head">かつて200人の僧侶が学んだ場所で</div>
+            <p>仏法紹隆寺は、<b>806年に空海が開基した真言宗の古刹</b>。江戸時代には「常法談林所」という格式を持つ、信州真言宗の学問所として機能していました。</p>
+            <p>かつて僧侶たちが集い学んだこの場所で、令和時代の新たな学びを作る――。歴史と未来が交差するこの会場で、参加者一人ひとりが自坊に持ち帰る「実践知」を醸成します。</p>
+          </div>
+        </div>
+      </dd></dl>
+      <dl><dt>対象</dt><dd>
+        ・寺社関係者の方々(寺院・神社問わず／宗派不問)<br>
+        ・神仏習合に携わる関係者の方々<br>
+        ・寺族・神職のご家族(副住職・坊守・寺庭婦人など)<br>
+        ・AI初学者から実践者まで、どなたでもご参加いただけます
+      </dd></dl>
+      <dl><dt>主催</dt><dd>寺子屋しゅうごう</dd></dl>
+      <dl><dt>形式</dt><dd>現地集合・2日間の集中合宿形式(1日目のみ／2日目のみの参加もOK)</dd></dl>
+      <dl><dt>参加費</dt><dd>
+        1日目：4,000円／日　　2日目：4,000円／日<br>
+        <span style="font-size:12px;color:var(--text-muted)">※ 2日間通しのご参加もOK（別途お申し込みフォームにてお選びいただけます）</span>
+      </dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OUTCOME ===== -->
+<section id="outcome" class="bg-cream">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">成果</div>
+    </div>
+    <h2 class="h2 reveal">
+      2日間で<br>
+      <span class="accent">達成したいこと</span>
+    </h2>
+    <div class="outcome-grid">
+      <div class="outcome-card reveal">
+        <div class="outcome-num">01</div>
+        <p class="outcome-text">AIを「なんとなく」使う段階から、「目的を持って使いこなす」段階への移行。</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-num">02</div>
+        <p class="outcome-text">画像・PDF・動画・音声など、クリエイティブ業務の内製化。</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-num">03</div>
+        <p class="outcome-text">自坊の業務に寄り添う、独自AIエージェントの構築。</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-2">
+        <div class="outcome-num">04</div>
+        <p class="outcome-text">宗派を越えた寺院間ネットワークの形成と、諏訪を起点とした学びの全国展開。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="bg-soft" id="about">
+  <div class="container">
+    <h2 class="h2 about-h2 reveal">
+      寺子屋<span class="accent">しゅうごう</span>とは
+    </h2>
+    <p class="about-subheading reveal reveal-delay-1">
+      ー 全国の寺社と、一緒に学ぶ場所 ー
+    </p>
+
+    <!-- TAB SLIDER -->
+    <div class="about-slider reveal reveal-delay-1">
+      <div class="about-tabs" role="tablist">
+        <button type="button" class="about-tab is-active" data-panel="aboutPanel1" role="tab" aria-selected="true">
+          <span class="about-tab-num">01</span>
+          <span class="about-tab-label">オンライン勉強会</span>
+        </button>
+        <button type="button" class="about-tab" data-panel="aboutPanel2" role="tab" aria-selected="false">
+          <span class="about-tab-num">02</span>
+          <span class="about-tab-label">実践テーマ</span>
+        </button>
+        <button type="button" class="about-tab" data-panel="aboutPanel3" role="tab" aria-selected="false">
+          <span class="about-tab-num">03</span>
+          <span class="about-tab-label">全国の仲間</span>
+        </button>
+      </div>
+      <div class="about-panels">
+        <div class="about-panel is-active" id="aboutPanel1" role="tabpanel">
+          <img src="images/about_online.jpg" alt="毎週開催のオンライン勉強会の様子" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［画像：オンライン勉強会の様子］'}))">
+          <div class="panel-caption">
+            <span class="panel-caption-label">01 オンライン勉強会</span>
+            <span class="panel-caption-text">毎週、寺社の皆さまと画面越しに学び合う時間</span>
+          </div>
+        </div>
+        <div class="about-panel" id="aboutPanel2" role="tabpanel">
+          <img src="images/about_topics.jpg" alt="生成AI・LINE・永代供養墓など実践テーマ" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［画像：実践テーマの資料・ワーク］'}))">
+          <div class="panel-caption">
+            <span class="panel-caption-label">02 実践テーマ</span>
+            <span class="panel-caption-text">生成AI・LINE・Googleマップ・永代供養墓・SNS運用</span>
+          </div>
+        </div>
+        <div class="about-panel" id="aboutPanel3" role="tabpanel">
+          <img src="images/about_network.jpg" alt="全国の寺社関係者との交流" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［画像：全国の寺社関係者との交流］'}))">
+          <div class="panel-caption">
+            <span class="panel-caption-label">03 全国の仲間</span>
+            <span class="panel-caption-text">宗派を越えて、全国津々浦々の寺社と繋がる場</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-stats reveal reveal-delay-1">
+      <div class="about-stat">
+        <div class="about-stat-label">年間開催数</div>
+        <div class="about-stat-value">年間<span class="num count-up" data-target="80">0</span>回以上<br><span class="about-stat-note">寺社向けオンライン勉強会</span></div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-label">累計参加者</div>
+        <div class="about-stat-value">のべ<span class="num count-up" data-target="1000" data-format="comma">0</span>名突破<br><span class="about-stat-note">寺社関係者・神職が全国から</span></div>
+      </div>
+    </div>
+
+    <div class="about-body reveal reveal-delay-2">
+      <p>
+        寺子屋しゅうごうでは、<b>「世の中の便利なツールをさくさく使いこなして、お寺が自分たちの力で、地域に発見され、人とつながっていく」</b>ことを大切にしています。
+      </p>
+      <p>
+        外部に丸投げせず、「お寺が自力で、自坊の課題にあわせて便利な道具(ツール)を使いこなし、継続的に運用できる力を身につける」こと。これからのお寺運営に必要な力だと考えています。
+      </p>
+      <p>
+        毎週開催しているオンライン勉強会では、Googleマップはじめ、生成AI・LINE・永代供養墓・SNS・note運用など、お寺ならではの課題に合わせた実践的なテーマをお届けしています。お寺での活用事例を参考に、参加者の皆さんで一緒にスキルアップを目指していく場です。
+      </p>
+      <p>
+        当勉強会は<b>事例共有・学びを趣旨としており、勧誘や販売は一切行いません</b>。全国津々浦々、宗派を問わず、課題を抱えるすべてのお寺と一緒に学び、成長していきたい。そんな想いで活動を続けています。
+      </p>
+      <p class="about-closing">
+        ぜひ一度、寺子屋しゅうごうの扉を叩いてみてください。
+      </p>
+    </div>
+
+    <div class="about-signature reveal reveal-delay-2">
+      寺子屋しゅうごう(お寺向けオンライン勉強会)　主宰　内藤
+    </div>
+  </div>
+</section>
+
+<!-- ===== VOICES ===== -->
+<section id="voices">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">参加者の声</div>
+    </div>
+    <h2 class="h2 reveal" style="text-align:center">
+      これまで参加された<br>
+      <span class="accent">寺社の皆さまの声</span>
+    </h2>
+    <p class="voices-sub reveal reveal-delay-1">
+      宗派を越えた全国の寺社関係者・神職の方々にご参加いただいています。
+    </p>
+
+    <div class="voices-grid">
+      <div class="voice-card reveal">
+        <div class="voice-bubble">
+          「AIはお寺に関係ない」と思っていましたが、寺報の下書きや法話の構成まで、私の"壁打ち相手"になってくれました。檀信徒さんへの発信が、以前より楽しくなっています。
+        </div>
+        <div class="voice-avatar">
+          <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
+        </div>
+        <div class="voice-name">真言宗 住職</div>
+        <div class="voice-affiliation">長野県・60代<br>寺子屋しゅうごう参加歴 1年</div>
+      </div>
+
+      <div class="voice-card reveal reveal-delay-1">
+        <div class="voice-bubble">
+          法要案内のチラシをAIで作れるようになり、デザイン費と時間を大幅に削減できました。自坊の特色を出した発信ができるようになったのが一番の変化です。
+        </div>
+        <div class="voice-avatar">
+          <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
+        </div>
+        <div class="voice-name">浄土宗 副住職</div>
+        <div class="voice-affiliation">京都府・30代<br>寺子屋しゅうごう参加歴 半年</div>
+      </div>
+
+      <div class="voice-card reveal reveal-delay-2">
+        <div class="voice-bubble">
+          神社での活用イメージが湧かなかったのですが、宗派を越えた事例が多く、すぐに現場で試せるヒントをいただけました。神職仲間にも勧めたい勉強会です。
+        </div>
+        <div class="voice-avatar">
+          <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
+        </div>
+        <div class="voice-name">神社 神職</div>
+        <div class="voice-affiliation">長野県・40代<br>寺子屋しゅうごう参加歴 3ヶ月</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">よくあるご質問</div>
+    </div>
+    <h2 class="h2 reveal" style="text-align:center">
+      よくある<span class="accent">ご質問</span>
+    </h2>
+
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>AIに詳しくなくても参加できますか？</summary>
+        <div class="faq-body">
+          <p>はい。1日目は「はじめての方でもOK」の基礎編です。ChatGPT・Claude・Geminiを少しでも触ったことがあれば問題なくご参加いただけます。</p>
+          <p>「なんとなく使っている」「どれを使えばよいかわからない」という方にこそ、最適な内容です。</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>PCやタブレットの持参は必要ですか？</summary>
+        <div class="faq-body">
+          <p>はい、実習がありますのでノートPCのご持参をお願いしております。タブレットのみでのご参加は一部の演習が制限される場合がございます。</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>単日のみの参加は可能ですか？</summary>
+        <div class="faq-body">
+          <p>1日目のみ、または2日目のみのご参加も応相談です。お申し込みの際にご希望をお知らせください。</p>
+          <p>ただし、2日目（発展編）は1日目の内容を踏まえた構成となっているため、2日間通しでのご参加を推奨いたします。</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>宗派が真言宗でなくても参加できますか？</summary>
+        <div class="faq-body">
+          <p>もちろんです。宗派は問いません。神仏習合に関わる神職・神社関係者の方々、副住職・坊守・寺庭婦人をはじめとする寺族の方々にもご参加いただけます。</p>
+          <p>宗派を越えた学びと交流の場となることを願っております。</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>宿泊先の案内はありますか？</summary>
+        <div class="faq-body">
+          <p>諏訪市内のおすすめ宿泊先リストを参加確定後にお送りいたします。ご予約は各自にてお願いしております。</p>
+          <p>上諏訪温泉・下諏訪温泉など、合宿と合わせて諏訪の文化に触れていただける宿が多くございます。</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>会場へのアクセス・駐車場は？</summary>
+        <div class="faq-body">
+          <p>仏法紹隆寺に駐車場をご用意しております。公共交通機関でのアクセスも可能です。</p>
+          <p>JR中央本線「上諏訪駅」より車で約10分、中央自動車道「諏訪IC」より車で約10分です。</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>参加費はいくらですか？</summary>
+        <div class="faq-body">
+          <p>1日目：4,000円／日、2日目：4,000円／日 となります。2日間通しでのご参加もOKです。</p>
+          <p>お申し込みフォームにて、ご希望のプラン（1日目のみ／2日目のみ／2日間通し）をお選びいただけます。</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta bg-dark" id="cta">
+  <div class="container-narrow">
+    <h2 class="reveal">
+      諏訪で、<br>
+      お会いしましょう
+    </h2>
+    <p class="reveal reveal-delay-1">
+      諏訪まるごとAI特区 ― この呼び名には、地域全体で新しい学びを受け入れ、<br>
+      伝統と最新テクノロジーを融合させ、未来を共創していくという意志が込められています。
+    </p>
+    <p class="reveal reveal-delay-2">
+      かつて200人の僧侶が学んだ学問所で、<br>
+      令和の僧侶・寺院関係者の皆様と新たな智慧を紡ぐ2日間。<br>
+      皆様のご参加を心よりお待ち申し上げます。
+    </p>
+    <div class="reveal reveal-delay-2" style="margin-top:16px">
+      <a href="#" class="btn-primary">
+        参加予約する
+        <svg class="icon arrow" viewBox="0 0 24 24"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STICKY CTA FOOTER ===== -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="sticky-cta-inner">
+    <a href="#cta" class="btn-primary sticky-btn">
+      参加予約する
+      <svg class="icon arrow" viewBox="0 0 24 24"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+    </a>
+    <a href="#program" class="btn-secondary sticky-btn">
+      プログラムを見る
+      <svg class="icon arrow" viewBox="0 0 24 24"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>主催：寺子屋しゅうごう　　発行：2026年4月</p>
+  <p class="footer-url"><a href="https://syuu-go.com/" target="_blank" rel="noopener noreferrer">https://syuu-go.com/</a></p>
+</footer>
+
+<script>
+  // ---- HERO: per-character reveal ----
+  (function(){
+    const h1 = document.getElementById('hero-h1');
+    if(!h1) return;
+    const lines = h1.querySelectorAll('.line');
+    let totalIndex = 0;
+    lines.forEach(line => {
+      const text = line.getAttribute('data-text') || '';
+      line.textContent = '';
+      [...text].forEach(ch => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        span.style.animationDelay = (totalIndex * 0.04) + 's';
+        line.appendChild(span);
+        totalIndex++;
+      });
+    });
+    requestAnimationFrame(()=>document.getElementById('hero').classList.add('is-loaded'));
+  })();
+
+  // ---- SCROLL REVEAL via IntersectionObserver ----
+  (function(){
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          en.target.classList.add('is-in');
+          io.unobserve(en.target);
+        }
+      });
+    },{threshold:0.12, rootMargin:'0px 0px -80px 0px'});
+    els.forEach(el=>io.observe(el));
+  })();
+
+  // ---- PROMPT typewriter ----
+  (function(){
+    const el = document.getElementById('promptText');
+    if(!el) return;
+    const phrases = [
+      '寺報をもっとよいものにしたい',
+      '観光客向けに多言語対応することで、神仏習合の魅力を伝えたい',
+      'もっとよいデザインをつくりたい'
+    ];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduceMotion){
+      el.textContent = phrases[0];
+      return;
+    }
+    const typeSpeed = 55;
+    const eraseSpeed = 25;
+    const holdMs = 1800;
+    const gapMs = 400;
+    let i = 0;
+    function render(text){
+      el.innerHTML = '';
+      const t = document.createElement('span');
+      t.textContent = text;
+      const c = document.createElement('span');
+      c.className = 'cursor';
+      el.appendChild(t);
+      el.appendChild(c);
+    }
+    async function typeText(text){
+      for(let k=1;k<=text.length;k++){
+        render(text.slice(0,k));
+        await new Promise(r=>setTimeout(r,typeSpeed));
+      }
+    }
+    async function eraseText(text){
+      for(let k=text.length;k>=0;k--){
+        render(text.slice(0,k));
+        await new Promise(r=>setTimeout(r,eraseSpeed));
+      }
+    }
+    (async function loop(){
+      while(true){
+        const phrase = phrases[i % phrases.length];
+        await typeText(phrase);
+        await new Promise(r=>setTimeout(r,holdMs));
+        await eraseText(phrase);
+        await new Promise(r=>setTimeout(r,gapMs));
+        i++;
+      }
+    })();
+  })();
+
+  // ---- HERO SLIDESHOW (auto fade every 2s) ----
+  (function(){
+    const slides = document.querySelectorAll('.hero-slideshow .slide');
+    const caption = document.getElementById('slideshowCaption');
+    const dotsContainer = document.getElementById('slideshowDots');
+    if(!slides.length || !caption || !dotsContainer) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slideshow-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', `スライド${i + 1}`);
+      dot.addEventListener('click', () => setActive(i, true));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = dotsContainer.querySelectorAll('.slideshow-dot');
+
+    let idx = 0;
+    let timer = null;
+
+    function setActive(newIdx, userTriggered){
+      slides[idx].classList.remove('is-active');
+      dots[idx].classList.remove('is-active');
+      idx = newIdx;
+      slides[idx].classList.add('is-active');
+      dots[idx].classList.add('is-active');
+      caption.style.opacity = '0';
+      setTimeout(() => {
+        caption.textContent = slides[idx].dataset.caption || '';
+        caption.style.opacity = '1';
+      }, 200);
+      if(userTriggered){
+        restartTimer();
+      }
+    }
+    function advance(){
+      setActive((idx + 1) % slides.length, false);
+    }
+    function restartTimer(){
+      if(timer) clearInterval(timer);
+      if(reduceMotion) return;
+      timer = setInterval(advance, 2000);
+    }
+    restartTimer();
+  })();
+
+  // ---- ABOUT TAB SLIDER ----
+  (function(){
+    const tabs = document.querySelectorAll('.about-tab');
+    const panels = document.querySelectorAll('.about-panel');
+    if(!tabs.length) return;
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const id = tab.dataset.panel;
+        tabs.forEach(t => {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected','false');
+        });
+        panels.forEach(p => p.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected','true');
+        const targetPanel = document.getElementById(id);
+        if(targetPanel) targetPanel.classList.add('is-active');
+      });
+    });
+    // auto-advance every 6s
+    let idx = 0;
+    setInterval(() => {
+      idx = (idx + 1) % tabs.length;
+      tabs[idx].click();
+    }, 6000);
+  })();
+
+  // ---- COUNT-UP NUMBERS ----
+  (function(){
+    const els = document.querySelectorAll('.count-up');
+    if(!els.length) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const easeOut = t => 1 - Math.pow(1-t, 3);
+    const format = (val, fmt) => {
+      if(fmt === 'comma') return Math.round(val).toLocaleString('en-US');
+      return String(Math.round(val));
+    };
+    const animate = el => {
+      const target = parseFloat(el.dataset.target);
+      const fmt = el.dataset.format || '';
+      if(!Number.isFinite(target)) return;
+      if(reduceMotion){
+        el.textContent = format(target, fmt);
+        return;
+      }
+      const duration = 1800;
+      const start = performance.now();
+      const tick = now => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOut(progress);
+        el.textContent = format(target * eased, fmt);
+        if(progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if(en.isIntersecting){
+          animate(en.target);
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold: 0.35, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(el => io.observe(el));
+  })();
+
+  // ---- STICKY CTA FOOTER ----
+  (function(){
+    const bar = document.getElementById('stickyCta');
+    const hero = document.getElementById('hero');
+    const cta = document.getElementById('cta');
+    if(!bar) return;
+    const threshold = ()=>hero ? hero.offsetHeight * 0.7 : window.innerHeight * 0.6;
+    const update = () => {
+      const scrolled = window.scrollY > threshold();
+      let ctaInView = false;
+      if(cta){
+        const r = cta.getBoundingClientRect();
+        // hide sticky bar when CTA section is visible (avoid double CTA)
+        ctaInView = r.top < window.innerHeight - 40 && r.bottom > 0;
+      }
+      const show = scrolled && !ctaInView;
+      bar.classList.toggle('is-visible', show);
+      bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+      document.body.classList.toggle('has-sticky', show);
+    };
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // ---- NAVBAR scroll state ----
+  (function(){
+    const bar = document.getElementById('topbar');
+    const onScroll = () => {
+      if(window.scrollY > 40) bar.classList.add('scrolled');
+      else bar.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
