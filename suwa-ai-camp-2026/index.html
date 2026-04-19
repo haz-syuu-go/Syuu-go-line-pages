@@ -222,7 +222,9 @@
       margin-bottom:24px;
       font-weight:900;
     }
-    .hero-sub{font-size:16px;line-height:1.85;margin-top:24px;margin-bottom:32px;font-weight:500;color:var(--text-primary)}
+    .hero-sub{font-size:17px;line-height:1.8;margin-top:28px;margin-bottom:32px;font-weight:500;color:var(--text-primary)}
+    .hero-sub .hero-sub-lead{font-size:22px;line-height:1.5;margin-bottom:10px}
+    .hero-sub .hero-sub-body{font-size:16px;line-height:1.85}
     .hero-visual{margin-top:40px;aspect-ratio:4/3;border-radius:16px}
     .hero-cta-row{gap:10px}
     .btn-primary,.btn-secondary{padding:14px 20px;font-size:14px;flex:1;justify-content:center}
@@ -324,14 +326,28 @@
     to{opacity:1;transform:translateY(0)}
   }
   .hero-sub{
-    font-size:clamp(16px,1.4vw,19px);
-    line-height:1.9;
+    font-size:clamp(19px,1.7vw,24px);
+    line-height:1.75;
     color:var(--text-body);
-    max-width:680px;
-    margin-top:28px;
+    max-width:760px;
+    margin-top:32px;
     margin-bottom:40px;
     opacity:0;transform:translateY(20px);
     transition:opacity .8s var(--ease) .8s,transform .8s var(--ease) .8s;
+  }
+  .hero-sub .hero-sub-lead{
+    display:block;
+    font-size:clamp(22px,2vw,30px);
+    font-weight:900;
+    color:var(--text-primary);
+    letter-spacing:-.005em;
+    line-height:1.5;
+    margin-bottom:10px;
+  }
+  .hero-sub .hero-sub-body{
+    display:block;
+    font-weight:500;
+    color:var(--text-primary);
   }
   .hero.is-loaded .hero-sub{opacity:1;transform:translateY(0)}
   .hero-meta{
@@ -358,29 +374,18 @@
     border-color:var(--accent);
     box-shadow:0 20px 50px -20px rgba(184,134,11,.18);
   }
-  .hero-meta > div::before{
-    content:"";
-    position:absolute;
-    top:0;left:0;right:0;
-    height:3px;
-    background:linear-gradient(to right,var(--accent-soft),var(--accent),var(--accent-deep));
-    border-radius:18px 18px 0 0;
-    opacity:0;
-    transition:opacity .3s var(--ease);
-  }
-  .hero-meta > div:hover::before{opacity:1}
   .hero-meta .meta-head{
     display:flex;align-items:center;gap:10px;
-    font-size:11px;letter-spacing:.3em;
+    font-size:14px;letter-spacing:.2em;
     color:var(--accent-deep);
     text-transform:uppercase;
     font-weight:700;
   }
   .hero-meta .meta-head .icon{
-    color:var(--accent);font-size:20px;
+    color:var(--accent);font-size:22px;
   }
   .hero-meta .meta-main{
-    font-size:clamp(20px,2.2vw,28px);
+    font-size:clamp(22px,2.4vw,30px);
     font-weight:700;
     line-height:1.35;
     color:var(--text-primary);
@@ -1891,11 +1896,11 @@
     .cta h2{font-size:clamp(36px,9.5vw,52px);margin-bottom:24px;line-height:1.1;letter-spacing:-.02em;font-weight:900}
     .cta p{font-size:14px;margin-bottom:24px}
     .hero-meta{margin-bottom:40px}
-    .hero-meta > div{padding:18px 16px}
-    .hero-meta .meta-head{font-size:10px;letter-spacing:.22em;gap:6px}
-    .hero-meta .meta-head .icon{font-size:16px}
-    .hero-meta .meta-main{font-size:17px;line-height:1.4}
-    .hero-meta .meta-sub{font-size:12px;line-height:1.65}
+    .hero-meta > div{padding:22px 20px}
+    .hero-meta .meta-head{font-size:13px;letter-spacing:.18em;gap:8px}
+    .hero-meta .meta-head .icon{font-size:20px}
+    .hero-meta .meta-main{font-size:20px;line-height:1.4}
+    .hero-meta .meta-sub{font-size:13px;line-height:1.7}
     .hero-meta .day-badges{gap:6px}
     .hero-meta .day-badge{padding:7px 8px}
     .hero-meta .day-badge .day-n{font-size:10px}
@@ -2041,7 +2046,12 @@
       </div>
     </div>
 
-<div class="hero-slideshow" aria-label="諏訪・仏法紹隆寺・寺子屋しゅうごうの活動">
+    <p class="hero-sub">
+      <span class="hero-sub-lead">神仏集合のまち、諏訪。</span>
+      <span class="hero-sub-body">持続可能な寺社づくりのために、AI活用を学び、実践する2日間です。</span>
+    </p>
+
+    <div class="hero-slideshow" aria-label="諏訪・仏法紹隆寺・寺子屋しゅうごうの活動">
       <div class="slideshow-frame">
         <div class="slide is-active" data-caption="仏法紹隆寺（長野県諏訪市）">
           <img src="images/hero_buppo-shoryuji.jpg" alt="仏法紹隆寺 外観" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［仏法紹隆寺の外観］'}))">
@@ -2065,11 +2075,6 @@
         <div class="slideshow-dots" id="slideshowDots"></div>
       </div>
     </div>
-
-    <p class="hero-sub">
-      神仏集合のまち、諏訪。<br>
-      持続可能な寺社づくりのために、AI活用を学び、実践する2日間です。
-    </p>
     <div class="hero-meta">
       <div>
         <div class="meta-head">
