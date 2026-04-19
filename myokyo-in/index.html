@@ -396,6 +396,76 @@
 
   body.view-detail .slider { display: none; }
 
+  /* アクセスセクション */
+  .access {
+    margin: 40px 0 8px;
+    padding: 26px 22px;
+    background: #f6f7f9;
+    border: 1px solid #e3e6ea;
+    border-radius: 14px;
+  }
+  .access-title {
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .access-map {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #eaecef;
+  }
+  .access-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .access-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .access-name {
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .access-addr {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-sub);
+    line-height: 1.85;
+  }
+  .access-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 18px;
+    background: #2a323a;
+    color: #fff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #151a1f;
+    white-space: nowrap;
+    transition: transform .08s ease;
+  }
+  .access-cta:hover { filter: brightness(1.08); }
+  .access-cta:active { transform: translateY(2px); box-shadow: 0 1px 0 #151a1f; }
+  .access-cta svg { width: 20px; height: 20px; flex: 0 0 20px; }
+
+  body.view-detail .access { display: none; }
+
   /* スマホ最適化 */
   @media (max-width: 480px) {
     .wrap { padding: 20px 16px 60px; }
@@ -672,8 +742,7 @@
         <span class="info-label">開催日</span>
         <span class="info-val">毎月 最終金曜日 夜<span class="sub">※開催日が変わる月もあります</span></span>
       </div>
-      <!-- TODO: 本番時はLINE予約URLに差し替え -->
-      <a class="line-cta" href="https://wajun.or.jp/news/tfday/" target="_blank" rel="noopener">
+      <a class="line-cta" href="https://liff.line.me/2006055496-BbgMz69o?liff_id=2006055496-BbgMz69o&amp;group_id=175808" target="_blank" rel="noopener">
         <svg><use href="#i-line"/></svg>日程を見る・予約する
       </a>
       <div class="line-cta-note">公式LINEに移動します</div>
@@ -721,8 +790,7 @@
         <span class="info-label">開催日</span>
         <span class="info-val">毎月 第１木曜日<span class="sub">※８月はお休み</span></span>
       </div>
-      <!-- TODO: 本番時はLINE予約URLに差し替え -->
-      <a class="line-cta" href="https://wajun.or.jp/news/sarana/" target="_blank" rel="noopener">
+      <a class="line-cta" href="https://liff.line.me/2006055496-BbgMz69o?liff_id=2006055496-BbgMz69o&amp;group_id=175822" target="_blank" rel="noopener">
         <svg><use href="#i-line"/></svg>日程を見る・予約する
       </a>
       <div class="line-cta-note">公式LINEに移動します</div>
@@ -752,6 +820,25 @@
     <button class="back-btn back-btn-bottom" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
   </section>
 
+  <!-- お寺のアクセス -->
+  <section class="access" aria-labelledby="accessTitle">
+    <h2 id="accessTitle" class="access-title">お寺へのアクセス</h2>
+    <div class="access-map">
+      <iframe
+        src="https://maps.google.com/maps?q=%E5%BA%83%E5%B3%B6%E5%B8%82%E4%B8%AD%E5%8C%BA%E5%B0%8F%E7%94%BA2-1%20%E5%A6%99%E6%85%B6%E9%99%A2&z=16&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="妙慶院 清岸寺の地図"
+        allowfullscreen></iframe>
+    </div>
+    <div class="access-info">
+      <div class="access-name">浄土宗 妙慶院 清岸寺</div>
+      <div class="access-addr">〒730-0041<br>広島県広島市中区小町２番１号</div>
+    </div>
+    <a class="access-cta" href="http://wajun.or.jp/access/" target="_blank" rel="noopener">
+      <svg><use href="#i-pin"/></svg>詳しいアクセスを見る
+    </a>
+  </section>
 
 </div>
 
