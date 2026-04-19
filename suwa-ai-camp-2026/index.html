@@ -1969,14 +1969,35 @@
   }
   .about-body p:last-child{margin-bottom:0}
   .about-closing{
-    margin-top:28px !important;
+    position:relative;
+    margin-top:36px !important;
     padding:22px 28px;
     background:var(--accent-soft);
-    border-radius:12px;
+    border:1.5px solid var(--accent);
+    border-radius:20px;
     font-size:18px !important;
     font-weight:700;
     color:var(--accent-deep) !important;
     line-height:1.7 !important;
+    box-shadow:0 8px 20px -12px rgba(184,134,11,.3);
+    display:inline-block;
+    max-width:100%;
+  }
+  .about-closing::before,
+  .about-closing::after{
+    content:"";
+    position:absolute;
+    bottom:-12px;left:40px;
+    width:0;height:0;
+    border-style:solid;
+    border-width:12px 10px 0 10px;
+    border-color:var(--accent) transparent transparent transparent;
+  }
+  .about-closing::after{
+    bottom:-9px;
+    border-width:10px 8px 0 8px;
+    border-color:var(--accent-soft) transparent transparent transparent;
+    margin-left:2px;
   }
   .about-signature{
     margin-top:40px;
