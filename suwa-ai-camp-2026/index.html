@@ -105,11 +105,31 @@
   }
   .prompt-box .prompt-label{
     flex-basis:100%;
-    margin-bottom:0;
+    margin-bottom:6px;
+    padding:0;
+    font-size:0;
+    line-height:1;
+  }
+  .prompt-box .prompt-label span{
+    display:inline-block;
+    position:relative;
+    padding:8px 18px;
+    background:var(--accent-soft);
+    color:var(--accent-deep);
+    border-radius:999px;
     font-size:13px;
     font-weight:700;
-    color:var(--text-muted);
-    letter-spacing:.08em;
+    letter-spacing:.05em;
+    line-height:1.5;
+  }
+  .prompt-box .prompt-label span::after{
+    content:"";
+    position:absolute;
+    bottom:-7px;left:26px;
+    width:0;height:0;
+    border-style:solid;
+    border-width:8px 7px 0 7px;
+    border-color:var(--accent-soft) transparent transparent transparent;
   }
   .prompt-box:hover{
     border-color:var(--accent-soft);
@@ -455,9 +475,9 @@
     box-shadow:0 8px 24px -12px rgba(184,134,11,.3);
   }
   .hero-meta .day-badge-advanced{
-    background:linear-gradient(135deg,var(--text-primary) 0%,#2a1f0f 100%);
-    border:1.5px solid var(--text-primary);
-    box-shadow:0 8px 24px -12px rgba(0,0,0,.5);
+    background:linear-gradient(135deg,#C89331 0%,#9E6D14 100%);
+    border:1.5px solid var(--accent-deep);
+    box-shadow:0 8px 24px -12px rgba(184,134,11,.5);
   }
   .hero-meta .day-badge .day-n{
     display:inline-block;
@@ -471,8 +491,8 @@
     margin-bottom:8px;
   }
   .hero-meta .day-badge-advanced .day-n{
-    color:var(--accent-soft);
-    background:rgba(255,255,255,.1);
+    color:#fff;
+    background:rgba(255,255,255,.25);
   }
   .hero-meta .day-badge .day-label{
     display:block;
@@ -491,7 +511,7 @@
     letter-spacing:.05em;
     font-variant-numeric:tabular-nums;
   }
-  .hero-meta .day-badge-advanced .day-time{color:var(--accent-soft)}
+  .hero-meta .day-badge-advanced .day-time{color:rgba(255,255,255,.92)}
   /* 若葉マーク（初心者マーク） */
   .hero-meta .wakaba{
     position:absolute;
@@ -1097,6 +1117,142 @@
     .note-card-excerpt{font-size:13px;line-height:1.8}
   }
 
+  /* ===== INSTRUCTOR / LINEUP ===== */
+  .instructor-card{
+    max-width:860px;
+    margin:56px auto 48px;
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:40px;
+    align-items:center;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:36px 40px;
+    box-shadow:0 18px 50px -24px rgba(0,0,0,.14);
+  }
+  .instructor-photo{
+    aspect-ratio:1/1;
+    border-radius:50%;
+    overflow:hidden;
+    background:var(--bg-secondary);
+    border:3px solid var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-muted);
+    font-size:12px;
+    text-align:center;
+    padding:8px;
+  }
+  .instructor-photo img{
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+  .instructor-info{display:flex;flex-direction:column;gap:4px}
+  .instructor-label{
+    font-size:12px;
+    letter-spacing:.3em;
+    color:var(--accent-deep);
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .instructor-name{
+    font-size:clamp(28px,3.2vw,40px);
+    font-weight:900;
+    color:var(--text-primary);
+    letter-spacing:-.01em;
+    line-height:1.15;
+  }
+  .instructor-title{
+    font-size:14px;
+    color:var(--text-muted);
+    font-weight:500;
+    margin-bottom:12px;
+    letter-spacing:.02em;
+  }
+  .instructor-bio{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--text-body);
+    margin:0;
+  }
+  .lineup{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .lineup-item{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px 28px;
+    box-shadow:0 14px 40px -24px rgba(0,0,0,.12);
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+  }
+  .lineup-item:hover{
+    transform:translateY(-3px);
+    border-color:var(--accent);
+    box-shadow:0 22px 54px -22px rgba(184,134,11,.22);
+  }
+  .lineup-day{
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:14px;
+  }
+  .lineup-day-num{
+    font-size:16px;
+    font-weight:900;
+    color:var(--accent-deep);
+    letter-spacing:.02em;
+  }
+  .lineup-day-tag{
+    display:inline-block;
+    font-size:10px;
+    letter-spacing:.25em;
+    padding:3px 10px;
+    background:var(--accent-soft);
+    color:var(--accent-deep);
+    border-radius:999px;
+    font-weight:700;
+  }
+  .lineup-day-tag-advanced{
+    background:var(--text-primary);
+    color:#fff;
+  }
+  .lineup-title{
+    font-size:clamp(18px,2vw,22px);
+    font-weight:900;
+    line-height:1.5;
+    color:var(--text-primary);
+    margin-bottom:12px;
+    letter-spacing:-.005em;
+  }
+  .lineup-desc{
+    font-size:14px;
+    line-height:1.9;
+    color:var(--text-body);
+    margin:0;
+  }
+  @media(max-width:840px){
+    .instructor-card{grid-template-columns:1fr;gap:24px;padding:28px 24px;text-align:center}
+    .instructor-photo{width:140px;margin:0 auto}
+    .instructor-info{align-items:center}
+    .instructor-bio{text-align:left}
+    .lineup{grid-template-columns:1fr;gap:16px}
+  }
+  @media(max-width:640px){
+    .instructor-card{margin:36px auto 32px;padding:24px 20px;border-radius:18px}
+    .instructor-photo{width:120px}
+    .instructor-name{font-size:24px}
+    .instructor-title{font-size:13px}
+    .instructor-bio{font-size:14px;line-height:1.85}
+    .lineup-item{padding:22px 20px;border-radius:14px}
+    .lineup-day-num{font-size:15px}
+    .lineup-day-tag{font-size:9px;letter-spacing:.2em;padding:2px 8px}
+    .lineup-title{font-size:17px}
+    .lineup-desc{font-size:13px;line-height:1.85}
+  }
+
   /* ===== DAY INTRO ===== */
   .day-intro{
     max-width:880px;
@@ -1115,7 +1271,7 @@
     letter-spacing:.15em;
     border-radius:999px;
   }
-  .day-intro-tag.day2{background:var(--text-primary);color:#fff}
+  .day-intro-tag.day2{background:linear-gradient(135deg,#C89331 0%,#9E6D14 100%);color:#fff}
   .day-intro-date{
     font-size:13px;letter-spacing:.15em;
     color:var(--text-muted);
@@ -1135,6 +1291,51 @@
   }
   .day-intro-body:last-child{margin-bottom:0}
   .day-intro-body b{color:var(--text-primary);font-weight:700}
+  /* 対象の吹き出し */
+  .target-bubbles{
+    display:flex;flex-wrap:wrap;gap:14px 16px;
+    margin:18px 0 22px;
+  }
+  .target-bubble{
+    position:relative;
+    display:inline-block;
+    background:#fff;
+    border:1.5px solid var(--accent);
+    color:var(--text-primary);
+    padding:12px 18px;
+    border-radius:18px;
+    font-size:14px;
+    font-weight:700;
+    line-height:1.5;
+    letter-spacing:.01em;
+    box-shadow:0 6px 18px -8px rgba(184,134,11,.25);
+  }
+  .target-bubble::before,
+  .target-bubble::after{
+    content:"";
+    position:absolute;
+    bottom:-11px;left:26px;
+    width:0;height:0;
+    border-style:solid;
+    border-width:11px 9px 0 9px;
+    border-color:var(--accent) transparent transparent transparent;
+  }
+  .target-bubble::after{
+    bottom:-8px;
+    border-width:9px 8px 0 8px;
+    border-color:#fff transparent transparent transparent;
+    margin-left:1px;
+  }
+  .target-bubble:nth-child(2){transform:rotate(-1deg)}
+  .target-bubble:nth-child(2)::before,
+  .target-bubble:nth-child(2)::after{left:auto;right:30px}
+  .target-bubble:nth-child(3){transform:rotate(1deg)}
+  @media(max-width:640px){
+    .target-bubbles{gap:10px 12px;margin:14px 0 18px}
+    .target-bubble{font-size:13px;padding:10px 14px;border-radius:14px}
+    .target-bubble::before,.target-bubble::after{left:20px}
+    .target-bubble:nth-child(2)::before,.target-bubble:nth-child(2)::after{left:auto;right:22px}
+  }
   .day-intro-note{
     display:flex;align-items:flex-start;gap:10px;
     margin-top:16px;
@@ -1232,7 +1433,7 @@
     letter-spacing:.15em;
     border-radius:999px;
   }
-  .step-tag.day2{background:var(--text-primary);color:#fff}
+  .step-tag.day2{background:linear-gradient(135deg,#C89331 0%,#9E6D14 100%);color:#fff}
   .step-time{
     font-size:12px;color:var(--text-muted);
     letter-spacing:.1em;
@@ -1852,6 +2053,34 @@
     color:var(--text-body);
   }
   .faq-item .faq-body p{margin-bottom:8px;color:var(--text-body);font-size:15px}
+  .faq-item .faq-body b{color:var(--text-primary);font-weight:700}
+  .faq-map-link{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:4px;
+    padding:10px 20px;
+    background:var(--accent);
+    color:#fff !important;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-decoration:none;
+    box-shadow:0 6px 16px -6px rgba(184,134,11,.45);
+    transition:transform .25s var(--ease),background .25s var(--ease),box-shadow .25s var(--ease);
+  }
+  .faq-map-link:hover{
+    background:var(--accent-deep);
+    transform:translateY(-1px);
+    box-shadow:0 10px 24px -8px rgba(184,134,11,.55);
+  }
+  .faq-map-link .icon{
+    font-size:16px;
+    color:#fff;
+  }
+  @media(max-width:640px){
+    .faq-map-link{font-size:12px;padding:9px 16px;gap:6px}
+    .faq-map-link .icon{font-size:14px}
+  }
   .faq-item .faq-body p:last-child{margin-bottom:0}
   @media(max-width:640px){
     .faq-list{margin-top:32px}
@@ -2073,7 +2302,7 @@
     <!-- ===== PROMPT HOOK ===== -->
     <div class="prompt-hook" aria-label="AI活用の問いかけ">
       <div class="prompt-box">
-        <div class="prompt-label">寺社でチャレンジしてみたいこと</div>
+        <div class="prompt-label"><span>寺社でチャレンジしてみたいこと</span></div>
         <div class="prompt-text" id="promptText"><span class="cursor"></span></div>
         <div class="prompt-actions">
           <span class="icon-btn mic" aria-hidden="true">
@@ -2132,11 +2361,7 @@
             <span class="day-label">基礎編</span>
             <span class="day-time">13:00〜16:00</span>
           </div>
-          <div class="day-badge day-badge-advanced" aria-label="2日目 発展編 ステップアップ">
-            <span class="level-up-badge">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14l5-5 5 5z"/></svg>
-              STEP UP
-            </span>
+          <div class="day-badge day-badge-advanced" aria-label="2日目 発展編">
             <span class="day-n">2日目</span>
             <span class="day-label">発展編</span>
             <span class="day-time">11:00〜15:00</span>
@@ -2212,8 +2437,8 @@
       <div class="section-label">これまでの歩み</div>
     </div>
     <h2 class="h2 reveal">
-      神仏習合の<br>
-      <span class="accent">AI勉強会</span>
+      史上初となる<br>
+      神仏習合の<span class="accent">AI勉強会</span>
       <span class="h2-sub">2026年3月</span>
     </h2>
     <p class="note-intro reveal reveal-delay-1">
@@ -2273,10 +2498,15 @@
         <span class="day-intro-date">2026年5月14日(木) 13:00〜16:00</span>
       </div>
       <h3 class="day-intro-title">
-        チャット型AIの、基礎基本を固める日
+        🔰 チャット型AIの、基礎基本を固める日
       </h3>
+      <div class="target-bubbles">
+        <span class="target-bubble">ChatGPT、Claude、Gemini…寺社ではどれを使えばいい？</span>
+        <span class="target-bubble">AIってあまり信用ならないでしょ</span>
+        <span class="target-bubble">寺社で使えるイメージが持てない</span>
+      </div>
       <p class="day-intro-body">
-        <b>対象：</b>「ChatGPT、Claude、Gemini…寺社ではどれを使えばいい?」「AIってあまり信用ならないでしょ」「寺社で使えるイメージが持てない」――そんな気持ちをお持ちで、なんとなく使っている方向けの基礎固め内容です。
+        <b>対象：</b>そんな気持ちをお持ちで、なんとなく使っている方向けの基礎固め内容です。
       </p>
       <p class="day-intro-body">
         <b>ねらい：</b>カンタンですぐに寺社の即戦力になれる「チャット型AI」の基礎基本を整理し、AIを「壁打ち相手」だけでなく画像・PDF・動画・音声まで広げて活用する実践力を養います。今まで諦めていたことを寺社で実現するための1日です。
@@ -2315,42 +2545,20 @@
         <div class="step-no">02</div>
         <div class="step-card">
           <div class="step-meta">
-            <span class="step-tag">1日目 後半-1</span>
-            <span class="step-time">90分</span>
+            <span class="step-tag">1日目 後半</span>
+            <span class="step-time">180分</span>
           </div>
-          <h4 class="step-title">寺社の専属クリエイターをつくる ①</h4>
+          <h4 class="step-title">寺社の専属クリエイターをつくる</h4>
           <p class="step-desc">
-            画像・PDF生成へのAI活用。これまで「専門家がいなくて頼めなかった」「コスト・時間が見合わなかった」業務を、寺社の中で実現する手法を学ぶ。
+            画像・PDF生成から、動画・スライド・SNS投稿まで。これまで「専門家がいなくて頼めなかった」「コスト・時間が見合わなかった」業務を、寺社の中で実現する手法を学ぶ。AIを「壁打ち相手」だけでなく、発信を支えるクリエイティブパートナーとして使いこなす実践演習。
           </p>
           <ul class="step-bullets">
             <li>法要案内・行事ポスターをAIで作成</li>
             <li>檀家通信PDFの自動生成</li>
-            <li>著作権と素材の扱い方</li>
-          </ul>
-          <div class="step-tools">
-            <span class="label">使用ツール</span>
-            <span class="tag">NotebookLM</span>
-            <span class="tag">Manus</span>
-            <span class="tag">Claude</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="step reveal reveal-delay-2">
-        <div class="step-no">03</div>
-        <div class="step-card">
-          <div class="step-meta">
-            <span class="step-tag">1日目 後半-2</span>
-            <span class="step-time">90分</span>
-          </div>
-          <h4 class="step-title">寺社の専属クリエイターをつくる ②</h4>
-          <p class="step-desc">
-            動画・スライド・SNS投稿などへの応用編。AIを「壁打ち相手」だけでなく、寺社の発信を支えるクリエイティブパートナーとして活用する実践演習。
-          </p>
-          <ul class="step-bullets">
             <li>法話の動画化・ショート化</li>
             <li>スライドの自動生成とブラッシュアップ</li>
             <li>SNS投稿のネタ出し〜仕上げまで</li>
+            <li>著作権と素材の扱い方</li>
           </ul>
           <div class="step-tools">
             <span class="label">使用ツール</span>
@@ -2377,7 +2585,7 @@
         寺社の右腕＝AIエージェントを、つくりあげる日
       </h3>
       <p class="day-intro-body">
-        <b>対象：</b>チャット型AI・生成AIをひと通り使いこなしてきた方、次のステップに進みたい方。
+        <b>対象：</b>もっとAIを寺社活動に活かしたい方、自坊にあったAIをつくってみたい方。
       </p>
       <p class="day-intro-body">
         <b>ねらい：</b>寺社の業務に深く寄り添う「AIエージェント」を、Claudeを活用して各自の手でつくり上げます。法務・寺務・広報・檀信徒対応など、寺社のことなら何でもお任せできる「右腕」となるエージェント設計のノウハウを、実践を通じて持ち帰っていただきます。
@@ -2387,19 +2595,19 @@
       </p>
       <p class="day-intro-note">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-        当日は <b>Claudeの有料版（Pro以上）</b> を使用します。一時的にプランをアップグレードしてご参加いただける方を想定しております。
+        <span class="day-intro-note-text">一部、<b>Claudeの有料プラン</b>を使います。（無料プランだけでもご参加いただけます）</span>
       </p>
     </div>
 
     <div class="step-timeline">
       <div class="step reveal">
-        <div class="step-no">04</div>
+        <div class="step-no">03</div>
         <div class="step-card">
           <div class="step-meta">
             <span class="step-tag day2">2日目 終日</span>
             <span class="step-time">1日</span>
           </div>
-          <h4 class="step-title">AIエージェントをつくろう</h4>
+          <h4 class="step-title">寺族・スタッフのように動く、<br>AIエージェントつくり</h4>
           <p class="step-desc">
             「寺社のことなら何でもお任せ」できる、寺社の右腕＝AIエージェントを構築する発展編。1日目で学んだチャット型AI・生成AIの知識を土台に、自坊の業務に寄り添うAIを各自の手でつくり上げる。
           </p>
@@ -2571,6 +2779,20 @@
       </p>
     </div>
 
+    <div class="instructor-card reveal reveal-delay-2" style="margin-top:48px">
+      <div class="instructor-photo">
+        <img src="images/instructor_naito.jpg" alt="寺子屋しゅうごう 主宰 内藤" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'［主宰写真：内藤］'}))">
+      </div>
+      <div class="instructor-info">
+        <div class="instructor-label">主宰</div>
+        <div class="instructor-name">内藤</div>
+        <div class="instructor-title">寺子屋しゅうごう 主宰</div>
+        <p class="instructor-bio">
+          寺社のLINEとAI活用をサポート。全国の寺社関係者向けに、毎週オンライン勉強会を開催。のべ1,000名を超える方々と一緒に、寺社ならではのAI活用を学び合っています。
+        </p>
+      </div>
+    </div>
+
     <div class="about-signature reveal reveal-delay-2">
       寺子屋しゅうごう(お寺向けオンライン勉強会)　主宰　内藤
     </div>
@@ -2671,18 +2893,18 @@
       </details>
 
       <details class="faq-item reveal">
-        <summary>宿泊先の案内はありますか？</summary>
-        <div class="faq-body">
-          <p>諏訪市内のおすすめ宿泊先リストを参加確定後にお送りいたします。ご予約は各自にてお願いしております。</p>
-          <p>上諏訪温泉・下諏訪温泉など、合宿と合わせて諏訪の文化に触れていただける宿が多くございます。</p>
-        </div>
-      </details>
-
-      <details class="faq-item reveal">
         <summary>会場へのアクセス・駐車場は？</summary>
         <div class="faq-body">
-          <p>仏法紹隆寺に駐車場をご用意しております。公共交通機関でのアクセスも可能です。</p>
-          <p>JR中央本線「上諏訪駅」より車で約10分、中央自動車道「諏訪IC」より車で約10分です。</p>
+          <p><b>仏法紹隆寺</b><br>
+          〒392-0014 長野県諏訪市四賀4373</p>
+          <p>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=仏法紹隆寺+長野県諏訪市四賀4373" target="_blank" rel="noopener noreferrer" class="faq-map-link">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+              Googleマップで開く
+            </a>
+          </p>
+          <p>駐車場をご用意しております。公共交通機関でのアクセスも可能です。<br>
+          JR中央本線「上諏訪駅」より車で約10分／中央自動車道「諏訪IC」より車で約10分。</p>
         </div>
       </details>
 
