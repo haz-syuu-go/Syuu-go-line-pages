@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>妙慶院のイベント一覧｜寺子屋しゅうごう</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --text: #1a1d22;
+    --text-sub: #3f464d;
+    --line: #dfe3e8;
+    --line-strong: #c4c9d0;
+
+    /* 五色アクセント（紫・赤・黄・緑・白） */
+    --c-purple: #6B4BA8;
+    --c-purple-bg: #efeaf7;
+    --c-red: #D64C3B;
+    --c-red-bg: #fceeec;
+    --c-yellow: #D9A514;  /* 視認性確保のためやや濃い黄 */
+    --c-yellow-bg: #fbf3d9;
+    --c-green: #4B8B3B;
+    --c-green-bg: #eaf3e7;
+    --c-white: #ffffff;
+
+    /* ベースのアクセントは紫 */
+    --accent: var(--c-purple);
+    --accent-bg: var(--c-purple-bg);
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "ヒラギノ角ゴシック", sans-serif;
+    font-size: 20px;
+    line-height: 1.95;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  /* ヘッダー */
+  .site-header {
+    text-align: center;
+    padding: 8px 0 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .site-title {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+  }
+  .site-sub {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 10px;
+    line-height: 1.75;
+  }
+
+  /* 一覧 */
+  .lead {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-bottom: 24px;
+    line-height: 2.05;
+  }
+  .event-list { display: grid; gap: 20px; }
+  .card {
+    display: block;
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    font-family: inherit;
+    color: inherit;
+  }
+  .card:hover, .card:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 2px 10px rgba(42,74,107,0.08);
+    outline: none;
+  }
+  .card:active { background: var(--accent-bg); }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .card-icon {
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--accent-bg);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-icon svg { width: 28px; height: 28px; }
+  .card-title {
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 1.45;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .card-subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+
+  .card-photo {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: var(--accent-bg);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .card-photo-fallback {
+    color: var(--line-strong);
+  }
+  .card-photo-fallback svg { width: 56px; height: 56px; }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .card-meta svg { width: 20px; height: 20px; flex: 0 0 20px; color: var(--accent); }
+
+  .card-summary {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-sub);
+    line-height: 1.95;
+    margin-bottom: 18px;
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    padding: 12px 0 2px;
+    border-top: 1px solid var(--line);
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .card-cta svg { width: 20px; height: 20px; }
+
+  /* 詳細 */
+  .detail { display: none; }
+  .detail.is-active { display: block; }
+  .view-list .event-list { display: grid; }
+  body.view-detail .event-list { display: none; }
+  body.view-detail .lead { display: none; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .back-btn svg { width: 22px; height: 22px; }
+  .back-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .back-btn-bottom {
+    margin-top: 28px;
+    margin-bottom: 8px;
+    padding: 14px 18px;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* LINE予約ボタン */
+  .line-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: #06C755;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 12px 14px;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #04a447;
+    transition: transform .08s ease;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .line-cta:hover { filter: brightness(1.03); }
+  .line-cta:active { transform: translateY(2px); box-shadow: 0 1px 0 #04a447; }
+  .line-cta svg { width: 22px; height: 22px; fill: currentColor; flex: 0 0 22px; }
+  .line-cta-note {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  /* 開催日直下のCTAブロック */
+  .cta-inline {
+    grid-column: 2 / 4;
+    margin: 4px 0 2px;
+  }
+
+  /* 五色アクセント：各イベント個別カラー */
+  .card[data-open="tcafe"], #detail-tcafe { --accent: var(--c-purple); --accent-bg: var(--c-purple-bg); }
+  .card[data-open="bzcf"], #detail-bzcf   { --accent: var(--c-red);    --accent-bg: var(--c-red-bg); }
+  .card[data-open="tfday"], #detail-tfday { --accent: var(--c-yellow); --accent-bg: var(--c-yellow-bg); }
+  .card[data-open="sarana"], #detail-sarana { --accent: var(--c-green); --accent-bg: var(--c-green-bg); }
+
+  /* カード上部に色の帯 */
+  .card { position: relative; overflow: hidden; }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--accent);
+  }
+  .card { padding-top: 26px; }
+
+  .detail-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .detail-title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.45;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .detail-subtitle {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 6px;
+    line-height: 1.7;
+  }
+
+  .detail-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--accent-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .detail-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .detail-photo-fallback { color: var(--line-strong); }
+  .detail-photo-fallback svg { width: 80px; height: 80px; }
+
+  .detail-body p { margin-bottom: 20px; line-height: 2.15; font-size: 19px; font-weight: 500; }
+
+  .info {
+    background: color-mix(in srgb, var(--accent) 6%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
+    border-radius: 12px;
+    padding: 8px 22px 22px;
+    margin: 22px 0;
+  }
+  .info-row {
+    display: grid;
+    grid-template-columns: 28px 92px 1fr;
+    gap: 10px;
+    align-items: start;
+    padding: 14px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 12%, #ffffff);
+    line-height: 1.9;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info .line-cta { margin-top: 18px; margin-bottom: 6px; }
+  .info .line-cta-note { margin-bottom: 2px; }
+  .info-row svg { width: 22px; height: 22px; color: var(--accent); margin-top: 4px; }
+  .info-label {
+    font-weight: 900;
+    color: var(--text);
+    font-size: 17px;
+  }
+  .info-val {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.85;
+  }
+  .info-val .sub { color: var(--text-sub); font-size: 16px; font-weight: 500; display: block; margin-top: 4px; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-sub);
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    line-height: 1.9;
+  }
+  .footer-note a { color: var(--accent); }
+
+  /* 画像スライダー（ゆっくり横流れ） */
+  .slider {
+    width: calc(100% + 40px);
+    margin: 4px -20px 24px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+  }
+  .slider-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    animation: slide 70s linear infinite;
+  }
+  .slider-track:hover { animation-play-state: paused; }
+  .slider-item {
+    flex: 0 0 auto;
+    width: 260px;
+    height: 180px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f2f2f2;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .slider-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @keyframes slide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-50% - 7px)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slider-track { animation: none; }
+  }
+
+  body.view-detail .slider { display: none; }
+
+  /* スマホ最適化 */
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 16px 60px; }
+    .site-title { font-size: 22px; }
+    .card-title { font-size: 20px; }
+    .detail-title { font-size: 22px; }
+    .info-row { grid-template-columns: 24px 80px 1fr; gap: 8px; }
+    .info-val { font-size: 16px; }
+  }
+</style>
+</head>
+<body class="view-list">
+
+<!-- アイコン定義（SVGスプライト） -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-brush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 11L3 21l10-6"/><path d="M14 4l6 6-9 9-6 1 1-6z"/>
+  </symbol>
+  <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 8h1a4 4 0 010 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><path d="M6 2v3M10 2v3M14 2v3"/>
+  </symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+  </symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+  </symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+  <symbol id="i-yen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 4l-6 8-6-8"/><line x1="6" y1="14" x2="18" y2="14"/><line x1="6" y1="18" x2="18" y2="18"/><line x1="12" y1="12" x2="12" y2="20"/>
+  </symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+  </symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+  </symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+  </symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+  </symbol>
+  <symbol id="i-line" viewBox="0 0 24 24">
+    <path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314M9.529 13.237h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.196h1.775c.35 0 .634.285.634.635 0 .348-.284.634-.634.634m2.486-.635c0 .35-.285.635-.635.635-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.83m5.826 0c0 .273-.176.517-.437.603-.066.023-.134.031-.201.031-.213 0-.395-.09-.515-.252l-2.474-3.366v2.984c0 .35-.284.635-.634.635-.351 0-.634-.285-.634-.635V7.772c0-.274.175-.517.437-.603.065-.023.135-.033.202-.033.199 0 .38.107.499.258l2.487 3.368V7.772c0-.35.283-.635.634-.635.35 0 .634.285.634.635v4.83m4.031-2.421c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775c.351 0 .634.285.634.635 0 .349-.283.635-.634.635h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.285-.635.634-.635h2.41c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775z"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <!-- 一覧ビュー -->
+  <header class="site-header" id="listHeader">
+    <div class="site-title">妙慶院のイベント一覧</div>
+    <div class="site-sub">どなたでもお気軽にご参加いただけます</div>
+  </header>
+
+  <!-- 画像スライダー：images/ フォルダの写真を横にゆっくり流します -->
+  <div class="slider" aria-label="お寺の様子">
+    <div class="slider-track">
+      <div class="slider-item"><img src="images/boz_cafe_1.jpg" alt="" loading="lazy"></div>
+      <div class="slider-item"><img src="images/boz-bar_1.jpg" alt="" loading="lazy"></div>
+      <div class="slider-item"><img src="images/tera_friday_1.jpg" alt="" loading="lazy"></div>
+      <div class="slider-item"><img src="images/sarasa_1.png" alt="" loading="lazy"></div>
+      <div class="slider-item"><img src="images/boz_bar_2.jpg" alt="" loading="lazy"></div>
+      <div class="slider-item"><img src="images/tera_friday_2.jpg" alt="" loading="lazy"></div>
+      <!-- シームレスループ用の複製 -->
+      <div class="slider-item" aria-hidden="true"><img src="images/boz_cafe_1.jpg" alt="" loading="lazy"></div>
+      <div class="slider-item" aria-hidden="true"><img src="images/boz-bar_1.jpg" alt="" loading="lazy"></div>
+      <div class="slider-item" aria-hidden="true"><img src="images/tera_friday_1.jpg" alt="" loading="lazy"></div>
+      <div class="slider-item" aria-hidden="true"><img src="images/sarasa_1.png" alt="" loading="lazy"></div>
+      <div class="slider-item" aria-hidden="true"><img src="images/boz_bar_2.jpg" alt="" loading="lazy"></div>
+      <div class="slider-item" aria-hidden="true"><img src="images/tera_friday_2.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+
+  <p class="lead">お寺で開かれている月例のあつまりをご案内しています。気になるあつまりを選んで「詳細を見る」からご覧ください。</p>
+
+  <div class="event-list" id="eventList">
+
+    <button class="card" type="button" data-open="tcafe">
+      <div class="card-head">
+        <div class="card-icon"><svg><use href="#i-brush"/></svg></div>
+        <div>
+          <div class="card-title">寺カフェ</div>
+          <div class="card-subtitle">〜写経・写仏・切仏〜</div>
+        </div>
+      </div>
+      <div class="card-photo">
+        <img src="https://wajun.or.jp/wordpress/wp-content/uploads/2026/03/260315tcaf-300x300.jpg" alt="寺カフェの様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=card-photo-fallback><svg><use href=#i-image/></svg></div>'">
+      </div>
+      <div class="card-meta"><svg><use href="#i-calendar"/></svg>毎月 第３日曜日</div>
+      <div class="card-meta"><svg><use href="#i-clock"/></svg>13:30 〜 16:00</div>
+      <div class="card-summary">写経・写仏・切仏とお寺カフェのあつまり。お子さまからご年配の方まで、どなたでも。</div>
+      <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
+    </button>
+
+    <button class="card" type="button" data-open="bzcf">
+      <div class="card-head">
+        <div class="card-icon"><svg><use href="#i-coffee"/></svg></div>
+        <div>
+          <div class="card-title">坊主café in 妙慶院</div>
+          <div class="card-subtitle">〜ほっこりお話しカフェ〜</div>
+        </div>
+      </div>
+      <div class="card-photo">
+        <img src="images/boz_cafe_1.jpg" alt="坊主caféの様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=card-photo-fallback><svg><use href=#i-image/></svg></div>'">
+      </div>
+      <div class="card-meta"><svg><use href="#i-calendar"/></svg>毎月 第３金曜日 午前</div>
+      <div class="card-meta"><svg><use href="#i-clock"/></svg>10:30 〜 12:00</div>
+      <div class="card-summary">お坊さんと一緒にほっこりお話しするカフェの時間。周りに言いづらいお悩みも、ここで。</div>
+      <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
+    </button>
+
+    <button class="card" type="button" data-open="tfday">
+      <div class="card-head">
+        <div class="card-icon"><svg><use href="#i-users"/></svg></div>
+        <div>
+          <div class="card-title">テラ・フライデー</div>
+          <div class="card-subtitle">〜金曜夜の大人のサークル〜</div>
+        </div>
+      </div>
+      <div class="card-photo">
+        <img src="images/tera_friday_1.jpg" alt="テラ・フライデーの様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=card-photo-fallback><svg><use href=#i-image/></svg></div>'">
+      </div>
+      <div class="card-meta"><svg><use href="#i-calendar"/></svg>毎月 最終金曜日 夜</div>
+      <div class="card-meta"><svg><use href="#i-clock"/></svg>18:30 〜 20:30</div>
+      <div class="card-summary">お寺に集まって、軽いお食事と住職の法話、ゲームも。広島をもっと盛りあげる大人の会。</div>
+      <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
+    </button>
+
+    <button class="card" type="button" data-open="sarana">
+      <div class="card-head">
+        <div class="card-icon"><svg><use href="#i-heart"/></svg></div>
+        <div>
+          <div class="card-title">サラナ親子サロン</div>
+          <div class="card-subtitle">〜マタニティと０・１・２歳のおやこへ〜</div>
+        </div>
+      </div>
+      <div class="card-photo">
+        <img src="images/sarasa_1.png" alt="サラナ親子サロンの様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=card-photo-fallback><svg><use href=#i-image/></svg></div>'">
+      </div>
+      <div class="card-meta"><svg><use href="#i-calendar"/></svg>毎月 第１木曜日</div>
+      <div class="card-meta"><svg><use href="#i-clock"/></svg>10:00 〜 13:00</div>
+      <div class="card-summary">保育士と看護師とお坊さんがお迎えする親子のあつまり。お子さんが泣いてもぐずっても大丈夫です。</div>
+      <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
+    </button>
+
+  </div>
+
+  <!-- 詳細ビュー：寺カフェ -->
+  <section class="detail" id="detail-tcafe" aria-hidden="true">
+    <button class="back-btn" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+    <div class="detail-head">
+      <div class="card-icon"><svg><use href="#i-brush"/></svg></div>
+      <div>
+        <div class="detail-title">寺カフェ</div>
+        <div class="detail-subtitle">〜写経・写仏・切仏〜</div>
+      </div>
+    </div>
+    <div class="detail-photo">
+      <img src="https://wajun.or.jp/wordpress/wp-content/uploads/2026/03/260315tcaf-300x300.jpg" alt="寺カフェの様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=detail-photo-fallback><svg><use href=#i-image/></svg></div>'">
+    </div>
+    <div class="detail-body">
+      <p>お寺では月１度、写経・写仏・切仏と、お寺カフェの時間をひらいています。ご要望にお応えしていろいろな写経もご用意しています。マイブッダと出逢える、心静かなひとときを体験いただけます。</p>
+      <p>お子さまからご年配の方まで、幅広くご参加いただけます。自分だけの仏さまが仕上がったあとは、お寺カフェの時間です。阿弥陀経の12種の散華からお好みの１枚も差しあげています。</p>
+      <p>雑談から、仏事のご質問、お悩みのご相談まで、住職がお話を伺います。お寺カフェだけのご利用でもかまいません。</p>
+    </div>
+    <div class="info">
+      <div class="info-row">
+        <svg><use href="#i-calendar"/></svg>
+        <span class="info-label">開催日</span>
+        <span class="info-val">毎月 第３日曜日<span class="sub">※開催日が変わる月もあります</span></span>
+      </div>
+      <!-- TODO: 本番時はLINE予約URLに差し替え -->
+      <a class="line-cta" href="https://wajun.or.jp/news/tcafe/" target="_blank" rel="noopener">
+        <svg><use href="#i-line"/></svg>日程を見る・予約する
+      </a>
+      <div class="line-cta-note">公式LINEに移動します</div>
+      <div class="info-row">
+        <svg><use href="#i-clock"/></svg>
+        <span class="info-label">時間</span>
+        <span class="info-val">13:30 はじまり 〜 16:00 終了予定<span class="sub">13:15 より受付</span></span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-pin"/></svg>
+        <span class="info-label">会場</span>
+        <span class="info-val">妙慶院 三階 本堂・書院</span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-yen"/></svg>
+        <span class="info-label">会費</span>
+        <span class="info-val">お心のままにご喜捨ください<span class="sub">目安：千円ほど</span></span>
+      </div>
+    </div>
+    <button class="back-btn back-btn-bottom" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+  </section>
+
+  <!-- 詳細ビュー：坊主café -->
+  <section class="detail" id="detail-bzcf" aria-hidden="true">
+    <button class="back-btn" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+    <div class="detail-head">
+      <div class="card-icon"><svg><use href="#i-coffee"/></svg></div>
+      <div>
+        <div class="detail-title">坊主café in 妙慶院</div>
+        <div class="detail-subtitle">〜ほっこりお話しカフェ〜</div>
+      </div>
+    </div>
+    <div class="detail-photo">
+      <img src="images/boz_cafe_1.jpg" alt="坊主caféの様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=detail-photo-fallback><svg><use href=#i-image/></svg></div>'">
+    </div>
+    <div class="detail-body">
+      <p>「心に抱えているお悩み、聴いてもらいませんか？」<br>「心癒やされるひと時を、坊さんと過ごしませんか？」</p>
+      <p>毎月、第３金曜日の午前にひらいている坊主caféです。今まで誰にも話すことができなかったようなことや、周りの人には言いづらいようなことを、分かち合えるような、ゆったり・ほっこり・のんびりとしたカフェの時間です。</p>
+    </div>
+    <div class="info">
+      <div class="info-row">
+        <svg><use href="#i-calendar"/></svg>
+        <span class="info-label">開催日</span>
+        <span class="info-val">毎月 第３金曜日 午前<span class="sub">※開催日が変わる月もあります</span></span>
+      </div>
+      <!-- TODO: 本番時はLINE予約URLに差し替え -->
+      <a class="line-cta" href="https://wajun.or.jp/news/bzcf/" target="_blank" rel="noopener">
+        <svg><use href="#i-line"/></svg>日程を見る・予約する
+      </a>
+      <div class="line-cta-note">公式LINEに移動します</div>
+      <div class="info-row">
+        <svg><use href="#i-clock"/></svg>
+        <span class="info-label">時間</span>
+        <span class="info-val">10:30 はじまり 〜 12:00 終了予定<span class="sub">10:20 より受付</span></span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-pin"/></svg>
+        <span class="info-label">会場</span>
+        <span class="info-val">妙慶院 三階 本堂・書院</span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-yen"/></svg>
+        <span class="info-label">会費</span>
+        <span class="info-val">お心のままにご喜捨ください<span class="sub">目安：千円ほど</span></span>
+      </div>
+    </div>
+    <button class="back-btn back-btn-bottom" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+  </section>
+
+  <!-- 詳細ビュー：テラ・フライデー -->
+  <section class="detail" id="detail-tfday" aria-hidden="true">
+    <button class="back-btn" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+    <div class="detail-head">
+      <div class="card-icon"><svg><use href="#i-users"/></svg></div>
+      <div>
+        <div class="detail-title">テラ・フライデー</div>
+        <div class="detail-subtitle">〜金曜夜の大人のサークル〜</div>
+      </div>
+    </div>
+    <div class="detail-photo">
+      <img src="images/tera_friday_1.jpg" alt="テラ・フライデーの様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=detail-photo-fallback><svg><use href=#i-image/></svg></div>'">
+    </div>
+    <div class="detail-body">
+      <p>お寺で金曜に集まる「テラ・フライデー」です。広島をもっと盛りあげたくて、みんな友だちになってワイワイ楽しもうという、大人のサークル活動です。</p>
+      <p>お寺で軽いお食事とソフトドリンクをご用意しています。住職のプチ法話や、ゲームをする時間もございます。年齢も性別も趣味もお仕事も肩書きも、まったく問いません。</p>
+      <p>一緒に広島を盛りあげていってくれる方を募集します。金曜の夜、お寺に集まって、楽しくおしゃべりしましょう。</p>
+    </div>
+    <div class="info">
+      <div class="info-row">
+        <svg><use href="#i-calendar"/></svg>
+        <span class="info-label">開催日</span>
+        <span class="info-val">毎月 最終金曜日 夜<span class="sub">※開催日が変わる月もあります</span></span>
+      </div>
+      <!-- TODO: 本番時はLINE予約URLに差し替え -->
+      <a class="line-cta" href="https://wajun.or.jp/news/tfday/" target="_blank" rel="noopener">
+        <svg><use href="#i-line"/></svg>日程を見る・予約する
+      </a>
+      <div class="line-cta-note">公式LINEに移動します</div>
+      <div class="info-row">
+        <svg><use href="#i-clock"/></svg>
+        <span class="info-label">時間</span>
+        <span class="info-val">18:30 はじまり 〜 20:30 終了予定<span class="sub">18:15 より受付</span></span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-pin"/></svg>
+        <span class="info-label">会場</span>
+        <span class="info-val">妙慶院 二階 講堂</span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-yen"/></svg>
+        <span class="info-label">会費</span>
+        <span class="info-val">お布施 2,000円</span>
+      </div>
+    </div>
+    <button class="back-btn back-btn-bottom" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+  </section>
+
+  <!-- 詳細ビュー：サラナ親子サロン -->
+  <section class="detail" id="detail-sarana" aria-hidden="true">
+    <button class="back-btn" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+    <div class="detail-head">
+      <div class="card-icon"><svg><use href="#i-heart"/></svg></div>
+      <div>
+        <div class="detail-title">サラナ親子サロン</div>
+        <div class="detail-subtitle">〜マタニティと０・１・２歳のおやこへ〜</div>
+      </div>
+    </div>
+    <div class="detail-photo">
+      <img src="images/sarasa_1.png" alt="サラナ親子サロンの様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=detail-photo-fallback><svg><use href=#i-image/></svg></div>'">
+    </div>
+    <div class="detail-body">
+      <p>「サラナ」とは、古い仏教の言葉で「やすらぎ」です。親子がふれあう時間を持ちながら、お寺の本堂で、ほっこり・ゆったり・のんびり過ごしてみませんか。</p>
+      <p>・はじめての方でも、安心してご参加いただけます<br>・お子さんが泣いてもぐずっても大丈夫です<br>・お好みの軽食や飲み物の持ち込みもOKです</p>
+      <p>対象は、マタニティから０・１・２歳のお子さまと、親御さまに向けたプログラムです。保育士と看護師と、お坊さんがお待ちしています。</p>
+      <p>※８月はお休みです。</p>
+    </div>
+    <div class="info">
+      <div class="info-row">
+        <svg><use href="#i-calendar"/></svg>
+        <span class="info-label">開催日</span>
+        <span class="info-val">毎月 第１木曜日<span class="sub">※８月はお休み</span></span>
+      </div>
+      <!-- TODO: 本番時はLINE予約URLに差し替え -->
+      <a class="line-cta" href="https://wajun.or.jp/news/sarana/" target="_blank" rel="noopener">
+        <svg><use href="#i-line"/></svg>日程を見る・予約する
+      </a>
+      <div class="line-cta-note">公式LINEに移動します</div>
+      <div class="info-row">
+        <svg><use href="#i-clock"/></svg>
+        <span class="info-label">時間</span>
+        <span class="info-val">
+          10:00 〜 13:00
+          <span class="sub">10:00〜10:30 フリータイム</span>
+          <span class="sub">10:30〜10:50 おつとめ・おはなし</span>
+          <span class="sub">11:00〜12:00 親子あそび・読み聞かせ</span>
+          <span class="sub">12:00〜12:30 カフェタイム</span>
+          <span class="sub">12:30〜13:00 フリータイム</span>
+        </span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-pin"/></svg>
+        <span class="info-label">会場</span>
+        <span class="info-val">妙慶院 三階 本堂</span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-yen"/></svg>
+        <span class="info-label">会費</span>
+        <span class="info-val">お布施 500円</span>
+      </div>
+    </div>
+    <button class="back-btn back-btn-bottom" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+  </section>
+
+
+</div>
+
+<script>
+  (function () {
+    var body = document.body;
+    var details = document.querySelectorAll('.detail');
+    var cards = document.querySelectorAll('[data-open]');
+    var backs = document.querySelectorAll('[data-back]');
+
+    function showDetail(id) {
+      details.forEach(function (d) {
+        d.classList.remove('is-active');
+        d.setAttribute('aria-hidden', 'true');
+      });
+      var el = document.getElementById('detail-' + id);
+      if (!el) return;
+      el.classList.add('is-active');
+      el.setAttribute('aria-hidden', 'false');
+      body.classList.remove('view-list');
+      body.classList.add('view-detail');
+      window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    }
+
+    function showList() {
+      details.forEach(function (d) {
+        d.classList.remove('is-active');
+        d.setAttribute('aria-hidden', 'true');
+      });
+      body.classList.remove('view-detail');
+      body.classList.add('view-list');
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+      window.scrollTo({ top: 0 });
+    }
+
+    cards.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-open');
+        if (history.pushState) history.pushState({ view: id }, '', '#' + id);
+        showDetail(id);
+      });
+    });
+
+    backs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (history.state && history.state.view) {
+          history.back();
+        } else {
+          showList();
+        }
+      });
+    });
+
+    window.addEventListener('popstate', function (e) {
+      if (e.state && e.state.view) {
+        showDetail(e.state.view);
+      } else {
+        showList();
+      }
+    });
+
+    // URLハッシュで直接開いた場合
+    var hash = location.hash.replace('#', '');
+    if (hash && document.getElementById('detail-' + hash)) {
+      showDetail(hash);
+    }
+  })();
+</script>
+</body>
+</html>
