@@ -127,7 +127,7 @@
   }
   .prompt-box .prompt-label{
     flex-basis:100%;
-    margin-bottom:6px;
+    margin-bottom:18px;
     padding:0;
     font-size:0;
     line-height:1;
@@ -229,8 +229,8 @@
     }
     .prompt-box .prompt-label{
       flex:0 0 auto;
-      font-size:13px;
-      margin-bottom:0;
+      font-size:0;
+      margin-bottom:16px;
       letter-spacing:.05em;
     }
     .prompt-text{
@@ -444,6 +444,7 @@
     margin-bottom:16px;
   }
   .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line:first-child{margin-bottom:.08em}
   .hero h1 .char{
     display:inline-block;
     opacity:0;
@@ -719,19 +720,7 @@
     object-fit:cover;
     display:block;
   }
-  .slideshow-caption{
-    position:absolute;
-    left:0;right:0;bottom:0;
-    z-index:2;
-    padding:24px 28px 22px;
-    color:#fff;
-    font-size:15px;
-    font-weight:700;
-    letter-spacing:.02em;
-    line-height:1.4;
-    background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,.3) 50%,transparent);
-    transition:opacity .4s ease;
-  }
+  .slideshow-caption{display:none}
   .slideshow-dots{
     margin-top:18px;
     display:flex;gap:8px;
@@ -2746,8 +2735,9 @@
             ChatGPT・Claude・Geminiの違いを体系的に整理。寺社の現場で使える「チャット型AI」を厳選し、「なんとなく使う」から「目的を持って使いこなす」段階への第一歩を踏み出す。
           </p>
           <ul class="step-bullets">
-            <li>3つのチャット型AIの違いと選び方</li>
-            <li>寺社の業務で最初に使うべき機能</li>
+            <li>まずは押さえる「生成AIの仕組み」（なぜ嘘をつくの？）</li>
+            <li>チャット型AIの違いと選び方</li>
+            <li>寺社での活用事例・使える機能を知る</li>
             <li>失敗しないプロンプトの書き方</li>
           </ul>
           <div class="step-tools">
@@ -2802,14 +2792,15 @@
       <h3 class="day-intro-title">
         寺社の右腕＝AIエージェントを、つくりあげる日
       </h3>
+      <div class="target-bubbles">
+        <span class="target-bubble">もっとAIを寺社活動に活かしたい</span>
+        <span class="target-bubble">自坊にあったAIをつくってみたい</span>
+      </div>
       <p class="day-intro-body">
-        <b>対象：</b>もっとAIを寺社活動に活かしたい方、自坊にあったAIをつくってみたい方。
+        <b>対象：</b>そんな想いをお持ちの、次のステップに進みたい方。
       </p>
       <p class="day-intro-body">
-        <b>ねらい：</b>寺社の業務に深く寄り添う「AIエージェント」を、Claudeを活用して各自の手でつくり上げます。法務・寺務・広報・檀信徒対応など、寺社のことなら何でもお任せできる「右腕」となるエージェント設計のノウハウを、実践を通じて持ち帰っていただきます。
-      </p>
-      <p class="day-intro-body">
-        <b>相談にのるだけでなく、自走して寺社の活動を下支えしてくれるAIのつくりかた</b>を、実際の事例を交えて解説します。
+        <b>ねらい：</b>優秀な壁打ち相手としてだけでなく、<b>「実行部隊として」寺社を裏支えするAIエージェント</b>を作ってみます。1日目で土台固めしたチャット型AI・生成AIの知識を土台に、ジャンプアップした内容です。
       </p>
       <p class="day-intro-note">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
@@ -2830,9 +2821,11 @@
             「寺社のことなら何でもお任せ」できる、寺社の右腕＝AIエージェントを構築する発展編。1日目で学んだチャット型AI・生成AIの知識を土台に、自坊の業務に寄り添うAIを各自の手でつくり上げる。
           </p>
           <ul class="step-bullets">
-            <li>自坊業務のタスク棚卸しと優先度設計</li>
-            <li>Claudeエージェントの構築と検証</li>
-            <li>持ち帰って運用するための仕組みづくり</li>
+            <li>寺社✕Claudeでこんなに可能性が拡がる！活用事例</li>
+            <li>AIをチーム化してみよう（組織化）</li>
+            <li>AI用のマニュアルつくり（設計書）</li>
+            <li>セキュリティーの注意点</li>
+            <li>行事紹介の特設ページを作ってみよう</li>
           </ul>
           <div class="step-tools">
             <span class="label">使用ツール</span>
@@ -3246,9 +3239,12 @@
     const el = document.getElementById('promptText');
     if(!el) return;
     const phrases = [
-      '寺報をもっとよいものにしたい',
       '観光客向けに多言語対応することで、神仏習合の魅力を伝えたい',
-      'もっとよいデザインをつくりたい'
+      '子ども向けに仏教を伝える紙芝居をつくりたい',
+      'もっと読みやすい寺報をつくりたい',
+      'チラシのデザインをもっと良くしたい',
+      'Instagramで寺社のことをもっとよく知ってほしい',
+      '寺社を紹介する動画をつくりたい'
     ];
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(reduceMotion){
