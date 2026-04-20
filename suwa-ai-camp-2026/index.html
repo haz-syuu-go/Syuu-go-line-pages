@@ -2366,16 +2366,23 @@
     border-radius:20px;
     box-shadow:0 14px 40px -24px rgba(0,0,0,.12);
   }
-  .press-label{
-    display:inline-block;
-    font-size:12px;
-    letter-spacing:.3em;
-    color:var(--accent-deep);
-    font-weight:700;
-    padding:5px 16px;
-    background:var(--accent-soft);
-    border-radius:999px;
-    margin-bottom:20px;
+  .press-title{
+    font-size:clamp(22px,2.4vw,28px);
+    font-weight:900;
+    color:var(--text-primary);
+    margin-bottom:24px;
+    letter-spacing:.02em;
+    display:flex;align-items:center;justify-content:center;gap:16px;
+    line-height:1.4;
+  }
+  .press-title-mark{
+    color:var(--accent);
+    font-weight:400;
+    font-size:.9em;
+    letter-spacing:0;
+  }
+  @media(max-width:640px){
+    .press-title{font-size:20px;gap:10px;margin-bottom:18px}
   }
   .press-body{
     font-size:16px;
@@ -3274,7 +3281,11 @@
 <section id="press" class="bg-soft press-section">
   <div class="container-narrow">
     <div class="press-card reveal">
-      <div class="press-label">取材について</div>
+      <h3 class="press-title">
+        <span class="press-title-mark">―</span>
+        取材について
+        <span class="press-title-mark">―</span>
+      </h3>
       <p class="press-body">
         当日の取材等のお問い合わせは、<br>
         寺子屋しゅうごうにて受付しております。
