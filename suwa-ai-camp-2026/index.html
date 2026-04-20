@@ -1259,7 +1259,19 @@
     font-size:15px;
     line-height:1.9;
     color:var(--text-body);
-    margin:0;
+    margin:0 0 18px;
+  }
+  .instructor-hobby{
+    display:inline-block;
+    margin-top:6px;
+    font-size:13px;
+    color:var(--text-muted);
+    font-weight:500;
+  }
+  .instructor-closing{
+    margin-top:16px !important;
+    font-size:15px !important;
+    padding:14px 18px !important;
   }
   .lineup{
     display:grid;
@@ -1869,6 +1881,7 @@
     display:block;
   }
   .about-panel .panel-caption{
+    display:none;
     position:absolute;
     left:0;right:0;bottom:0;
     padding:24px 28px;
@@ -2876,11 +2889,11 @@
   </div>
 </section>
 
-<div class="seigaiha-divider flip" aria-hidden="true"></div>
+<div style="display:none" aria-hidden="true">
+<div class="seigaiha-divider flip"></div>
 
-<!-- ===== OUTCOME ===== -->
+<!-- ===== OUTCOME ===== (一旦非表示 display:none) -->
 <section id="outcome" class="bg-cream">
-  <!-- 装飾：御柱 -->
   <svg class="section-decor section-decor-onbashira" viewBox="0 0 180 220" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <g fill="#8F6608">
       <path d="M14,210 L18,20 L38,20 L42,210 Z"/>
@@ -2917,6 +2930,8 @@
     </div>
   </div>
 </section>
+</div>
+<!-- OUTCOMEセクション ここまで非表示 -->
 
 <!-- ===== ABOUT ===== -->
 <section class="bg-soft" id="about">
@@ -3004,9 +3019,6 @@
       <p>
         当勉強会は<b>事例共有・学びを趣旨としており、勧誘や販売は一切行いません</b>。全国津々浦々、宗派を問わず、課題を抱えるすべてのお寺と一緒に学び、成長していきたい。そんな想いで活動を続けています。
       </p>
-      <p class="about-closing">
-        ぜひ一度、寺子屋しゅうごうの扉を叩いてみてください。
-      </p>
     </div>
 
     <div class="instructor-card reveal reveal-delay-2" style="margin-top:48px">
@@ -3018,7 +3030,11 @@
         <div class="instructor-name">内藤</div>
         <div class="instructor-title">寺子屋しゅうごう 主宰</div>
         <p class="instructor-bio">
-          寺社のLINEとAI活用をサポート。全国の寺社関係者向けに、毎週オンライン勉強会を開催。のべ1,000名を超える方々と一緒に、寺社ならではのAI活用を学び合っています。
+          寺社特化のLINEとAI活用をサポート。全国の寺社関係者向けに、年80回以上オンライン勉強会を開催。のべ1,000名を超える方々と一緒に、寺社ならではのAI活用を学び合っています。<br>
+          <span class="instructor-hobby">（趣味：日本酒飲み比べ・タップダンス）</span>
+        </p>
+        <p class="about-closing instructor-closing">
+          ぜひ一度、寺子屋しゅうごうの扉を叩いてみてください。
         </p>
       </div>
     </div>
@@ -3052,7 +3068,7 @@
           <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
         </div>
         <div class="voice-name">真言宗 住職</div>
-        <div class="voice-affiliation">長野県・60代<br>寺子屋しゅうごう参加歴 1年</div>
+        <div class="voice-affiliation">東京都・60代</div>
       </div>
 
       <div class="voice-card reveal reveal-delay-1">
@@ -3063,7 +3079,7 @@
           <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
         </div>
         <div class="voice-name">浄土宗 副住職</div>
-        <div class="voice-affiliation">京都府・30代<br>寺子屋しゅうごう参加歴 半年</div>
+        <div class="voice-affiliation">東京都・30代</div>
       </div>
 
       <div class="voice-card reveal reveal-delay-2">
@@ -3074,7 +3090,7 @@
           <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
         </div>
         <div class="voice-name">神社 神職</div>
-        <div class="voice-affiliation">長野県・40代<br>寺子屋しゅうごう参加歴 3ヶ月</div>
+        <div class="voice-affiliation">東京都・40代</div>
       </div>
     </div>
   </div>
@@ -3155,8 +3171,8 @@
 <section class="cta bg-dark" id="cta">
   <div class="container-narrow">
     <h2 class="reveal">
-      諏訪で、<br>
-      お会いしましょう
+      全国に先駆けて<br>
+      「<span class="accent">AIを使いこなす地域</span>」に
     </h2>
     <p class="reveal reveal-delay-1">
       諏訪まるごとAI特区 ― この呼び名には、地域全体で新しい学びを受け入れ、<br>
