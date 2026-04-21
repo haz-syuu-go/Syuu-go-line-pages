@@ -445,6 +445,13 @@
   }
   .hero h1 .line{display:block;overflow:hidden}
   .hero h1 .line:first-child{margin-bottom:.08em}
+  .hero h1 .line-sub{
+    font-size:clamp(18px,2.6vw,32px);
+    font-weight:700;
+    letter-spacing:.02em;
+    color:var(--text-body);
+    margin-top:.35em;
+  }
   .hero h1 .char{
     display:inline-block;
     opacity:0;
@@ -2624,6 +2631,7 @@
     <h1 id="hero-h1">
       <span class="line" data-text="諏訪まるごと"></span>
       <span class="line" data-text="AI特区"></span>
+      <span class="line line-sub" data-text="@仏法紹隆寺"></span>
     </h1>
 
     <!-- ===== PROMPT HOOK ===== -->
