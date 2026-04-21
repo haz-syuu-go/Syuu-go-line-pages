@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>しゅうごうのLINE | お寺特化のLINEアプリ</title>
+  <meta name="description" content="檀信徒との繋がりを深める、お寺特化のLINEアプリ「しゅうごうのLINE」。法要受付・デジタル寺報・永代供養墓案内など、お寺に必要な機能をオーダーメイドで。全国100カ寺以上に導入実績。" />
+
+  <!-- OGP -->
+  <meta property="og:title" content="しゅうごうのLINE | お寺特化のLINEアプリ" />
+  <meta property="og:description" content="檀信徒との繋がりを深める、お寺特化のLINEアプリ。全国100カ寺以上に導入実績。" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ========================================================
+       SVG Icon System (hidden sprite sheet)
+  ========================================================= -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+    <defs>
+      <!-- Features -->
+      <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="16" rx="2"/>
+        <path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/>
+        <circle cx="12" cy="15" r="1.2"/>
+      </symbol>
+      <symbol id="i-newspaper" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h13a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"/>
+        <path d="M19 8h2v11a2 2 0 0 1-2 2"/>
+        <path d="M7 8h8M7 12h8M7 16h5"/>
+      </symbol>
+      <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3c.5 4 4.5 5 4.5 9.5a4.5 4.5 0 0 1-9 0C7.5 10 9 8.5 10 7c.5 2 2 2.5 2-4z"/>
+        <path d="M10 16a2 2 0 0 0 4 0"/>
+      </symbol>
+      <symbol id="i-lotus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 4c2 3 3 5 3 8-1.5.5-3 .5-3 .5s-1.5 0-3-.5c0-3 1-5 3-8z"/>
+        <path d="M5 10c2 0 3.5 1 4 2.5-1 .5-2 1-3 1-1.5 0-3-1-3-2 .5-1 1-1.5 2-1.5z"/>
+        <path d="M19 10c-2 0-3.5 1-4 2.5 1 .5 2 1 3 1 1.5 0 3-1 3-2-.5-1-1-1.5-2-1.5z"/>
+        <path d="M4 16c2 2 5 3 8 3s6-1 8-3"/>
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+        <path d="m8.5 11 2 2 3.5-3.5"/>
+      </symbol>
+      <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M3 10h18"/><path d="M7 15h3"/>
+      </symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="5" width="14" height="14" rx="2"/>
+        <rect x="9" y="9" width="6" height="6" rx="1"/>
+        <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>
+      </symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 3h6v14l-3 4-3-4V3z"/>
+        <path d="M9 7h6M9 11h6"/>
+      </symbol>
+      <symbol id="i-party" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="16" rx="2"/>
+        <path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/>
+        <path d="m10 16 2-3 2 3-3-.5-1 1z"/>
+      </symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="m8 8 4 5 4-5"/><path d="M12 13v4"/><path d="M9 14h6"/>
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/>
+        <circle cx="9" cy="11" r="0.8"/><circle cx="13" cy="11" r="0.8"/><circle cx="17" cy="11" r="0.8"/>
+      </symbol>
+      <symbol id="i-ticket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/>
+        <path d="M13 6v2M13 11v2M13 16v2"/>
+      </symbol>
+      <symbol id="i-scroll" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 4H7a2 2 0 0 0-2 2v2h3"/>
+        <path d="M17 4c1 0 2 .9 2 2v12a2 2 0 0 1-2 2H6c-1.1 0-2-.9-2-2V8h5v10"/>
+        <path d="M12 10h3M12 14h3"/>
+      </symbol>
+      <symbol id="i-beads" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/>
+        <path d="M8 12h2M14 12h2"/>
+        <path d="M12 6v2M12 16v2"/>
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5a2.5 2.5 0 0 0-2.5 2.5V4.5z"/>
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+      </symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>
+        <path d="M19 3v4M17 5h4M5 17v4M3 19h4"/>
+      </symbol>
+
+      <!-- Voice / generic -->
+      <symbol id="i-temple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10h18l-9-6z"/>
+        <path d="M5 10v10h14V10"/>
+        <path d="M10 20v-5h4v5"/>
+        <path d="M7 13h2M15 13h2"/>
+      </symbol>
+      <symbol id="i-hands" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3v7"/>
+        <path d="M8 10V6a2 2 0 0 1 4 0v4"/>
+        <path d="M16 10V6a2 2 0 0 0-4 0v4"/>
+        <path d="M6 13c0-1 1-2 2-2h8c1 0 2 1 2 2v3a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/>
+      </symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 3v18"/>
+        <path d="M5 4h11l-2 4 2 4H5"/>
+      </symbol>
+      <symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/>
+        <path d="M17 10h2a2 2 0 0 1 0 4h-2"/>
+        <path d="M7 4c0 1 2 1 2 3M12 4c0 1 2 1 2 3"/>
+      </symbol>
+      <symbol id="i-flower" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="2.2"/>
+        <path d="M12 5a3 3 0 0 1 0 5M12 14a3 3 0 0 1 0 5M5 12a3 3 0 0 1 5 0M14 12a3 3 0 0 1 5 0"/>
+        <path d="M7 7a3 3 0 0 1 3.5 3.5M13.5 10.5A3 3 0 0 1 17 7M17 17a3 3 0 0 1-3.5-3.5M10.5 13.5A3 3 0 0 1 7 17"/>
+      </symbol>
+
+      <!-- Stats & Support -->
+      <symbol id="i-user-elder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="7" r="3.5"/>
+        <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
+        <path d="M9 7h6"/>
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 2 4 14h7l-2 8 9-12h-7z"/>
+      </symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 3l7 7-11 11H3v-7z"/>
+        <path d="M13 6l5 5"/>
+      </symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3a9 9 0 0 0 0 18c1.5 0 2-1 2-2 0-1.5-1-2-1-3s1-2 2.5-2H18a3 3 0 0 0 3-3 9 9 0 0 0-9-8z"/>
+        <circle cx="7.5" cy="10.5" r="0.9"/><circle cx="12" cy="7.5" r="0.9"/><circle cx="16.5" cy="10.5" r="0.9"/>
+      </symbol>
+      <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m21 3-9 18-2.5-8L2 10z"/>
+        <path d="M21 3 9.5 13"/>
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>
+      </symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+        <path d="M21 3v5h-5"/>
+        <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+        <path d="M3 21v-5h5"/>
+      </symbol>
+      <symbol id="i-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 11 3-3 4 4-3 3a2 2 0 0 1-3 0l-1-1a2 2 0 0 1 0-3z"/>
+        <path d="M11 12.5 14 9l5 5-3 3a2 2 0 0 1-3 0"/>
+        <path d="M10 8c1-1 3-1 4 0l3 3"/>
+        <path d="M7 8 5 6"/>
+      </symbol>
+
+      <!-- Misc -->
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6" y="2" width="12" height="20" rx="2.5"/>
+        <path d="M11 18h2"/>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12l5 5L20 7"/>
+      </symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ========================================================
+       Navigation
+  ========================================================= -->
+  <header id="navbar" class="navbar">
+    <div class="navbar__inner">
+      <a href="#top" class="navbar__logo">
+        <span class="navbar__logo-mark">寺</span>
+        <span class="navbar__logo-text">しゅうごうのLINE</span>
+      </a>
+      <nav class="navbar__nav">
+        <a href="#features">できること</a>
+        <a href="#voices">利用者の声</a>
+        <a href="#support">サポート</a>
+        <a href="#faq">よくある質問</a>
+      </nav>
+      <a href="https://syuu-go.com/contact/" target="_blank" rel="noopener" class="btn btn--primary btn--sm">
+        無料で相談する
+        <span class="btn__arrow"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+      </a>
+      <button class="navbar__toggle" aria-label="メニューを開く" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#features" onclick="toggleMenu()">できること</a>
+      <a href="#voices" onclick="toggleMenu()">利用者の声</a>
+      <a href="#support" onclick="toggleMenu()">サポート</a>
+      <a href="#faq" onclick="toggleMenu()">よくある質問</a>
+      <a href="https://syuu-go.com/contact/" target="_blank" rel="noopener" class="btn btn--primary">無料で相談する</a>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       Section 1: TOP / Hero
+  ========================================================= -->
+  <section id="top" class="hero">
+    <div class="hero__inner">
+      <p class="hero__eyebrow reveal">お寺特化のLINEアプリ</p>
+      <h1 class="hero__title">
+        <span class="animated-text">あったらいいな！が</span>
+        <span class="animated-text">スマホひとつに</span>
+        <span class="animated-text hero__title--accent">お寺特化のLINEアプリ</span>
+      </h1>
+      <p class="hero__subtitle reveal">
+        檀信徒との繋がりを深める、寺務を軽くする。<br />
+        ご命日通知から法事受付、永代供養墓の案内まで。<br />
+        お寺に必要なすべてを、LINEひとつに。
+      </p>
+      <p class="hero__highlight reveal">
+        <span class="hero__highlight-mark">「お寺特化」</span>で<br class="sp-only"/>日々開発している<br/>
+        <span class="hero__highlight-accent">LINEアプリです。</span>
+      </p>
+      <div class="hero__cta reveal">
+        <a href="https://syuu-go.com/contact/" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+          無料で相談する<span class="btn__arrow"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+        </a>
+        <a href="#features" class="btn btn--ghost btn--lg">
+          できることを見る
+        </a>
+      </div>
+      <div class="hero__stats reveal">
+        <div class="hero__stat">
+          <span class="hero__stat-num">100<small>カ寺+</small></span>
+          <span class="hero__stat-label">導入実績</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num">67<small>%</small></span>
+          <span class="hero__stat-label">60代以上の利用者</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num">3<small>週〜</small></span>
+          <span class="hero__stat-label">最短リリース</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span></span>Scroll
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Photo Marquee (auto-scroll)
+       ※ data-photo 属性の代わりに、実際の画像を差し替えてください
+  ========================================================= -->
+  <section class="marquee" aria-label="お寺のLINE運用シーン">
+    <div class="marquee__track" id="marqueeTrack">
+      <!-- 1セット目 -->
+      <div class="marquee__item" data-photo="1"><span class="marquee__label">写真 1</span></div>
+      <div class="marquee__item" data-photo="2"><span class="marquee__label">写真 2</span></div>
+      <div class="marquee__item" data-photo="3"><span class="marquee__label">写真 3</span></div>
+      <div class="marquee__item" data-photo="4"><span class="marquee__label">写真 4</span></div>
+      <div class="marquee__item" data-photo="5"><span class="marquee__label">写真 5</span></div>
+      <div class="marquee__item" data-photo="6"><span class="marquee__label">写真 6</span></div>
+      <div class="marquee__item" data-photo="7"><span class="marquee__label">写真 7</span></div>
+      <div class="marquee__item" data-photo="8"><span class="marquee__label">写真 8</span></div>
+      <!-- 2セット目(ループ用複製) -->
+      <div class="marquee__item" data-photo="1"><span class="marquee__label">写真 1</span></div>
+      <div class="marquee__item" data-photo="2"><span class="marquee__label">写真 2</span></div>
+      <div class="marquee__item" data-photo="3"><span class="marquee__label">写真 3</span></div>
+      <div class="marquee__item" data-photo="4"><span class="marquee__label">写真 4</span></div>
+      <div class="marquee__item" data-photo="5"><span class="marquee__label">写真 5</span></div>
+      <div class="marquee__item" data-photo="6"><span class="marquee__label">写真 6</span></div>
+      <div class="marquee__item" data-photo="7"><span class="marquee__label">写真 7</span></div>
+      <div class="marquee__item" data-photo="8"><span class="marquee__label">写真 8</span></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 2: こんなことができます (Horizontal scroll)
+  ========================================================= -->
+  <section class="can-do">
+    <div class="container">
+      <p class="section__eyebrow reveal">WHAT YOU CAN DO</p>
+      <h2 class="section__title reveal">
+        こんなことが<br />できます
+      </h2>
+      <p class="section__lead reveal">
+        お寺の「困った」を、LINEで解決。<br />
+        課題から導き出した、実際の解決事例をご紹介します。
+      </p>
+    </div>
+
+    <div class="h-scroll reveal">
+      <div class="h-scroll__track" id="hScrollTrack">
+        <!-- Card 1 -->
+        <article class="h-card">
+          <div class="h-card__problem">
+            <span class="h-card__tag">課題</span>
+            <p>郵送代がどんどん上がって<br />負担が大きい…</p>
+          </div>
+          <div class="h-card__arrow">↓</div>
+          <div class="h-card__solution">
+            <span class="h-card__tag h-card__tag--accent">解決</span>
+            <p><strong>郵送コストが1/3に。</strong><br />デジタル寺報で、即時・低コスト配信。</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="h-card">
+          <div class="h-card__problem">
+            <span class="h-card__tag">課題</span>
+            <p>若い世代の檀信徒と<br />接点がつくれない</p>
+          </div>
+          <div class="h-card__arrow">↓</div>
+          <div class="h-card__solution">
+            <span class="h-card__tag h-card__tag--accent">解決</span>
+            <p><strong>子・孫世代にリーチ。</strong><br />LINEを通じて、新しい関係が生まれる。</p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="h-card">
+          <div class="h-card__problem">
+            <span class="h-card__tag">課題</span>
+            <p>法要の出欠確認に<br />手間がかかる</p>
+          </div>
+          <div class="h-card__arrow">↓</div>
+          <div class="h-card__solution">
+            <span class="h-card__tag h-card__tag--accent">解決</span>
+            <p><strong>ご法事受付を自動化。</strong><br />フォームから申込・決済までワンストップ。</p>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="h-card">
+          <div class="h-card__problem">
+            <span class="h-card__tag">課題</span>
+            <p>永代供養墓を作ったが、<br />選んでもらえない</p>
+          </div>
+          <div class="h-card__arrow">↓</div>
+          <div class="h-card__solution">
+            <span class="h-card__tag h-card__tag--accent">解決</span>
+            <p><strong>案内動線をLINEに構築。</strong><br />「LINEで知って、即申込」という声も。</p>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="h-card">
+          <div class="h-card__problem">
+            <span class="h-card__tag">課題</span>
+            <p>住職ひとりでやることが<br />多すぎて回らない</p>
+          </div>
+          <div class="h-card__arrow">↓</div>
+          <div class="h-card__solution">
+            <span class="h-card__tag h-card__tag--accent">解決</span>
+            <p><strong>ワンオペでも運用OK。</strong><br />専属チームが企画〜配信まで伴走します。</p>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="h-card">
+          <div class="h-card__problem">
+            <span class="h-card__tag">課題</span>
+            <p>ご相談の窓口が<br />分かりづらい</p>
+          </div>
+          <div class="h-card__arrow">↓</div>
+          <div class="h-card__solution">
+            <span class="h-card__tag h-card__tag--accent">解決</span>
+            <p><strong>仏事相談チャットボット。</strong><br />24時間、気軽に問いあわせ可能に。</p>
+          </div>
+        </article>
+      </div>
+      <div class="h-scroll__controls">
+        <button class="h-scroll__btn" onclick="scrollH(-1)" aria-label="前へ">←</button>
+        <button class="h-scroll__btn" onclick="scrollH(1)" aria-label="次へ">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 3: Video
+  ========================================================= -->
+  <section class="video-section">
+    <div class="container">
+      <p class="section__eyebrow reveal">SERVICE MOVIE</p>
+      <h2 class="section__title reveal">
+        1分で分かる、<br />しゅうごうのLINE。
+      </h2>
+      <div class="video-wrap reveal">
+        <iframe
+          src="https://www.youtube.com/embed/UIfKQRa8Yjk"
+          title="しゅうごうのLINE サービス紹介"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 4: 実際にできること (Features Grid)
+  ========================================================= -->
+  <section id="features" class="features">
+    <div class="container">
+      <p class="section__eyebrow reveal">FEATURES</p>
+      <h2 class="section__title reveal">
+        実際にできる<br />ことは様々
+      </h2>
+      <p class="section__lead reveal">
+        お寺にとって必要な機能を、一つの「しゅうごうのLINE」に集約。<br />
+        アイコンをクリックすると、詳細がご覧いただけます。
+      </p>
+
+      <div class="features__grid reveal">
+        <!-- 16 features -->
+        <button class="feature" data-f="1">
+          <span class="feature__icon"><svg class="icon"><use href="#i-calendar"/></svg></span>
+          <span class="feature__name">ご命日通知</span>
+        </button>
+        <button class="feature" data-f="2">
+          <span class="feature__icon"><svg class="icon"><use href="#i-newspaper"/></svg></span>
+          <span class="feature__name">デジタル寺報</span>
+        </button>
+        <button class="feature" data-f="3">
+          <span class="feature__icon"><svg class="icon"><use href="#i-flame"/></svg></span>
+          <span class="feature__name">ご法事受付</span>
+        </button>
+        <button class="feature" data-f="4">
+          <span class="feature__icon"><svg class="icon"><use href="#i-lotus"/></svg></span>
+          <span class="feature__name">永代供養墓の案内</span>
+        </button>
+        <button class="feature" data-f="5">
+          <span class="feature__icon"><svg class="icon"><use href="#i-search"/></svg></span>
+          <span class="feature__name">墓じまい診断</span>
+        </button>
+        <button class="feature" data-f="6">
+          <span class="feature__icon"><svg class="icon"><use href="#i-card"/></svg></span>
+          <span class="feature__name">事前決済</span>
+        </button>
+        <button class="feature" data-f="7">
+          <span class="feature__icon"><svg class="icon"><use href="#i-cpu"/></svg></span>
+          <span class="feature__name">オリジナルAI制作</span>
+        </button>
+        <button class="feature" data-f="8">
+          <span class="feature__icon"><svg class="icon"><use href="#i-tag"/></svg></span>
+          <span class="feature__name">塔婆・祈祷札の申込</span>
+        </button>
+        <button class="feature" data-f="9">
+          <span class="feature__icon"><svg class="icon"><use href="#i-party"/></svg></span>
+          <span class="feature__name">行事催しの参加受付</span>
+        </button>
+        <button class="feature" data-f="10">
+          <span class="feature__icon"><svg class="icon"><use href="#i-coin"/></svg></span>
+          <span class="feature__name">護持会費の案内</span>
+        </button>
+        <button class="feature" data-f="11">
+          <span class="feature__icon"><svg class="icon"><use href="#i-chat"/></svg></span>
+          <span class="feature__name">仏事相談チャットボット</span>
+        </button>
+        <button class="feature" data-f="12">
+          <span class="feature__icon"><svg class="icon"><use href="#i-ticket"/></svg></span>
+          <span class="feature__name">参拝記録証</span>
+        </button>
+        <button class="feature" data-f="13">
+          <span class="feature__icon"><svg class="icon"><use href="#i-scroll"/></svg></span>
+          <span class="feature__name">LINEでおみくじ</span>
+        </button>
+        <button class="feature" data-f="14">
+          <span class="feature__icon"><svg class="icon"><use href="#i-beads"/></svg></span>
+          <span class="feature__name">お念仏記録</span>
+        </button>
+        <button class="feature" data-f="15">
+          <span class="feature__icon"><svg class="icon"><use href="#i-book"/></svg></span>
+          <span class="feature__name">日めくり仏教</span>
+        </button>
+        <button class="feature" data-f="16">
+          <span class="feature__icon"><svg class="icon"><use href="#i-sparkles"/></svg></span>
+          <span class="feature__name">その他、オーダーメイド</span>
+        </button>
+      </div>
+
+      <p class="features__note reveal">
+        ※ 10ヵ寺あれば10通り。お寺の課題にあわせて最適な組み合わせをご提案します。
+      </p>
+    </div>
+
+    <!-- Modal -->
+    <div id="featureModal" class="modal" onclick="closeModal(event)">
+      <div class="modal__inner">
+        <button class="modal__close" onclick="closeModal()" aria-label="閉じる">×</button>
+        <div class="modal__body">
+          <span class="modal__icon"><svg class="icon"><use id="modalIconUse" href="#i-sparkles"/></svg></span>
+          <h3 class="modal__title" id="modalTitle"></h3>
+          <p class="modal__desc" id="modalDesc"></p>
+          <ul class="modal__list" id="modalList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 5: 利用者みなさまの声
+  ========================================================= -->
+  <section id="voices" class="voices">
+    <div class="container">
+      <p class="section__eyebrow voices__eyebrow reveal">USERS' VOICES</p>
+      <h2 class="section__title voices__title reveal">
+        利用者<br />みなさまの声
+      </h2>
+
+      <div class="voices__grid reveal">
+        <article class="voice-card">
+          <div class="voice-card__meta">
+            <span class="voice-card__avatar"><svg class="icon"><use href="#i-temple"/></svg></span>
+            <div>
+              <span class="voice-card__name">住職の声</span>
+              <span class="voice-card__tag">#寺務効率化</span>
+            </div>
+          </div>
+          <p class="voice-card__text">
+            郵送コストが<strong>1/3</strong>に減りました。<br />
+            紙媒体では届かなかった方にも、情報がスッと届くようになり、檀家さんとの距離がぐっと縮まりました。
+          </p>
+        </article>
+
+        <article class="voice-card">
+          <div class="voice-card__meta">
+            <span class="voice-card__avatar"><svg class="icon"><use href="#i-hands"/></svg></span>
+            <div>
+              <span class="voice-card__name">檀信徒の声</span>
+              <span class="voice-card__tag">#相談しやすい</span>
+            </div>
+          </div>
+          <p class="voice-card__text">
+            お寺に相談しやすくなりました。<br />
+            電話だと気が引けることも、LINEなら気軽に。<br />
+            自分の都合の良いタイミングで送れるのが嬉しいです。
+          </p>
+        </article>
+
+        <article class="voice-card">
+          <div class="voice-card__meta">
+            <span class="voice-card__avatar"><svg class="icon"><use href="#i-flag"/></svg></span>
+            <div>
+              <span class="voice-card__name">住職の声</span>
+              <span class="voice-card__tag">#若い世代のファン</span>
+            </div>
+          </div>
+          <p class="voice-card__text">
+            若い世代のファンが増えました。<br />
+            LINEからのつながりで、<strong>役員になってくれる方</strong>まで現れて。お寺の未来が見えた気がしました。
+          </p>
+        </article>
+
+        <article class="voice-card">
+          <div class="voice-card__meta">
+            <span class="voice-card__avatar"><svg class="icon"><use href="#i-cup"/></svg></span>
+            <div>
+              <span class="voice-card__name">寺族(奥様)の声</span>
+              <span class="voice-card__tag">#負担激減</span>
+            </div>
+          </div>
+          <p class="voice-card__text">
+            効率化で寺務負担が激減!<br />
+            お電話での聞き違いも減って、トラブルも無くなりました。夫婦の会話も増えました(笑)
+          </p>
+        </article>
+
+        <article class="voice-card">
+          <div class="voice-card__meta">
+            <span class="voice-card__avatar"><svg class="icon"><use href="#i-lotus"/></svg></span>
+            <div>
+              <span class="voice-card__name">檀信徒の声</span>
+              <span class="voice-card__tag">#永代供養墓</span>
+            </div>
+          </div>
+          <p class="voice-card__text">
+            こんなにいい永代供養墓があるのを<br />
+            LINEで知って、<strong>すぐに申し込む</strong>ことにしました。
+            丁寧にご説明いただき、安心できました。
+          </p>
+        </article>
+
+        <article class="voice-card">
+          <div class="voice-card__meta">
+            <span class="voice-card__avatar"><svg class="icon"><use href="#i-flower"/></svg></span>
+            <div>
+              <span class="voice-card__name">住職の声</span>
+              <span class="voice-card__tag">#全国展開</span>
+            </div>
+          </div>
+          <p class="voice-card__text">
+            他のお寺の事例もたくさん共有していただけて、<br />
+            「こんなことも出来るのか」と<strong>毎月アップデート</strong>されていく感覚。運用がとても楽しいです。
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 6: 多くのみなさまにご利用いただいています
+  ========================================================= -->
+  <section class="stats">
+    <div class="container">
+      <p class="section__eyebrow reveal">STATISTICS</p>
+      <h2 class="section__title reveal">
+        多くのみなさまに<br />ご利用いただいています
+      </h2>
+      <p class="section__lead reveal">
+        全国のお寺さまが、しゅうごうのLINEで新しい関係性を育てています。<br />
+        高齢世代にも安心して日々ご活用いただいています。
+      </p>
+
+      <div class="stats__grid reveal">
+        <div class="stats__card">
+          <div class="stats__label">
+            <span class="stats__ico"><svg class="icon"><use href="#i-temple"/></svg></span>導入寺院数
+          </div>
+          <div class="stats__value">100<small>カ寺+</small></div>
+          <p class="stats__note">北海道から九州まで、全国各地のお寺さまでご活用いただいています。</p>
+          <div class="stats__chart" aria-hidden="true">
+            <div class="stats__bar" style="height: 40%"></div>
+            <div class="stats__bar" style="height: 60%"></div>
+            <div class="stats__bar" style="height: 75%"></div>
+            <div class="stats__bar" style="height: 90%"></div>
+            <div class="stats__bar" style="height: 100%"></div>
+          </div>
+        </div>
+
+        <div class="stats__card">
+          <div class="stats__label">
+            <span class="stats__ico"><svg class="icon"><use href="#i-user-elder"/></svg></span>60代以上の利用者
+          </div>
+          <div class="stats__value">67<small>%</small></div>
+          <p class="stats__note">若い世代だけでなく、高齢世代にもやさしく使える設計。</p>
+          <div class="stats__pie" aria-hidden="true">
+            <div class="stats__pie-fill" style="--pct: 67"></div>
+          </div>
+        </div>
+
+        <div class="stats__card stats__card--wide">
+          <div class="stats__label">
+            <span class="stats__ico"><svg class="icon"><use href="#i-bolt"/></svg></span>最短リリースまでの期間
+          </div>
+          <div class="stats__value">3<small>週間 〜 1ヶ月</small></div>
+          <p class="stats__note">ご相談から設計・構築・リリースまで、スピーディーに運用を開始できます。</p>
+          <div class="stats__timeline" aria-hidden="true">
+            <div class="stats__dot">ご相談</div>
+            <div class="stats__line"></div>
+            <div class="stats__dot">設計</div>
+            <div class="stats__line"></div>
+            <div class="stats__dot">構築</div>
+            <div class="stats__line"></div>
+            <div class="stats__dot stats__dot--accent">運用開始</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 7: クリエイティブサポートも充実
+  ========================================================= -->
+  <section id="support" class="support">
+    <div class="container">
+      <p class="section__eyebrow reveal">CREATIVE SUPPORT</p>
+      <h2 class="section__title reveal">
+        クリエイティブ<br />サポートも充実
+      </h2>
+      <p class="section__lead reveal">
+        「デジタルは苦手…」「配信できるか自信がない…」<br />
+        そんな方も安心。お寺ごとの専属チームが、開発から運用まで一貫して伴走します。
+      </p>
+
+      <div class="support__wrap reveal">
+        <ul class="support__list">
+          <li><span class="support__check"><svg class="icon"><use href="#i-check"/></svg></span>お寺・宗派・地域情報のリサーチ</li>
+          <li><span class="support__check"><svg class="icon"><use href="#i-check"/></svg></span>配信スケジュールのご提案</li>
+          <li><span class="support__check"><svg class="icon"><use href="#i-check"/></svg></span>コンテンツ制作(写真・デザイン・文章)</li>
+          <li><span class="support__check"><svg class="icon"><use href="#i-check"/></svg></span>配信設定・オペレーション</li>
+          <li><span class="support__check"><svg class="icon"><use href="#i-check"/></svg></span>効果分析・レポート</li>
+          <li><span class="support__check"><svg class="icon"><use href="#i-check"/></svg></span>月1回の定例MTG</li>
+          <li><span class="support__check"><svg class="icon"><use href="#i-check"/></svg></span>継続的な改善・改修</li>
+          <li><span class="support__check"><svg class="icon"><use href="#i-check"/></svg></span>友だち登録チラシの制作</li>
+        </ul>
+        <div class="support__visual">
+          <div class="support__card">
+            <span class="support__emoji"><svg class="icon"><use href="#i-pen"/></svg></span>
+            <span>リサーチ</span>
+          </div>
+          <div class="support__card">
+            <span class="support__emoji"><svg class="icon"><use href="#i-palette"/></svg></span>
+            <span>制作</span>
+          </div>
+          <div class="support__card">
+            <span class="support__emoji"><svg class="icon"><use href="#i-send"/></svg></span>
+            <span>配信</span>
+          </div>
+          <div class="support__card">
+            <span class="support__emoji"><svg class="icon"><use href="#i-chart"/></svg></span>
+            <span>分析</span>
+          </div>
+          <div class="support__card">
+            <span class="support__emoji"><svg class="icon"><use href="#i-refresh"/></svg></span>
+            <span>改善</span>
+          </div>
+          <div class="support__card support__card--accent">
+            <span class="support__emoji"><svg class="icon"><use href="#i-handshake"/></svg></span>
+            <span>伴走</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="support__note reveal">
+        作って終わりではなく、運用しながらどんどんアップデート。<br />
+        それが、しゅうごうのLINEです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 8: お寺特化のLINEアプリでつくる、新しい関係性
+  ========================================================= -->
+  <section class="closing">
+    <div class="container">
+      <p class="section__eyebrow reveal">NEW RELATIONSHIP</p>
+      <h2 class="closing__title reveal">
+        お寺特化のLINEアプリで<br />
+        つくる、<span class="closing__accent">新しい関係性</span>。
+      </h2>
+      <p class="closing__text reveal">
+        しゅうごうのLINEは、単なる配信ツールではありません。<br />
+        お寺と檀信徒、お寺と地域、お寺と次世代。<br />
+        「人」と「人」のあたたかな関係を、<br />
+        デジタルでやさしくつなぎ直す<strong>「お寺を支えるインフラ」</strong>です。
+      </p>
+      <div class="closing__cta reveal">
+        <a href="https://syuu-go.com/contact/" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+          無料で相談する<span class="btn__arrow"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 9: よくある質問
+  ========================================================= -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <p class="section__eyebrow reveal">FAQ</p>
+      <h2 class="section__title reveal">よくある質問</h2>
+
+      <div class="faq__list reveal">
+        <details class="faq__item">
+          <summary>
+            <span>導入までどのくらいかかりますか?</span>
+            <span class="faq__plus">+</span>
+          </summary>
+          <div class="faq__body">
+            <p>ご相談から最短3週間〜1ヶ月でリリース・運用開始が可能です。お寺さまごとに必要な機能・コンテンツが異なるため、まずはお気軽にご相談ください。</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span>LINE公式アカウントを持っていませんが、大丈夫ですか?</span>
+            <span class="faq__plus">+</span>
+          </summary>
+          <div class="faq__body">
+            <p>問題ありません。LINE公式アカウントの開設から運用設計まで、専属チームが一貫してサポートします。スマホ操作が苦手な方でも、安心して始めていただけます。</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span>住職ひとりでも運用できますか?</span>
+            <span class="faq__plus">+</span>
+          </summary>
+          <div class="faq__body">
+            <p>はい、ワンオペレーション(おひとり)でも問題なく運用できるように設計します。配信・分析・改善まで、しゅうごうの専属チームが伴走しますので、住職さまは「お寺の日常」に集中いただけます。</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span>高齢の檀信徒さまも使えますか?</span>
+            <span class="faq__plus">+</span>
+          </summary>
+          <div class="faq__body">
+            <p>ご利用者の約67%が60代以上です。大きな文字・分かりやすいボタン配置・シンプルな導線を心がけて設計しています。友だち登録時のサポートチラシもご提供します。</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span>料金体系を教えてください</span>
+            <span class="faq__plus">+</span>
+          </summary>
+          <div class="faq__body">
+            <p>お寺さまごとに必要な機能・運用量が異なるため、初回のご相談の上でお見積りをご提示しています。10ヵ寺あれば10通りの最適解がありますので、ご希望をお聞かせください。</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span>途中で機能を追加・変更できますか?</span>
+            <span class="faq__plus">+</span>
+          </summary>
+          <div class="faq__body">
+            <p>可能です。「作って終わり」ではなく、運用しながら改善・アップデートを重ねていくのが、しゅうごうのLINEの特徴です。月1回の定例MTGで状況を確認しながら、継続的に改善します。</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span>宗派の違いに対応できますか?</span>
+            <span class="faq__plus">+</span>
+          </summary>
+          <div class="faq__body">
+            <p>対応可能です。各宗派の行事・作法・言葉遣いに配慮したコンテンツ設計を行います。事前にお寺さま・宗派・地域情報のリサーチから入るため、違和感のない運用が可能です。</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span>解約はできますか?</span>
+            <span class="faq__plus">+</span>
+          </summary>
+          <div class="faq__body">
+            <p>はい、ご契約の条件に沿って解約いただけます。引き継ぎ・データ移行についても、安心してお進めいただけるようサポートいたします。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Section 10: Contact
+  ========================================================= -->
+  <section class="contact">
+    <div class="container">
+      <h2 class="contact__title reveal">
+        お寺のLINE、<br />はじめませんか。
+      </h2>
+      <p class="contact__text reveal">
+        「自坊ではどのような使い方ができるのだろう?」<br />
+        まずは一度、無料でご相談ください。<br />
+        全国のお寺事例をご紹介いたします。
+      </p>
+      <div class="contact__cta reveal">
+        <a href="https://syuu-go.com/contact/" target="_blank" rel="noopener" class="btn btn--primary btn--xl">
+          無料で相談する<span class="btn__arrow"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       Footer
+  ========================================================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="navbar__logo-mark">寺</span>
+          <span>しゅうごうのLINE</span>
+        </div>
+        <p class="footer__tag">お寺特化のLINEアプリ / 寺子屋しゅうごう</p>
+      </div>
+      <div class="footer__links">
+        <a href="#features">できること</a>
+        <a href="#voices">利用者の声</a>
+        <a href="#faq">よくある質問</a>
+        <a href="https://syuu-go.com/contact/" target="_blank" rel="noopener">お問い合わせ</a>
+      </div>
+      <p class="footer__copy">© 2026 寺子屋しゅうごう. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
