@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご法事のご準備｜多聞院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --green-dark: #1b5e20;
+    --gray: #666;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.9;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 48px 20px 40px;
+  }
+  .header .temple-name { font-size: 14px; letter-spacing: 3px; opacity: .85; margin-bottom: 10px; }
+  .header h1 { font-size: 26px; font-weight: 900; letter-spacing: 2px; line-height: 1.5; }
+  .header .header-icon { margin: 18px auto 0; }
+  .header .header-icon svg { margin: 0 auto; display: block; }
+  .header p.sub { font-size: 15px; margin-top: 14px; opacity: .9; line-height: 1.8; }
+
+  /* Section */
+  section { padding: 40px 20px; }
+  .section-title { text-align: center; font-size: 22px; font-weight: 900; color: var(--green-dark); margin-bottom: 8px; letter-spacing: 1px; }
+  .divider { width: 44px; height: 3px; background: var(--green); margin: 0 auto 24px; border-radius: 2px; }
+
+  /* Intro */
+  .intro-box {
+    max-width: 520px; margin: 0 auto 28px;
+    background: var(--green-pale); border-radius: var(--radius);
+    padding: 24px; text-align: center; border: 1px solid #c8e6c9;
+  }
+  .intro-box p { font-size: 16px; color: var(--green-dark); line-height: 1.9; }
+  .intro-box strong { color: var(--green); }
+
+  /* Menu cards */
+  .menu-list { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+  .menu-card {
+    display: flex; align-items: center; gap: 16px;
+    background: #fff; border: 2px solid var(--green);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: transform .15s ease, box-shadow .15s ease;
+    -webkit-tap-highlight-color: rgba(46,125,50,.1);
+  }
+  .menu-card:active { transform: scale(.98); box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .menu-num {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+  }
+  .menu-body { flex: 1; min-width: 0; }
+  .menu-title {
+    font-size: 17px; font-weight: 900; color: var(--green-dark);
+    line-height: 1.45;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .menu-desc { font-size: 13px; color: var(--gray); margin-top: 4px; line-height: 1.6; }
+  .menu-badge {
+    display: inline-block;
+    background: #d32f2f; color: #fff;
+    font-size: 11px; font-weight: 700;
+    padding: 2px 8px; border-radius: 999px;
+    letter-spacing: .3px;
+  }
+  .menu-arrow { flex-shrink: 0; color: var(--green); font-size: 22px; font-weight: 900; }
+
+  /* Contact */
+  .contact-section {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+  }
+  .contact-section .section-title { color: #fff; }
+  .contact-section .divider { background: #fff; }
+  .contact-inner { max-width: 520px; margin: 0 auto; }
+  .contact-lead { font-size: 15px; opacity: .95; margin-bottom: 20px; }
+  .contact-btns { display: flex; flex-direction: column; gap: 12px; }
+  .contact-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .contact-btn.line { background: #06c755; color: #fff; }
+  .contact-btn.tel { background: #fff; color: var(--green-dark); }
+
+  /* Footer */
+  .footer {
+    padding: 24px 20px 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    background: var(--gray-light);
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG icons -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ic-beads" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="24" r="14"/>
+    <circle cx="24" cy="10" r="3"/>
+    <circle cx="38" cy="24" r="3"/>
+    <circle cx="24" cy="38" r="3"/>
+    <circle cx="10" cy="24" r="3"/>
+  </symbol>
+  <symbol id="ic-clipboard" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="8" width="24" height="32" rx="2"/>
+    <rect x="18" y="4" width="12" height="8" rx="2"/>
+    <path d="M18 22h12M18 28h12M18 34h8"/>
+  </symbol>
+  <symbol id="ic-envelope" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="12" width="32" height="24" rx="2"/>
+    <path d="M8 14l16 12 16-12"/>
+  </symbol>
+  <symbol id="ic-dining" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8v16M12 8v8a4 4 0 0 0 8 0V8"/>
+    <path d="M16 24v16"/>
+    <path d="M32 8c-3 0-5 2-5 6v10h5v16"/>
+  </symbol>
+</svg>
+
+<header class="header">
+  <div class="temple-name">多 聞 院</div>
+  <h1>ご法事のご準備</h1>
+  <div class="header-icon"><svg width="48" height="48"><use href="#ic-beads" stroke="#fff"/></svg></div>
+  <p class="sub">ご法事にあたって必要なことを<br>こちらからお手続きいただけます</p>
+</header>
+
+<section>
+  <div class="intro-box">
+    <p>ご法事をより安心してお迎えいただけるよう、<br><strong>お手続き・ご確認いただきたいこと</strong>をまとめました。<br>下記よりお進みください。</p>
+  </div>
+
+  <div class="menu-list">
+    <a href="houji.html" class="menu-card">
+      <div class="menu-num">1</div>
+      <div class="menu-body">
+        <div class="menu-title">ご法事のチェックリスト</div>
+        <div class="menu-desc">お持ち物・ご準備を一覧でご確認いただけます</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </a>
+
+    <a href="houji.html#toba" class="menu-card">
+      <div class="menu-num">2</div>
+      <div class="menu-body">
+        <div class="menu-title">塔婆の申込み <span class="menu-badge">1週間前まで</span></div>
+        <div class="menu-desc">ご法事の1週間前までにお申し込みください</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </a>
+
+    <a href="houji.html#meal" class="menu-card">
+      <div class="menu-num">3</div>
+      <div class="menu-body">
+        <div class="menu-title">お食事の有無確認</div>
+        <div class="menu-desc">ご法事後のお食事につきましてお知らせください</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </a>
+  </div>
+</section>
+
+<section class="contact-section">
+  <h2 class="section-title">お問い合わせ</h2>
+  <div class="divider"></div>
+  <div class="contact-inner">
+    <p class="contact-lead">ご不明な点がございましたら<br>お気軽にご連絡ください</p>
+    <div class="contact-btns">
+      <a href="#" class="contact-btn line">LINEで相談する</a>
+      <a href="tel:" class="contact-btn tel">電話で相談する</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  &copy; 多聞院
+</footer>
+
+</body>
+</html>

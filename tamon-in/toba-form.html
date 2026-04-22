@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>塔婆の申込み｜多聞院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --green-dark: #1b5e20;
+    --gray: #666;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --alert: #d32f2f;
+    --alert-pale: #ffebee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: #fafafa;
+    color: #333;
+    line-height: 1.8;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .back-bar {
+    padding: 14px 20px 0;
+    max-width: 560px; margin: 0 auto;
+  }
+  .back-bar a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 700;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 36px 20px 28px;
+  }
+  .header .temple-name { font-size: 13px; letter-spacing: 3px; opacity: .85; margin-bottom: 6px; }
+  .header h1 { font-size: 23px; font-weight: 900; letter-spacing: 1px; line-height: 1.4; }
+  .header p.sub { font-size: 14px; margin-top: 10px; opacity: .9; line-height: 1.7; }
+
+  main { padding: 28px 16px 48px; }
+  .container { max-width: 520px; margin: 0 auto; }
+
+  .deadline-note {
+    background: var(--alert-pale);
+    border-left: 4px solid var(--alert);
+    color: var(--alert);
+    font-size: 14px; font-weight: 700;
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+
+  /* Form section (card) */
+  .form-section {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .form-section h2 {
+    font-size: 17px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .step-num {
+    background: var(--green);
+    color: #fff;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .form-row { margin-bottom: 16px; }
+  .form-row:last-child { margin-bottom: 0; }
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
+  }
+  .form-label .required {
+    background: var(--alert);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-left: 6px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    background: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+  .form-textarea { resize: vertical; min-height: 80px; }
+
+  .form-select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+  .form-help {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 5px;
+    line-height: 1.6;
+  }
+
+  /* Kuyo list (dynamic) */
+  .kuyo-wrap { display: flex; flex-direction: column; gap: 14px; }
+  .kuyo-item {
+    background: var(--green-pale);
+    border: 1.5px solid #c8e6c9;
+    border-radius: 12px;
+    padding: 14px 14px 12px;
+    position: relative;
+    animation: slideIn .25s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .kuyo-item-head {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: var(--green-dark);
+    margin-bottom: 10px;
+  }
+  .kuyo-num {
+    background: var(--green);
+    color: #fff;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+  }
+  .kuyo-item .form-input {
+    background: #fff;
+    padding: 11px 13px;
+    font-size: 15px;
+  }
+
+  /* Submit */
+  .submit-wrap { margin-top: 24px; text-align: center; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 360px;
+    padding: 16px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+    border: none;
+    -webkit-tap-highlight-color: rgba(6,199,85,.2);
+  }
+  .btn-primary {
+    background: #06c755;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(6,199,85,.3);
+  }
+  .btn-secondary {
+    background: #fff;
+    color: var(--green-dark);
+    border: 2px solid var(--green);
+    box-shadow: none;
+  }
+  .submit-note {
+    font-size: 13px; color: var(--gray);
+    margin-top: 12px; line-height: 1.7;
+  }
+
+  /* Error */
+  .form-error {
+    display: none;
+    color: var(--alert);
+    font-size: 13px;
+    margin-top: 5px;
+    font-weight: 700;
+  }
+  .form-error.show { display: block; }
+  .form-input.error, .form-select.error { border-color: var(--alert); }
+
+  /* Footer */
+  .footer {
+    padding: 24px 20px 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    background: var(--gray-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="back-bar">
+  <a href="index.html">&lsaquo; トップへ戻る</a>
+</div>
+
+<header class="header">
+  <div class="temple-name">多 聞 院</div>
+  <h1>塔婆の申込み</h1>
+  <p class="sub">必要事項をご入力のうえ<br>お申し込みください</p>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="deadline-note">
+      ご法事の<strong>1週間前まで</strong>にお申し込みください
+    </div>
+
+    <form id="tobaForm" novalidate>
+
+      <!-- STEP 1 施主 -->
+      <section class="form-section">
+        <h2><span class="step-num">1</span>施主さまのお名前</h2>
+        <div class="form-row">
+          <label class="form-label" for="seshu-name">施主名<span class="required">必須</span></label>
+          <input type="text" class="form-input" id="seshu-name" name="seshuName" placeholder="例：多聞 太郎" autocomplete="name">
+          <div class="form-error" data-error-for="seshu-name">施主名をご入力ください</div>
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="seshu-kana">ふりがな</label>
+          <input type="text" class="form-input" id="seshu-kana" name="seshuKana" placeholder="例：たもん たろう">
+        </div>
+      </section>
+
+      <!-- STEP 2 本数 -->
+      <section class="form-section">
+        <h2><span class="step-num">2</span>上げる本数</h2>
+        <div class="form-row">
+          <label class="form-label" for="count">本数をお選びください<span class="required">必須</span></label>
+          <select class="form-select" id="count" name="count">
+            <option value="">選択してください</option>
+            <option value="1">1本</option>
+            <option value="2">2本</option>
+            <option value="3">3本</option>
+            <option value="4">4本</option>
+            <option value="5">5本</option>
+            <option value="6">6本</option>
+            <option value="7">7本</option>
+            <option value="8">8本</option>
+            <option value="9">9本</option>
+            <option value="10">10本</option>
+          </select>
+          <p class="form-help">本数を選ぶと、ご供養される方のお名前を入力する欄が表示されます。</p>
+          <div class="form-error" data-error-for="count">本数をお選びください</div>
+        </div>
+      </section>
+
+      <!-- STEP 3 供養される方 -->
+      <section class="form-section" id="kuyo-section" style="display:none;">
+        <h2><span class="step-num">3</span>ご供養される方のお名前</h2>
+        <p class="form-help" style="margin-bottom:14px;">読み上げる順番でご入力ください。</p>
+        <div class="kuyo-wrap" id="kuyo-wrap"></div>
+        <div class="form-error" id="kuyo-error" data-error-for="kuyo">ご供養される方のお名前をご入力ください</div>
+      </section>
+
+      <!-- STEP 4 メッセージ -->
+      <section class="form-section">
+        <h2><span class="step-num">4</span>お伝えしたいこと（任意）</h2>
+        <div class="form-row">
+          <textarea class="form-textarea" id="message" name="message" placeholder="ご質問・ご要望などございましたらご記入ください"></textarea>
+        </div>
+      </section>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn btn-primary">内容を確認して送信する</button>
+        <p class="submit-note">送信前に入力内容の確認画面が表示されます</p>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+<footer class="footer">
+  &copy; 多聞院
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  // 入力値のキャッシュ：本数を減らしても値を保持する
+  // { 0: "山田 太郎", 1: "山田 花子", ... }
+  const kuyoCache = {};
+
+  const $count   = document.getElementById('count');
+  const $section = document.getElementById('kuyo-section');
+  const $wrap    = document.getElementById('kuyo-wrap');
+  const $form    = document.getElementById('tobaForm');
+
+  // 現在DOMに存在するスロットの入力値を kuyoCache に保存
+  function saveCurrentInputs() {
+    const inputs = $wrap.querySelectorAll('.kuyo-input');
+    inputs.forEach((el) => {
+      const idx = Number(el.dataset.index);
+      kuyoCache[idx] = el.value;
+    });
+  }
+
+  // 指定本数のスロットを表示（既存の値はキャッシュから復元）
+  function renderSlots(count) {
+    saveCurrentInputs(); // まず現在の入力値を退避
+
+    if (!count || count < 1) {
+      $section.style.display = 'none';
+      $wrap.innerHTML = '';
+      return;
+    }
+
+    $section.style.display = '';
+
+    // 既存のスロット数を取得
+    const existing = $wrap.querySelectorAll('.kuyo-item');
+    const existingLen = existing.length;
+
+    if (count > existingLen) {
+      // 増やす：足りない分を追加（既存は触らない）
+      for (let i = existingLen; i < count; i++) {
+        $wrap.appendChild(createSlot(i));
+      }
+    } else if (count < existingLen) {
+      // 減らす：末尾から削除（キャッシュは残す）
+      for (let i = existingLen - 1; i >= count; i--) {
+        existing[i].remove();
+      }
+    }
+  }
+
+  function createSlot(index) {
+    const item = document.createElement('div');
+    item.className = 'kuyo-item';
+    item.dataset.slotIndex = index;
+
+    const head = document.createElement('div');
+    head.className = 'kuyo-item-head';
+    head.innerHTML = '<span class="kuyo-num">' + (index + 1) + '</span>' + (index + 1) + '本目';
+    item.appendChild(head);
+
+    const row = document.createElement('div');
+    row.className = 'form-row';
+
+    const label = document.createElement('label');
+    label.className = 'form-label';
+    label.setAttribute('for', 'kuyo-' + index);
+    label.innerHTML = 'ご供養される方のお名前<span class="required">必須</span>';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'form-input kuyo-input';
+    input.id = 'kuyo-' + index;
+    input.name = 'kuyoName' + index;
+    input.placeholder = '例：先祖代々／故 多聞 一郎';
+    input.dataset.index = index;
+    // キャッシュから値を復元
+    if (kuyoCache[index] !== undefined) {
+      input.value = kuyoCache[index];
+    }
+    // 入力時に逐次キャッシュへ反映
+    input.addEventListener('input', function(){
+      kuyoCache[index] = this.value;
+    });
+
+    row.appendChild(label);
+    row.appendChild(input);
+    item.appendChild(row);
+    return item;
+  }
+
+  $count.addEventListener('change', function(){
+    const n = parseInt(this.value, 10) || 0;
+    renderSlots(n);
+    clearError('count');
+  });
+
+  // バリデーション
+  function setError(id, show) {
+    const errEl = document.querySelector('[data-error-for="' + id + '"]');
+    const input = document.getElementById(id);
+    if (errEl) errEl.classList.toggle('show', !!show);
+    if (input)  input.classList.toggle('error', !!show);
+  }
+  function clearError(id) { setError(id, false); }
+
+  $form.addEventListener('submit', function(e){
+    e.preventDefault();
+    let ok = true;
+
+    const seshu = document.getElementById('seshu-name');
+    if (!seshu.value.trim()) { setError('seshu-name', true); ok = false; } else { clearError('seshu-name'); }
+
+    const cnt = parseInt($count.value, 10) || 0;
+    if (cnt < 1) { setError('count', true); ok = false; } else { clearError('count'); }
+
+    // 供養される方
+    let kuyoOk = true;
+    const inputs = $wrap.querySelectorAll('.kuyo-input');
+    inputs.forEach((el) => {
+      if (!el.value.trim()) { el.classList.add('error'); kuyoOk = false; }
+      else { el.classList.remove('error'); }
+    });
+    const kuyoErr = document.getElementById('kuyo-error');
+    if (!kuyoOk) { kuyoErr.classList.add('show'); ok = false; } else { kuyoErr.classList.remove('show'); }
+
+    if (!ok) {
+      const firstErr = document.querySelector('.error, .form-error.show');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // ここで送信処理（現状はダミー：確認ダイアログ）
+    const summary = [];
+    summary.push('施主：' + seshu.value);
+    const kana = document.getElementById('seshu-kana').value;
+    if (kana) summary.push('ふりがな：' + kana);
+    summary.push('本数：' + cnt + '本');
+    inputs.forEach((el, i) => {
+      summary.push('  ' + (i + 1) + '本目：' + el.value);
+    });
+    const msg = document.getElementById('message').value;
+    if (msg) summary.push('メッセージ：' + msg);
+
+    alert('以下の内容で送信します（デモ）\n\n' + summary.join('\n'));
+  });
+
+})();
+</script>
+
+</body>
+</html>

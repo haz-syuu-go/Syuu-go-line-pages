@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご法事のチェックリスト｜多聞院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --green-dark: #1b5e20;
+    --gray: #666;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --check-green: #4caf50;
+    --alert: #d32f2f;
+    --alert-pale: #ffebee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.9;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--green); }
+
+  /* Back */
+  .back-bar {
+    padding: 14px 20px 0;
+    max-width: 520px; margin: 0 auto;
+  }
+  .back-bar a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 700;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px 32px;
+  }
+  .header .temple-name { font-size: 14px; letter-spacing: 3px; opacity: .85; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 900; letter-spacing: 1px; line-height: 1.4; }
+  .header p.sub { font-size: 14px; margin-top: 10px; opacity: .9; line-height: 1.7; }
+
+  /* Section */
+  section { padding: 36px 20px; }
+  .bg-warm { background: var(--green-pale); }
+  .section-title { text-align: center; font-size: 22px; font-weight: 900; color: var(--green-dark); margin-bottom: 8px; letter-spacing: 1px; }
+  .divider { width: 44px; height: 3px; background: var(--green); margin: 0 auto 24px; border-radius: 2px; }
+
+  /* Intro */
+  .intro-box {
+    max-width: 520px; margin: 0 auto 28px;
+    background: var(--green-pale); border-radius: var(--radius);
+    padding: 20px; text-align: center; border: 1px solid #c8e6c9;
+  }
+  .intro-box p { font-size: 15px; color: var(--green-dark); line-height: 1.9; }
+
+  /* Group title */
+  .group {
+    max-width: 520px; margin: 0 auto 28px;
+  }
+  .group-header {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 18px; font-weight: 900; color: var(--green-dark);
+    margin-bottom: 12px;
+    padding: 0 4px;
+  }
+  .group-header .group-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Highlight (deadline) */
+  .deadline-badge {
+    display: inline-block;
+    background: var(--alert);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-left: 8px;
+    letter-spacing: .3px;
+  }
+  .deadline-note {
+    background: var(--alert-pale);
+    border-left: 4px solid var(--alert);
+    color: var(--alert);
+    font-size: 14px; font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; background: #fff; border-radius: var(--radius); padding: 8px 16px; box-shadow: var(--shadow); }
+  .checklist li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .checklist li:last-child { border-bottom: none; }
+  .check-row { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+  .check-box {
+    width: 28px; height: 28px;
+    border: 2.5px solid var(--green-light);
+    border-radius: 6px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+    background: #fff;
+    transition: all .2s;
+  }
+  .check-box svg { opacity: 0; transition: opacity .15s; }
+  .check-row.checked .check-box { background: var(--check-green); border-color: var(--check-green); }
+  .check-row.checked .check-box svg { opacity: 1; }
+  .check-row.checked .item-name { color: var(--gray); text-decoration: line-through; }
+  .check-label { flex: 1; }
+  .item-name { font-size: 16px; font-weight: 700; color: #333; line-height: 1.5; }
+
+  /* Note toggle */
+  .check-note-toggle {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: none; border: none;
+    color: var(--green); font-weight: 700; font-size: 13px;
+    margin-top: 6px; margin-left: 40px;
+    cursor: pointer; font-family: inherit;
+    padding: 4px 0;
+  }
+  .toggle-chevron { transition: transform .2s; display: inline-block; }
+  .check-note-toggle.open .toggle-chevron { transform: rotate(180deg); }
+  .check-note {
+    max-height: 0; overflow: hidden;
+    transition: max-height .3s ease;
+    margin-left: 40px;
+  }
+  .check-note.open { max-height: 500px; }
+  .check-note-inner {
+    padding: 10px 14px;
+    background: var(--gray-light);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-top: 4px;
+  }
+  .check-note-inner strong { color: var(--green-dark); }
+
+  /* CTA */
+  .cta-wrap { text-align: center; margin-top: 16px; }
+  .cta-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    background: #06c755;
+    color: #fff;
+    padding: 13px 24px;
+    border-radius: 30px;
+    font-size: 15px; font-weight: 700;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(6,199,85,.2);
+  }
+  .cta-btn.secondary {
+    background: #fff;
+    color: var(--green-dark);
+    border: 2px solid var(--green);
+  }
+
+  /* Anchor offset */
+  [id] { scroll-margin-top: 16px; }
+
+  /* Contact */
+  .contact-section {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+  }
+  .contact-section .section-title { color: #fff; }
+  .contact-section .divider { background: #fff; }
+  .contact-inner { max-width: 520px; margin: 0 auto; }
+  .contact-lead { font-size: 15px; opacity: .95; margin-bottom: 20px; }
+  .contact-btns { display: flex; flex-direction: column; gap: 12px; }
+  .contact-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .contact-btn.line { background: #06c755; color: #fff; }
+  .contact-btn.tel { background: #fff; color: var(--green-dark); }
+
+  /* Footer */
+  .footer {
+    padding: 24px 20px 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    background: var(--gray-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="back-bar">
+  <a href="index.html">&lsaquo; トップへ戻る</a>
+</div>
+
+<header class="header">
+  <div class="temple-name">多 聞 院</div>
+  <h1>ご法事のチェックリスト</h1>
+  <p class="sub">当日までのご準備を<br>一覧でご確認いただけます</p>
+</header>
+
+<section>
+  <div class="intro-box">
+    <p>下記のチェックリストに沿って、<br>ご準備をお進めください。<br>ご不明な点はお気軽にお問い合わせください。</p>
+  </div>
+
+  <!-- ── 1. 必ずお持ちいただきたいもの ── -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">必</span>必ずお持ちいただきたいもの
+    </div>
+    <ul class="checklist">
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">ご遺骨（納骨法要の場合）</div></div>
+        </div>
+        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+        <div class="check-note"><div class="check-note-inner">四十九日の納骨法要などでご納骨される場合にお持ちください。</div></div>
+      </li>
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">お位牌 または 過去帳</div></div>
+        </div>
+        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+        <div class="check-note"><div class="check-note-inner">故人のお名前・ご命日などが記されたものです。どれをお持ちするかご不明な場合は、ご遠慮なくお問い合わせください。</div></div>
+      </li>
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">故人のお写真</div></div>
+        </div>
+        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+        <div class="check-note"><div class="check-note-inner">ご自宅にあるもので結構です。額縁に入れてお持ちください。</div></div>
+      </li>
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">数珠</div></div>
+        </div>
+      </li>
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">お布施</div></div>
+        </div>
+        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+        <div class="check-note"><div class="check-note-inner">金額の目安などは、<strong>ご遠慮なく住職までご相談ください。</strong></div></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── 2. 塔婆のお申し込み ── -->
+  <div class="group" id="toba">
+    <div class="group-header">
+      <span class="group-num">2</span>塔婆のお申し込み
+      <span class="deadline-badge">1週間前まで</span>
+    </div>
+    <div class="deadline-note">
+      ご法事の<strong>1週間前まで</strong>にお申し込みください
+    </div>
+    <ul class="checklist">
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">塔婆を申し込む</div></div>
+        </div>
+        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+        <div class="check-note"><div class="check-note-inner">
+          塔婆（とうば）は、故人のご供養として建立する木の板です。<br>
+          お申し込みの際は、<strong>本数・施主名</strong>をお知らせください。<br>
+          ご法事の<strong>1週間前までに</strong>必ずお申し込みをお願いいたします。
+          <div class="cta-wrap" style="margin-top:12px;">
+            <a href="#" class="cta-btn">LINEで塔婆を申し込む</a>
+          </div>
+        </div></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── 3. お食事の有無確認 ── -->
+  <div class="group" id="meal">
+    <div class="group-header">
+      <span class="group-num">3</span>お食事の有無確認
+    </div>
+    <ul class="checklist">
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">ご法事後のお食事の有無をお知らせする</div></div>
+        </div>
+        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+        <div class="check-note"><div class="check-note-inner">
+          ご家族・ご親族でお集まりいただける大切なお時間です。<br>
+          お食事をご希望の場合は、<strong>人数</strong>をあわせてお知らせください。<br>
+          手配のご相談も承ります。
+          <div class="cta-wrap" style="margin-top:12px;">
+            <a href="#" class="cta-btn">LINEでお知らせする</a>
+          </div>
+        </div></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── 4. 任意 ── -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">任</span>任意・その他
+    </div>
+    <ul class="checklist">
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">お花・御供物</div></div>
+        </div>
+        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+        <div class="check-note"><div class="check-note-inner">お寺でのご用意はございません。ご自由にお持ち込みいただけます。</div></div>
+      </li>
+      <li>
+        <div class="check-row" onclick="toggleCheck(this)">
+          <div class="check-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+          <div class="check-label"><div class="item-name">返礼品（引き出物）</div></div>
+        </div>
+        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+        <div class="check-note"><div class="check-note-inner">ご参列の方の人数分をご用意ください。お茶・海苔・タオルなどが一般的です。</div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section class="contact-section">
+  <h2 class="section-title">お問い合わせ</h2>
+  <div class="divider"></div>
+  <div class="contact-inner">
+    <p class="contact-lead">ご不明な点がございましたら<br>お気軽にご連絡ください</p>
+    <div class="contact-btns">
+      <a href="#" class="contact-btn line">LINEで相談する</a>
+      <a href="tel:" class="contact-btn tel">電話で相談する</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  &copy; 多聞院
+</footer>
+
+<script>
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+  }
+  function toggleNote(btn) {
+    btn.classList.toggle('open');
+    const note = btn.nextElementSibling;
+    if (note && note.classList.contains('check-note')) {
+      note.classList.toggle('open');
+    }
+  }
+</script>
+
+</body>
+</html>
