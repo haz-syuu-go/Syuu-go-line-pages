@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>塔婆の申込み｜多聞院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --green-dark: #1b5e20;
+    --gray: #666;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --alert: #d32f2f;
+    --alert-pale: #ffebee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: #fafafa;
+    color: #333;
+    line-height: 1.8;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .back-bar {
+    padding: 14px 20px 0;
+    max-width: 560px; margin: 0 auto;
+  }
+  .back-bar a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 700;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 36px 20px 28px;
+  }
+  .header .temple-name { font-size: 13px; letter-spacing: 3px; opacity: .85; margin-bottom: 6px; }
+  .header h1 { font-size: 23px; font-weight: 900; letter-spacing: 1px; line-height: 1.4; }
+  .header p.sub { font-size: 14px; margin-top: 10px; opacity: .9; line-height: 1.7; }
+
+  main { padding: 28px 16px 48px; }
+  .container { max-width: 520px; margin: 0 auto; }
+
+  .deadline-note {
+    background: var(--alert-pale);
+    border-left: 4px solid var(--alert);
+    color: var(--alert);
+    font-size: 14px; font-weight: 700;
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+
+  .form-section {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .form-section h2 {
+    font-size: 17px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .step-num {
+    background: var(--green);
+    color: #fff;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .form-row { margin-bottom: 16px; }
+  .form-row:last-child { margin-bottom: 0; }
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
+  }
+  .form-label .required {
+    background: var(--alert);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-left: 6px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+  .form-label .optional {
+    background: var(--gray);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-left: 6px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    background: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+  .form-textarea { resize: vertical; min-height: 120px; line-height: 1.8; }
+
+  .form-select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+  .form-help {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 5px;
+    line-height: 1.6;
+  }
+
+  /* Tate list (dynamic - per toba) */
+  .tate-wrap { display: flex; flex-direction: column; gap: 14px; }
+  .tate-item {
+    background: var(--green-pale);
+    border: 1.5px solid #c8e6c9;
+    border-radius: 12px;
+    padding: 14px 14px 12px;
+    position: relative;
+    animation: slideIn .25s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .tate-item-head {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: var(--green-dark);
+    margin-bottom: 10px;
+  }
+  .tate-num {
+    background: var(--green);
+    color: #fff;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+  }
+  .tate-item .form-input {
+    background: #fff;
+    padding: 11px 13px;
+    font-size: 15px;
+  }
+
+  /* Submit */
+  .submit-wrap { margin-top: 24px; text-align: center; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 360px;
+    padding: 16px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+    border: none;
+    -webkit-tap-highlight-color: rgba(6,199,85,.2);
+  }
+  .btn-primary {
+    background: #06c755;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(6,199,85,.3);
+  }
+  .btn-secondary {
+    background: #fff;
+    color: var(--green-dark);
+    border: 2px solid var(--green);
+    box-shadow: none;
+  }
+  .btn-row {
+    display: flex; flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 24px;
+  }
+  .submit-note {
+    font-size: 13px; color: var(--gray);
+    margin-top: 12px; line-height: 1.7;
+  }
+
+  /* Error */
+  .form-error {
+    display: none;
+    color: var(--alert);
+    font-size: 13px;
+    margin-top: 5px;
+    font-weight: 700;
+  }
+  .form-error.show { display: block; }
+  .form-input.error, .form-select.error, .form-textarea.error { border-color: var(--alert); }
+
+  /* Confirm */
+  .confirm-wrap { display: none; }
+  .confirm-wrap.show { display: block; }
+  .confirm-lead {
+    text-align: center;
+    font-size: 15px;
+    color: var(--green-dark);
+    font-weight: 700;
+    margin-bottom: 18px;
+    line-height: 1.7;
+  }
+  .confirm-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .confirm-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--green-pale);
+  }
+  .confirm-value {
+    font-size: 16px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #333;
+  }
+  .confirm-value.muted { color: var(--gray); font-size: 14px; }
+  .confirm-tate-list { list-style: none; padding: 0; }
+  .confirm-tate-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 15px;
+    display: flex; gap: 10px;
+  }
+  .confirm-tate-list li:last-child { border-bottom: none; }
+  .confirm-tate-list .idx {
+    flex-shrink: 0;
+    color: var(--green); font-weight: 700;
+    min-width: 44px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 24px 20px 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    background: var(--gray-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="back-bar">
+  <a href="index.html">&lsaquo; トップへ戻る</a>
+</div>
+
+<header class="header">
+  <div class="temple-name">多 聞 院</div>
+  <h1>塔婆の申込み</h1>
+  <p class="sub">必要事項をご入力のうえ<br>お申し込みください</p>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="deadline-note">
+      ご法事の<strong>1週間前まで</strong>にお申し込みください
+    </div>
+
+    <!-- 入力画面 -->
+    <div id="edit-view">
+    <form id="tobaForm" novalidate>
+
+      <!-- ① 供養される方のお名前 -->
+      <section class="form-section">
+        <h2><span class="step-num">1</span>ご供養される方のお名前</h2>
+        <div class="form-row">
+          <label class="form-label" for="kuyo-name">お名前<span class="required">必須</span></label>
+          <input type="text" class="form-input" id="kuyo-name" name="kuyoName" placeholder="例：故 多聞 一郎／先祖代々">
+          <p class="form-help">ご戒名・俗名など、お塔婆に記すお名前をご入力ください。</p>
+          <div class="form-error" data-error-for="kuyo-name">ご供養される方のお名前をご入力ください</div>
+        </div>
+      </section>
+
+      <!-- ② お塔婆の本数 + お建てする方 -->
+      <section class="form-section">
+        <h2><span class="step-num">2</span>お塔婆の本数</h2>
+        <div class="form-row">
+          <label class="form-label" for="count">本数をお選びください<span class="required">必須</span></label>
+          <select class="form-select" id="count" name="count">
+            <option value="">選択してください</option>
+            <option value="1">1本</option>
+            <option value="2">2本</option>
+            <option value="3">3本</option>
+            <option value="4">4本</option>
+            <option value="5">5本</option>
+            <option value="6">6本</option>
+            <option value="7">7本</option>
+            <option value="8">8本</option>
+            <option value="9">9本</option>
+            <option value="10">10本</option>
+          </select>
+          <p class="form-help">本数を選ぶと、<strong>お建てする方のお名前</strong>の入力欄が表示されます。</p>
+          <div class="form-error" data-error-for="count">本数をお選びください</div>
+        </div>
+
+        <div id="tate-section" style="display:none; margin-top:18px;">
+          <label class="form-label">お建てする方のお名前<span class="required">必須</span></label>
+          <p class="form-help" style="margin-bottom:12px;">お塔婆1本につき、お建てする方のお名前をご入力ください。</p>
+          <div class="tate-wrap" id="tate-wrap"></div>
+          <div class="form-error" id="tate-error" data-error-for="tate">お建てする方のお名前をご入力ください</div>
+        </div>
+      </section>
+
+      <!-- ③ 申し送り事項 -->
+      <section class="form-section">
+        <h2><span class="step-num">3</span>申し送り事項<span style="font-size:12px;font-weight:400;color:var(--gray);margin-left:6px;">(任意)</span></h2>
+        <div class="form-row">
+          <textarea class="form-textarea" id="message" name="message" placeholder="ご質問・ご要望などございましたらご記入ください"></textarea>
+        </div>
+      </section>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn btn-primary">入力内容を確認する</button>
+        <p class="submit-note">次の画面で入力内容をご確認いただけます</p>
+      </div>
+
+    </form>
+    </div>
+    <!-- /入力画面 -->
+
+    <!-- 確認画面 -->
+    <div id="confirm-view" class="confirm-wrap">
+      <p class="confirm-lead">ご入力内容をご確認ください<br>よろしければ「送信する」を押してください</p>
+
+      <div class="confirm-card">
+        <h3>ご供養される方のお名前</h3>
+        <div class="confirm-value" id="cv-kuyo"></div>
+      </div>
+
+      <div class="confirm-card">
+        <h3>お塔婆の本数</h3>
+        <div class="confirm-value" id="cv-count"></div>
+      </div>
+
+      <div class="confirm-card">
+        <h3>お建てする方のお名前</h3>
+        <ul class="confirm-tate-list" id="cv-tate"></ul>
+      </div>
+
+      <div class="confirm-card" id="cv-msg-wrap">
+        <h3>申し送り事項</h3>
+        <div class="confirm-value" id="cv-msg"></div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" id="btn-submit">送信する</button>
+        <button type="button" class="btn btn-secondary" id="btn-back">修正する</button>
+      </div>
+    </div>
+    <!-- /確認画面 -->
+
+  </div>
+</main>
+
+<footer class="footer">
+  &copy; 多聞院
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  // 本数変更時の値保持用キャッシュ（末尾削除しても値は残す）
+  // { 0: "多聞 太郎", 1: "多聞 花子", ... }
+  const tateCache = {};
+
+  const $count    = document.getElementById('count');
+  const $section  = document.getElementById('tate-section');
+  const $wrap     = document.getElementById('tate-wrap');
+  const $form     = document.getElementById('tobaForm');
+
+  function saveCurrentInputs() {
+    $wrap.querySelectorAll('.tate-input').forEach((el) => {
+      const idx = Number(el.dataset.index);
+      tateCache[idx] = el.value;
+    });
+  }
+
+  function renderSlots(count) {
+    saveCurrentInputs();
+
+    if (!count || count < 1) {
+      $section.style.display = 'none';
+      $wrap.innerHTML = '';
+      return;
+    }
+    $section.style.display = '';
+
+    const existing = $wrap.querySelectorAll('.tate-item');
+    const existingLen = existing.length;
+
+    if (count > existingLen) {
+      for (let i = existingLen; i < count; i++) {
+        $wrap.appendChild(createSlot(i));
+      }
+    } else if (count < existingLen) {
+      for (let i = existingLen - 1; i >= count; i--) {
+        existing[i].remove();
+      }
+    }
+  }
+
+  function createSlot(index) {
+    const item = document.createElement('div');
+    item.className = 'tate-item';
+    item.dataset.slotIndex = index;
+
+    const head = document.createElement('div');
+    head.className = 'tate-item-head';
+    head.innerHTML = '<span class="tate-num">' + (index + 1) + '</span>' + (index + 1) + '本目';
+    item.appendChild(head);
+
+    const row = document.createElement('div');
+    row.className = 'form-row';
+
+    const label = document.createElement('label');
+    label.className = 'form-label';
+    label.setAttribute('for', 'tate-' + index);
+    label.textContent = 'お建てする方のお名前';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'form-input tate-input';
+    input.id = 'tate-' + index;
+    input.name = 'tateName' + index;
+    input.placeholder = '例：多聞 太郎';
+    input.dataset.index = index;
+    if (tateCache[index] !== undefined) {
+      input.value = tateCache[index];
+    }
+    input.addEventListener('input', function(){
+      tateCache[index] = this.value;
+    });
+
+    row.appendChild(label);
+    row.appendChild(input);
+    item.appendChild(row);
+    return item;
+  }
+
+  $count.addEventListener('change', function(){
+    const n = parseInt(this.value, 10) || 0;
+    renderSlots(n);
+    clearError('count');
+  });
+
+  function setError(id, show) {
+    const errEl = document.querySelector('[data-error-for="' + id + '"]');
+    const input = document.getElementById(id);
+    if (errEl) errEl.classList.toggle('show', !!show);
+    if (input) input.classList.toggle('error', !!show);
+  }
+  function clearError(id) { setError(id, false); }
+
+  $form.addEventListener('submit', function(e){
+    e.preventDefault();
+    let ok = true;
+
+    const kuyo = document.getElementById('kuyo-name');
+    if (!kuyo.value.trim()) { setError('kuyo-name', true); ok = false; } else { clearError('kuyo-name'); }
+
+    const cnt = parseInt($count.value, 10) || 0;
+    if (cnt < 1) { setError('count', true); ok = false; } else { clearError('count'); }
+
+    let tateOk = true;
+    const inputs = $wrap.querySelectorAll('.tate-input');
+    inputs.forEach((el) => {
+      if (!el.value.trim()) { el.classList.add('error'); tateOk = false; }
+      else { el.classList.remove('error'); }
+    });
+    const tateErr = document.getElementById('tate-error');
+    if (cnt >= 1 && !tateOk) { tateErr.classList.add('show'); ok = false; }
+    else { tateErr.classList.remove('show'); }
+
+    if (!ok) {
+      const firstErr = document.querySelector('.error, .form-error.show');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    showConfirm({
+      kuyo: kuyo.value.trim(),
+      count: cnt,
+      tate: Array.from(inputs).map((el) => el.value.trim()),
+      message: document.getElementById('message').value.trim()
+    });
+  });
+
+  // ── 確認画面 ──
+  const $editView    = document.getElementById('edit-view');
+  const $confirmView = document.getElementById('confirm-view');
+  const $btnBack     = document.getElementById('btn-back');
+  const $btnSubmit   = document.getElementById('btn-submit');
+
+  function showConfirm(data) {
+    document.getElementById('cv-kuyo').textContent = data.kuyo;
+    document.getElementById('cv-count').textContent = data.count + '本';
+
+    const $tateList = document.getElementById('cv-tate');
+    $tateList.innerHTML = '';
+    data.tate.forEach((name, i) => {
+      const li = document.createElement('li');
+      const idx = document.createElement('span');
+      idx.className = 'idx';
+      idx.textContent = (i + 1) + '本目';
+      const val = document.createElement('span');
+      val.textContent = name;
+      li.appendChild(idx);
+      li.appendChild(val);
+      $tateList.appendChild(li);
+    });
+
+    const $msgWrap = document.getElementById('cv-msg-wrap');
+    const $msg = document.getElementById('cv-msg');
+    if (data.message) {
+      $msg.textContent = data.message;
+      $msg.classList.remove('muted');
+      $msgWrap.style.display = '';
+    } else {
+      $msg.textContent = '（なし）';
+      $msg.classList.add('muted');
+      $msgWrap.style.display = '';
+    }
+
+    $editView.style.display = 'none';
+    $confirmView.classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  $btnBack.addEventListener('click', function(){
+    $confirmView.classList.remove('show');
+    $editView.style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  $btnSubmit.addEventListener('click', function(){
+    // TODO: 実際の送信処理（LINE Webhook / メール / Googleフォーム等）
+    $btnSubmit.disabled = true;
+    $btnSubmit.textContent = '送信中…';
+    setTimeout(() => {
+      alert('お申し込みを受け付けました。\nありがとうございました。');
+      $btnSubmit.disabled = false;
+      $btnSubmit.textContent = '送信する';
+    }, 300);
+  });
+
+})();
+</script>
+
+</body>
+</html>

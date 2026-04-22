@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お食事について｜多聞院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --green-dark: #1b5e20;
+    --gray: #666;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.9;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--green); }
+
+  .back-bar {
+    padding: 14px 20px 0;
+    max-width: 560px; margin: 0 auto;
+  }
+  .back-bar a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 700;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px 32px;
+  }
+  .header .temple-name { font-size: 13px; letter-spacing: 3px; opacity: .85; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 900; letter-spacing: 1px; line-height: 1.4; }
+  .header p.sub { font-size: 14px; margin-top: 10px; opacity: .9; line-height: 1.7; }
+
+  section { padding: 36px 20px; }
+  .bg-warm { background: var(--green-pale); }
+  .section-title { text-align: center; font-size: 22px; font-weight: 900; color: var(--green-dark); margin-bottom: 8px; letter-spacing: 1px; }
+  .section-sub { text-align: center; font-size: 14px; color: var(--gray); margin-bottom: 24px; line-height: 1.7; }
+  .divider { width: 44px; height: 3px; background: var(--green); margin: 0 auto 24px; border-radius: 2px; }
+
+  .container { max-width: 520px; margin: 0 auto; }
+
+  .intro-box {
+    background: var(--green-pale); border-radius: var(--radius);
+    padding: 22px; text-align: center; border: 1px solid #c8e6c9;
+    margin-bottom: 28px;
+  }
+  .intro-box p { font-size: 15px; color: var(--green-dark); line-height: 1.9; }
+
+  /* Option cards */
+  .option-card {
+    background: #fff;
+    border: 2px solid var(--green);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+  .option-card h3 {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .option-tag {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: .3px;
+  }
+  .option-card p { font-size: 15px; line-height: 1.9; color: #333; }
+  .option-card .note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* Info row */
+  .info-row {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    gap: 12px;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-row .label {
+    flex-shrink: 0;
+    width: 100px;
+    font-weight: 700;
+    color: var(--green-dark);
+  }
+  .info-row .value { flex: 1; }
+
+  /* Steps */
+  .step-list {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+  }
+  .step-list li {
+    position: relative;
+    padding-left: 48px;
+    margin-bottom: 18px;
+    min-height: 36px;
+  }
+  .step-list li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 0;
+    width: 36px; height: 36px;
+    background: var(--green);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 16px;
+  }
+  .step-list h4 {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+    padding-top: 4px;
+  }
+  .step-list p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+  /* FAQ */
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--green-dark);
+    font-family: inherit;
+    cursor: pointer;
+    display: flex; align-items: flex-start; gap: 10px;
+    line-height: 1.6;
+    -webkit-tap-highlight-color: rgba(46,125,50,.1);
+  }
+  .q-badge {
+    background: var(--green);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .chevron {
+    margin-left: auto;
+    color: var(--green);
+    transition: transform .2s;
+    flex-shrink: 0;
+  }
+  .faq-q.open .chevron { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+  }
+  .faq-a.open { max-height: 500px; }
+  .faq-a-inner {
+    padding: 0 16px 14px 50px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+  }
+
+  /* CTA */
+  .cta-wrap { text-align: center; margin-top: 24px; }
+  .cta-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    background: #06c755;
+    color: #fff;
+    padding: 15px 28px;
+    border-radius: 30px;
+    font-size: 16px; font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(6,199,85,.3);
+    -webkit-tap-highlight-color: rgba(6,199,85,.2);
+  }
+
+  .contact-section {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+  }
+  .contact-section .section-title { color: #fff; }
+  .contact-section .divider { background: #fff; }
+  .contact-lead { font-size: 15px; opacity: .95; margin-bottom: 20px; }
+  .contact-btns { display: flex; flex-direction: column; gap: 12px; max-width: 360px; margin: 0 auto; }
+  .contact-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .contact-btn.line { background: #06c755; color: #fff; }
+  .contact-btn.tel { background: #fff; color: var(--green-dark); }
+
+  .footer {
+    padding: 24px 20px 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    background: var(--gray-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="back-bar">
+  <a href="index.html">&lsaquo; トップへ戻る</a>
+</div>
+
+<header class="header">
+  <div class="temple-name">多 聞 院</div>
+  <h1>お食事について</h1>
+  <p class="sub">ご法事後のお食事を<br>ご案内いたします</p>
+</header>
+
+<!-- イントロ -->
+<section>
+  <div class="container">
+    <div class="intro-box">
+      <p>ご法事後のお食事は、<br>ご家族・ご親族で故人を偲び、<br>お心を寄せ合う大切なお時間です。<br><br>ご希望に合わせてご案内いたします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- お食事のかたち -->
+<section class="bg-warm">
+  <div class="container">
+    <h2 class="section-title">お食事のかたち</h2>
+    <div class="divider"></div>
+    <p class="section-sub">以下のいずれかをお選びいただけます</p>
+
+    <div class="option-card">
+      <h3><span class="option-tag">A</span>お寺でお食事</h3>
+      <p>当院の客殿にて、お食事をお召し上がりいただけます。<br>お料理は仕出しをご手配いたしますので、ご安心ください。</p>
+      <div class="note">※人数・ご予算・お料理の種類(精進料理・お弁当など)はご相談のうえ決定いたします。</div>
+    </div>
+
+    <div class="option-card">
+      <h3><span class="option-tag">B</span>外部の料理店へ移動</h3>
+      <p>ご法事のあと、ご家族・ご親族でお食事処へ移動される場合です。<br>お店のご予約はご家族でお願いいたします。</p>
+      <div class="note">※近隣の料理店のご紹介も可能です。お気軽にお尋ねください。</div>
+    </div>
+
+    <div class="option-card">
+      <h3><span class="option-tag">C</span>お食事はなし</h3>
+      <p>ご法事のみで解散される場合です。<br>お申し込みは不要ですが、<strong>お食事の有無のみ</strong>事前にお知らせください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 料金・概要 -->
+<section>
+  <div class="container">
+    <h2 class="section-title">お食事の概要</h2>
+    <div class="divider"></div>
+
+    <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; box-shadow:var(--shadow);">
+      <div class="info-row">
+        <span class="label">場　所</span>
+        <span class="value">当院 客殿<br><span style="font-size:13px;color:var(--gray);">(またはご希望の料理店)</span></span>
+      </div>
+      <div class="info-row">
+        <span class="label">お料理</span>
+        <span class="value">仕出し料理／お弁当／精進料理<br><span style="font-size:13px;color:var(--gray);">ご要望に応じてご手配いたします</span></span>
+      </div>
+      <div class="info-row">
+        <span class="label">ご予算</span>
+        <span class="value">おひとり様あたりの目安をご相談の上決定<br><span style="font-size:13px;color:var(--gray);">アレルギー対応・お子様料理も可</span></span>
+      </div>
+      <div class="info-row">
+        <span class="label">受付締切</span>
+        <span class="value"><strong style="color:#d32f2f;">ご法事の10日前まで</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ご予約の流れ -->
+<section class="bg-warm">
+  <div class="container">
+    <h2 class="section-title">ご予約の流れ</h2>
+    <div class="divider"></div>
+
+    <ol class="step-list">
+      <li>
+        <h4>お食事の有無をお知らせ</h4>
+        <p>ご法事のお申し込み時、またはLINEにて<strong>お食事の有無</strong>をお知らせください。</p>
+      </li>
+      <li>
+        <h4>人数・ご要望をお伝えください</h4>
+        <p>お食事をご希望の場合、<strong>ご参加人数・お料理のご希望・アレルギー等</strong>をお聞かせください。</p>
+      </li>
+      <li>
+        <h4>ご手配・ご確認</h4>
+        <p>当院にて仕出し等のお手配をし、お料理内容を事前にご確認いたします。</p>
+      </li>
+      <li>
+        <h4>当日お召し上がりください</h4>
+        <p>ご法事終了後、お席にご案内いたします。ごゆっくりお過ごしください。</p>
+      </li>
+    </ol>
+
+    <div class="cta-wrap">
+      <a href="#" class="cta-btn">LINEでお食事のご相談</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">よくあるご質問</h2>
+    <div class="divider"></div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q" onclick="toggleFaq(this)">
+        <span class="q-badge">Q</span>
+        <span>小さな子どもも参加できますか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">はい、お子様もぜひご一緒にお越しください。お子様用のお料理もご手配いたしますので、ご希望の際はお知らせください。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q" onclick="toggleFaq(this)">
+        <span class="q-badge">Q</span>
+        <span>アレルギーに対応してもらえますか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">可能な限り対応いたします。アレルギーの内容を具体的にお知らせください。事前に仕出し店と調整いたします。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q" onclick="toggleFaq(this)">
+        <span class="q-badge">Q</span>
+        <span>人数の変更はいつまで可能ですか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">ご法事の<strong>前日まで</strong>であれば人数の増減を承ります。ただし仕出しの都合により、直前のご変更は難しい場合もございます。お早めにご連絡ください。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q" onclick="toggleFaq(this)">
+        <span class="q-badge">Q</span>
+        <span>精進料理にしていただくことはできますか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">はい、精進料理でのご手配も可能です。ご希望の際はお知らせください。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q" onclick="toggleFaq(this)">
+        <span class="q-badge">Q</span>
+        <span>お飲み物は含まれていますか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">お食事に含まれるお飲み物は、お茶をご用意しております。お酒等のご用意はご希望に応じて承ります。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section class="contact-section">
+  <h2 class="section-title">お問い合わせ</h2>
+  <div class="divider"></div>
+  <div class="container">
+    <p class="contact-lead">お食事のご相談は<br>お気軽にお声がけください</p>
+    <div class="contact-btns">
+      <a href="#" class="contact-btn line">LINEで相談する</a>
+      <a href="tel:0332687998" class="contact-btn tel">電話で相談する（03-3268-7998）</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  &copy; 多聞院
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    btn.classList.toggle('open');
+    const ans = btn.nextElementSibling;
+    if (ans && ans.classList.contains('faq-a')) {
+      ans.classList.toggle('open');
+    }
+  }
+</script>
+
+</body>
+</html>
