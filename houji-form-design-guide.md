@@ -1,7 +1,9 @@
-# 西岸寺 LINEページ デザイン設計書
+# ご法事案内・申込フォーム デザイン設計書
 
-真宗大谷派 西岸寺のLINE内ブラウザ向けページ群の共通デザイン仕様。
-新規ページ（ご法事チェックリスト・お塔婆申込フォーム等）も本設計書に準拠して作成すること。
+お寺のLINE内ブラウザ向け「ご法事案内ページ」「お申込みフォーム」の共通デザイン仕様。
+寺院を問わず、本設計書に準拠して作成すること。
+
+参考実装：[`kokyuzan-saiganji/houji.html`](kokyuzan-saiganji/houji.html), [`kokyuzan-saiganji/ofuse.html`](kokyuzan-saiganji/ofuse.html), [`kokyuzan-saiganji/ohaka.html`](kokyuzan-saiganji/ohaka.html)
 
 ---
 
