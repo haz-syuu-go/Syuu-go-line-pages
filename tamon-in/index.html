@@ -96,6 +96,168 @@
   }
   .menu-arrow { flex-shrink: 0; color: var(--green); font-size: 22px; font-weight: 900; }
 
+  /* Section common */
+  .bg-warm { background: var(--green-pale); }
+  section-sub { font-size: 14px; color: var(--gray); }
+  .section-sub { text-align: center; font-size: 14px; color: var(--gray); margin-bottom: 24px; line-height: 1.7; }
+
+  /* Flow (timeline) */
+  .flow-wrap {
+    max-width: 520px; margin: 0 auto;
+    position: relative;
+  }
+  .flow-item {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  .flow-item::before {
+    content: '';
+    position: absolute;
+    left: 21px; top: 48px; bottom: -4px;
+    width: 2px;
+    background: var(--green-light);
+  }
+  .flow-item:last-child { padding-bottom: 0; }
+  .flow-item:last-child::before { display: none; }
+  .flow-marker {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 6px rgba(46,125,50,.3);
+  }
+  .flow-body {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .flow-body h3 {
+    font-size: 16px; font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .flow-body p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+  .flow-body .highlight {
+    display: inline-block;
+    background: #ffebee;
+    color: #d32f2f;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+  }
+
+  /* Info cards */
+  .info-cards {
+    max-width: 520px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .info-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 18px;
+    box-shadow: var(--shadow);
+    display: flex; gap: 14px;
+    align-items: flex-start;
+  }
+  .info-card-icon {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    background: var(--green-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .info-card-body { flex: 1; }
+  .info-card h3 {
+    font-size: 16px; font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+  .info-card p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+  }
+  .info-card .note {
+    display: block;
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+  .info-card.emphasize {
+    background: #fff;
+    border: 2px solid var(--green);
+  }
+
+  /* FAQ */
+  .faq-list { max-width: 520px; margin: 0 auto; }
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--green-dark);
+    font-family: inherit;
+    cursor: pointer;
+    display: flex; align-items: flex-start; gap: 10px;
+    line-height: 1.6;
+    -webkit-tap-highlight-color: rgba(46,125,50,.1);
+  }
+  .q-badge {
+    background: var(--green);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .chevron {
+    margin-left: auto;
+    color: var(--green);
+    transition: transform .2s;
+    flex-shrink: 0;
+  }
+  .faq-q.open .chevron { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+  }
+  .faq-a.open { max-height: 500px; }
+  .faq-a-inner {
+    padding: 0 16px 14px 50px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+  }
+
   /* Contact */
   .contact-section {
     background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
@@ -154,6 +316,20 @@
     <path d="M16 24v16"/>
     <path d="M32 8c-3 0-5 2-5 6v10h5v16"/>
   </symbol>
+  <symbol id="ic-car" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 30h32v6H8z"/>
+    <path d="M10 30l4-10h20l4 10"/>
+    <circle cx="14" cy="36" r="3"/>
+    <circle cx="34" cy="36" r="3"/>
+  </symbol>
+  <symbol id="ic-clock" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="24" r="16"/>
+    <path d="M24 14v10l6 4"/>
+  </symbol>
+  <symbol id="ic-pin" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 6c-7 0-12 5-12 12 0 8 12 24 12 24s12-16 12-24c0-7-5-12-12-12z"/>
+    <circle cx="24" cy="18" r="4"/>
+  </symbol>
 </svg>
 
 <header class="header">
@@ -178,7 +354,7 @@
       <div class="menu-arrow">›</div>
     </a>
 
-    <a href="houji.html#toba" class="menu-card">
+    <a href="toba-form.html" class="menu-card">
       <div class="menu-num">2</div>
       <div class="menu-body">
         <div class="menu-title">塔婆の申込み <span class="menu-badge">1週間前まで</span></div>
@@ -187,7 +363,7 @@
       <div class="menu-arrow">›</div>
     </a>
 
-    <a href="houji.html#meal" class="menu-card">
+    <a href="meal.html" class="menu-card">
       <div class="menu-num">3</div>
       <div class="menu-body">
         <div class="menu-title">お食事の有無確認</div>
@@ -198,6 +374,192 @@
   </div>
 </section>
 
+<!-- ご法事の流れ（時系列） -->
+<section class="bg-warm">
+  <h2 class="section-title">ご法事当日の流れ</h2>
+  <div class="divider"></div>
+  <p class="section-sub">ご来山から解散までの目安です</p>
+
+  <div class="flow-wrap">
+    <div class="flow-item">
+      <div class="flow-marker"><svg width="22" height="22" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l6 4"/></svg></div>
+      <div class="flow-body">
+        <h3>ご来山・受付</h3>
+        <p><span class="highlight">15分前</span>までにお越しください。お持ち物(お位牌・ご遺骨等)を本堂までお運びください。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-marker"><svg width="22" height="22" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l6 4"/></svg></div>
+      <div class="flow-body">
+        <h3>ご案内・お席へ</h3>
+        <p>本堂にご案内いたします。お荷物のお預け・お手洗い等はこのお時間にお済ませください。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-marker"><svg width="22" height="22" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l6 4"/></svg></div>
+      <div class="flow-body">
+        <h3>ご法要（約40〜60分）</h3>
+        <p>読経・焼香をお勤めいたします。小さなお子様もご一緒にどうぞ。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-marker"><svg width="22" height="22" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l6 4"/></svg></div>
+      <div class="flow-body">
+        <h3>住職よりご法話（約10分）</h3>
+        <p>故人を偲びながら、仏さまのお教えをお伝えいたします。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-marker"><svg width="22" height="22" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l6 4"/></svg></div>
+      <div class="flow-body">
+        <h3>ご納骨（四十九日の場合）</h3>
+        <p>お墓の前にてご納骨のお勤めをいたします。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-marker"><svg width="22" height="22" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l6 4"/></svg></div>
+      <div class="flow-body">
+        <h3>お食事・ご解散</h3>
+        <p>お食事ご希望の方は客殿へご案内いたします。お食事のない方はそのままご解散となります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- アクセス・駐車場 -->
+<section>
+  <h2 class="section-title">アクセス・駐車場</h2>
+  <div class="divider"></div>
+  <p class="section-sub">お越しの際のご案内</p>
+
+  <div class="info-cards">
+    <div class="info-card emphasize">
+      <div class="info-card-icon">
+        <svg width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l6 4"/></svg>
+      </div>
+      <div class="info-card-body">
+        <h3>到着時間</h3>
+        <p>ご法要開始の<strong style="color:#d32f2f;">15分前</strong>までにご到着ください。
+          <span class="note">お持ち物のご準備・ご参列の方のお迎えがございます。</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-icon">
+        <svg width="24" height="24"><use href="#ic-car" stroke="#2e7d32"/></svg>
+      </div>
+      <div class="info-card-body">
+        <h3>駐車場</h3>
+        <p>境内にお停めいただけます。
+          <span class="note">大型車でお越しの場合は事前にご相談ください。</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-icon">
+        <svg width="24" height="24"><use href="#ic-pin" stroke="#2e7d32"/></svg>
+      </div>
+      <div class="info-card-body">
+        <h3>アクセス</h3>
+        <p>真言宗豊山派　照臨山 多聞院<br>
+          〒162-0851<br>
+          東京都新宿区弁天町100
+          <span class="note">お車でお越しの際は、カーナビに「多聞院」または上記住所をご入力ください。</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Map -->
+  <div style="max-width:520px; margin:20px auto 0;">
+    <div style="position:relative; padding-bottom:62%; height:0; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow);">
+      <iframe
+        src="https://maps.google.com/maps?q=%E3%80%92162-0851+%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E5%BC%81%E5%A4%A9%E7%94%BA100+%E5%A4%9A%E8%81%9E%E9%99%A2&output=embed"
+        style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+    </div>
+    <div style="text-align:center; margin-top:10px;">
+      <a href="https://maps.google.com/?q=%E3%80%92162-0851+%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E5%BC%81%E5%A4%A9%E7%94%BA100+%E5%A4%9A%E8%81%9E%E9%99%A2" target="_blank" rel="noopener" style="font-size:14px; color:var(--green); font-weight:700; text-decoration:none;">
+        Googleマップで開く →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- よくあるご質問 -->
+<section class="bg-warm">
+  <h2 class="section-title">よくあるご質問</h2>
+  <div class="divider"></div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-q">
+        <span class="q-badge">Q</span>
+        <span>服装の決まりはありますか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">平服でお越しいただいて結構です。四十九日・一周忌は喪服の方が多いですが、三回忌以降は地味な色合いのお召し物であれば問題ございません。お子様は制服・普段着でどうぞ。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q">
+        <span class="q-badge">Q</span>
+        <span>小さな子どもを連れて行っても大丈夫ですか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">もちろんお越しください。泣いたり動いたりされても問題ございません。必要に応じて別室でお休みいただくこともできますので、お気軽にお声がけください。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q">
+        <span class="q-badge">Q</span>
+        <span>何分前に伺えばよいですか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">ご法要開始の<strong>15分前</strong>までにお越しください。受付・お持ち物のご準備のお時間として必要です。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q">
+        <span class="q-badge">Q</span>
+        <span>お布施はいくらぐらい包めばよいですか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">金額の目安は、住職・寺族よりご説明しております。ご遠慮なくおたずねください。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q">
+        <span class="q-badge">Q</span>
+        <span>ご法要はどれくらいの時間がかかりますか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">読経・焼香・ご法話を合わせて<strong>およそ60〜70分</strong>が目安です。納骨をされる場合はさらに10分程度加わります。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q">
+        <span class="q-badge">Q</span>
+        <span>日程の変更はできますか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">はい、可能です。お早めにLINEまたはお電話にてご連絡ください。</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q">
+        <span class="q-badge">Q</span>
+        <span>塔婆は当日の申し込みでも大丈夫ですか？</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">塔婆はお名前を書き入れるため、ご法事の<strong>1週間前まで</strong>にお申し込みをお願いいたします。</div></div>
+    </div>
+  </div>
+</section>
+
 <section class="contact-section">
   <h2 class="section-title">お問い合わせ</h2>
   <div class="divider"></div>
@@ -205,7 +567,7 @@
     <p class="contact-lead">ご不明な点がございましたら<br>お気軽にご連絡ください</p>
     <div class="contact-btns">
       <a href="#" class="contact-btn line">LINEで相談する</a>
-      <a href="tel:" class="contact-btn tel">電話で相談する</a>
+      <a href="tel:0332687998" class="contact-btn tel">電話で相談する（03-3268-7998）</a>
     </div>
   </div>
 </section>
@@ -213,6 +575,16 @@
 <footer class="footer">
   &copy; 多聞院
 </footer>
+
+<script>
+  document.addEventListener('click', function(e){
+    const q = e.target.closest('.faq-q');
+    if (!q) return;
+    q.classList.toggle('open');
+    const a = q.nextElementSibling;
+    if (a && a.classList.contains('faq-a')) a.classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>
