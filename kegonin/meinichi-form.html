@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>命日通知便のご登録｜華厳院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --green-dark: #1b5e20;
+    --gray: #666;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --alert: #d32f2f;
+    --alert-pale: #ffebee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: #fafafa;
+    color: #333;
+    line-height: 1.8;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px 32px;
+  }
+  .header .temple-name { font-size: 13px; letter-spacing: 4px; opacity: .85; margin-bottom: 8px; }
+  .header h1 { font-size: 24px; font-weight: 900; letter-spacing: 1px; line-height: 1.4; }
+  .header .header-icon {
+    margin: 14px auto 10px;
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .header p.sub { font-size: 14px; margin-top: 10px; opacity: .95; line-height: 1.8; }
+
+  main { padding: 24px 16px 48px; }
+  .container { max-width: 520px; margin: 0 auto; }
+
+  .intro-box {
+    background: var(--green-pale);
+    border-radius: var(--radius);
+    padding: 20px 20px;
+    margin-bottom: 22px;
+    text-align: center;
+    border: 1px solid #c8e6c9;
+  }
+  .intro-box p {
+    font-size: 15px;
+    color: var(--green-dark);
+    font-weight: 700;
+    line-height: 1.9;
+  }
+  .intro-box p .note {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray);
+  }
+  .intro-box strong { color: var(--green-dark); }
+
+  .form-section {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .form-section h2 {
+    font-size: 17px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .step-num {
+    background: var(--green);
+    color: #fff;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .form-row { margin-bottom: 16px; }
+  .form-row:last-child { margin-bottom: 0; }
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
+  }
+  .form-label .required {
+    background: var(--alert);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-left: 6px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+  .form-label .optional {
+    background: var(--gray);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-left: 6px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    background: #fff;
+    color: #333;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+  .form-textarea { resize: vertical; min-height: 120px; line-height: 1.8; }
+  .form-textarea.long { min-height: 160px; }
+
+  .form-select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+  .form-help {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 6px;
+    line-height: 1.7;
+  }
+
+  /* Date 3 fields */
+  .date-row {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 8px;
+  }
+  .date-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .date-field .form-select {
+    padding-right: 30px;
+    background-position: right 8px center;
+  }
+  .date-field .date-unit {
+    position: absolute;
+    right: 26px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray);
+    pointer-events: none;
+  }
+  @media (max-width: 360px) {
+    .date-row { grid-template-columns: 1.3fr 1fr 1fr; gap: 6px; }
+    .date-field .form-select { font-size: 15px; padding: 12px 26px 12px 10px; }
+    .date-field .date-unit { right: 22px; font-size: 13px; }
+  }
+
+  /* Submit */
+  .submit-wrap { margin-top: 24px; text-align: center; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 360px;
+    padding: 16px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+    border: none;
+    -webkit-tap-highlight-color: rgba(6,199,85,.2);
+  }
+  .btn-primary {
+    background: #06c755;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(6,199,85,.3);
+  }
+  .btn-primary:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
+  .btn-secondary {
+    background: #fff;
+    color: var(--green-dark);
+    border: 2px solid var(--green);
+    box-shadow: none;
+  }
+  .btn-row {
+    display: flex; flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 24px;
+  }
+  .submit-note {
+    font-size: 13px; color: var(--gray);
+    margin-top: 12px; line-height: 1.7;
+  }
+
+  /* Error */
+  .form-error {
+    display: none;
+    color: var(--alert);
+    font-size: 13px;
+    margin-top: 5px;
+    font-weight: 700;
+  }
+  .form-error.show { display: block; }
+  .form-input.error, .form-select.error, .form-textarea.error { border-color: var(--alert); }
+
+  /* Confirm */
+  .confirm-wrap { display: none; }
+  .confirm-wrap.show { display: block; }
+  .confirm-lead {
+    text-align: center;
+    font-size: 15px;
+    color: var(--green-dark);
+    font-weight: 700;
+    margin-bottom: 18px;
+    line-height: 1.8;
+  }
+  .confirm-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 20px 20px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .confirm-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--green-pale);
+  }
+  .confirm-value {
+    font-size: 16px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #333;
+  }
+  .confirm-value.muted { color: var(--gray); font-size: 14px; }
+  .email-card { border: 2px solid var(--green); background: #fcfff9; }
+  .email-card h3 {
+    display: flex; align-items: center;
+    border-bottom: 2px solid var(--green-pale);
+  }
+  .email-help {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.8;
+    margin: 4px 0 12px;
+  }
+
+  /* Complete */
+  .complete-wrap { display: none; text-align: center; padding: 20px 8px; }
+  .complete-wrap.show { display: block; }
+  .complete-icon {
+    width: 72px; height: 72px;
+    margin: 10px auto 18px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--green-pale);
+    border-radius: 50%;
+  }
+  .complete-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+  }
+  .complete-text {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 24px 20px 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    background: var(--gray-light);
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG symbols -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ic-bell" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 6c-5.5 0-10 4.5-10 10v6c0 3-1 5-3 7h26c-2-2-3-4-3-7v-6c0-5.5-4.5-10-10-10z"/>
+    <path d="M20 32a4 4 0 0 0 8 0"/>
+    <line x1="24" y1="3" x2="24" y2="6"/>
+  </symbol>
+  <symbol id="ic-check" viewBox="0 0 48 48" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="10 25 20 35 38 15"/>
+  </symbol>
+</svg>
+
+<header class="header">
+  <div class="temple-name">華 厳 院</div>
+  <h1>命日通知便のご登録</h1>
+  <div class="header-icon">
+    <svg width="48" height="48"><use href="#ic-bell" stroke="#fff"/></svg>
+  </div>
+  <p class="sub">ご命日の<strong>3ヶ月前</strong>と<strong>当日</strong>に<br>華厳院よりLINEでお知らせいたします</p>
+</header>
+
+<main>
+  <div class="container">
+
+    <!-- 入力画面 -->
+    <div id="edit-view">
+
+      <div class="intro-box">
+        <p>
+          大切な方のご命日を<br>お忘れなくお迎えいただけるよう<br>
+          <strong>華厳院公式LINE</strong>よりお知らせいたします。
+          <span class="note">※ご登録は何件でも可能です。ご家族お一人ずつご登録ください。</span>
+        </p>
+      </div>
+
+      <form id="meinichiForm" novalidate>
+
+        <!-- ① あなた様について -->
+        <section class="form-section">
+          <h2><span class="step-num">1</span>あなた様について</h2>
+          <div class="form-row">
+            <label class="form-label" for="registrantName">あなた様のお名前<span class="required">必須</span></label>
+            <input type="text" class="form-input" id="registrantName" name="registrantName" placeholder="例：華厳 一郎" autocomplete="name">
+            <div class="form-error" data-error-for="registrantName">お名前をご入力ください</div>
+          </div>
+        </section>
+
+        <!-- ② 故人について -->
+        <section class="form-section">
+          <h2><span class="step-num">2</span>故人について</h2>
+          <div class="form-row">
+            <label class="form-label" for="deceasedName">故人のお名前<span class="required">必須</span></label>
+            <input type="text" class="form-input" id="deceasedName" name="deceasedName" placeholder="例：華厳 太郎">
+            <p class="form-help">ご戒名・俗名いずれでもご入力いただけます。</p>
+            <div class="form-error" data-error-for="deceasedName">故人のお名前をご入力ください</div>
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="relation">続柄<span class="required">必須</span></label>
+            <select class="form-select" id="relation" name="relation">
+              <option value="">選択してください</option>
+              <option value="父">父</option>
+              <option value="母">母</option>
+              <option value="祖父">祖父</option>
+              <option value="祖母">祖母</option>
+              <option value="夫">夫</option>
+              <option value="妻">妻</option>
+              <option value="息子">息子</option>
+              <option value="娘">娘</option>
+              <option value="兄">兄</option>
+              <option value="姉">姉</option>
+              <option value="弟">弟</option>
+              <option value="妹">妹</option>
+              <option value="その他">その他</option>
+            </select>
+            <div class="form-error" data-error-for="relation">続柄をお選びください</div>
+          </div>
+          <div class="form-row" id="relation-other-row" style="display:none;">
+            <label class="form-label" for="relationOther">続柄（その他）<span class="required">必須</span></label>
+            <input type="text" class="form-input" id="relationOther" name="relationOther" placeholder="例：曾祖父、叔父 など">
+            <div class="form-error" data-error-for="relationOther">続柄をご入力ください</div>
+          </div>
+          <div class="form-row">
+            <label class="form-label">ご命日<span class="required">必須</span></label>
+            <div class="date-row">
+              <div class="date-field">
+                <select class="form-select" id="meinichi-year" name="meinichiYear" aria-label="西暦">
+                  <option value="">西暦</option>
+                </select>
+                <span class="date-unit">年</span>
+              </div>
+              <div class="date-field">
+                <select class="form-select" id="meinichi-month" name="meinichiMonth" aria-label="月">
+                  <option value="">月</option>
+                </select>
+                <span class="date-unit">月</span>
+              </div>
+              <div class="date-field">
+                <select class="form-select" id="meinichi-day" name="meinichiDay" aria-label="日">
+                  <option value="">日</option>
+                </select>
+                <span class="date-unit">日</span>
+              </div>
+            </div>
+            <p class="form-help">ご逝去された年月日をお選びください。</p>
+            <div class="form-error" data-error-for="meinichi">ご命日をお選びください</div>
+          </div>
+        </section>
+
+        <!-- ③ 故人へのメッセージ -->
+        <section class="form-section">
+          <h2><span class="step-num">3</span>故人へのメッセージ<span style="font-size:12px;font-weight:400;color:var(--gray);margin-left:6px;">(任意)</span></h2>
+          <div class="form-row">
+            <textarea class="form-textarea long" id="deceasedMessage" name="deceasedMessage" placeholder="ご命日当日、LINEで通知とともにお届けいたします。故人への想い・伝えたいお言葉などをご自由にお書きください。"></textarea>
+            <p class="form-help">ご命日当日の通知と一緒にお届けいたします。あとで見返していただく思い出としてご活用ください。</p>
+          </div>
+        </section>
+
+        <!-- ④ 備考 -->
+        <section class="form-section">
+          <h2><span class="step-num">4</span>備考<span style="font-size:12px;font-weight:400;color:var(--gray);margin-left:6px;">(任意)</span></h2>
+          <div class="form-row">
+            <textarea class="form-textarea" id="note" name="note" placeholder="ご要望・ご連絡事項などございましたらご記入ください"></textarea>
+          </div>
+        </section>
+
+        <div class="submit-wrap">
+          <button type="submit" class="btn btn-primary">入力内容を確認する</button>
+          <p class="submit-note">次の画面で入力内容をご確認いただけます</p>
+        </div>
+
+      </form>
+    </div>
+    <!-- /入力画面 -->
+
+    <!-- 確認画面 -->
+    <div id="confirm-view" class="confirm-wrap">
+      <p class="confirm-lead">ご入力内容をご確認ください<br>よろしければ「送信する」を押してください</p>
+
+      <div class="confirm-card">
+        <h3>お申込者のお名前</h3>
+        <div class="confirm-value" id="cv-registrant"></div>
+      </div>
+
+      <div class="confirm-card">
+        <h3>故人のお名前</h3>
+        <div class="confirm-value" id="cv-deceased"></div>
+      </div>
+
+      <div class="confirm-card">
+        <h3>続柄</h3>
+        <div class="confirm-value" id="cv-relation"></div>
+      </div>
+
+      <div class="confirm-card">
+        <h3>ご命日</h3>
+        <div class="confirm-value" id="cv-meinichi"></div>
+      </div>
+
+      <div class="confirm-card" id="cv-message-wrap">
+        <h3>故人へのメッセージ</h3>
+        <div class="confirm-value" id="cv-message"></div>
+      </div>
+
+      <div class="confirm-card" id="cv-note-wrap">
+        <h3>備考</h3>
+        <div class="confirm-value" id="cv-note"></div>
+      </div>
+
+      <div class="confirm-card email-card">
+        <h3>メールアドレスのご登録<span class="optional" style="background:var(--gray);color:#fff;font-size:11px;padding:2px 7px;border-radius:3px;margin-left:6px;font-weight:700;">任意</span></h3>
+        <p class="email-help">ご入力いただくと、LINEに加えてメールでも命日通知をお送りいたします。<br>不要な場合は空欄のまま送信してください。</p>
+        <input type="email" class="form-input" id="email" name="email" placeholder="例：yamada@example.com" autocomplete="email" inputmode="email">
+        <div class="form-error" data-error-for="email">正しいメールアドレスの形式でご入力ください</div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" id="btn-submit">送信する</button>
+        <button type="button" class="btn btn-secondary" id="btn-back">修正する</button>
+      </div>
+    </div>
+    <!-- /確認画面 -->
+
+    <!-- 完了画面 -->
+    <div id="complete-view" class="complete-wrap">
+      <div class="complete-icon">
+        <svg width="40" height="40"><use href="#ic-check" stroke="#2e7d32"/></svg>
+      </div>
+      <p class="complete-title">ご登録ありがとうございました</p>
+      <p class="complete-text">
+        ご命日が近づきましたら<br>
+        華厳院公式LINEよりお知らせいたします。<br>
+        合掌
+      </p>
+    </div>
+    <!-- /完了画面 -->
+
+  </div>
+</main>
+
+<footer class="footer">
+  &copy; 華厳院
+</footer>
+
+<!-- LIFF SDK -->
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  // ==== 要書き換え ====
+  const LIFF_ID = 'XXXXXXXXXX-XXXXXXXX';
+  const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AAAAA/exec';
+  // ===================
+
+  let lineUserId = null;
+
+  // LIFF 初期化（未設定時はスキップしてフォーム動作確認用に動かす）
+  async function initLiff() {
+    if (!window.liff || LIFF_ID.indexOf('X') !== -1) {
+      console.warn('LIFF not initialized (placeholder).');
+      return;
+    }
+    try {
+      await liff.init({ liffId: LIFF_ID });
+      if (!liff.isLoggedIn()) { liff.login(); return; }
+      const profile = await liff.getInfo ? await liff.getProfile() : null;
+      if (profile) lineUserId = profile.userId;
+    } catch (err) {
+      console.error('LIFF init failed:', err);
+    }
+  }
+  initLiff();
+
+  const $form       = document.getElementById('meinichiForm');
+  const $editView   = document.getElementById('edit-view');
+  const $confirmView= document.getElementById('confirm-view');
+  const $completeView=document.getElementById('complete-view');
+  const $btnBack    = document.getElementById('btn-back');
+  const $btnSubmit  = document.getElementById('btn-submit');
+  const $relation   = document.getElementById('relation');
+  const $relationOtherRow = document.getElementById('relation-other-row');
+  const $relationOther    = document.getElementById('relationOther');
+  const $meinichiY  = document.getElementById('meinichi-year');
+  const $meinichiM  = document.getElementById('meinichi-month');
+  const $meinichiD  = document.getElementById('meinichi-day');
+
+  // 西暦・月・日のプルダウンを生成
+  (function initDateSelects(){
+    const currentYear = new Date().getFullYear();
+    const startYear = 1920;
+    for (let y = currentYear; y >= startYear; y--) {
+      const opt = document.createElement('option');
+      opt.value = String(y);
+      opt.textContent = y;
+      $meinichiY.appendChild(opt);
+    }
+    for (let m = 1; m <= 12; m++) {
+      const opt = document.createElement('option');
+      opt.value = String(m);
+      opt.textContent = m;
+      $meinichiM.appendChild(opt);
+    }
+    renderDays();
+  })();
+
+  function daysInMonth(year, month) {
+    if (!year || !month) return 31;
+    return new Date(Number(year), Number(month), 0).getDate();
+  }
+  function renderDays() {
+    const prev = $meinichiD.value;
+    const max = daysInMonth($meinichiY.value, $meinichiM.value);
+    $meinichiD.innerHTML = '<option value="">日</option>';
+    for (let d = 1; d <= max; d++) {
+      const opt = document.createElement('option');
+      opt.value = String(d);
+      opt.textContent = d;
+      $meinichiD.appendChild(opt);
+    }
+    if (prev && Number(prev) <= max) $meinichiD.value = prev;
+  }
+  $meinichiY.addEventListener('change', function(){ renderDays(); clearError('meinichi'); });
+  $meinichiM.addEventListener('change', function(){ renderDays(); clearError('meinichi'); });
+  $meinichiD.addEventListener('change', function(){ clearError('meinichi'); });
+
+  // 続柄「その他」選択時の切替
+  $relation.addEventListener('change', function(){
+    if (this.value === 'その他') {
+      $relationOtherRow.style.display = '';
+    } else {
+      $relationOtherRow.style.display = 'none';
+      $relationOther.value = '';
+      clearError('relationOther');
+    }
+    clearError('relation');
+  });
+
+  function setError(id, show) {
+    const errEl = document.querySelector('[data-error-for="' + id + '"]');
+    const input = document.getElementById(id);
+    if (errEl) errEl.classList.toggle('show', !!show);
+    if (input) input.classList.toggle('error', !!show);
+  }
+  function clearError(id) { setError(id, false); }
+
+  function isValidEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  function formatDateJa(yyyymmdd) {
+    const m = yyyymmdd.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return yyyymmdd;
+    return m[1] + '年' + parseInt(m[2], 10) + '月' + parseInt(m[3], 10) + '日';
+  }
+
+  // 送信ボタン → 確認画面へ
+  $form.addEventListener('submit', function(e){
+    e.preventDefault();
+    let ok = true;
+
+    const registrant = document.getElementById('registrantName');
+    if (!registrant.value.trim()) { setError('registrantName', true); ok = false; }
+    else { clearError('registrantName'); }
+
+    const deceased = document.getElementById('deceasedName');
+    if (!deceased.value.trim()) { setError('deceasedName', true); ok = false; }
+    else { clearError('deceasedName'); }
+
+    if (!$relation.value) { setError('relation', true); ok = false; }
+    else { clearError('relation'); }
+
+    if ($relation.value === 'その他' && !$relationOther.value.trim()) {
+      setError('relationOther', true); ok = false;
+    } else { clearError('relationOther'); }
+
+    let meinichiValue = '';
+    if ($meinichiY.value && $meinichiM.value && $meinichiD.value) {
+      const y = $meinichiY.value;
+      const m = String($meinichiM.value).padStart(2, '0');
+      const d = String($meinichiD.value).padStart(2, '0');
+      meinichiValue = y + '-' + m + '-' + d;
+      clearError('meinichi');
+    } else {
+      setError('meinichi', true); ok = false;
+    }
+
+    if (!ok) {
+      const firstErr = document.querySelector('.error, .form-error.show');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const relationValue = $relation.value === 'その他' ? $relationOther.value.trim() : $relation.value;
+
+    showConfirm({
+      registrantName:   registrant.value.trim(),
+      deceasedName:     deceased.value.trim(),
+      relation:         relationValue,
+      meinichi:         meinichiValue,
+      deceasedMessage:  document.getElementById('deceasedMessage').value.trim(),
+      note:             document.getElementById('note').value.trim()
+    });
+  });
+
+  function setConfirmValue(id, wrapId, value) {
+    const $v = document.getElementById(id);
+    const $w = wrapId ? document.getElementById(wrapId) : null;
+    if (value) {
+      $v.textContent = value;
+      $v.classList.remove('muted');
+      if ($w) $w.style.display = '';
+    } else {
+      $v.textContent = '（未入力）';
+      $v.classList.add('muted');
+      if ($w) $w.style.display = '';
+    }
+  }
+
+  function showConfirm(data) {
+    // 保持しておく（送信時に使用）
+    showConfirm._data = data;
+
+    setConfirmValue('cv-registrant', null, data.registrantName);
+    setConfirmValue('cv-deceased',   null, data.deceasedName);
+    setConfirmValue('cv-relation',   null, data.relation);
+    setConfirmValue('cv-meinichi',   null, formatDateJa(data.meinichi));
+    setConfirmValue('cv-message',    'cv-message-wrap', data.deceasedMessage);
+    setConfirmValue('cv-note',       'cv-note-wrap',    data.note);
+
+    $editView.style.display = 'none';
+    $confirmView.classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  $btnBack.addEventListener('click', function(){
+    $confirmView.classList.remove('show');
+    $editView.style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  $btnSubmit.addEventListener('click', async function(){
+    const data = showConfirm._data;
+    if (!data) return;
+
+    // 確認画面でメールアドレスを取得・検証
+    const $email = document.getElementById('email');
+    const emailVal = $email.value.trim();
+    if (emailVal && !isValidEmail(emailVal)) {
+      setError('email', true);
+      $email.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    clearError('email');
+
+    const submitData = Object.assign({}, data, { email: emailVal });
+
+    $btnSubmit.disabled = true;
+    $btnSubmit.textContent = '送信中…';
+
+    try {
+      if (GAS_WEBAPP_URL.indexOf('AAAAA') !== -1) {
+        // プレースホルダーのまま → 擬似送信
+        console.log('[DEMO] 送信データ:', Object.assign({ lineUserId: lineUserId }, submitData));
+        await new Promise(r => setTimeout(r, 500));
+      } else {
+        await fetch(GAS_WEBAPP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(Object.assign({ lineUserId: lineUserId }, submitData))
+        });
+      }
+      $confirmView.classList.remove('show');
+      $completeView.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      alert('送信に失敗しました。通信状況をご確認のうえ、再度お試しください。');
+      $btnSubmit.disabled = false;
+      $btnSubmit.textContent = '送信する';
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>
