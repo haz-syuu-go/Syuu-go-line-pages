@@ -259,7 +259,7 @@
 
       if (typeof step === 'number' && step > 0) {
         currentStep = step;
-        var flow = [1, 2, 3, 4, 5, 6]; // ①②共通（③はここに来ない）
+        var flow = (applyType === 'none') ? [3] : [1, 2, 3, 4, 5, 6];
         var displayTotal = flow.length;
         var displayStep = flow.indexOf(step) + 1;
         var bars = document.querySelectorAll('.progress__bar');
@@ -384,8 +384,8 @@
         if(!sel){ showError('error-step0'); return; }
         hideError('error-step0');
         applyType = (sel === '回向を希望する') ? 'toba' : 'none';
-        // 希望しない：そのまま確認画面へ
-        if (applyType === 'none') { showConfirm(); return; }
+        // 希望しない：施主名入力へ
+        if (applyType === 'none') { goToStep(3); return; }
         goToStep(1);
         return;
       }
@@ -401,6 +401,8 @@
         var em = getVal('seshu-email');
         if(!em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showError('error-seshu-email'); v=false; } else { hideError('error-seshu-email'); }
         if(!v) return;
+        // 希望しない：お名前入力で確認画面へ
+        if (applyType === 'none') { showConfirm(); return; }
       }
       if(from===4) {
         if(!getRadio('kuyoCount')){ showError('error-step4'); return; }
@@ -431,6 +433,7 @@
 
     function prevStep(from) {
       if (from === 1) { goToStep(0); return; }
+      if (from === 3 && applyType === 'none') { goToStep(0); return; }
       goToStep(from-1);
     }
 
@@ -492,7 +495,10 @@
       var html = '';
       html += row('お申込み区分', d.applyType);
 
-      if (applyType !== 'none') {
+      if (applyType === 'none') {
+        html += row('施主さまのお名前', d.seshuName + '（' + d.seshuKana + '）');
+        html += row('メールアドレス', d.seshuEmail);
+      } else {
         html += row('該当区分', d.tobaType);
         html += row('施餓鬼会のご参加', d.attendance);
         html += row('施主さまのお名前', d.seshuName + '（' + d.seshuKana + '）');
@@ -515,7 +521,7 @@
     }
 
     function backToEdit() {
-      if (applyType === 'none') { goToStep(0); return; }
+      if (applyType === 'none') { goToStep(3); return; }
       goToStep(6);
     }
 
