@@ -297,7 +297,6 @@
             '<div class="form-group">' +
               '<label class="form-label">' + namesLabel + '<span class="required">必須</span></label>' +
               '<p class="form-hint mt-8">※お塔婆を申し込まれる本数分のお名前をご記入ください</p>' +
-              '<p class="form-hint mt-8">※お名前の右横の枠によみがなをご記入ください</p>' +
               '<p class="form-hint form-hint--danger mt-8">※読み上げる順番でお一人ずつ</p>' +
               '<p class="form-hint form-hint--danger mt-8">※連名でのお申込みはお受けしておりません</p>' +
               '<div id="kuyo-names-container-'+i+'" style="margin-top:12px;"></div>' +
@@ -357,9 +356,9 @@
         html +=
           '<div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:8px; padding:12px; margin-bottom:8px;">' +
             '<div style="font-size:0.85rem; font-weight:700; color:var(--green-dark); margin-bottom:8px;">お塔婆 ' + j + '本目</div>' +
-            '<div style="display:flex; gap:8px; flex-wrap:wrap;">' +
-              '<input type="text" class="form-input" id="kuyo-name-'+setNum+'-'+j+'" value="' + escapeAttr(old.name) + '" placeholder="お名前（例：勝楽 太郎）" style="flex:1; min-width:140px;">' +
-              '<input type="text" class="form-input" id="kuyo-furi-'+setNum+'-'+j+'" value="' + escapeAttr(old.furi) + '" placeholder="よみがな（例：しょうらく たろう）" style="flex:1; min-width:140px;">' +
+            '<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">' +
+              '<input type="text" class="form-input" id="kuyo-name-'+setNum+'-'+j+'" value="' + escapeAttr(old.name) + '" placeholder="お名前（例：勝楽 太郎）" style="min-width:0; padding:12px 10px; font-size:0.9rem;">' +
+              '<input type="text" class="form-input" id="kuyo-furi-'+setNum+'-'+j+'" value="' + escapeAttr(old.furi) + '" placeholder="よみがな（しょうらく たろう）" style="min-width:0; padding:12px 10px; font-size:0.9rem;">' +
             '</div>' +
           '</div>';
       }
