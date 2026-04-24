@@ -116,6 +116,12 @@
         <input type="text" class="form-input" id="seshu-kana" placeholder="例：しょうらく たろう">
         <div class="form-error" id="error-seshu-kana">よみがなをご入力ください</div>
       </div>
+      <div class="form-group">
+        <label class="form-label" for="seshu-email">メールアドレス<span class="required">必須</span></label>
+        <input type="email" class="form-input" id="seshu-email" placeholder="例：taro@example.com" autocomplete="email">
+        <div class="form-error" id="error-seshu-email">正しいメールアドレスをご入力ください</div>
+        <p class="form-hint mt-8">後日お申込み内容をご確認いただく際に使用します</p>
+      </div>
       <div class="btn-row">
         <button type="button" class="btn btn--secondary" onclick="prevStep(3)">戻る</button>
         <button type="button" class="btn btn--primary" onclick="nextStep(3)">次へ</button>
@@ -196,6 +202,17 @@
           ご連絡させていただきます。
         </p>
       </div>
+
+      <!-- 受付番号 -->
+      <div style="margin-top:24px; padding:24px 20px; background:var(--green-pale); border:2px solid var(--green); border-radius:12px; text-align:center;">
+        <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:8px;">受付番号</p>
+        <p id="reception-number-display" style="font-size:1.8rem; font-weight:700; color:var(--green-dark); letter-spacing:0.05em; margin-bottom:16px; font-family:'Courier New', monospace;">SRJ-00000</p>
+        <div style="padding:14px 12px; background:var(--white); border:2px solid var(--danger); border-radius:8px;">
+          <p style="font-size:1rem; font-weight:700; color:var(--danger); margin-bottom:6px;">📸 必ずスクリーンショットを保管してください</p>
+          <p style="font-size:0.85rem; color:var(--text); line-height:1.7;">後日お申込み内容を確認される際に必要となります。</p>
+        </div>
+      </div>
+
       <div class="mt-24">
         <a href="index.html" class="btn btn--secondary">トップに戻る</a>
       </div>
@@ -381,6 +398,8 @@
         var v = true;
         if(!getVal('seshu-name')){ showError('error-seshu-name'); v=false; } else { hideError('error-seshu-name'); }
         if(!getVal('seshu-kana')){ showError('error-seshu-kana'); v=false; } else { hideError('error-seshu-kana'); }
+        var em = getVal('seshu-email');
+        if(!em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showError('error-seshu-email'); v=false; } else { hideError('error-seshu-email'); }
         if(!v) return;
       }
       if(from===4) {
@@ -454,10 +473,18 @@
         attendance: getRadio('attendance'),
         seshuName: getVal('seshu-name'),
         seshuKana: getVal('seshu-kana'),
+        seshuEmail: getVal('seshu-email'),
         kuyoCount: getRadio('kuyoCount'),
         kuyoSets: collectKuyoData(),
         message: getVal('message')
       };
+    }
+
+    function generateReceptionNumber() {
+      // タイムスタンプ下5桁 + ランダム1桁 = 衝突確率を下げる
+      var ms = Date.now();
+      var last5 = String(ms).slice(-5);
+      return 'SRJ-' + last5;
     }
 
     function showConfirm() {
@@ -469,6 +496,7 @@
         html += row('該当区分', d.tobaType);
         html += row('施餓鬼会のご参加', d.attendance);
         html += row('施主さまのお名前', d.seshuName + '（' + d.seshuKana + '）');
+        html += row('メールアドレス', d.seshuEmail);
 
         var namesHeader = (applyType === 'toba') ? 'お塔婆を申し込まれる方' : '回向を希望される方';
         d.kuyoSets.forEach(function(set, idx) {
@@ -500,6 +528,7 @@
       btn.disabled = true;
 
       var d = collectData();
+      d.receptionNumber = generateReceptionNumber();
 
       // GASへの送信（form POST方式でCORS回避）
       var form = document.createElement('form');
@@ -526,6 +555,10 @@
       document.body.appendChild(form);
       form.submit();
       document.body.removeChild(form);
+
+      // 完了画面に受付番号を表示
+      var rn = document.getElementById('reception-number-display');
+      if (rn) rn.textContent = d.receptionNumber;
 
       // 送信後に完了画面へ
       setTimeout(function() {
