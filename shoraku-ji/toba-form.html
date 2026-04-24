@@ -27,7 +27,7 @@
     </header>
 
     <!-- Progress -->
-    <div class="progress" id="progress">
+    <div class="progress" id="progress" style="display:none;">
       <div class="progress__bar is-current" data-p="1"></div>
       <div class="progress__bar" data-p="2"></div>
       <div class="progress__bar" data-p="3"></div>
@@ -37,8 +37,33 @@
       <span class="progress__label" id="progress-label">1 / 6</span>
     </div>
 
+    <!-- Step 0: お申込み区分 -->
+    <div class="form-step is-active" data-step="0">
+      <h2 class="step-title">お申込みの区分をお選びください</h2>
+      <p class="section__lead">ハガキと同じ3つの区分からお選びいただけます</p>
+      <div class="option-list">
+        <div class="option-item">
+          <input type="radio" name="applyType" id="apply-toba" value="①塔婆のみ">
+          <label for="apply-toba">①塔婆のみ</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="applyType" id="apply-eko" value="②塔婆なしで回向のみ">
+          <label for="apply-eko">②塔婆なしで回向のみ</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="applyType" id="apply-none" value="③今回は申し込まない">
+          <label for="apply-none">③今回は申し込まない</label>
+        </div>
+      </div>
+      <div class="form-error" id="error-step0">お申込み区分をお選びください</div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--primary" onclick="nextStep(0)">次へ</button>
+        <a href="index.html" class="btn btn--secondary">戻る</a>
+      </div>
+    </div>
+
     <!-- Step 1: 該当区分 -->
-    <div class="form-step is-active" data-step="1">
+    <div class="form-step" data-step="1">
       <h2 class="step-title">該当するものをお選びください</h2>
       <div class="option-list">
         <div class="option-item" data-deadline="2026-05-17">
@@ -57,6 +82,7 @@
       <div class="form-error" id="error-step1">該当するものをお選びください</div>
       <div class="btn-row">
         <button type="button" class="btn btn--primary" onclick="nextStep(1)">次へ</button>
+        <button type="button" class="btn btn--secondary" onclick="prevStep(1)">戻る</button>
       </div>
     </div>
 
@@ -193,8 +219,9 @@
       });
     })();
 
-    var currentStep = 1;
+    var currentStep = 0;
     var totalSteps = 6;
+    var applyType = ''; // 'toba' | 'eko' | 'none'
 
     function getVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
     function getRadio(name) { var c = document.querySelector('input[name="'+name+'"]:checked'); return c ? c.value : ''; }
@@ -205,15 +232,29 @@
       document.querySelectorAll('.form-step').forEach(function(s){ s.classList.remove('is-active'); });
       var t = document.querySelector('.form-step[data-step="'+step+'"]');
       if(t) t.classList.add('is-active');
-      if(typeof step === 'number') {
+
+      if (typeof step === 'number' && step > 0) {
         currentStep = step;
-        document.querySelectorAll('.progress__bar').forEach(function(b){
-          var s = parseInt(b.getAttribute('data-p'));
-          b.classList.remove('is-done','is-current');
-          if(s < step) b.classList.add('is-done');
-          if(s === step) b.classList.add('is-current');
+        var displayStep, displayTotal;
+        if (applyType === 'none') {
+          displayTotal = 2;
+          displayStep = (step === 1) ? 1 : 2; // Step 1 → 1/2, Step 3 → 2/2
+        } else {
+          displayTotal = 6;
+          displayStep = step;
+        }
+        var bars = document.querySelectorAll('.progress__bar');
+        bars.forEach(function(b, idx){
+          if (idx < displayTotal) {
+            b.style.display = '';
+            b.classList.remove('is-done','is-current');
+            if (idx + 1 < displayStep) b.classList.add('is-done');
+            if (idx + 1 === displayStep) b.classList.add('is-current');
+          } else {
+            b.style.display = 'none';
+          }
         });
-        document.getElementById('progress-label').textContent = step + ' / ' + totalSteps;
+        document.getElementById('progress-label').textContent = displayStep + ' / ' + displayTotal;
         document.getElementById('progress').style.display = 'flex';
       } else {
         document.getElementById('progress').style.display = 'none';
@@ -225,10 +266,23 @@
     function buildKuyoSets(count) {
       var container = document.getElementById('kuyo-sets');
       container.innerHTML = '';
+      var isToba = (applyType === 'toba');
+      var namesLabel = isToba ? '塔婆を上げる方のお名前' : '回向を希望される方のお名前';
       for (var i = 1; i <= count; i++) {
-        var honsuOptions = '';
-        for (var h = 1; h <= 10; h++) {
-          honsuOptions += '<option value="'+h+'">'+h+'</option>';
+        var honsuHtml = '';
+        if (isToba) {
+          var honsuOptions = '';
+          for (var h = 1; h <= 10; h++) {
+            honsuOptions += '<option value="'+h+'">'+h+'</option>';
+          }
+          honsuHtml =
+            '<div class="form-group">' +
+              '<label class="form-label">本数</label>' +
+              '<div class="honsu-row">' +
+                '<select class="form-input" id="kuyo-honsu-'+i+'">' + honsuOptions + '</select>' +
+                '<span>本</span>' +
+              '</div>' +
+            '</div>';
         }
         container.innerHTML +=
           '<div class="kuyo-set">' +
@@ -239,30 +293,41 @@
               '<p class="form-hint mt-8">例：○○家先祖代々 / 故人名（俗名で構いません）</p>' +
             '</div>' +
             '<div class="form-group">' +
-              '<label class="form-label">塔婆を上げる方のお名前<span class="required">必須</span></label>' +
+              '<label class="form-label">' + namesLabel + '<span class="required">必須</span></label>' +
               '<textarea class="form-input" id="kuyo-names-'+i+'" rows="3" placeholder="例：&#10;勝楽 太郎（しょうらく たろう）&#10;勝楽 花子（しょうらく はなこ）"></textarea>' +
               '<p class="form-hint mt-8">読み上げる順番でお一人一行ずつ</p>' +
               '<p class="form-hint form-hint--danger mt-8">連名でのお申込みはお受けしておりません</p>' +
             '</div>' +
-            '<div class="form-group">' +
-              '<label class="form-label">本数</label>' +
-              '<div class="honsu-row">' +
-                '<select class="form-input" id="kuyo-honsu-'+i+'">' + honsuOptions + '</select>' +
-                '<span>本</span>' +
-              '</div>' +
-            '</div>' +
+            honsuHtml +
           '</div>';
       }
     }
 
     function nextStep(from) {
-      if(from===1) { if(!getRadio('tobaType')){ showError('error-step1'); return; } hideError('error-step1'); }
+      if(from===0) {
+        var sel = getRadio('applyType');
+        if(!sel){ showError('error-step0'); return; }
+        hideError('error-step0');
+        if (sel.indexOf('①') === 0) applyType = 'toba';
+        else if (sel.indexOf('②') === 0) applyType = 'eko';
+        else applyType = 'none';
+        goToStep(1);
+        return;
+      }
+      if(from===1) {
+        if(!getRadio('tobaType')){ showError('error-step1'); return; }
+        hideError('error-step1');
+        // ③申し込まない：出席確認を飛ばしてお名前へ
+        if (applyType === 'none') { goToStep(3); return; }
+      }
       if(from===2) { if(!getRadio('attendance')){ showError('error-step2'); return; } hideError('error-step2'); }
       if(from===3) {
         var v = true;
         if(!getVal('seshu-name')){ showError('error-seshu-name'); v=false; } else { hideError('error-seshu-name'); }
         if(!getVal('seshu-kana')){ showError('error-seshu-kana'); v=false; } else { hideError('error-seshu-kana'); }
         if(!v) return;
+        // ③申し込まない：お名前まででご確認画面へ
+        if (applyType === 'none') { showConfirm(); return; }
       }
       if(from===4) {
         if(!getRadio('kuyoCount')){ showError('error-step4'); return; }
@@ -281,7 +346,11 @@
       goToStep(from+1);
     }
 
-    function prevStep(from) { goToStep(from-1); }
+    function prevStep(from) {
+      if (from === 1) { goToStep(0); return; }
+      if (from === 3 && applyType === 'none') { goToStep(1); return; }
+      goToStep(from-1);
+    }
 
     function escapeHtml(s) { var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
     function row(l,v) { return '<tr><th>'+escapeHtml(l)+'</th><td>'+escapeHtml(v).replace(/\n/g,'<br>')+'</td></tr>'; }
@@ -301,6 +370,7 @@
 
     function collectData() {
       return {
+        applyType: getRadio('applyType'),
         tobaType: getRadio('tobaType'),
         attendance: getRadio('attendance'),
         seshuName: getVal('seshu-name'),
@@ -314,23 +384,34 @@
     function showConfirm() {
       var d = collectData();
       var html = '';
+      html += row('お申込み区分', d.applyType);
       html += row('該当区分', d.tobaType);
-      html += row('法要のご出席', d.attendance);
+      if (applyType !== 'none') {
+        html += row('法要のご出席', d.attendance);
+      }
       html += row('施主さまのお名前', d.seshuName + '（' + d.seshuKana + '）');
 
-      d.kuyoSets.forEach(function(set, idx) {
-        html += '<tr><th colspan="2" style="background:var(--green-light); font-weight:700; color:var(--green-dark); padding:10px 8px;">' + (idx+1) + '件目</th></tr>';
-        html += row('ご供養される方', set.target);
-        html += '<tr><th>塔婆を上げる方</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
-        html += row('本数', set.honsu + '本');
-      });
+      if (applyType !== 'none') {
+        var namesHeader = (applyType === 'toba') ? '塔婆を上げる方' : '回向を希望される方';
+        d.kuyoSets.forEach(function(set, idx) {
+          html += '<tr><th colspan="2" style="background:var(--green-light); font-weight:700; color:var(--green-dark); padding:10px 8px;">' + (idx+1) + '件目</th></tr>';
+          html += row('ご供養される方', set.target);
+          html += '<tr><th>' + namesHeader + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
+          if (applyType === 'toba') {
+            html += row('本数', set.honsu + '本');
+          }
+        });
+        if(d.message) html += row('お伝えしたい内容', d.message);
+      }
 
-      if(d.message) html += row('お伝えしたい内容', d.message);
       document.getElementById('confirm-table').innerHTML = html;
       goToStep('confirm');
     }
 
-    function backToEdit() { goToStep(6); }
+    function backToEdit() {
+      if (applyType === 'none') { goToStep(3); return; }
+      goToStep(6);
+    }
 
     // ===== GAS送信URL =====
     var GAS_URL = 'https://script.google.com/a/macros/syuu-go.com/s/AKfycbyOaTxTTaoX8nnNwbOt_qtFqhqT9-V7h6HEjxQu00VQq05Q3GggNkoWwGVUGTNXNQ9m/exec';
