@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>塔婆の申込み - 勝楽寺</title>
+  <title>お塔婆の申込み - 勝楽寺</title>
   <link rel="stylesheet" href="style.css">
   <style>
     .kuyo-set { background: var(--green-pale); border: 2px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
@@ -23,7 +23,7 @@
 
     <header class="page-header">
       <p class="page-header__temple">東京町田 勝楽寺</p>
-      <h1 class="page-header__title">塔婆の申込み</h1>
+      <h1 class="page-header__title">お塔婆の申込み</h1>
     </header>
 
     <!-- Progress -->
@@ -43,12 +43,12 @@
       <p class="section__lead">ハガキと同じ3つの区分からお選びいただけます</p>
       <div class="option-list">
         <div class="option-item">
-          <input type="radio" name="applyType" id="apply-toba" value="①塔婆のみ">
-          <label for="apply-toba">①塔婆のみ</label>
+          <input type="radio" name="applyType" id="apply-toba" value="①お塔婆のみ">
+          <label for="apply-toba">①お塔婆のみ</label>
         </div>
         <div class="option-item">
-          <input type="radio" name="applyType" id="apply-eko" value="②塔婆なしで回向のみ">
-          <label for="apply-eko">②塔婆なしで回向のみ</label>
+          <input type="radio" name="applyType" id="apply-eko" value="②お塔婆なしで回向のみ">
+          <label for="apply-eko">②お塔婆なしで回向のみ</label>
         </div>
         <div class="option-item">
           <input type="radio" name="applyType" id="apply-none" value="③今回は申し込まない">
@@ -166,7 +166,7 @@
     <div class="form-step" data-step="6">
       <h2 class="step-title">お伝えされたい内容をご記載ください</h2>
       <div class="form-group">
-        <textarea class="form-input" id="message" placeholder="ご質問やご要望がございましたらこちらにお書きください"></textarea>
+        <textarea class="form-input" id="message" placeholder="連絡先の変更など、ご質問やご要望がございましたらこちらにお書きください"></textarea>
       </div>
       <div class="btn-row">
         <button type="button" class="btn btn--secondary" onclick="prevStep(6)">戻る</button>
@@ -192,7 +192,7 @@
         <div class="complete__icon"></div>
         <h2 class="complete__title">お申込みが完了しました</h2>
         <p class="complete__desc">
-          塔婆のお申込みありがとうございます。<br>
+          お塔婆のお申込みありがとうございます。<br>
           内容を確認のうえ、お寺より<br>
           ご連絡させていただきます。
         </p>
@@ -273,7 +273,7 @@
       var container = document.getElementById('kuyo-sets');
       container.innerHTML = '';
       var isToba = (applyType === 'toba');
-      var namesLabel = isToba ? '塔婆を上げる方のお名前' : '回向を希望される方のお名前';
+      var namesLabel = isToba ? 'お塔婆を申し込まれる方のお名前' : '回向を希望される方のお名前';
       for (var i = 1; i <= count; i++) {
         var honsuHtml = '';
         if (isToba) {
@@ -285,28 +285,85 @@
             '<div class="form-group">' +
               '<label class="form-label">本数</label>' +
               '<div class="honsu-row">' +
-                '<select class="form-input" id="kuyo-honsu-'+i+'">' + honsuOptions + '</select>' +
+                '<select class="form-input" id="kuyo-honsu-'+i+'" onchange="buildNameFields('+i+')">' + honsuOptions + '</select>' +
                 '<span>本</span>' +
               '</div>' +
             '</div>';
         }
+
+        var namesFieldHtml;
+        if (isToba) {
+          namesFieldHtml =
+            '<div class="form-group">' +
+              '<label class="form-label">' + namesLabel + '<span class="required">必須</span></label>' +
+              '<p class="form-hint mt-8">※お塔婆を申し込まれる本数分のお名前をご記入ください</p>' +
+              '<p class="form-hint mt-8">※お名前の右横の枠によみがなをご記入ください</p>' +
+              '<p class="form-hint form-hint--danger mt-8">※読み上げる順番でお一人ずつ</p>' +
+              '<p class="form-hint form-hint--danger mt-8">※連名でのお申込みはお受けしておりません</p>' +
+              '<div id="kuyo-names-container-'+i+'" style="margin-top:12px;"></div>' +
+            '</div>';
+        } else {
+          namesFieldHtml =
+            '<div class="form-group">' +
+              '<label class="form-label">' + namesLabel + '<span class="required">必須</span></label>' +
+              '<textarea class="form-input" id="kuyo-names-'+i+'" rows="3" placeholder="例：&#10;勝楽 太郎（しょうらく たろう）&#10;勝楽 花子（しょうらく はなこ）"></textarea>' +
+              '<p class="form-hint form-hint--danger mt-8">※読み上げる順番でお一人一行ずつ</p>' +
+              '<p class="form-hint form-hint--danger mt-8">※連名でのお申込みはお受けしておりません</p>' +
+            '</div>';
+        }
+
         container.innerHTML +=
           '<div class="kuyo-set">' +
             '<div class="kuyo-set__num">' + i + '件目</div>' +
             '<div class="form-group">' +
-              '<label class="form-label">ご供養される方<span class="required">必須</span></label>' +
+              '<label class="form-label">ご供養される対象<span class="required">必須</span></label>' +
               '<input type="text" class="form-input" id="kuyo-target-'+i+'" placeholder="">' +
-              '<p class="form-hint mt-8">例：○○家先祖代々 / 故人名（俗名で構いません）</p>' +
-            '</div>' +
-            '<div class="form-group">' +
-              '<label class="form-label">' + namesLabel + '<span class="required">必須</span></label>' +
-              '<textarea class="form-input" id="kuyo-names-'+i+'" rows="3" placeholder="例：&#10;勝楽 太郎（しょうらく たろう）&#10;勝楽 花子（しょうらく はなこ）"></textarea>' +
-              '<p class="form-hint mt-8">読み上げる順番でお一人一行ずつ</p>' +
-              '<p class="form-hint form-hint--danger mt-8">連名でのお申込みはお受けしておりません</p>' +
+              '<p class="form-hint mt-8">例①：〇〇家先祖代々</p>' +
+              '<p class="form-hint mt-8">例②：故人名（俗名で構いません）</p>' +
             '</div>' +
             honsuHtml +
+            namesFieldHtml +
           '</div>';
       }
+
+      if (isToba) {
+        for (var k = 1; k <= count; k++) { buildNameFields(k); }
+      }
+    }
+
+    function escapeAttr(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function buildNameFields(setNum) {
+      var honsuEl = document.getElementById('kuyo-honsu-'+setNum);
+      var honsu = honsuEl ? (parseInt(honsuEl.value) || 1) : 1;
+      var container = document.getElementById('kuyo-names-container-'+setNum);
+      if (!container) return;
+
+      var existing = [];
+      for (var k = 1; k <= 10; k++) {
+        var nameEl = document.getElementById('kuyo-name-'+setNum+'-'+k);
+        var furiEl = document.getElementById('kuyo-furi-'+setNum+'-'+k);
+        existing.push({
+          name: nameEl ? nameEl.value : '',
+          furi: furiEl ? furiEl.value : ''
+        });
+      }
+
+      var html = '';
+      for (var j = 1; j <= honsu; j++) {
+        var old = existing[j-1] || { name:'', furi:'' };
+        html +=
+          '<div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:8px; padding:12px; margin-bottom:8px;">' +
+            '<div style="font-size:0.85rem; font-weight:700; color:var(--green-dark); margin-bottom:8px;">お塔婆 ' + j + '本目</div>' +
+            '<div style="display:flex; gap:8px; flex-wrap:wrap;">' +
+              '<input type="text" class="form-input" id="kuyo-name-'+setNum+'-'+j+'" value="' + escapeAttr(old.name) + '" placeholder="お名前（例：勝楽 太郎）" style="flex:1; min-width:140px;">' +
+              '<input type="text" class="form-input" id="kuyo-furi-'+setNum+'-'+j+'" value="' + escapeAttr(old.furi) + '" placeholder="よみがな（例：しょうらく たろう）" style="flex:1; min-width:140px;">' +
+            '</div>' +
+          '</div>';
+      }
+      container.innerHTML = html;
     }
 
     function nextStep(from) {
@@ -342,9 +399,19 @@
       }
       if(from===5) {
         var count = parseInt(getRadio('kuyoCount'));
+        var isTobaFlow = (applyType === 'toba');
         var valid = true;
         for (var i = 1; i <= count; i++) {
-          if(!getVal('kuyo-target-'+i) || !getVal('kuyo-names-'+i)) { valid = false; }
+          if(!getVal('kuyo-target-'+i)) { valid = false; break; }
+          if (isTobaFlow) {
+            var honsu = parseInt(getVal('kuyo-honsu-'+i)) || 1;
+            for (var jj = 1; jj <= honsu; jj++) {
+              if(!getVal('kuyo-name-'+i+'-'+jj) || !getVal('kuyo-furi-'+i+'-'+jj)) { valid = false; break; }
+            }
+            if (!valid) break;
+          } else {
+            if(!getVal('kuyo-names-'+i)) { valid = false; break; }
+          }
         }
         if(!valid) { showError('error-step5'); return; }
         hideError('error-step5');
@@ -364,11 +431,27 @@
     function collectKuyoData() {
       var count = parseInt(getRadio('kuyoCount'));
       var sets = [];
+      var isTobaFlow = (applyType === 'toba');
       for (var i = 1; i <= count; i++) {
+        var names = '';
+        var honsu = '';
+        if (isTobaFlow) {
+          honsu = getVal('kuyo-honsu-'+i);
+          var honsuNum = parseInt(honsu) || 1;
+          var nameList = [];
+          for (var j = 1; j <= honsuNum; j++) {
+            var nm = getVal('kuyo-name-'+i+'-'+j);
+            var fr = getVal('kuyo-furi-'+i+'-'+j);
+            if (nm) nameList.push(nm + (fr ? '（' + fr + '）' : ''));
+          }
+          names = nameList.join('\n');
+        } else {
+          names = getVal('kuyo-names-'+i);
+        }
         sets.push({
           target: getVal('kuyo-target-'+i),
-          names: getVal('kuyo-names-'+i),
-          honsu: getVal('kuyo-honsu-'+i)
+          names: names,
+          honsu: honsu
         });
       }
       return sets;
@@ -398,14 +481,14 @@
       html += row('施主さまのお名前', d.seshuName + '（' + d.seshuKana + '）');
 
       if (applyType !== 'none') {
-        var namesHeader = (applyType === 'toba') ? '塔婆を上げる方' : '回向を希望される方';
+        var namesHeader = (applyType === 'toba') ? 'お塔婆を申し込まれる方' : '回向を希望される方';
         d.kuyoSets.forEach(function(set, idx) {
           html += '<tr><th colspan="2" style="background:var(--green-light); font-weight:700; color:var(--green-dark); padding:10px 8px;">' + (idx+1) + '件目</th></tr>';
-          html += row('ご供養される方', set.target);
-          html += '<tr><th>' + namesHeader + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
+          html += row('ご供養される対象', set.target);
           if (applyType === 'toba') {
             html += row('本数', set.honsu + '本');
           }
+          html += '<tr><th>' + namesHeader + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
         });
         if(d.message) html += row('お伝えしたい内容', d.message);
       }
