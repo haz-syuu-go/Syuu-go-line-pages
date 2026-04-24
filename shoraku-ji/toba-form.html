@@ -235,14 +235,12 @@
 
       if (typeof step === 'number' && step > 0) {
         currentStep = step;
-        var displayStep, displayTotal;
-        if (applyType === 'none') {
-          displayTotal = 2;
-          displayStep = (step === 1) ? 1 : 2; // Step 1 → 1/2, Step 3 → 2/2
-        } else {
-          displayTotal = 6;
-          displayStep = step;
-        }
+        var flow;
+        if (applyType === 'none') flow = [1, 3];
+        else if (applyType === 'eko') flow = [1, 3, 4, 5, 6];
+        else flow = [1, 2, 3, 4, 5, 6]; // toba
+        var displayTotal = flow.length;
+        var displayStep = flow.indexOf(step) + 1;
         var bars = document.querySelectorAll('.progress__bar');
         bars.forEach(function(b, idx){
           if (idx < displayTotal) {
@@ -317,8 +315,8 @@
       if(from===1) {
         if(!getRadio('tobaType')){ showError('error-step1'); return; }
         hideError('error-step1');
-        // ③申し込まない：出席確認を飛ばしてお名前へ
-        if (applyType === 'none') { goToStep(3); return; }
+        // ②回向のみ・③申し込まない：出席確認を飛ばしてお名前へ
+        if (applyType === 'eko' || applyType === 'none') { goToStep(3); return; }
       }
       if(from===2) { if(!getRadio('attendance')){ showError('error-step2'); return; } hideError('error-step2'); }
       if(from===3) {
@@ -348,7 +346,7 @@
 
     function prevStep(from) {
       if (from === 1) { goToStep(0); return; }
-      if (from === 3 && applyType === 'none') { goToStep(1); return; }
+      if (from === 3 && (applyType === 'eko' || applyType === 'none')) { goToStep(1); return; }
       goToStep(from-1);
     }
 
