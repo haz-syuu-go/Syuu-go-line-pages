@@ -67,16 +67,16 @@
       <h2 class="step-title">該当するものをお選びください</h2>
       <div class="option-list">
         <div class="option-item" data-deadline="2026-05-17">
-          <input type="radio" name="tobaType" id="type-keigai" value="5/17 地上境内墓地の方">
-          <label for="type-keigai">5/17（日）地上境内墓地の方</label>
+          <input type="radio" name="tobaType" id="type-keigai" value="5/17 おもに納骨堂以外の方">
+          <label for="type-keigai">5/17（日）おもに納骨堂以外の方</label>
         </div>
         <div class="option-item" data-deadline="2026-06-17">
-          <input type="radio" name="tobaType" id="type-noukotsu" value="6/17 納骨堂・釈迦堂の方">
-          <label for="type-noukotsu">6/17（水）納骨堂・釈迦堂の方</label>
+          <input type="radio" name="tobaType" id="type-noukotsu" value="6/17 おもに納骨堂・舎利堂の方">
+          <label for="type-noukotsu">6/17（水）おもに納骨堂・舎利堂の方</label>
         </div>
         <div class="option-item" data-deadline="2026-07-17">
           <input type="radio" name="tobaType" id="type-nibon" value="7/17 新盆の方">
-          <label for="type-nibon">7/17（金）新盆の方<span style="display:block;font-size:0.8rem;color:var(--text-light);margin-top:4px;font-weight:400;">新盆とは、故人が亡くなって初めて迎えるお盆のことです</span></label>
+          <label for="type-nibon">7/17（金）新盆の方<span style="display:block;font-size:0.8rem;color:var(--text-light);margin-top:4px;font-weight:400;">新盆とは、故人が亡くなられて初めて迎えるお盆のことです</span></label>
         </div>
       </div>
       <div class="form-error" id="error-step1">該当するものをお選びください</div>
@@ -130,8 +130,10 @@
 
     <!-- Step 4: ご供養される対象数 -->
     <div class="form-step" data-step="4">
-      <h2 class="step-title">ご供養される対象数をお選びください</h2>
-      <p class="section__lead">例：先祖代々・祖母・祖父 = 3</p>
+      <h2 class="step-title">ご供養する対象の数をお選びください</h2>
+      <p class="section__lead" style="margin-bottom:8px;">例①：〇〇家 先祖代々のみの場合は「1」をお選びください。</p>
+      <p class="section__lead" style="margin-bottom:16px;">例②：〇〇家 先祖代々・故人名（父）・故人名（母）の場合は「3」をお選びください。</p>
+      <p class="form-hint form-hint--danger" style="margin-bottom:16px;">新盆の故人は、7月17日の新盆施餓鬼でお申込みください。</p>
       <div class="option-list">
         <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-1" value="1"><label for="kuyo-1">1</label></div>
         <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-2" value="2"><label for="kuyo-2">2</label></div>
