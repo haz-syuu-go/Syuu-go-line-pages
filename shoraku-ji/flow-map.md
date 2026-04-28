@@ -4,7 +4,7 @@
 
 ```mermaid
 flowchart TD
-    Start([index.html<br/>お塔婆の申込みボタン]) --> Q0{{Q0. 回向を希望されますか？}}
+    Start([index.html<br/>お塔婆のお申込みボタン]) --> Q0{{Q0. 回向を希望されますか？}}
 
     Q0 -->|希望しない| Q3n[Q3. 施主さまのお名前<br/>お名前・よみがな・メールアドレス]
     Q0 -->|回向を希望する| Q1[Q1. 該当するものをお選びください<br/>5月17日／6月17日／7月17日]
@@ -94,7 +94,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Start([index.html<br/>お塔婆の申込みボタン]) --> Step0[Step 0<br/>回向を希望されますか？]
+    Start([index.html<br/>お塔婆のお申込みボタン]) --> Step0[Step 0<br/>回向を希望されますか？]
 
     Step0 --> Yes[回向を希望する]
     Step0 --> No[希望しない]
