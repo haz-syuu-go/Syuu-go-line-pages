@@ -70,6 +70,8 @@ body { font-family: 'Noto Sans JP', sans-serif; background: #FFFFFF; color: #333
 
 /* Options */
 .option-list { display: flex; flex-direction: column; gap: 10px; }
+.option-list--grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.option-list--grid .option-item label { padding: 12px 14px; text-align: center; font-size: 0.95rem; }
 .option-item { position: relative; }
 .option-item input { position: absolute; opacity: 0; width: 0; height: 0; }
 .option-item label { display: block; padding: 16px 18px; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: border-color 0.15s, background 0.15s; -webkit-tap-highlight-color: transparent; }
