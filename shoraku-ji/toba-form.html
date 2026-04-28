@@ -39,6 +39,11 @@
 
     <!-- Step 0: 回向のご希望 -->
     <div class="form-step is-active" data-step="0">
+      <div style="background:#fff9e6; border:2px solid #f9a825; border-radius:10px; padding:14px 16px; margin-bottom:20px;">
+        <p style="font-size:0.95rem; font-weight:700; color:#e65100; margin-bottom:8px;">供養対象が6件以上の方へ</p>
+        <p style="font-size:0.88rem; color:var(--text); line-height:1.7; margin-bottom:12px;">お手数ですが申込み用紙にご記載いただき、LINEのトーク画面へお送りください。</p>
+        <a href="https://lin.ee/7gziPIG" class="btn btn--primary" style="display:inline-block; padding:10px 20px; font-size:0.9rem;">LINEトーク画面へ</a>
+      </div>
       <h2 class="step-title">回向を希望されますか？</h2>
       <div class="option-list">
         <div class="option-item">
@@ -141,6 +146,7 @@
         <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-3" value="3"><label for="kuyo-3">3</label></div>
         <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-4" value="4"><label for="kuyo-4">4</label></div>
         <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-5" value="5"><label for="kuyo-5">5</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-6plus" value="6以上"><label for="kuyo-6plus">6以上</label></div>
       </div>
       <div class="form-error" id="error-step4">対象数をお選びください</div>
       <div class="btn-row">
@@ -148,6 +154,22 @@
         <button type="button" class="btn btn--primary" onclick="nextStep(4)">次へ</button>
       </div>
       <p style="font-size:0.8rem; color:var(--text-light); text-align:center; margin-top:12px;">前の入力項目に戻る場合は、上記の「戻る」を押してください</p>
+    </div>
+
+    <!-- Step kuyo-over: 6件以上の場合のご案内 -->
+    <div class="form-step" data-step="kuyo-over">
+      <h2 class="step-title">6件以上の場合のご案内</h2>
+      <div style="background:#fff9e6; border:2px solid #f9a825; border-radius:10px; padding:18px 20px; margin-bottom:20px;">
+        <p style="font-size:0.95rem; color:var(--text); line-height:1.8;">
+          供養対象が6件以上の場合は、お手数ですが申込み用紙にご記載いただき、LINEのトーク画面へお送りください。
+        </p>
+      </div>
+      <div class="mt-24">
+        <a href="https://lin.ee/7gziPIG" class="btn btn--primary">LINEトーク画面へ</a>
+      </div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button type="button" class="btn btn--secondary" onclick="prevStep('kuyo-over')">戻る</button>
+      </div>
     </div>
 
     <!-- Step 5: 供養詳細（動的生成） -->
@@ -294,9 +316,9 @@
       for (var i = 1; i <= count; i++) {
         var honsuHtml = '';
         if (isToba) {
-          var honsuOptions = '';
+          var honsuOptions = '<option value="0">0（回向のみ）</option>';
           for (var h = 1; h <= 10; h++) {
-            honsuOptions += '<option value="'+h+'">'+h+'</option>';
+            honsuOptions += '<option value="'+h+'"' + (h === 1 ? ' selected' : '') + '>'+h+'</option>';
           }
           honsuHtml =
             '<div class="form-group">' +
@@ -311,7 +333,7 @@
         var namesFieldHtml;
         if (isToba) {
           namesFieldHtml =
-            '<div class="form-group">' +
+            '<div class="form-group" id="kuyo-names-section-'+i+'">' +
               '<label class="form-label">' + namesLabel + '<span class="required">必須</span></label>' +
               '<p class="form-hint mt-8">※お塔婆を申し込まれる本数分のお名前をご記入ください</p>' +
               '<p class="form-hint form-hint--danger mt-8">※読み上げる順番でお一人ずつ</p>' +
@@ -353,9 +375,21 @@
 
     function buildNameFields(setNum) {
       var honsuEl = document.getElementById('kuyo-honsu-'+setNum);
-      var honsu = honsuEl ? (parseInt(honsuEl.value) || 1) : 1;
+      var honsu = 1;
+      if (honsuEl) {
+        var p = parseInt(honsuEl.value);
+        if (!isNaN(p)) honsu = p;
+      }
+      var section = document.getElementById('kuyo-names-section-'+setNum);
       var container = document.getElementById('kuyo-names-container-'+setNum);
       if (!container) return;
+
+      if (honsu === 0) {
+        if (section) section.style.display = 'none';
+        container.innerHTML = '';
+        return;
+      }
+      if (section) section.style.display = '';
 
       var existing = [];
       for (var k = 1; k <= 10; k++) {
@@ -409,9 +443,11 @@
         if (applyType === 'none') { showConfirm(); return; }
       }
       if(from===4) {
-        if(!getRadio('kuyoCount')){ showError('error-step4'); return; }
+        var kc = getRadio('kuyoCount');
+        if(!kc){ showError('error-step4'); return; }
         hideError('error-step4');
-        buildKuyoSets(parseInt(getRadio('kuyoCount')));
+        if (kc === '6以上') { goToStep('kuyo-over'); return; }
+        buildKuyoSets(parseInt(kc));
       }
       if(from===5) {
         var count = parseInt(getRadio('kuyoCount'));
@@ -420,7 +456,8 @@
         for (var i = 1; i <= count; i++) {
           if(!getVal('kuyo-target-'+i)) { valid = false; break; }
           if (isTobaFlow) {
-            var honsu = parseInt(getVal('kuyo-honsu-'+i)) || 1;
+            var honsu = parseInt(getVal('kuyo-honsu-'+i));
+            if (isNaN(honsu)) honsu = 1;
             for (var jj = 1; jj <= honsu; jj++) {
               if(!getVal('kuyo-name-'+i+'-'+jj) || !getVal('kuyo-furi-'+i+'-'+jj)) { valid = false; break; }
             }
@@ -436,6 +473,7 @@
     }
 
     function prevStep(from) {
+      if (from === 'kuyo-over') { goToStep(4); return; }
       if (from === 1) { goToStep(0); return; }
       if (from === 3 && applyType === 'none') { goToStep(0); return; }
       goToStep(from-1);
@@ -453,7 +491,8 @@
         var honsu = '';
         if (isTobaFlow) {
           honsu = getVal('kuyo-honsu-'+i);
-          var honsuNum = parseInt(honsu) || 1;
+          var honsuNum = parseInt(honsu);
+          if (isNaN(honsuNum)) honsuNum = 1;
           var nameList = [];
           for (var j = 1; j <= honsuNum; j++) {
             var nm = getVal('kuyo-name-'+i+'-'+j);
@@ -513,9 +552,14 @@
           html += '<tr><th colspan="2" style="background:var(--green-light); font-weight:700; color:var(--green-dark); padding:10px 8px;">' + (idx+1) + '件目</th></tr>';
           html += row('ご供養される対象', set.target);
           if (applyType === 'toba') {
-            html += row('本数', set.honsu + '本');
+            var isEkoOnly = (String(set.honsu) === '0');
+            html += row('本数', isEkoOnly ? '0本（回向のみ）' : (set.honsu + '本'));
+            if (!isEkoOnly) {
+              html += '<tr><th>' + namesHeader + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
+            }
+          } else {
+            html += '<tr><th>' + namesHeader + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
           }
-          html += '<tr><th>' + namesHeader + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
         });
         if(d.message) html += row('お伝えしたい内容', d.message);
       }
