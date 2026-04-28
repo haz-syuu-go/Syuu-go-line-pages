@@ -139,13 +139,13 @@
       <h2 class="step-title">ご供養する対象の数をお選びください</h2>
       <p class="section__lead" style="margin-bottom:8px;">例①：〇〇家 先祖代々のみの場合は「1」をお選びください。</p>
       <p class="section__lead" style="margin-bottom:16px;">例②：〇〇家 先祖代々・故人名（父）・故人名（母）の場合は「3」をお選びください。</p>
-      <p class="form-hint form-hint--danger" style="margin-bottom:16px;">新盆の故人は、7月17日の新盆施餓鬼でお申込みください。</p>
+      <p class="form-hint form-hint--danger" id="hint-shinbon" style="margin-bottom:16px;">新盆の故人は、7月17日の新盆施餓鬼でお申込みください。</p>
       <div class="option-list">
-        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-1" value="1"><label for="kuyo-1">1</label></div>
-        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-2" value="2"><label for="kuyo-2">2</label></div>
-        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-3" value="3"><label for="kuyo-3">3</label></div>
-        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-4" value="4"><label for="kuyo-4">4</label></div>
-        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-5" value="5"><label for="kuyo-5">5</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-1" value="1"><label for="kuyo-1">「1」</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-2" value="2"><label for="kuyo-2">「2」</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-3" value="3"><label for="kuyo-3">「3」</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-4" value="4"><label for="kuyo-4">「4」</label></div>
+        <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-5" value="5"><label for="kuyo-5">「5」</label></div>
         <div class="option-item"><input type="radio" name="kuyoCount" id="kuyo-6plus" value="6以上"><label for="kuyo-6plus">6以上</label></div>
       </div>
       <div class="form-error" id="error-step4">対象数をお選びください</div>
@@ -219,7 +219,7 @@
         <div class="complete__icon"></div>
         <h2 class="complete__title">お申込みが完了しました</h2>
         <p class="complete__desc">
-          内容をお預かり致しました。<br>
+          内容をお預かりいたしました。<br>
           もしご不明点等ございましたら、<br>
           いつでもLINEメッセージにて<br>
           お知らせください。
@@ -430,6 +430,8 @@
       if(from===1) {
         if(!getRadio('tobaType')){ showError('error-step1'); return; }
         hideError('error-step1');
+        var hintShinbon = document.getElementById('hint-shinbon');
+        if (hintShinbon) hintShinbon.style.display = (getRadio('tobaType') === '7/17 新盆の方') ? 'none' : '';
       }
       if(from===2) { if(!getRadio('attendance')){ showError('error-step2'); return; } hideError('error-step2'); }
       if(from===3) {
