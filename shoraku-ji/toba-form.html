@@ -122,10 +122,10 @@
         <div class="form-error" id="error-seshu-kana">よみがなをご入力ください</div>
       </div>
       <div class="form-group">
-        <label class="form-label" for="seshu-email">メールアドレス<span class="required">必須</span></label>
+        <label class="form-label" for="seshu-email">メールアドレス<span class="optional">任意</span></label>
         <input type="email" class="form-input" id="seshu-email" placeholder="例：taro@example.com" autocomplete="email">
         <div class="form-error" id="error-seshu-email">正しいメールアドレスをご入力ください</div>
-        <p class="form-hint mt-8">後日お申込み内容をご確認いただく際に使用します</p>
+        <p class="form-hint mt-8">ご入力いただくと、後日お申込み内容をご確認いただく際に使用します</p>
       </div>
       <div class="btn-row">
         <button type="button" class="btn btn--secondary" onclick="prevStep(3)">戻る</button>
@@ -437,7 +437,7 @@
         if(!getVal('seshu-name')){ showError('error-seshu-name'); v=false; } else { hideError('error-seshu-name'); }
         if(!getVal('seshu-kana')){ showError('error-seshu-kana'); v=false; } else { hideError('error-seshu-kana'); }
         var em = getVal('seshu-email');
-        if(!em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showError('error-seshu-email'); v=false; } else { hideError('error-seshu-email'); }
+        if(em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showError('error-seshu-email'); v=false; } else { hideError('error-seshu-email'); }
         if(!v) return;
         // 希望しない：お名前入力で確認画面へ
         if (applyType === 'none') { showConfirm(); return; }
