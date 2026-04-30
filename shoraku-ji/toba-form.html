@@ -340,11 +340,18 @@
         if (isToba) {
           namesFieldHtml =
             '<div class="form-group" id="kuyo-names-section-'+i+'">' +
-              '<label class="form-label">' + namesLabel + '<span class="required">必須</span></label>' +
-              '<p class="form-hint mt-8">※お塔婆を申し込まれる本数分のお名前をご記入ください</p>' +
-              '<p class="form-hint form-hint--danger mt-8">※読み上げる順番でお一人ずつ</p>' +
-              '<p class="form-hint form-hint--danger mt-8">※連名でのお申込みはお受けしておりません</p>' +
-              '<div id="kuyo-names-container-'+i+'" style="margin-top:12px;"></div>' +
+              '<div id="kuyo-toba-mode-'+i+'">' +
+                '<label class="form-label">' + namesLabel + '<span class="required">必須</span></label>' +
+                '<p class="form-hint mt-8">※お塔婆を申し込まれる本数分のお名前をご記入ください</p>' +
+                '<p class="form-hint form-hint--danger mt-8">※読み上げる順番でお一人ずつ</p>' +
+                '<p class="form-hint form-hint--danger mt-8">※連名でのお申込みはお受けしておりません</p>' +
+                '<div id="kuyo-names-container-'+i+'" style="margin-top:12px;"></div>' +
+              '</div>' +
+              '<div id="kuyo-eko-mode-'+i+'" style="display:none;">' +
+                '<label class="form-label">参加者さまのお名前（ふりがな）<span class="required">必須</span></label>' +
+                '<textarea class="form-input" id="kuyo-eko-names-'+i+'" rows="4" placeholder="例：&#10;勝楽 太郎（しょうらく たろう）&#10;勝楽 花子（しょうらく はなこ）" style="margin-top:8px;"></textarea>' +
+                '<p class="form-hint form-hint--danger mt-8">※読み上げる順番でお一人一行ずつ、ふりがなも併せてご記入ください</p>' +
+              '</div>' +
             '</div>';
         } else {
           namesFieldHtml =
@@ -387,15 +394,20 @@
         if (!isNaN(p)) honsu = p;
       }
       var section = document.getElementById('kuyo-names-section-'+setNum);
+      var tobaMode = document.getElementById('kuyo-toba-mode-'+setNum);
+      var ekoMode = document.getElementById('kuyo-eko-mode-'+setNum);
       var container = document.getElementById('kuyo-names-container-'+setNum);
       if (!container) return;
 
       if (honsu === 0) {
-        if (section) section.style.display = 'none';
-        container.innerHTML = '';
+        if (section) section.style.display = '';
+        if (tobaMode) tobaMode.style.display = 'none';
+        if (ekoMode) ekoMode.style.display = '';
         return;
       }
       if (section) section.style.display = '';
+      if (tobaMode) tobaMode.style.display = '';
+      if (ekoMode) ekoMode.style.display = 'none';
 
       var existing = [];
       for (var k = 1; k <= 10; k++) {
@@ -466,10 +478,14 @@
           if (isTobaFlow) {
             var honsu = parseInt(getVal('kuyo-honsu-'+i));
             if (isNaN(honsu)) honsu = 1;
-            for (var jj = 1; jj <= honsu; jj++) {
-              if(!getVal('kuyo-name-'+i+'-'+jj) || !getVal('kuyo-furi-'+i+'-'+jj)) { valid = false; break; }
+            if (honsu === 0) {
+              if (!getVal('kuyo-eko-names-'+i)) { valid = false; break; }
+            } else {
+              for (var jj = 1; jj <= honsu; jj++) {
+                if(!getVal('kuyo-name-'+i+'-'+jj) || !getVal('kuyo-furi-'+i+'-'+jj)) { valid = false; break; }
+              }
+              if (!valid) break;
             }
-            if (!valid) break;
           } else {
             if(!getVal('kuyo-names-'+i)) { valid = false; break; }
           }
@@ -501,13 +517,17 @@
           honsu = getVal('kuyo-honsu-'+i);
           var honsuNum = parseInt(honsu);
           if (isNaN(honsuNum)) honsuNum = 1;
-          var nameList = [];
-          for (var j = 1; j <= honsuNum; j++) {
-            var nm = getVal('kuyo-name-'+i+'-'+j);
-            var fr = getVal('kuyo-furi-'+i+'-'+j);
-            if (nm) nameList.push(nm + (fr ? '（' + fr + '）' : ''));
+          if (honsuNum === 0) {
+            names = getVal('kuyo-eko-names-'+i);
+          } else {
+            var nameList = [];
+            for (var j = 1; j <= honsuNum; j++) {
+              var nm = getVal('kuyo-name-'+i+'-'+j);
+              var fr = getVal('kuyo-furi-'+i+'-'+j);
+              if (nm) nameList.push(nm + (fr ? '（' + fr + '）' : ''));
+            }
+            names = nameList.join('\n');
           }
-          names = nameList.join('\n');
         } else {
           names = getVal('kuyo-names-'+i);
         }
@@ -562,9 +582,8 @@
           if (applyType === 'toba') {
             var isEkoOnly = (String(set.honsu) === '0');
             html += row('本数', isEkoOnly ? '0本（回向のみ）' : (set.honsu + '本'));
-            if (!isEkoOnly) {
-              html += '<tr><th>' + namesHeader + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
-            }
+            var label = isEkoOnly ? '参加者さまのお名前' : namesHeader;
+            html += '<tr><th>' + label + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
           } else {
             html += '<tr><th>' + namesHeader + '</th><td>' + escapeHtml(set.names).replace(/\n/g,'<br>') + '</td></tr>';
           }
