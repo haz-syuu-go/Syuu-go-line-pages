@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>令和8年度 寺庭婦人会総会・開催ご報告｜浄土宗埼玉教区</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --text: #1a1d22;
+    --text-sub: #3f464d;
+    --line: #dfe3e8;
+    --accent: #6B4BA8;       /* 浄土宗・紫 */
+    --accent-bg: #efeaf7;
+    --accent-deep: #4a2f82;
+    --note-bg: #fffdf1;
+    --note-line: #f0e4a3;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "ヒラギノ角ゴシック", sans-serif;
+    font-size: 21px;
+    line-height: 2.1;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 22px 80px; }
+
+  /* ヘッダー */
+  .site-header {
+    text-align: center;
+    padding: 8px 0 22px;
+    border-bottom: 2px solid var(--accent-bg);
+    margin-bottom: 26px;
+  }
+  .site-eyebrow {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 6px 16px;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .site-title {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.55;
+    letter-spacing: 0.04em;
+  }
+  .site-sub {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 12px;
+    line-height: 1.85;
+  }
+  .notice {
+    margin: 18px 0 26px;
+    padding: 14px 18px;
+    background: var(--note-bg);
+    border: 1px solid var(--note-line);
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.85;
+    color: var(--text);
+    text-align: center;
+  }
+
+  /* スライダー（1枚ずつ表示／自動切替＋手動操作） */
+  .slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--accent-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  }
+  .slides {
+    position: absolute;
+    inset: 0;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  .slide.is-active { opacity: 1; z-index: 1; }
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 前後ボタン */
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: none;
+    background: rgba(255,255,255,0.85);
+    color: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: background 0.15s ease;
+  }
+  .slider-btn:hover { background: #ffffff; }
+  .slider-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .slider-btn svg { width: 26px; height: 26px; }
+  .slider-btn.prev { left: 12px; }
+  .slider-btn.next { right: 12px; }
+
+  /* インジケータ（ドット） */
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 30px;
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d6d6d6;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .dot:hover { transform: scale(1.15); }
+  .dot.is-active { background: var(--accent); transform: scale(1.2); }
+  .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* 本文 */
+  .article {
+    margin-top: 8px;
+  }
+  .article p {
+    font-size: 21px;
+    line-height: 2.15;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 26px;
+  }
+  .article p:last-child { margin-bottom: 0; }
+
+  /* 本文中の写真 */
+  .article-photo {
+    margin: 32px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+  .article-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .bottom-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 36px;
+    align-items: stretch;
+  }
+  .bottom-photos .article-photo { margin: 0; }
+  /* photo11（左）の縦幅を基準に、photo12（右）を中央で切り抜いて統一 */
+  .bottom-photos .article-photo:last-child {
+    position: relative;
+    overflow: hidden;
+  }
+  .bottom-photos .article-photo:last-child img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* 締めくくりブロック */
+  .closing {
+    margin-top: 44px;
+    padding: 26px 24px;
+    background: var(--accent-bg);
+    border-radius: 14px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.95;
+    color: var(--accent-deep);
+  }
+
+  /* フッター */
+  .footer-note {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 48px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    line-height: 1.85;
+  }
+
+  /* スマホ最適化 */
+  @media (max-width: 480px) {
+    .wrap { padding: 22px 16px 60px; }
+    body { font-size: 19px; line-height: 2.0; }
+    .site-title { font-size: 23px; }
+    .site-sub { font-size: 16px; }
+    .site-eyebrow { font-size: 14px; padding: 5px 14px; }
+    .notice { font-size: 15px; padding: 12px 14px; }
+    .article p { font-size: 19px; line-height: 2.05; margin-bottom: 22px; }
+    .closing { font-size: 17px; padding: 22px 18px; }
+    .slider-btn { width: 42px; height: 42px; }
+    .slider-btn svg { width: 22px; height: 22px; }
+    .bottom-photos { grid-template-columns: 1fr; gap: 16px; }
+    .bottom-photos .article-photo:last-child { position: static; }
+    .bottom-photos .article-photo:last-child img { position: static; height: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- アイコン定義 -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+  </symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <span class="site-eyebrow">浄土宗埼玉教区・婦人会</span>
+    <h1 class="site-title">令和8年度<br>寺庭婦人会総会・開催ご報告</h1>
+    <p class="site-sub">令和8年4月28日（火）／ 大宮ソニックシティ 809会議室</p>
+  </header>
+
+  <p class="notice">＊本報告は、埼玉教区内寺院の皆さまへお届けしております。</p>
+
+  <!-- 画像スライダー（9枚） -->
+  <div class="slider" aria-label="総会・ワークショップの様子" aria-roledescription="carousel">
+    <div class="slides" id="slides">
+      <div class="slide is-active"><img src="images/photo01.jpg" alt="総会の様子 1" loading="eager"></div>
+      <div class="slide"><img src="images/photo02.jpg" alt="総会の様子 2" loading="lazy"></div>
+      <div class="slide"><img src="images/photo03.jpg" alt="総会の様子 3" loading="lazy"></div>
+      <div class="slide"><img src="images/photo04.jpg" alt="総会の様子 4" loading="lazy"></div>
+      <div class="slide"><img src="images/photo05.jpg" alt="総会の様子 5" loading="lazy"></div>
+      <div class="slide"><img src="images/photo06.jpg" alt="総会の様子 6" loading="lazy"></div>
+      <div class="slide"><img src="images/photo07.jpg" alt="総会の様子 7" loading="lazy"></div>
+      <div class="slide"><img src="images/photo08.jpg" alt="総会の様子 8" loading="lazy"></div>
+      <div class="slide"><img src="images/photo09.jpg" alt="総会の様子 9" loading="lazy"></div>
+    </div>
+    <button class="slider-btn prev" type="button" aria-label="前の写真">
+      <svg><use href="#i-arrow-left"/></svg>
+    </button>
+    <button class="slider-btn next" type="button" aria-label="次の写真">
+      <svg><use href="#i-arrow-right"/></svg>
+    </button>
+  </div>
+  <div class="slider-dots" id="dots" role="tablist" aria-label="写真の切替"></div>
+
+  <!-- 本文 -->
+  <article class="article">
+    <p>先日令和8年4月28日（火）、大宮ソニックシティ809会議室にて、浄土宗埼玉教区寺庭婦人会の令和8年度総会を開催いたしました。</p>
+
+    <p>当日は会員25名、来賓3名の計28名にご参加いただきました。総会は皆さまのご協力のもとスムーズに進行し、無事に議事を終えることができました。</p>
+
+    <p>総会後には、フラワーデザイナー・大澤祐美子先生を講師にお迎えし、フラワーワークショップを開催。先生の丁寧なご指導のもと、会場は終始和やかな雰囲気に包まれました。参加者それぞれが真剣に、そして楽しみながら作品づくりに取り組み、気づけば1時間があっという間に過ぎていました。</p>
+
+    <figure class="article-photo">
+      <img src="images/photo08.jpg" alt="ワークショップで完成した作品" loading="lazy">
+    </figure>
+
+    <p>完成した作品はお持ち帰りいただけるものでした。帰り際、皆さんが大切そうに抱えてお持ち帰りになる姿がとても印象的でした。自分の手で作り上げた作品には、やはり特別な愛着が生まれるものですね。</p>
+
+    <div class="closing">
+      ご参加くださいました皆さま、<br>誠にありがとうございました。<br>
+      今後とも寺庭婦人会の活動への<br>ご理解とご協力をよろしくお願い申し上げます。
+    </div>
+
+    <div class="bottom-photos">
+      <figure class="article-photo">
+        <img src="images/photo11.jpg" alt="総会の様子" loading="lazy">
+      </figure>
+      <figure class="article-photo">
+        <img src="images/photo12.jpg" alt="総会の様子" loading="lazy">
+      </figure>
+    </div>
+  </article>
+
+  <p class="footer-note">浄土宗埼玉教区 寺庭婦人会</p>
+
+</div>
+
+<script>
+(function () {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsWrap = document.getElementById('dots');
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  const slider  = document.querySelector('.slider');
+  let current = 0;
+  let timer = null;
+  const INTERVAL = 5000;
+
+  // ドット生成
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' is-active' : '');
+    b.type = 'button';
+    b.setAttribute('aria-label', (i + 1) + '枚目に切替');
+    b.addEventListener('click', () => { go(i); reset(); });
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function go(i) {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
+    dots.forEach((d, idx) => d.classList.toggle('is-active', idx === current));
+  }
+  function next() { go(current + 1); }
+  function prev() { go(current - 1); }
+  function start() { timer = setInterval(next, INTERVAL); }
+  function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+  function reset() { stop(); start(); }
+
+  nextBtn.addEventListener('click', () => { next(); reset(); });
+  prevBtn.addEventListener('click', () => { prev(); reset(); });
+
+  // ホバー中は停止
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+
+  // タッチでスワイプ
+  let tx = 0;
+  slider.addEventListener('touchstart', (e) => { tx = e.changedTouches[0].clientX; }, { passive: true });
+  slider.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) { (dx < 0 ? next : prev)(); reset(); }
+  });
+
+  // キーボード
+  slider.tabIndex = 0;
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { next(); reset(); }
+    if (e.key === 'ArrowLeft')  { prev(); reset(); }
+  });
+
+  start();
+})();
+</script>
+
+</body>
+</html>
