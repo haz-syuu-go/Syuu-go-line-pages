@@ -745,6 +745,24 @@
       <label class="label" for="toba_steps">申込手順</label>
       <textarea id="toba_steps" name="toba_steps" placeholder="例：本数・施主名をLINEにて1週間前までにお知らせください"></textarea>
     </div>
+    <div class="field">
+      <label class="label" for="toba_price">塔婆1本の金額</label>
+      <input type="text" id="toba_price" name="toba_price" placeholder="例）3,000円">
+    </div>
+    <div class="field">
+      <span class="label">塔婆の受付方法<span class="opt">複数選択可</span></span>
+      <div class="choices col">
+        <label class="choice"><input type="checkbox" name="toba_method" value="施主のみ上げる"><span>施主のみ上げる</span></label>
+        <label class="choice"><input type="checkbox" name="toba_method" value="施主＋親族希望者が上げる"><span>施主＋親族希望者が上げる</span></label>
+        <label class="choice"><input type="checkbox" name="toba_method" value="その他" data-target="toba-method-other"><span>その他</span></label>
+      </div>
+      <div class="conditional hidden" id="toba-method-other">
+        <div class="field">
+          <label class="label" for="toba_method_other">その他（自由記入）</label>
+          <textarea id="toba_method_other" name="toba_method_other" placeholder="塔婆の受付方法に関する詳細をご記入ください"></textarea>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="card hidden" id="page5-empty">
@@ -1057,6 +1075,14 @@
     });
   });
 
+  document.querySelectorAll('input[type="checkbox"][data-target]').forEach(c => {
+    c.addEventListener('change', () => {
+      const target = document.getElementById(c.dataset.target);
+      if (!target) return;
+      target.classList.toggle('hidden', !c.checked);
+    });
+  });
+
   /* ──────── Page 5: Page 4 の「要」選択に応じてカード表示 ──────── */
   function applyPage5Visibility() {
     const isJodoShinshu = JODO_SHINSHU.includes(sectSelect.value);
@@ -1288,6 +1314,13 @@
     if (vRadio('toba_use') === '要' && !isJodoShinshu) {
       detailRows += row('塔婆 申込期限', v('toba_deadline'));
       detailRows += row('塔婆 申込手順', v('toba_steps'));
+      detailRows += row('塔婆1本の金額', v('toba_price'));
+      const tobaMethods = vMulti('toba_method');
+      const tobaMethodOther = v('toba_method_other');
+      const tobaMethodDisplay = tobaMethods.map(m =>
+        m === 'その他' && tobaMethodOther ? `その他：${tobaMethodOther}` : m
+      );
+      detailRows += row('塔婆の受付方法', tobaMethodDisplay);
     }
     if (!detailRows) detailRows = row('詳細', '（要が選ばれた項目はありません）');
     html += `<div class="review-section"><h3>お花・御供物・お布施・塔婆 詳細</h3>${detailRows}</div>`;
