@@ -366,10 +366,12 @@
   .item-card .item-body {
     margin-top: 10px;
     padding-left: 28px;
+    overflow: visible;
   }
   .item-card .item-body textarea {
-    min-height: 60px;
+    min-height: 96px;
     font-size: 14px;
+    overflow: visible;
   }
 
   /* file */
@@ -532,7 +534,7 @@
     <h1>ご法事<br>ヒアリングフォーム</h1>
     <div class="ornament"></div>
     <p class="body">
-      このフォームは、ご法事のご案内ページを作成するためのヒアリングフォームです。<br>
+      公式LINE内にご法事のチェックリスト・ご案内ページを作成するためのヒアリングフォームです。<br>
       設問に沿ってご入力ください。<br>
       宗派やご法要の種類によって、表示される項目が変わります。
     </p>
@@ -554,7 +556,7 @@
   <div class="card">
     <div class="field first">
       <label class="label" for="temple_name">寺院名<span class="req">必須</span></label>
-      <input type="text" id="temple_name" name="temple_name" placeholder="例：多聞院">
+      <input type="text" id="temple_name" name="temple_name" placeholder="例）内藤寺">
     </div>
     <div class="field">
       <label class="label" for="sect">ご宗派<span class="req">必須</span></label>
@@ -568,8 +570,14 @@
         <option value="soto">曹洞宗</option>
         <option value="ji">時宗</option>
         <option value="tendai">天台宗</option>
+        <option value="nichiren">日蓮宗</option>
+        <option value="other">その他（入力欄）</option>
       </select>
       <p class="help">宗派により以降の表示項目が一部変わります。</p>
+    </div>
+    <div class="field hidden" id="sect-other-wrap">
+      <label class="label" for="sect_other">宗派名（自由記入）<span class="req">必須</span></label>
+      <input type="text" id="sect_other" name="sect_other" placeholder="例）○○宗">
     </div>
   </div>
   <div class="nav-actions">
@@ -626,22 +634,56 @@
     </div>
   </div>
 
+  <div class="card">
+    <div class="card-title">お花・御供物・お布施・塔婆の要不要</div>
+    <p class="help" style="margin-top:0; margin-bottom:14px;">「要」を選んだ項目は、次のページで詳細をご記入いただきます。</p>
+    <div class="field first">
+      <span class="label">お花</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="flower_use" value="要"><span>要</span></label>
+        <label class="choice"><input type="radio" name="flower_use" value="不要"><span>不要</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <span class="label">御供物</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="kumotsu_use" value="要"><span>要</span></label>
+        <label class="choice"><input type="radio" name="kumotsu_use" value="不要"><span>不要</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <span class="label">お布施</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="ofuse_use" value="要"><span>要</span></label>
+        <label class="choice"><input type="radio" name="ofuse_use" value="不要"><span>不要</span></label>
+      </div>
+    </div>
+    <div class="field" id="toba-use-field">
+      <span class="label">塔婆</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="toba_use" value="要"><span>要</span></label>
+        <label class="choice"><input type="radio" name="toba_use" value="不要"><span>不要</span></label>
+      </div>
+      <p class="help">※浄土真宗系の場合は塔婆を行わないため非表示になります。</p>
+    </div>
+  </div>
+
   <div class="nav-actions">
     <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
     <button type="button" class="btn btn-primary" data-action="next">次へ</button>
   </div>
 </section>
 
-<!-- ───────── Page 5: お花・御供物・お布施・塔婆 ───────── -->
+<!-- ───────── Page 5: お花・御供物・お布施・塔婆 詳細 ───────── -->
 <section class="page" data-step="5" data-name="お花・御供物・お布施・塔婆">
   <div class="page-head">
     <div class="step-no">STEP 5</div>
     <h2>お花・御供物・お布施・塔婆</h2>
     <div class="accent-line"></div>
-    <p class="desc">該当する項目のみご記入ください（すべて任意）</p>
+    <p class="desc">前ページで「要」を選んだ項目の詳細をご記入ください</p>
   </div>
 
-  <div class="card">
+  <div class="card detail-card hidden" id="flower-card">
     <div class="card-title">お花</div>
     <div class="field first">
       <div class="choices">
@@ -655,13 +697,13 @@
         </div>
         <div class="field">
           <label class="label" for="flower_note">詳細・申込方法</label>
-          <textarea id="flower_note" name="flower_note" placeholder="例：3日前までにLINEにてお申込みください"></textarea>
+          <textarea id="flower_note" name="flower_note" placeholder="例：1週間前までにLINEにてお申込みください"></textarea>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="card">
+  <div class="card detail-card hidden" id="kumotsu-card">
     <div class="card-title">御供物</div>
     <div class="field first">
       <div class="choices">
@@ -681,45 +723,32 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card detail-card hidden" id="ofuse-card">
     <div class="card-title">お布施</div>
     <div class="field first">
-      <div class="choices">
-        <label class="choice"><input type="radio" name="ofuse" value="要" data-target="ofuse-detail"><span>要</span></label>
-        <label class="choice"><input type="radio" name="ofuse" value="不要" data-target="ofuse-detail"><span>不要</span></label>
-      </div>
-      <div class="conditional hidden" id="ofuse-detail">
-        <div class="field">
-          <label class="label" for="ofuse_amount">目安金額</label>
-          <input type="text" id="ofuse_amount" name="ofuse_amount" placeholder="例：3万円〜5万円">
-        </div>
-        <div class="field">
-          <label class="label" for="ofuse_note">詳細・お渡し方法など</label>
-          <textarea id="ofuse_note" name="ofuse_note" placeholder="例：奉書紙または白封筒に入れてお持ちください"></textarea>
-        </div>
-      </div>
+      <label class="label" for="ofuse_amount">目安金額</label>
+      <input type="text" id="ofuse_amount" name="ofuse_amount" placeholder="例：3万円〜5万円">
+    </div>
+    <div class="field">
+      <label class="label" for="ofuse_note">詳細・お渡し方法など</label>
+      <textarea id="ofuse_note" name="ofuse_note" placeholder="例：奉書紙または白封筒に入れてお持ちください"></textarea>
     </div>
   </div>
 
-  <div class="card" id="toba-card">
+  <div class="card detail-card hidden" id="toba-card">
     <div class="card-title">塔婆</div>
     <div class="field first">
-      <div class="choices">
-        <label class="choice"><input type="radio" name="toba" value="要" data-target="toba-detail"><span>要</span></label>
-        <label class="choice"><input type="radio" name="toba" value="不要" data-target="toba-detail"><span>不要</span></label>
-      </div>
-      <div class="conditional hidden" id="toba-detail">
-        <div class="field">
-          <label class="label" for="toba_deadline">申込期限</label>
-          <input type="text" id="toba_deadline" name="toba_deadline" placeholder="例：法要日の1週間前まで">
-        </div>
-        <div class="field">
-          <label class="label" for="toba_steps">申込手順</label>
-          <textarea id="toba_steps" name="toba_steps" placeholder="例：本数・施主名をLINEにてお知らせください"></textarea>
-        </div>
-      </div>
+      <label class="label" for="toba_deadline">申込期限</label>
+      <input type="text" id="toba_deadline" name="toba_deadline" value="1週間前まで" placeholder="1週間前まで">
     </div>
-    <p class="help" id="toba-note" style="margin-top:8px;">※浄土真宗系の場合は塔婆を行わないため非表示になります。</p>
+    <div class="field">
+      <label class="label" for="toba_steps">申込手順</label>
+      <textarea id="toba_steps" name="toba_steps" placeholder="例：本数・施主名をLINEにて1週間前までにお知らせください"></textarea>
+    </div>
+  </div>
+
+  <div class="card hidden" id="page5-empty">
+    <p class="help" style="margin:0;">前ページですべて「不要」が選択されているため、入力項目はありません。「次へ」を押してお進みください。</p>
   </div>
 
   <div class="nav-actions">
@@ -789,9 +818,8 @@
   <div class="card">
     <div id="faqList"></div>
     <div class="field" style="margin-top:18px; padding-top:18px; border-top:1px dashed var(--border);">
-      <label class="label" for="faq_extra_q">その他追加したいQ&amp;A<span class="opt">任意</span></label>
-      <input type="text" id="faq_extra_q" name="faq_extra_q" placeholder="質問（例：法要の途中入退室は可能ですか？）" style="margin-bottom:8px;">
-      <textarea id="faq_extra_a" name="faq_extra_a" placeholder="回答"></textarea>
+      <label class="label" for="faq_extra">その他追加したいQ&amp;A<span class="opt">任意</span></label>
+      <textarea id="faq_extra" name="faq_extra" style="min-height:140px;" placeholder="追加したいQ&amp;Aをご自由にご記入ください。（複数ある場合はまとめてご記入ください）"></textarea>
     </div>
   </div>
   <div class="nav-actions">
@@ -919,14 +947,14 @@
 
   /* ──────── 当日の流れ ステップ候補 ──────── */
   const FLOW_STEPS = [
-    { title: '日程のご相談・ご予約', placeholder: '例：LINEまたはお電話にてご連絡ください。ご希望の3ヶ月前、遅くとも1ヶ月前にはご相談を。' },
-    { title: '準備物の確認', placeholder: '例：チェックリストを参考にひとつずつご確認ください。' },
-    { title: '当日ご集合（○分前）', placeholder: '例：法要開始の15〜20分前にお越しください。' },
-    { title: '受付', placeholder: '例：本堂にて受付をいたします。' },
-    { title: '読経・お焼香', placeholder: '例：ご参列の皆様にお焼香いただきます。所要時間は約1時間。' },
-    { title: '法話', placeholder: '例：住職よりお話をさせていただきます。' },
-    { title: 'お墓参り', placeholder: '例：法要後にお墓参りをされる方はご相談ください。' },
-    { title: 'お食事（任意）', placeholder: '例：ご法事後、そのままお寺にてお食事いただくことも可能です。' }
+    { title: '日程のご相談・ご予約', default: 'LINE・お電話にてご連絡ください。ご希望の日時を調整いたします。' },
+    { title: '準備物の確認', default: 'チェックリストを参考に、ご準備物をひとつずつご確認ください。' },
+    { title: '当日ご集合', default: '法要開始の15〜20分前にお越しください。' },
+    { title: '受付', default: '本堂にて受付をいたします。' },
+    { title: '読経・お焼香', default: 'ご参列の皆様にお焼香いただきます。' },
+    { title: '法話', default: '住職よりお話をさせていただきます。' },
+    { title: 'お墓参り', default: '法要後、お墓参りを行います。' },
+    { title: 'お食事', default: 'ご家族・ご親族とお会いできるたいせつなお時間です。ご希望の場合はお申し付けください。' }
   ];
 
   /* ──────── FAQ 候補 ──────── */
@@ -962,6 +990,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     // ページ4 / 6 / 8 は表示時に動的構築
     if (n === 4) renderPrep();
+    if (n === 5) applyPage5Visibility();
     if (n === 6 && !document.getElementById('flowList').children.length) renderFlow();
     if (n === 8 && !document.getElementById('faqList').children.length) renderFaq();
     if (n === 11) renderReview();
@@ -977,6 +1006,10 @@
           alert('寺院名とご宗派をご入力ください。');
           return;
         }
+        if (sect === 'other' && !sectOtherInput.value.trim()) {
+          alert('宗派名（自由記入）をご入力ください。');
+          return;
+        }
       }
       if (currentStep < TOTAL_STEPS) showStep(currentStep + 1);
     });
@@ -987,15 +1020,28 @@
     });
   });
 
-  /* ──────── 宗派による塔婆カードの表示制御 ──────── */
+  /* ──────── 宗派による塔婆カード・「その他」入力欄の表示制御 ──────── */
   const sectSelect = document.getElementById('sect');
+  const sectOtherWrap = document.getElementById('sect-other-wrap');
+  const sectOtherInput = document.getElementById('sect_other');
   function applySect() {
     const isJodoShinshu = JODO_SHINSHU.includes(sectSelect.value);
     const tobaCard = document.getElementById('toba-card');
+    const tobaUseField = document.getElementById('toba-use-field');
     if (isJodoShinshu) {
       tobaCard.classList.add('hidden');
+      tobaUseField.classList.add('hidden');
+      // 浄土真宗系では塔婆要不要を「不要」扱いに
+      document.querySelectorAll('input[name="toba_use"]').forEach(r => r.checked = false);
     } else {
       tobaCard.classList.remove('hidden');
+      tobaUseField.classList.remove('hidden');
+    }
+    if (sectSelect.value === 'other') {
+      sectOtherWrap.classList.remove('hidden');
+    } else {
+      sectOtherWrap.classList.add('hidden');
+      sectOtherInput.value = '';
     }
   }
   sectSelect.addEventListener('change', applySect);
@@ -1010,6 +1056,33 @@
       target.classList.toggle('hidden', !(checked && showValues.includes(checked.value)));
     });
   });
+
+  /* ──────── Page 5: Page 4 の「要」選択に応じてカード表示 ──────── */
+  function applyPage5Visibility() {
+    const isJodoShinshu = JODO_SHINSHU.includes(sectSelect.value);
+    const map = [
+      { card: 'flower-card',  use: 'flower_use'  },
+      { card: 'kumotsu-card', use: 'kumotsu_use' },
+      { card: 'ofuse-card',   use: 'ofuse_use'   },
+      { card: 'toba-card',    use: 'toba_use', jodoBlock: true }
+    ];
+    let shownCount = 0;
+    map.forEach(m => {
+      const el = document.getElementById(m.card);
+      if (!el) return;
+      const checked = document.querySelector(`input[name="${m.use}"]:checked`);
+      const isReq = checked && checked.value === '要';
+      const blockedByJodoShinshu = m.jodoBlock && isJodoShinshu;
+      if (isReq && !blockedByJodoShinshu) {
+        el.classList.remove('hidden');
+        shownCount++;
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+    const empty = document.getElementById('page5-empty');
+    if (empty) empty.classList.toggle('hidden', shownCount > 0);
+  }
 
   /* ──────── Page 4: 準備物の動的描画 ──────── */
   function renderPrep() {
@@ -1043,6 +1116,15 @@
         </li>`;
       });
       html += `</ul></div>`;
+      // 四十九日・年回忌のみ追加事項の自由記入欄を表示
+      if (ritual === '四十九日' || ritual === '年回忌') {
+        html += `<div class="field" style="margin-top:14px;">
+          <label class="label" for="prep_${safeId}_extra">${ritual}の追加事項<span class="opt">任意</span></label>
+          <textarea id="prep_${safeId}_extra" name="prep_${safeId}_extra" style="min-height:120px;" placeholder="${ritual}に関する補足事項やご案内したい内容をご記入ください"></textarea>
+        </div>`;
+      }
+      // ritual名を保持（確認画面用）
+      html += `<input type="hidden" name="prep_${safeId}_ritual" value="${ritual}">`;
       card.innerHTML = html;
       wrap.appendChild(card);
     });
@@ -1055,6 +1137,7 @@
     FLOW_STEPS.forEach((s, i) => {
       const card = document.createElement('div');
       card.className = 'item-card';
+      const defaultText = s.default || '';
       card.innerHTML = `
         <label class="item-head">
           <input type="checkbox" name="flow_${i}_check" value="1">
@@ -1062,7 +1145,7 @@
           <span class="item-title">${s.title}</span>
         </label>
         <div class="item-body">
-          <textarea name="flow_${i}_note" placeholder="${s.placeholder}"></textarea>
+          <textarea name="flow_${i}_note" placeholder="${defaultText}">${defaultText}</textarea>
         </div>
         <input type="hidden" name="flow_${i}_title" value="${s.title}">
       `;
@@ -1126,6 +1209,10 @@
   function vMulti(name) {
     return Array.from(document.querySelectorAll(`[name="${name}"]:checked`)).map(c => c.value);
   }
+  function vRadio(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
   function row(k, val) {
     const empty = !val || (Array.isArray(val) && val.length === 0);
     const display = Array.isArray(val) ? val.join('、') : val;
@@ -1139,6 +1226,10 @@
       .replace(/"/g, '&quot;');
   }
   function sectLabel() {
+    if (sectSelect.value === 'other') {
+      const v = sectOtherInput.value.trim();
+      return v ? `その他：${v}` : 'その他';
+    }
     const opt = sectSelect.options[sectSelect.selectedIndex];
     return opt ? opt.text : '';
   }
@@ -1162,35 +1253,44 @@
     houyou.forEach((ritual, idx) => {
       const items = vMulti(`prep_rit${idx}`);
       prepRows += row(ritual, items);
+      if (ritual === '四十九日' || ritual === '年回忌') {
+        const extra = v(`prep_rit${idx}_extra`);
+        if (extra) prepRows += row(`└ ${ritual}の追加事項`, extra);
+      }
     });
     prepRows += row('故人のお写真', v('photo'));
     prepRows += row('その他', v('prep_other'));
+    prepRows += row('お花', vRadio('flower_use'));
+    prepRows += row('御供物', vRadio('kumotsu_use'));
+    prepRows += row('お布施', vRadio('ofuse_use'));
+    if (!isJodoShinshu) prepRows += row('塔婆', vRadio('toba_use'));
     html += `<div class="review-section"><h3>準備物</h3>${prepRows}</div>`;
 
-    let flowKumoOfuse = '';
-    flowKumoOfuse += row('お花', v('flower'));
-    if (v('flower') === '依頼できる') {
-      flowKumoOfuse += row('└ 費用', v('flower_price'));
-      flowKumoOfuse += row('└ 詳細', v('flower_note'));
-    }
-    flowKumoOfuse += row('御供物', v('kumotsu'));
-    if (v('kumotsu') === '依頼できる') {
-      flowKumoOfuse += row('└ 費用', v('kumotsu_price'));
-      flowKumoOfuse += row('└ 詳細', v('kumotsu_note'));
-    }
-    flowKumoOfuse += row('お布施', v('ofuse'));
-    if (v('ofuse') === '要') {
-      flowKumoOfuse += row('└ 目安金額', v('ofuse_amount'));
-      flowKumoOfuse += row('└ 詳細', v('ofuse_note'));
-    }
-    if (!isJodoShinshu) {
-      flowKumoOfuse += row('塔婆', v('toba'));
-      if (v('toba') === '要') {
-        flowKumoOfuse += row('└ 申込期限', v('toba_deadline'));
-        flowKumoOfuse += row('└ 手順', v('toba_steps'));
+    let detailRows = '';
+    if (vRadio('flower_use') === '要') {
+      detailRows += row('お花', v('flower') || '（未選択）');
+      if (v('flower') === '依頼できる') {
+        detailRows += row('└ 費用', v('flower_price'));
+        detailRows += row('└ 詳細', v('flower_note'));
       }
     }
-    html += `<div class="review-section"><h3>お花・御供物・お布施・塔婆</h3>${flowKumoOfuse}</div>`;
+    if (vRadio('kumotsu_use') === '要') {
+      detailRows += row('御供物', v('kumotsu') || '（未選択）');
+      if (v('kumotsu') === '依頼できる') {
+        detailRows += row('└ 費用', v('kumotsu_price'));
+        detailRows += row('└ 詳細', v('kumotsu_note'));
+      }
+    }
+    if (vRadio('ofuse_use') === '要') {
+      detailRows += row('お布施 目安金額', v('ofuse_amount'));
+      detailRows += row('お布施 詳細', v('ofuse_note'));
+    }
+    if (vRadio('toba_use') === '要' && !isJodoShinshu) {
+      detailRows += row('塔婆 申込期限', v('toba_deadline'));
+      detailRows += row('塔婆 申込手順', v('toba_steps'));
+    }
+    if (!detailRows) detailRows = row('詳細', '（要が選ばれた項目はありません）');
+    html += `<div class="review-section"><h3>お花・御供物・お布施・塔婆 詳細</h3>${detailRows}</div>`;
 
     let flowHtml = '';
     FLOW_STEPS.forEach((s, i) => {
@@ -1214,8 +1314,8 @@
         faqHtml += row(`Q${i + 1}. ${f.q}`, v(`faq_${i}_a`));
       }
     });
-    if (v('faq_extra_q') || v('faq_extra_a')) {
-      faqHtml += row(`追加Q：${v('faq_extra_q') || '（未入力）'}`, v('faq_extra_a'));
+    if (v('faq_extra')) {
+      faqHtml += row('その他追加Q&A', v('faq_extra'));
     }
     if (!faqHtml) faqHtml = row('選択', '');
     html += `<div class="review-section"><h3>よくある質問</h3>${faqHtml}</div>`;
