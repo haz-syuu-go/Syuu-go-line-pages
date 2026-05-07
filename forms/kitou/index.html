@@ -30,108 +30,156 @@
     line-height: 1.8;
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
+    padding-top: 64px;
   }
-  h1, h2, .serif {
+  h1, h2, h3, .serif {
     font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
   }
 
-  .header {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: #fff;
-    text-align: center;
-    padding: 36px 20px 32px;
+  /* 進捗バー */
+  .progress-fixed {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    box-shadow: 0 1px 6px rgba(0,0,0,.04);
   }
-  .header .lead {
-    font-size: 13px;
-    letter-spacing: 3px;
-    opacity: .85;
-    margin-bottom: 8px;
+  .progress-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 12px 20px 14px;
   }
-  .header h1 {
-    font-size: 24px;
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .progress-meta .step-name {
     font-weight: 700;
-    letter-spacing: 2px;
-    line-height: 1.5;
-  }
-  .header .accent-line {
-    width: 48px; height: 2px;
-    background: var(--accent);
-    margin: 14px auto 12px;
-  }
-  .header .sub {
+    color: var(--primary);
     font-size: 13px;
-    opacity: .9;
-    line-height: 1.7;
+  }
+  .progress-meta .count { font-variant-numeric: tabular-nums; }
+  .progress-bar {
+    height: 4px;
+    background: var(--accent-pale);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    transition: width .3s ease;
+    border-radius: 2px;
   }
 
   .container {
     max-width: 680px;
     margin: 0 auto;
-    padding: 28px 20px 60px;
+    padding: 24px 20px 60px;
   }
-  .intro {
-    background: var(--accent-pale);
-    border-left: 3px solid var(--accent);
-    padding: 16px 18px;
-    border-radius: 6px;
-    margin-bottom: 28px;
-    font-size: 14px;
+  .page { display: none; }
+  .page.active { display: block; }
+  .page-head {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .page-head .step-no {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .page-head h2 {
+    font-size: 22px;
     color: var(--primary-dark);
-    line-height: 1.8;
+    line-height: 1.5;
+  }
+  .page-head .accent-line {
+    width: 40px; height: 2px;
+    background: var(--accent);
+    margin: 12px auto 8px;
+  }
+  .page-head .desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
   }
 
-  fieldset {
+  /* イントロ */
+  .intro-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    margin-top: 16px;
+  }
+  .intro-card .lead {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .intro-card h1 {
+    font-size: 24px;
+    color: var(--primary-dark);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .intro-card .ornament {
+    width: 48px; height: 2px;
+    background: var(--accent);
+    margin: 16px auto;
+  }
+  .intro-card .body {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 2;
+    text-align: left;
+    margin: 20px auto;
+    max-width: 480px;
+  }
+  .intro-card .meta {
+    display: inline-block;
+    background: var(--accent-pale);
+    color: var(--primary-dark);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 4px 0 24px;
+  }
+
+  .card {
     background: #fff;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 22px 20px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     box-shadow: var(--shadow);
   }
-  legend {
+  .card-title {
     font-family: "Noto Serif JP", serif;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 16px;
     color: var(--primary);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    line-height: 1;
-    padding: 6px 14px;
-  }
-  legend .num {
-    color: var(--accent);
-    font-weight: 700;
-    margin-right: 6px;
-  }
-  .req {
-    display: inline-block;
-    background: var(--primary);
-    color: #fff;
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 999px;
-    margin-left: 8px;
-    vertical-align: middle;
-    letter-spacing: 1px;
-    font-family: "Noto Sans JP", sans-serif;
-  }
-  .opt {
-    display: inline-block;
-    background: #fff;
-    color: var(--muted);
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 999px;
-    margin-left: 8px;
-    vertical-align: middle;
-    letter-spacing: 1px;
-    border: 1px solid var(--border);
-    font-family: "Noto Sans JP", sans-serif;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
   }
 
   .field { margin-top: 16px; }
-  .field:first-of-type { margin-top: 14px; }
+  .field:first-child, .field.first { margin-top: 0; }
   .field > label.label,
   .field > .label {
     display: block;
@@ -145,6 +193,33 @@
     color: var(--muted);
     margin-top: 4px;
     line-height: 1.6;
+  }
+  .req {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: 1px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+  }
+  .opt {
+    display: inline-block;
+    background: #fff;
+    color: var(--muted);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: 1px;
+    border: 1px solid var(--border);
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
   }
 
   input[type="text"],
@@ -165,7 +240,7 @@
     transition: border-color .15s, box-shadow .15s;
   }
   textarea {
-    min-height: 90px;
+    min-height: 84px;
     resize: vertical;
     line-height: 1.7;
   }
@@ -201,34 +276,57 @@
   .choice:has(input:checked) span { font-weight: 700; color: var(--primary-dark); }
 
   .conditional {
-    margin-top: 12px;
-    padding: 14px;
+    margin-top: 10px;
+    padding: 12px 14px;
     background: var(--accent-pale);
     border-radius: 8px;
     border-left: 3px solid var(--accent);
   }
-  .conditional .label { font-size: 13px; }
+  .conditional .field { margin-top: 12px; }
+  .conditional .field:first-child { margin-top: 0; }
   .hidden { display: none !important; }
 
-  /* steps */
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  /* 祈祷種別 アイテム */
+  .kitou-item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: #FCFBF8;
+    overflow: hidden;
+    transition: all .15s;
   }
+  .kitou-item.checked {
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: var(--shadow);
+  }
+  .kitou-item .kitou-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+  .kitou-item .kitou-head input { accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; }
+  .kitou-item .kitou-detail {
+    display: none;
+    padding: 4px 16px 16px;
+    border-top: 1px dashed var(--border);
+  }
+  .kitou-item.checked .kitou-detail { display: block; }
+  .kitou-item .kitou-detail .field { margin-top: 14px; }
+
+  /* 当日の流れ ステップ */
+  .steps { display: flex; flex-direction: column; gap: 12px; }
   .step-item {
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 14px;
     background: #FCFBF8;
-    position: relative;
   }
-  .step-item .step-head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
+  .step-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .step-no {
     display: inline-flex;
     align-items: center;
@@ -241,11 +339,7 @@
     font-size: 14px;
     flex-shrink: 0;
   }
-  .step-title {
-    flex: 1;
-    font-size: 14px;
-    padding: 8px 12px;
-  }
+  .step-title { flex: 1; font-size: 14px; padding: 8px 12px; }
   .step-remove {
     background: none;
     border: 1px solid var(--border);
@@ -289,40 +383,103 @@
   }
   .file-input:hover { border-color: var(--accent); color: var(--primary); }
   .file-input input { display: none; }
-  .file-list { margin-top: 8px; font-size: 13px; color: var(--muted); }
+  .file-list { margin-top: 8px; font-size: 13px; color: var(--muted); list-style: none; }
   .file-list li { padding: 2px 0; }
 
-  /* submit */
-  .actions {
-    margin-top: 32px;
-    text-align: center;
+  /* 確認 */
+  .review {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
   }
-  .submit-btn {
-    display: inline-block;
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 16px 48px;
-    font-size: 17px;
+  .review-section {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .review-section:last-child { border-bottom: none; }
+  .review-section h3 {
+    font-size: 14px;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--border);
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+  }
+  .review-row {
+    display: flex;
+    gap: 12px;
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .review-row .k {
+    flex: 0 0 35%;
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .review-row .v {
+    flex: 1;
+    color: var(--text);
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+  .review-row .v.empty { color: #b8b0a5; font-style: italic; }
+
+  /* nav */
+  .nav-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    align-items: stretch;
+  }
+  .nav-actions.center { justify-content: center; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-size: 15px;
     font-weight: 700;
     font-family: "Noto Serif JP", serif;
     letter-spacing: 2px;
-    border-radius: 999px;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(92,64,51,0.25);
+    border: none;
     transition: all .2s;
-    min-width: 240px;
+    min-width: 120px;
+    line-height: 1.4;
   }
-  .submit-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(92,64,51,0.22);
+    flex: 2;
+  }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    background: #fff;
+    color: var(--primary);
+    border: 1px solid var(--border);
+    flex: 1;
+  }
+  .btn-secondary:hover { border-color: var(--primary); background: var(--bg); }
+  .btn-large {
+    padding: 16px 48px;
+    font-size: 16px;
+    min-width: 220px;
+  }
 
   .thanks {
     display: none;
     background: #fff;
     border-radius: var(--radius);
-    padding: 48px 24px;
+    padding: 56px 24px;
     text-align: center;
     box-shadow: var(--shadow);
-    margin-top: 24px;
   }
   .thanks.active { display: block; }
   .thanks h2 {
@@ -347,219 +504,253 @@
 </head>
 <body>
 
-<header class="header">
-  <div class="lead">寺子屋しゅうごう</div>
-  <h1>祈祷申込み ヒアリングフォーム</h1>
-  <div class="accent-line"></div>
-  <p class="sub">ご祈祷のご案内に必要な内容を<br>お伺いいたします</p>
-</header>
+<!-- 進捗バー -->
+<div class="progress-fixed" id="progressBar">
+  <div class="progress-inner">
+    <div class="progress-meta">
+      <span class="step-name" id="stepName">はじめに</span>
+      <span class="count"><span id="curStep">1</span> / <span id="totalSteps">9</span></span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</div>
 
 <main class="container">
+<form id="kitouForm" action="#" method="post" enctype="multipart/form-data" novalidate>
 
-  <div class="intro">
-    各項目にご記入の上、最後に「この内容で送信する」ボタンを押してください。<br>
-    宗派をお選びいただくと、表示される祈祷の種類が一部変わります。
-  </div>
-
-  <form id="kitouForm" action="#" method="post" enctype="multipart/form-data" novalidate>
-
-    <!-- ① 寺院名 -->
-    <fieldset>
-      <legend><span class="num">①</span>寺院情報<span class="req">必須</span></legend>
-      <div class="field">
-        <label class="label" for="temple_name">寺院名</label>
-        <input type="text" id="temple_name" name="temple_name" placeholder="例：成田山瀧泉寺" required>
-      </div>
-    </fieldset>
-
-    <!-- ② 宗派 -->
-    <fieldset>
-      <legend><span class="num">②</span>宗派<span class="req">必須</span></legend>
-      <div class="field">
-        <label class="label" for="sect">ご宗派</label>
-        <select id="sect" name="sect" required>
-          <option value="">-- 選択してください --</option>
-          <option value="jodo-shinshu-honganji">浄土真宗本願寺派</option>
-          <option value="shinshu-otani">真宗大谷派</option>
-          <option value="jodo">浄土宗</option>
-          <option value="shingon">真言宗</option>
-          <option value="rinzai">臨済宗</option>
-          <option value="soto">曹洞宗</option>
-          <option value="ji">時宗</option>
-          <option value="tendai">天台宗</option>
-        </select>
-        <p class="help">真言宗をお選びの場合、護摩祈祷の項目が表示されます。</p>
-      </div>
-    </fieldset>
-
-    <!-- ③ 祈祷の種類 -->
-    <fieldset>
-      <legend><span class="num">③</span>祈祷の種類<span class="req">必須</span></legend>
-      <div class="field">
-        <span class="label">対応されている祈祷（複数選択可）</span>
-        <div class="choices col">
-          <label class="choice"><input type="checkbox" name="kitou_type" value="厄払い・各種祈願"><span>厄払い・各種祈願</span></label>
-          <label class="choice"><input type="checkbox" name="kitou_type" value="交通安全"><span>交通安全</span></label>
-          <label class="choice"><input type="checkbox" name="kitou_type" value="安産祈願"><span>安産祈願</span></label>
-          <label class="choice"><input type="checkbox" name="kitou_type" value="学業成就"><span>学業成就</span></label>
-          <label class="choice"><input type="checkbox" name="kitou_type" value="水子供養"><span>水子供養</span></label>
-          <label class="choice"><input type="checkbox" name="kitou_type" value="七五三・お宮参り"><span>七五三・お宮参り</span></label>
-          <label class="choice goma-only hidden"><input type="checkbox" name="kitou_type" value="護摩祈祷"><span>護摩祈祷（真言宗）</span></label>
-        </div>
-        <div class="field">
-          <label class="label" for="kitou_other">その他（自由記載）</label>
-          <input type="text" id="kitou_other" name="kitou_other" placeholder="例：商売繁盛、家内安全 など">
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- ④ 所要時間 -->
-    <fieldset>
-      <legend><span class="num">④</span>所要時間</legend>
-      <div class="field">
-        <label class="label" for="duration">ご祈祷の所要時間</label>
-        <input type="text" id="duration" name="duration" placeholder="例：30分程度">
-      </div>
-    </fieldset>
-
-    <!-- ⑤ 祈祷料 -->
-    <fieldset>
-      <legend><span class="num">⑤</span>祈祷料</legend>
-      <div class="field">
-        <label class="label" for="price_detail">種別ごとの金額・説明</label>
-        <textarea id="price_detail" name="price_detail" placeholder="例：&#10;・厄払い：5,000円〜&#10;・交通安全：3,000円〜&#10;・安産祈願：5,000円〜" style="min-height: 140px;"></textarea>
-      </div>
-    </fieldset>
-
-    <!-- ⑥ 予約 -->
-    <fieldset>
-      <legend><span class="num">⑥</span>予約</legend>
-      <div class="field">
-        <span class="label">予約の要否</span>
-        <div class="choices">
-          <label class="choice"><input type="radio" name="reservation" value="要" data-target="reservation-detail"><span>要</span></label>
-          <label class="choice"><input type="radio" name="reservation" value="不要" data-target="reservation-detail"><span>不要</span></label>
-        </div>
-        <div class="conditional hidden" id="reservation-detail">
-          <div class="field">
-            <label class="label" for="reservation_method">予約方法</label>
-            <textarea id="reservation_method" name="reservation_method" placeholder="例：LINEまたはお電話にて、希望日時の3日前までにご予約ください"></textarea>
-          </div>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- ⑦ 当日の流れ -->
-    <fieldset>
-      <legend><span class="num">⑦</span>当日の流れ<span class="opt">最大8ステップ</span></legend>
-      <p class="help" style="margin-bottom:12px;">受付からお見送りまでの流れをステップごとにご記入ください。</p>
-      <div class="steps" id="steps"></div>
-      <button type="button" class="step-add" id="stepAdd">＋ ステップを追加する</button>
-    </fieldset>
-
-    <!-- ⑧ お持ち物 -->
-    <fieldset>
-      <legend><span class="num">⑧</span>お持ち物<span class="opt">任意</span></legend>
-      <div class="field">
-        <label class="label" for="items">当日のお持ち物</label>
-        <input type="text" id="items" name="items" placeholder="例：母子手帳、腹帯 など">
-      </div>
-    </fieldset>
-
-    <!-- ⑨ 服装 -->
-    <fieldset>
-      <legend><span class="num">⑨</span>服装<span class="opt">任意</span></legend>
-      <div class="field">
-        <label class="label" for="dress">推奨される服装</label>
-        <input type="text" id="dress" name="dress" placeholder="例：平服で結構です（露出の少ない服装）">
-      </div>
-    </fieldset>
-
-    <!-- ⑩ お札・お守り -->
-    <fieldset>
-      <legend><span class="num">⑩</span>お札・お守りの授与</legend>
-      <div class="field">
-        <span class="label">授与の有無</span>
-        <div class="choices">
-          <label class="choice"><input type="radio" name="ofuda" value="あり"><span>あり</span></label>
-          <label class="choice"><input type="radio" name="ofuda" value="なし"><span>なし</span></label>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- ⑪ 駐車場 -->
-    <fieldset>
-      <legend><span class="num">⑪</span>駐車場</legend>
-      <div class="field">
-        <span class="label">駐車場の有無</span>
-        <div class="choices">
-          <label class="choice"><input type="radio" name="parking" value="あり"><span>あり</span></label>
-          <label class="choice"><input type="radio" name="parking" value="なし"><span>なし</span></label>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- ⑫ アクセス -->
-    <fieldset>
-      <legend><span class="num">⑫</span>アクセス</legend>
-      <div class="field">
-        <label class="label" for="address">住所</label>
-        <input type="text" id="address" name="address" placeholder="例：千葉県成田市成田1-1">
-      </div>
-      <div class="field">
-        <label class="label" for="map_url">GoogleマップURL</label>
-        <input type="url" id="map_url" name="map_url" placeholder="https://maps.google.com/...">
-      </div>
-    </fieldset>
-
-    <!-- ⑬ 問い合わせ先 -->
-    <fieldset>
-      <legend><span class="num">⑬</span>問い合わせ先</legend>
-      <div class="field">
-        <label class="label" for="contact_tel">電話番号</label>
-        <input type="tel" id="contact_tel" name="contact_tel" placeholder="例：0476-12-3456">
-      </div>
-      <div class="field">
-        <label class="label" for="contact_hours">受付時間</label>
-        <input type="text" id="contact_hours" name="contact_hours" placeholder="例：9:00〜17:00（年中無休）">
-      </div>
-      <div class="field">
-        <label class="label" for="contact_line">LINEリンクURL</label>
-        <input type="url" id="contact_line" name="contact_line" placeholder="https://lin.ee/...">
-      </div>
-    </fieldset>
-
-    <!-- ⑭ ファイルアップロード -->
-    <fieldset>
-      <legend><span class="num">⑭</span>参考素材<span class="opt">任意</span></legend>
-      <div class="field">
-        <span class="label">参考画像・資料（複数選択可）</span>
-        <label class="file-input">
-          <input type="file" name="files" multiple id="file_input">
-          <span id="file_label">クリックしてファイルを選択</span>
-        </label>
-        <ul class="file-list" id="file_list"></ul>
-      </div>
-    </fieldset>
-
-    <!-- ⑮ その他備考 -->
-    <fieldset>
-      <legend><span class="num">⑮</span>その他備考<span class="opt">任意</span></legend>
-      <div class="field">
-        <textarea name="note" placeholder="ご要望・補足事項などがございましたらご記入ください"></textarea>
-      </div>
-    </fieldset>
-
-    <div class="actions">
-      <button type="submit" class="submit-btn">この内容で送信する</button>
-    </div>
-  </form>
-
-  <div class="thanks" id="thanks">
+<!-- ───────── Page 1: 説明 ───────── -->
+<section class="page active" data-step="1" data-name="はじめに">
+  <div class="intro-card">
+    <div class="lead">寺子屋しゅうごう</div>
+    <h1>祈祷申込み<br>ヒアリングフォーム</h1>
     <div class="ornament"></div>
-    <h2 class="serif">ありがとうございました</h2>
-    <p>内容を確認後、ご連絡いたします。</p>
+    <p class="body">
+      このフォームは、ご祈祷のご案内ページを作成するためのヒアリングフォームです。<br>
+      設問に沿ってご入力ください。<br>
+      宗派や祈祷の種類によって、表示される項目が変わります。
+    </p>
+    <div class="meta">所要時間：約5分</div>
+    <div class="nav-actions center">
+      <button type="button" class="btn btn-primary btn-large" data-action="next">はじめる</button>
+    </div>
   </div>
+</section>
+
+<!-- ───────── Page 2: 寺院・宗派 ───────── -->
+<section class="page" data-step="2" data-name="寺院・宗派">
+  <div class="page-head">
+    <div class="step-no">STEP 2</div>
+    <h2>寺院名・ご宗派</h2>
+    <div class="accent-line"></div>
+    <p class="desc">基本情報をご入力ください</p>
+  </div>
+  <div class="card">
+    <div class="field first">
+      <label class="label" for="temple_name">寺院名<span class="req">必須</span></label>
+      <input type="text" id="temple_name" name="temple_name" placeholder="例：成田山瀧泉寺">
+    </div>
+    <div class="field">
+      <label class="label" for="sect">ご宗派<span class="req">必須</span></label>
+      <select id="sect" name="sect">
+        <option value="">-- 選択してください --</option>
+        <option value="jodo-shinshu-honganji">浄土真宗本願寺派</option>
+        <option value="shinshu-otani">真宗大谷派</option>
+        <option value="jodo">浄土宗</option>
+        <option value="shingon">真言宗</option>
+        <option value="rinzai">臨済宗</option>
+        <option value="soto">曹洞宗</option>
+        <option value="ji">時宗</option>
+        <option value="tendai">天台宗</option>
+      </select>
+      <p class="help">真言宗をお選びの場合、護摩祈祷の項目が表示されます。</p>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
+    <button type="button" class="btn btn-primary" data-action="next">次へ</button>
+  </div>
+</section>
+
+<!-- ───────── Page 3: 祈祷の種類 ───────── -->
+<section class="page" data-step="3" data-name="祈祷の種類">
+  <div class="page-head">
+    <div class="step-no">STEP 3</div>
+    <h2>祈祷の種類</h2>
+    <div class="accent-line"></div>
+    <p class="desc">対応されている祈祷にチェックを入れ、<br>種別ごとの祈祷料・お札授与をご記入ください</p>
+  </div>
+  <div class="card">
+    <div id="kitouList"></div>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
+    <button type="button" class="btn btn-primary" data-action="next">次へ</button>
+  </div>
+</section>
+
+<!-- ───────── Page 4: 所要時間・予約 ───────── -->
+<section class="page" data-step="4" data-name="所要時間・予約">
+  <div class="page-head">
+    <div class="step-no">STEP 4</div>
+    <h2>所要時間・予約</h2>
+    <div class="accent-line"></div>
+  </div>
+  <div class="card">
+    <div class="field first">
+      <label class="label" for="duration">ご祈祷の所要時間<span class="opt">任意</span></label>
+      <input type="text" id="duration" name="duration" placeholder="例：30分程度">
+    </div>
+    <div class="field">
+      <span class="label">予約の要否<span class="opt">任意</span></span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="reservation" value="要" data-target="reservation-detail"><span>要</span></label>
+        <label class="choice"><input type="radio" name="reservation" value="不要" data-target="reservation-detail"><span>不要</span></label>
+      </div>
+      <div class="conditional hidden" id="reservation-detail">
+        <div class="field">
+          <label class="label" for="reservation_method">予約方法</label>
+          <textarea id="reservation_method" name="reservation_method" placeholder="例：LINEまたはお電話にて、希望日時の3日前までにご予約ください"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
+    <button type="button" class="btn btn-primary" data-action="next">次へ</button>
+  </div>
+</section>
+
+<!-- ───────── Page 5: 当日の流れ ───────── -->
+<section class="page" data-step="5" data-name="当日の流れ">
+  <div class="page-head">
+    <div class="step-no">STEP 5</div>
+    <h2>当日の流れ</h2>
+    <div class="accent-line"></div>
+    <p class="desc">受付からお見送りまでの流れをご記入ください<br>（最大8ステップ）</p>
+  </div>
+  <div class="card">
+    <div class="steps" id="steps"></div>
+    <button type="button" class="step-add" id="stepAdd">＋ ステップを追加する</button>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
+    <button type="button" class="btn btn-primary" data-action="next">次へ</button>
+  </div>
+</section>
+
+<!-- ───────── Page 6: お持ち物・服装 ───────── -->
+<section class="page" data-step="6" data-name="お持ち物・服装">
+  <div class="page-head">
+    <div class="step-no">STEP 6</div>
+    <h2>お持ち物・服装</h2>
+    <div class="accent-line"></div>
+  </div>
+  <div class="card">
+    <div class="field first">
+      <label class="label" for="items">お持ち物<span class="opt">任意</span></label>
+      <input type="text" id="items" name="items" placeholder="例：母子手帳、腹帯 など">
+    </div>
+    <div class="field">
+      <label class="label" for="dress">服装<span class="opt">任意</span></label>
+      <input type="text" id="dress" name="dress" placeholder="例：平服で結構です（露出の少ない服装）">
+    </div>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
+    <button type="button" class="btn btn-primary" data-action="next">次へ</button>
+  </div>
+</section>
+
+<!-- ───────── Page 7: 駐車場・アクセス ───────── -->
+<section class="page" data-step="7" data-name="駐車場・アクセス">
+  <div class="page-head">
+    <div class="step-no">STEP 7</div>
+    <h2>駐車場・アクセス</h2>
+    <div class="accent-line"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">駐車場</div>
+    <div class="field first">
+      <span class="label">駐車場の有無</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="parking" value="あり"><span>あり</span></label>
+        <label class="choice"><input type="radio" name="parking" value="なし"><span>なし</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">アクセス</div>
+    <div class="field first">
+      <label class="label" for="address">住所<span class="opt">任意</span></label>
+      <input type="text" id="address" name="address" placeholder="例：千葉県成田市成田1-1">
+    </div>
+    <div class="field">
+      <label class="label" for="map_url">GoogleマップURL<span class="opt">任意</span></label>
+      <input type="url" id="map_url" name="map_url" placeholder="https://maps.google.com/...">
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">受付時間</div>
+    <div class="field first">
+      <label class="label" for="reception_hours">受付時間<span class="opt">任意</span></label>
+      <input type="text" id="reception_hours" name="reception_hours" placeholder="例：9:00〜17:00（年中無休）">
+    </div>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
+    <button type="button" class="btn btn-primary" data-action="next">次へ</button>
+  </div>
+</section>
+
+<!-- ───────── Page 8: 参考素材・備考 ───────── -->
+<section class="page" data-step="8" data-name="参考素材・備考">
+  <div class="page-head">
+    <div class="step-no">STEP 8</div>
+    <h2>参考素材・備考</h2>
+    <div class="accent-line"></div>
+  </div>
+  <div class="card">
+    <div class="field first">
+      <span class="label">参考素材ファイル<span class="opt">任意・複数可</span></span>
+      <label class="file-input">
+        <input type="file" name="files" multiple id="file_input">
+        <span id="file_label">クリックしてファイルを選択</span>
+      </label>
+      <ul class="file-list" id="file_list"></ul>
+    </div>
+    <div class="field">
+      <label class="label" for="note">その他備考<span class="opt">任意</span></label>
+      <textarea id="note" name="note" placeholder="ご要望・補足事項などがございましたらご記入ください"></textarea>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
+    <button type="button" class="btn btn-primary" data-action="next">確認画面へ</button>
+  </div>
+</section>
+
+<!-- ───────── Page 9: 確認 ───────── -->
+<section class="page" data-step="9" data-name="入力内容の確認">
+  <div class="page-head">
+    <div class="step-no">STEP 9</div>
+    <h2>入力内容のご確認</h2>
+    <div class="accent-line"></div>
+    <p class="desc">下記の内容で送信します。<br>修正がある場合は「修正する」を押してください。</p>
+  </div>
+  <div class="review" id="review"></div>
+  <div class="nav-actions">
+    <button type="button" class="btn btn-secondary" data-action="prev">修正する</button>
+    <button type="submit" class="btn btn-primary">送信する</button>
+  </div>
+</section>
+
+</form>
+
+<div class="thanks" id="thanks">
+  <div class="ornament"></div>
+  <h2 class="serif">ありがとうございました</h2>
+  <p>内容を確認後、ご連絡いたします。</p>
+</div>
 
 </main>
 
@@ -568,15 +759,113 @@
 </footer>
 
 <script>
-  // 宗派 → 護摩祈祷の表示分岐（真言宗のみ）
+  const TOTAL_STEPS = 9;
+  const SHINGON = 'shingon';
+
+  /* 祈祷種別候補 */
+  const KITOU_TYPES = [
+    { id: 'yakubarai',   label: '厄払い・各種祈願' },
+    { id: 'kotsu',       label: '交通安全' },
+    { id: 'anzan',       label: '安産祈願' },
+    { id: 'gakugyo',     label: '学業成就' },
+    { id: 'mizuko',      label: '水子供養' },
+    { id: 'shichigosan', label: '七五三・お宮参り' },
+    { id: 'goma',        label: '護摩祈祷', shingonOnly: true },
+    { id: 'other',       label: 'その他（自由記載）', custom: true }
+  ];
+
+  /* ──── ページ遷移 ──── */
+  let currentStep = 1;
+  const pages = document.querySelectorAll('.page');
+  const stepName = document.getElementById('stepName');
+  const curStep = document.getElementById('curStep');
+  const totalStepsEl = document.getElementById('totalSteps');
+  const progressFill = document.getElementById('progressFill');
+  totalStepsEl.textContent = TOTAL_STEPS;
+
+  function showStep(n) {
+    currentStep = n;
+    pages.forEach(p => p.classList.toggle('active', Number(p.dataset.step) === n));
+    const active = document.querySelector(`.page[data-step="${n}"]`);
+    stepName.textContent = active?.dataset.name || '';
+    curStep.textContent = n;
+    progressFill.style.width = (n / TOTAL_STEPS * 100) + '%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (n === 9) renderReview();
+  }
+  document.querySelectorAll('[data-action="next"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep === 2) {
+        const name = document.getElementById('temple_name').value.trim();
+        const sect = document.getElementById('sect').value;
+        if (!name || !sect) { alert('寺院名とご宗派をご入力ください。'); return; }
+      }
+      if (currentStep < TOTAL_STEPS) showStep(currentStep + 1);
+    });
+  });
+  document.querySelectorAll('[data-action="prev"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep > 1) showStep(currentStep - 1);
+    });
+  });
+
+  /* ──── Page 3: 祈祷種類のレンダリング ──── */
+  const kitouList = document.getElementById('kitouList');
+  function renderKitou() {
+    kitouList.innerHTML = '';
+    KITOU_TYPES.forEach((t, i) => {
+      const item = document.createElement('div');
+      item.className = 'kitou-item';
+      item.dataset.id = t.id;
+      if (t.shingonOnly) item.classList.add('shingon-only', 'hidden');
+
+      const customField = t.custom
+        ? `<div class="field">
+             <label class="label" for="kitou_${t.id}_label">種別名</label>
+             <input type="text" id="kitou_${t.id}_label" name="kitou_${t.id}_label" placeholder="例：商売繁盛、家内安全">
+           </div>` : '';
+
+      item.innerHTML = `
+        <label class="kitou-head">
+          <input type="checkbox" name="kitou_${t.id}_check" value="1">
+          <span>${t.label}</span>
+        </label>
+        <div class="kitou-detail">
+          ${customField}
+          <div class="field">
+            <label class="label" for="kitou_${t.id}_price">祈祷料</label>
+            <input type="text" id="kitou_${t.id}_price" name="kitou_${t.id}_price" placeholder="例：5,000円〜">
+          </div>
+          <div class="field">
+            <label class="label" for="kitou_${t.id}_desc">説明・補足<span class="opt">任意</span></label>
+            <textarea id="kitou_${t.id}_desc" name="kitou_${t.id}_desc" placeholder="例：厄年の方へのご祈祷です（前厄・本厄・後厄）"></textarea>
+          </div>
+          <div class="field">
+            <span class="label">お札・お守りの授与</span>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="kitou_${t.id}_ofuda" value="あり"><span>あり</span></label>
+              <label class="choice"><input type="radio" name="kitou_${t.id}_ofuda" value="なし"><span>なし</span></label>
+            </div>
+          </div>
+        </div>
+      `;
+      const cb = item.querySelector('input[type="checkbox"]');
+      cb.addEventListener('change', () => item.classList.toggle('checked', cb.checked));
+      kitouList.appendChild(item);
+    });
+  }
+  renderKitou();
+
+  /* ──── 宗派 → 護摩祈祷の表示 ──── */
   const sectSelect = document.getElementById('sect');
-  const gomaItems = document.querySelectorAll('.goma-only');
   function applySect() {
-    const isShingon = sectSelect.value === 'shingon';
-    gomaItems.forEach(el => {
-      if (isShingon) el.classList.remove('hidden');
-      else {
+    const isShingon = sectSelect.value === SHINGON;
+    document.querySelectorAll('.shingon-only').forEach(el => {
+      if (isShingon) {
+        el.classList.remove('hidden');
+      } else {
         el.classList.add('hidden');
+        el.classList.remove('checked');
         const cb = el.querySelector('input[type="checkbox"]');
         if (cb) cb.checked = false;
       }
@@ -584,44 +873,33 @@
   }
   sectSelect.addEventListener('change', applySect);
 
-  // 条件付き表示（data-target）
+  /* ──── Page 4: 予約 条件付き表示 ──── */
   document.querySelectorAll('input[type="radio"][data-target]').forEach(r => {
     r.addEventListener('change', () => {
-      const targetId = r.dataset.target;
-      const target = document.getElementById(targetId);
+      const target = document.getElementById(r.dataset.target);
       if (!target) return;
-      const groupName = r.name;
-      const checked = document.querySelector(`input[name="${groupName}"]:checked`);
+      const checked = document.querySelector(`input[name="${r.name}"]:checked`);
       const showValues = ['要', 'あり'];
-      if (checked && showValues.includes(checked.value)) {
-        target.classList.remove('hidden');
-      } else {
-        target.classList.add('hidden');
-      }
+      target.classList.toggle('hidden', !(checked && showValues.includes(checked.value)));
     });
   });
 
-  // 当日の流れステップ管理（最大8）
+  /* ──── Page 5: 当日の流れ ──── */
   const MAX_STEPS = 8;
   const stepsEl = document.getElementById('steps');
   const stepAddBtn = document.getElementById('stepAdd');
-
   function renumber() {
     Array.from(stepsEl.children).forEach((item, idx) => {
       item.querySelector('.step-no').textContent = idx + 1;
       item.querySelectorAll('input, textarea').forEach(input => {
-        if (input.dataset.field === 'title') {
-          input.name = `step_${idx + 1}_title`;
-        } else if (input.dataset.field === 'desc') {
-          input.name = `step_${idx + 1}_desc`;
-        }
+        if (input.dataset.field === 'title') input.name = `step_${idx + 1}_title`;
+        else if (input.dataset.field === 'desc') input.name = `step_${idx + 1}_desc`;
       });
     });
     stepAddBtn.disabled = stepsEl.children.length >= MAX_STEPS;
     stepAddBtn.textContent = stepsEl.children.length >= MAX_STEPS
       ? `最大 ${MAX_STEPS} ステップまで` : '＋ ステップを追加する';
   }
-
   function addStep() {
     if (stepsEl.children.length >= MAX_STEPS) return;
     const idx = stepsEl.children.length + 1;
@@ -636,18 +914,15 @@
       <textarea data-field="desc" placeholder="この段階の説明文（例：本堂入口にて受付をお済ませください）"></textarea>
     `;
     item.querySelector('.step-remove').addEventListener('click', () => {
-      item.remove();
-      renumber();
+      item.remove(); renumber();
     });
     stepsEl.appendChild(item);
     renumber();
   }
   stepAddBtn.addEventListener('click', addStep);
-  // 初期で2ステップ追加
-  addStep();
-  addStep();
+  addStep(); addStep();
 
-  // ファイル一覧表示
+  /* ──── ファイル一覧 ──── */
   const fileInput = document.getElementById('file_input');
   const fileList = document.getElementById('file_list');
   const fileLabel = document.getElementById('file_label');
@@ -665,14 +940,100 @@
     });
   });
 
-  // 送信時 → ありがとう画面
-  const form = document.getElementById('kitouForm');
-  form.addEventListener('submit', (e) => {
+  /* ──── 確認画面 ──── */
+  function v(name) {
+    const el = document.querySelector(`[name="${name}"]`);
+    if (!el) return '';
+    if (el.type === 'file') return el.files.length ? Array.from(el.files).map(f => f.name).join('\n') : '';
+    return el.value || '';
+  }
+  function vRadio(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function row(k, val) {
+    const empty = !val || (Array.isArray(val) && val.length === 0);
+    const display = Array.isArray(val) ? val.join('、') : val;
+    return `<div class="review-row"><div class="k">${k}</div><div class="v ${empty ? 'empty' : ''}">${empty ? '（未入力）' : escapeHtml(display)}</div></div>`;
+  }
+  function sectLabel() {
+    const opt = sectSelect.options[sectSelect.selectedIndex];
+    return opt ? opt.text : '';
+  }
+  function renderReview() {
+    const review = document.getElementById('review');
+    let html = '';
+
+    html += `<div class="review-section"><h3>寺院・宗派</h3>
+      ${row('寺院名', v('temple_name'))}
+      ${row('宗派', sectSelect.value ? sectLabel() : '')}
+    </div>`;
+
+    let kitouHtml = '';
+    KITOU_TYPES.forEach(t => {
+      if (v(`kitou_${t.id}_check`) === '1') {
+        const label = t.custom ? (v(`kitou_${t.id}_label`) || t.label) : t.label;
+        kitouHtml += `<div style="margin-top:8px; padding-top:8px; border-top:1px dashed var(--border);"></div>`;
+        kitouHtml += row('種別', label);
+        kitouHtml += row('└ 祈祷料', v(`kitou_${t.id}_price`));
+        kitouHtml += row('└ 説明・補足', v(`kitou_${t.id}_desc`));
+        kitouHtml += row('└ お札・お守り授与', vRadio(`kitou_${t.id}_ofuda`));
+      }
+    });
+    if (!kitouHtml) kitouHtml = row('選択', '');
+    html += `<div class="review-section"><h3>祈祷の種類</h3>${kitouHtml}</div>`;
+
+    let resHtml = row('所要時間', v('duration'));
+    resHtml += row('予約', vRadio('reservation'));
+    if (vRadio('reservation') === '要') {
+      resHtml += row('└ 予約方法', v('reservation_method'));
+    }
+    html += `<div class="review-section"><h3>所要時間・予約</h3>${resHtml}</div>`;
+
+    let flowHtml = '';
+    Array.from(stepsEl.children).forEach((item, idx) => {
+      const title = item.querySelector('[data-field="title"]')?.value || '';
+      const desc = item.querySelector('[data-field="desc"]')?.value || '';
+      if (title || desc) flowHtml += row(`${idx + 1}. ${title || '（無題）'}`, desc);
+    });
+    if (!flowHtml) flowHtml = row('ステップ', '');
+    html += `<div class="review-section"><h3>当日の流れ</h3>${flowHtml}</div>`;
+
+    html += `<div class="review-section"><h3>お持ち物・服装</h3>
+      ${row('お持ち物', v('items'))}
+      ${row('服装', v('dress'))}
+    </div>`;
+
+    html += `<div class="review-section"><h3>駐車場・アクセス</h3>
+      ${row('駐車場', vRadio('parking'))}
+      ${row('住所', v('address'))}
+      ${row('GoogleマップURL', v('map_url'))}
+      ${row('受付時間', v('reception_hours'))}
+    </div>`;
+
+    html += `<div class="review-section"><h3>参考素材・備考</h3>
+      ${row('ファイル', v('files'))}
+      ${row('備考', v('note'))}
+    </div>`;
+
+    review.innerHTML = html;
+  }
+
+  /* ──── 送信 ──── */
+  document.getElementById('kitouForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    form.style.display = 'none';
+    document.getElementById('kitouForm').style.display = 'none';
+    document.getElementById('progressBar').style.display = 'none';
+    document.body.style.paddingTop = '24px';
     document.getElementById('thanks').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  /* 初期化 */
+  showStep(1);
 </script>
 
 </body>
