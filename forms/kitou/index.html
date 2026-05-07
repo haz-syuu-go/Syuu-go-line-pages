@@ -525,7 +525,7 @@
     <h1>祈祷申込み<br>ヒアリングフォーム</h1>
     <div class="ornament"></div>
     <p class="body">
-      このフォームは、ご祈祷のご案内ページを作成するためのヒアリングフォームです。<br>
+      公式LINE内にご祈祷のご案内ページを作成するためのヒアリングフォームです。<br>
       設問に沿ってご入力ください。<br>
       宗派や祈祷の種類によって、表示される項目が変わります。
     </p>
@@ -547,7 +547,7 @@
   <div class="card">
     <div class="field first">
       <label class="label" for="temple_name">寺院名<span class="req">必須</span></label>
-      <input type="text" id="temple_name" name="temple_name" placeholder="例：成田山瀧泉寺">
+      <input type="text" id="temple_name" name="temple_name" placeholder="例）内藤寺">
     </div>
     <div class="field">
       <label class="label" for="sect">ご宗派<span class="req">必須</span></label>
@@ -561,8 +561,14 @@
         <option value="soto">曹洞宗</option>
         <option value="ji">時宗</option>
         <option value="tendai">天台宗</option>
+        <option value="nichiren">日蓮宗</option>
+        <option value="other">その他（入力欄）</option>
       </select>
       <p class="help">真言宗をお選びの場合、護摩祈祷の項目が表示されます。</p>
+    </div>
+    <div class="field hidden" id="sect-other-wrap">
+      <label class="label" for="sect_other">宗派名（自由記入）<span class="req">必須</span></label>
+      <input type="text" id="sect_other" name="sect_other" placeholder="例）○○宗">
     </div>
   </div>
   <div class="nav-actions">
@@ -626,11 +632,10 @@
     <div class="step-no">STEP 5</div>
     <h2>当日の流れ</h2>
     <div class="accent-line"></div>
-    <p class="desc">受付からお見送りまでの流れをご記入ください<br>（最大8ステップ）</p>
+    <p class="desc">該当する項目にチェックを入れ、<br>必要に応じて文面をご調整ください</p>
   </div>
   <div class="card">
-    <div class="steps" id="steps"></div>
-    <button type="button" class="step-add" id="stepAdd">＋ ステップを追加する</button>
+    <div id="flowList"></div>
   </div>
   <div class="nav-actions">
     <button type="button" class="btn btn-secondary" data-action="prev">戻る</button>
@@ -799,6 +804,9 @@
         const name = document.getElementById('temple_name').value.trim();
         const sect = document.getElementById('sect').value;
         if (!name || !sect) { alert('寺院名とご宗派をご入力ください。'); return; }
+        if (sect === 'other' && !document.getElementById('sect_other').value.trim()) {
+          alert('宗派名（自由記入）をご入力ください。'); return;
+        }
       }
       if (currentStep < TOTAL_STEPS) showStep(currentStep + 1);
     });
@@ -856,8 +864,10 @@
   }
   renderKitou();
 
-  /* ──── 宗派 → 護摩祈祷の表示 ──── */
+  /* ──── 宗派 → 護摩祈祷の表示・「その他」自由記入 ──── */
   const sectSelect = document.getElementById('sect');
+  const sectOtherWrap = document.getElementById('sect-other-wrap');
+  const sectOtherInput = document.getElementById('sect_other');
   function applySect() {
     const isShingon = sectSelect.value === SHINGON;
     document.querySelectorAll('.shingon-only').forEach(el => {
@@ -870,6 +880,12 @@
         if (cb) cb.checked = false;
       }
     });
+    if (sectSelect.value === 'other') {
+      sectOtherWrap.classList.remove('hidden');
+    } else {
+      sectOtherWrap.classList.add('hidden');
+      sectOtherInput.value = '';
+    }
   }
   sectSelect.addEventListener('change', applySect);
 
@@ -885,42 +901,47 @@
   });
 
   /* ──── Page 5: 当日の流れ ──── */
-  const MAX_STEPS = 8;
-  const stepsEl = document.getElementById('steps');
-  const stepAddBtn = document.getElementById('stepAdd');
-  function renumber() {
-    Array.from(stepsEl.children).forEach((item, idx) => {
-      item.querySelector('.step-no').textContent = idx + 1;
-      item.querySelectorAll('input, textarea').forEach(input => {
-        if (input.dataset.field === 'title') input.name = `step_${idx + 1}_title`;
-        else if (input.dataset.field === 'desc') input.name = `step_${idx + 1}_desc`;
-      });
+  const FLOW_ITEMS = [
+    { id: 'yoyaku', label: '事前にご予約',       default: 'LINE・メール・お電話にてご予約ください。' },
+    { id: 'raizan', label: 'ご来山・受付',       default: 'ご予約のお時間にお越しください。本堂にて受付をいたします。' },
+    { id: 'nokyo',  label: 'ご祈祷料のお納め',   default: '受付にてご祈祷料をお納めください。' },
+    { id: 'kitou',  label: 'ご祈祷',             default: '住職がお経をお唱えし、心を込めてご祈祷いたします。', hasDuration: true },
+    { id: 'juyo',   label: 'お札・お守りの授与', default: 'ご祈祷後、お札やお守りをお渡しいたします。' },
+    { id: 'other',  label: 'その他',             placeholder: 'ご記入ください' }
+  ];
+  const flowList = document.getElementById('flowList');
+  function renderFlow() {
+    flowList.innerHTML = '';
+    FLOW_ITEMS.forEach(it => {
+      const item = document.createElement('div');
+      item.className = 'kitou-item';
+      item.dataset.id = it.id;
+      const durationField = it.hasDuration
+        ? `<div class="field">
+             <label class="label" for="flow_${it.id}_duration">所要時間</label>
+             <input type="text" id="flow_${it.id}_duration" name="flow_${it.id}_duration" placeholder="例）約20〜30分">
+           </div>` : '';
+      const textValue = it.default ? it.default : '';
+      const placeholder = it.placeholder || '';
+      item.innerHTML = `
+        <label class="kitou-head">
+          <input type="checkbox" name="flow_${it.id}_check" value="1">
+          <span>${it.label}</span>
+        </label>
+        <div class="kitou-detail">
+          <div class="field">
+            <label class="label" for="flow_${it.id}_text">ご案内文</label>
+            <textarea id="flow_${it.id}_text" name="flow_${it.id}_text" placeholder="${placeholder}">${textValue}</textarea>
+          </div>
+          ${durationField}
+        </div>
+      `;
+      const cb = item.querySelector('input[type="checkbox"]');
+      cb.addEventListener('change', () => item.classList.toggle('checked', cb.checked));
+      flowList.appendChild(item);
     });
-    stepAddBtn.disabled = stepsEl.children.length >= MAX_STEPS;
-    stepAddBtn.textContent = stepsEl.children.length >= MAX_STEPS
-      ? `最大 ${MAX_STEPS} ステップまで` : '＋ ステップを追加する';
   }
-  function addStep() {
-    if (stepsEl.children.length >= MAX_STEPS) return;
-    const idx = stepsEl.children.length + 1;
-    const item = document.createElement('div');
-    item.className = 'step-item';
-    item.innerHTML = `
-      <div class="step-head">
-        <span class="step-no">${idx}</span>
-        <input type="text" class="step-title" data-field="title" placeholder="ステップタイトル（例：受付）">
-        <button type="button" class="step-remove">削除</button>
-      </div>
-      <textarea data-field="desc" placeholder="この段階の説明文（例：本堂入口にて受付をお済ませください）"></textarea>
-    `;
-    item.querySelector('.step-remove').addEventListener('click', () => {
-      item.remove(); renumber();
-    });
-    stepsEl.appendChild(item);
-    renumber();
-  }
-  stepAddBtn.addEventListener('click', addStep);
-  addStep(); addStep();
+  renderFlow();
 
   /* ──── ファイル一覧 ──── */
   const fileInput = document.getElementById('file_input');
@@ -994,12 +1015,17 @@
     html += `<div class="review-section"><h3>所要時間・予約</h3>${resHtml}</div>`;
 
     let flowHtml = '';
-    Array.from(stepsEl.children).forEach((item, idx) => {
-      const title = item.querySelector('[data-field="title"]')?.value || '';
-      const desc = item.querySelector('[data-field="desc"]')?.value || '';
-      if (title || desc) flowHtml += row(`${idx + 1}. ${title || '（無題）'}`, desc);
+    let flowIdx = 0;
+    FLOW_ITEMS.forEach(it => {
+      if (v(`flow_${it.id}_check`) === '1') {
+        flowIdx += 1;
+        flowHtml += row(`${flowIdx}. ${it.label}`, v(`flow_${it.id}_text`));
+        if (it.hasDuration) {
+          flowHtml += row('└ 所要時間', v(`flow_${it.id}_duration`));
+        }
+      }
     });
-    if (!flowHtml) flowHtml = row('ステップ', '');
+    if (!flowHtml) flowHtml = row('項目', '');
     html += `<div class="review-section"><h3>当日の流れ</h3>${flowHtml}</div>`;
 
     html += `<div class="review-section"><h3>お持ち物・服装</h3>
