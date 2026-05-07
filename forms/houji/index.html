@@ -525,7 +525,7 @@
 </div>
 
 <main class="container">
-<form id="houjiForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+<form id="houjiForm" method="post" enctype="multipart/form-data" novalidate>
 
 <!-- ───────── Page 1: 説明 ───────── -->
 <section class="page active" data-step="1" data-name="はじめに">
@@ -925,8 +925,8 @@
 <!-- 完了画面 -->
 <div class="thanks" id="thanks">
   <div class="ornament"></div>
-  <h2 class="serif">ありがとうございました</h2>
-  <p>内容を確認後、ご連絡いたします。</p>
+  <h2 class="serif" id="thanksTitle">ありがとうございました</h2>
+  <p id="thanksMessage">内容を確認後、ご連絡いたします。</p>
 </div>
 
 </main>
@@ -1369,13 +1369,65 @@
   }
 
   /* ──────── 送信 ──────── */
-  document.getElementById('houjiForm').addEventListener('submit', (e) => {
-    e.preventDefault();
+  const FORM_ENDPOINT = 'https://temple-line-system.naito-cba.workers.dev/webhook/form';
+
+  function collectFormData() {
+    const form = document.getElementById('houjiForm');
+    const data = { kind: 'houji' };
+    // 単一値 (input[type=text|tel|url|email|number], select, textarea, hidden, type=file は除外)
+    form.querySelectorAll('input, select, textarea').forEach(el => {
+      if (!el.name) return;
+      if (el.type === 'file') return;
+      if (el.type === 'radio') {
+        if (el.checked) data[el.name] = el.value;
+        return;
+      }
+      if (el.type === 'checkbox') {
+        if (!data[el.name]) data[el.name] = [];
+        if (el.checked) data[el.name].push(el.value);
+        return;
+      }
+      data[el.name] = el.value;
+    });
+    return data;
+  }
+
+  function showThanks(success) {
     document.getElementById('houjiForm').style.display = 'none';
     document.getElementById('progressBar').style.display = 'none';
     document.body.style.paddingTop = '24px';
+    const title = document.getElementById('thanksTitle');
+    const msg = document.getElementById('thanksMessage');
+    if (success) {
+      title.textContent = 'ありがとうございました';
+      msg.textContent = '内容を確認後、ご連絡いたします。';
+    } else {
+      title.textContent = '送信に失敗しました';
+      msg.textContent = 'お手数ですがLINEよりご連絡ください。';
+    }
     document.getElementById('thanks').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.getElementById('houjiForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = e.submitter;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中...';
+    }
+    try {
+      const payload = collectFormData();
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      showThanks(res.ok);
+    } catch (err) {
+      console.error('Form submission failed:', err);
+      showThanks(false);
+    }
   });
 
   /* 初期化 */
