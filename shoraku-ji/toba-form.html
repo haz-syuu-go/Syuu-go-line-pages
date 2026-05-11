@@ -44,11 +44,11 @@
         <p style="font-size:0.88rem; color:var(--text); line-height:1.7; margin-bottom:12px;">お手数ですが申込み用紙にご記載いただき、LINEのトーク画面へお送りください。</p>
         <a href="https://lin.ee/7gziPIG" class="btn btn--primary" style="display:inline-block; padding:10px 20px; font-size:0.9rem;">LINEトーク画面へ</a>
       </div>
-      <h2 class="step-title">回向を希望されますか？</h2>
+      <h2 class="step-title">回向(お塔婆)を希望しますか？</h2>
       <div class="option-list">
         <div class="option-item">
-          <input type="radio" name="applyType" id="apply-yes" value="回向を希望する">
-          <label for="apply-yes">回向を希望する</label>
+          <input type="radio" name="applyType" id="apply-yes" value="回向(お塔婆)を希望する">
+          <label for="apply-yes">回向(お塔婆)を希望する</label>
         </div>
         <div class="option-item">
           <input type="radio" name="applyType" id="apply-no" value="希望しない">
@@ -66,9 +66,9 @@
     <div class="form-step" data-step="1">
       <h2 class="step-title">該当するものをお選びください</h2>
       <div class="option-list">
-        <div class="option-item" data-deadline="2026-05-07">
+        <div class="option-item" data-deadline="2026-05-14">
           <input type="radio" name="tobaType" id="type-keigai" value="5/17 おもに納骨堂以外の方">
-          <label for="type-keigai">5/17（日）おもに納骨堂以外の方<span style="display:block;font-size:0.85rem;color:var(--danger);margin-top:4px;font-weight:600;">お申込み締切：5/7（木）</span></label>
+          <label for="type-keigai">5/17（日）おもに納骨堂以外の方<span style="display:block;font-size:0.85rem;color:var(--danger);margin-top:4px;font-weight:600;">お申込み締切：<s>5/7（木）</s> 5/14（木）</span></label>
         </div>
         <div class="option-item" data-deadline="2026-06-07">
           <input type="radio" name="tobaType" id="type-noukotsu" value="6/17 おもに納骨堂・舎利堂の方">
@@ -110,7 +110,7 @@
 
     <!-- Step 3: 施主さまのお名前 -->
     <div class="form-step" data-step="3">
-      <h2 class="step-title">施主さまのお名前</h2>
+      <h2 class="step-title" id="seshu-title">施主さまのお名前</h2>
       <div class="form-group">
         <label class="form-label" for="seshu-name">お名前<span class="required">必須</span></label>
         <input type="text" class="form-input" id="seshu-name" placeholder="例：勝楽 太郎">
@@ -438,7 +438,9 @@
         var sel = getRadio('applyType');
         if(!sel){ showError('error-step0'); return; }
         hideError('error-step0');
-        applyType = (sel === '回向を希望する') ? 'toba' : 'none';
+        applyType = (sel === '回向(お塔婆)を希望する') ? 'toba' : 'none';
+        var seshuTitle = document.getElementById('seshu-title');
+        if (seshuTitle) seshuTitle.textContent = (applyType === 'none') ? 'あなた様のお名前' : '施主さまのお名前';
         // 希望しない：施主名入力へ
         if (applyType === 'none') { goToStep(3); return; }
         goToStep(1);
