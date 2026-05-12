@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>各種供養のご相談｜妙慶院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --text: #1a1d22;
+    --text-sub: #3f464d;
+    --line: #dfe3e8;
+    --line-strong: #c4c9d0;
+    --accent: #D86A8B;
+    --accent-bg: #fbe9ef;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "ヒラギノ角ゴシック", sans-serif;
+    font-size: 20px;
+    line-height: 1.95;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .back-btn svg { width: 22px; height: 22px; }
+  .back-btn-bottom {
+    margin-top: 28px;
+    padding: 14px 18px;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+  }
+
+  .detail-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .card-icon {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-bg);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-icon svg { width: 36px; height: 36px; }
+  .detail-title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+  }
+  .detail-subtitle {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 6px;
+    line-height: 1.7;
+  }
+
+  .lead-quote {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.7;
+    margin: 8px 0 16px;
+  }
+
+  .detail-body p { margin-bottom: 20px; line-height: 2.1; font-size: 18px; font-weight: 500; }
+  .detail-body p:last-child { margin-bottom: 0; }
+
+  h3.section-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    margin: 32px 0 16px;
+    padding-left: 14px;
+    border-left: 5px solid var(--accent);
+    line-height: 1.5;
+  }
+  h4.section-subtitle {
+    font-size: 19px;
+    font-weight: 900;
+    color: var(--text);
+    margin: 20px 0 12px;
+    line-height: 1.6;
+  }
+
+  .note-box {
+    background: #fafbfc;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 18px 0;
+  }
+  .note-box ul { list-style: none; padding: 0; }
+  .note-box li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.85;
+    color: var(--text-sub);
+  }
+  .note-box li::before {
+    content: "•";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    color: var(--accent);
+    font-weight: 900;
+    font-size: 18px;
+  }
+
+  /* サブカテゴリカード */
+  .sub-card {
+    background: color-mix(in srgb, var(--accent) 4%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 18%, #ffffff);
+    border-radius: 14px;
+    padding: 22px 22px;
+    margin: 18px 0;
+  }
+
+  /* メッセージ */
+  .message-box {
+    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin: 22px 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 2;
+    font-weight: 700;
+  }
+
+  /* ご縁の方のお声 */
+  .voices { display: grid; gap: 12px; margin: 12px 0; }
+  .voice {
+    background: #fafbfc;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-sub);
+    font-weight: 500;
+  }
+  .voice .voice-from {
+    display: block;
+    text-align: right;
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text-sub);
+    font-weight: 700;
+  }
+
+  /* CTA */
+  .cta-block {
+    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
+    border-radius: 14px;
+    padding: 22px 20px;
+    margin: 28px 0;
+  }
+  .cta-block-title {
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .cta-block-desc {
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-sub);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+  .line-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: #06C755;
+    color: #fff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #04a447;
+  }
+  .line-cta svg { width: 22px; height: 22px; fill: currentColor; flex: 0 0 22px; }
+  .line-cta-note {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-top: 4px;
+  }
+
+  /* アクセス */
+  .access {
+    margin: 40px 0 8px;
+    padding: 26px 22px;
+    background: #f6f7f9;
+    border: 1px solid #e3e6ea;
+    border-radius: 14px;
+  }
+  .access-title {
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .access-map {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #eaecef;
+  }
+  .access-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .access-info { text-align: center; margin-bottom: 20px; }
+  .access-name { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+  .access-addr { font-size: 17px; font-weight: 500; color: var(--text-sub); line-height: 1.85; }
+  .access-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.18);
+  }
+  .access-cta svg { width: 20px; height: 20px; flex: 0 0 20px; }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 16px 60px; }
+    .detail-title { font-size: 22px; }
+    .lead-quote { font-size: 18px; }
+    h3.section-title { font-size: 19px; }
+    h4.section-subtitle { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-lotus" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 50 Q22 40 24 28 Q28 32 32 50" fill="currentColor" fill-opacity="0.2"/>
+    <path d="M32 50 Q42 40 40 28 Q36 32 32 50" fill="currentColor" fill-opacity="0.2"/>
+    <path d="M32 50 Q14 44 14 32 Q22 32 32 50" fill="currentColor" fill-opacity="0.15"/>
+    <path d="M32 50 Q50 44 50 32 Q42 32 32 50" fill="currentColor" fill-opacity="0.15"/>
+    <path d="M32 50 Q32 30 32 18 Q30 28 32 50" fill="currentColor" fill-opacity="0.25"/>
+    <path d="M12 52 Q32 56 52 52" />
+  </symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+  </symbol>
+  <symbol id="i-line" viewBox="0 0 24 24">
+    <path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314M9.529 13.237h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.196h1.775c.35 0 .634.285.634.635 0 .348-.284.634-.634.634m2.486-.635c0 .35-.285.635-.635.635-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.83m5.826 0c0 .273-.176.517-.437.603-.066.023-.134.031-.201.031-.213 0-.395-.09-.515-.252l-2.474-3.366v2.984c0 .35-.284.635-.634.635-.351 0-.634-.285-.634-.635V7.772c0-.274.175-.517.437-.603.065-.023.135-.033.202-.033.199 0 .38.107.499.258l2.487 3.368V7.772c0-.35.283-.635.634-.635.35 0 .634.285.634.635v4.83m4.031-2.421c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775c.351 0 .634.285.634.635 0 .349-.283.635-.634.635h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.285-.635.634-.635h2.41c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775z"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <a class="back-btn" href="index.html"><svg><use href="#i-arrow-left"/></svg>仏事のご相談トップへ</a>
+
+  <div class="detail-head">
+    <div class="card-icon"><svg><use href="#i-lotus"/></svg></div>
+    <div>
+      <div class="detail-title">各種供養</div>
+      <div class="detail-subtitle">水子供養・ペット供養など</div>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <p class="lead-quote">命あるものすべてに、ご供養の心を。</p>
+    <p>この世にあって、たくさんの命あるものたちの中でも、私たちとご縁のあった尊くかけがえのない命を尊重し、惜しんでご供養をおつとめすることは、極めて大事なことです。</p>
+    <p>それぞれの一期一会のご縁をふまえて、ご一緒にお念仏してご供養いたします。まずはどうぞご相談ください。</p>
+  </div>
+
+  <h3 class="section-title">水子供養</h3>
+  <div class="sub-card">
+    <h4 class="section-subtitle">儚き命のためにも、ご自分のためにもご供養しましょう</h4>
+    <div class="detail-body">
+      <p>授かった命はいつか必ず臨終を迎えます。それぞれに諸々のご事情があることでしょうが、あまりにも早く儚い命であっても、弔う気持ちを大事にしていただきたいものです。</p>
+      <p>どうぞ手を合わせて、ご一緒にお念仏してご供養いたしましょう。</p>
+    </div>
+    <div class="note-box">
+      <ul>
+        <li>檀信徒でない方からのお申込みも承ります</li>
+        <li>個別のご事情に応じてご供養を執り行います</li>
+        <li>お悩みごとでも構いません、どうぞご相談ください</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-title">ペット供養</h3>
+  <div class="sub-card">
+    <h4 class="section-subtitle">大切な家族の一員である、ペットの命も供養します</h4>
+    <div class="detail-body">
+      <p>ご縁があって皆さまと一緒に暮らした命も、大切な家族の一員です。在りし日の面影を偲んで弔う気持ちは、大事にしていただきたいものです。</p>
+      <p>どうぞ手を合わせて、ご一緒にお念仏してご供養いたしましょう。</p>
+    </div>
+    <div class="note-box">
+      <ul>
+        <li>檀信徒でない方からのお申込みも承ります</li>
+        <li>ペットにまつわるモノなどを手放すためのご供養も執り行います</li>
+        <li>お悩みごとでも構いません、どうぞご相談ください</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="message-box">
+    こちらをお読みくださっている方は、さまざまに悩んでいらしたり、<br>
+    ご心配されたりお考えになっていることがおありなのだと思います。<br>
+    どんな些細なことでも構いませんので、疑問や質問や心配事をお尋ねください。
+  </div>
+
+  <h3 class="section-title">ご縁の方のお声</h3>
+  <div class="voices">
+    <div class="voice">いろいろ迷っていましたが、思い切って電話してみたところ、とても丁寧にご供養していただき安心しました。どうもありがとうございました。<span class="voice-from">水子供養 女性 20代</span></div>
+    <div class="voice">本当に家族の一員だった愛犬が亡くなった後、彼のために心あたたまる形を手元にいただきありがとうございました。毎日のように抱きしめています。<span class="voice-from">ペット供養 女性 60代</span></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-block-title">LINEからご相談ください</div>
+    <p class="cta-block-desc">水子供養・ペット供養のご相談は、公式LINEからお気軽にどうぞ。<br>ご質問のみのお問合せでも大丈夫です。</p>
+    <!-- TODO: 妙慶院の供養相談用LINE URLに差し替え -->
+    <a class="line-cta" href="https://liff.line.me/2006055496-BbgMz69o" target="_blank" rel="noopener">
+      <svg><use href="#i-line"/></svg>LINEで相談する
+    </a>
+    <div class="line-cta-note">公式LINEに移動します</div>
+  </div>
+
+  <section class="access" aria-labelledby="accessTitle">
+    <h2 id="accessTitle" class="access-title">お寺へのアクセス</h2>
+    <div class="access-map">
+      <iframe
+        src="https://www.google.com/maps?q=34.388344,132.458776&hl=ja&z=17&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="妙慶院 清岸寺の地図"
+        allowfullscreen></iframe>
+    </div>
+    <div class="access-info">
+      <div class="access-name">浄土宗 妙慶院 清岸寺</div>
+      <div class="access-addr">〒730-0041<br>広島県広島市中区小町２番１号</div>
+    </div>
+    <a class="access-cta" href="http://wajun.or.jp/access/" target="_blank" rel="noopener">
+      <svg><use href="#i-pin"/></svg>詳しいアクセスを見る
+    </a>
+  </section>
+
+  <a class="back-btn back-btn-bottom" href="index.html"><svg><use href="#i-arrow-left"/></svg>仏事のご相談トップへ</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>お葬式のご相談｜妙慶院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --text: #1a1d22;
+    --text-sub: #3f464d;
+    --line: #dfe3e8;
+    --line-strong: #c4c9d0;
+    --accent: #3f51b5;
+    --accent-bg: #e8eaf6;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "ヒラギノ角ゴシック", sans-serif;
+    font-size: 20px;
+    line-height: 1.95;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .back-btn svg { width: 22px; height: 22px; }
+  .back-btn-bottom {
+    margin-top: 28px;
+    padding: 14px 18px;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+  }
+
+  .detail-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .card-icon {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-bg);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-icon svg { width: 36px; height: 36px; }
+  .detail-title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+  }
+  .detail-subtitle {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 6px;
+    line-height: 1.7;
+  }
+
+  .lead-quote {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.7;
+    margin: 8px 0 16px;
+  }
+
+  .detail-body p { margin-bottom: 20px; line-height: 2.1; font-size: 18px; font-weight: 500; }
+  .detail-body p:last-child { margin-bottom: 0; }
+
+  h3.section-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    margin: 32px 0 16px;
+    padding-left: 14px;
+    border-left: 5px solid var(--accent);
+    line-height: 1.5;
+  }
+  h4.section-subtitle {
+    font-size: 19px;
+    font-weight: 900;
+    color: var(--text);
+    margin: 24px 0 12px;
+    line-height: 1.6;
+  }
+
+  /* 緊急時連絡ボックス */
+  .urgent-box {
+    background: #fff5f3;
+    border: 2px solid #f4b8ad;
+    border-radius: 14px;
+    padding: 22px 22px;
+    margin: 22px 0;
+  }
+  .urgent-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #c03e2a;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .urgent-desc {
+    font-size: 15px;
+    color: var(--text-sub);
+    line-height: 1.85;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .tel-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: #fff;
+    color: #c03e2a;
+    border: 2px solid #c03e2a;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 10px;
+  }
+  .tel-cta svg { width: 22px; height: 22px; flex: 0 0 22px; }
+
+  /* 流れ */
+  .flow {
+    counter-reset: flow;
+    list-style: none;
+    margin: 12px 0;
+  }
+  .flow li {
+    position: relative;
+    padding: 14px 16px 14px 56px;
+    background: var(--accent-bg);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.7;
+  }
+  .flow li::before {
+    counter-increment: flow;
+    content: counter(flow);
+    position: absolute;
+    left: 14px;
+    top: 18px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  .note-box {
+    background: #fafbfc;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 18px 0;
+  }
+  .note-box ul { list-style: none; padding: 0; }
+  .note-box li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.85;
+    color: var(--text-sub);
+  }
+  .note-box li::before {
+    content: "•";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    color: var(--accent);
+    font-weight: 900;
+    font-size: 18px;
+  }
+
+  /* お布施ボックス */
+  .ofuse-box {
+    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin: 24px 0;
+  }
+  .ofuse-box h4 {
+    text-align: center;
+    color: var(--accent);
+    font-size: 19px;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .ofuse-box p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.95;
+    color: var(--text-sub);
+    margin-bottom: 14px;
+  }
+  .ofuse-box p:last-child { margin-bottom: 0; }
+
+  /* 訴求メッセージ */
+  .message-box {
+    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin: 22px 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 2;
+    font-weight: 700;
+  }
+
+  /* ご縁の方のお声 */
+  .voices { display: grid; gap: 12px; margin: 12px 0; }
+  .voice {
+    background: #fafbfc;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-sub);
+    font-weight: 500;
+  }
+  .voice .voice-from {
+    display: block;
+    text-align: right;
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text-sub);
+    font-weight: 700;
+  }
+
+  /* CTA */
+  .cta-block {
+    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
+    border-radius: 14px;
+    padding: 22px 20px;
+    margin: 28px 0;
+  }
+  .cta-block-title {
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .cta-block-desc {
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-sub);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+  .line-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: #06C755;
+    color: #fff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #04a447;
+  }
+  .line-cta svg { width: 22px; height: 22px; fill: currentColor; flex: 0 0 22px; }
+  .line-cta-note {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-top: 4px;
+  }
+
+  /* アクセス */
+  .access {
+    margin: 40px 0 8px;
+    padding: 26px 22px;
+    background: #f6f7f9;
+    border: 1px solid #e3e6ea;
+    border-radius: 14px;
+  }
+  .access-title {
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .access-map {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #eaecef;
+  }
+  .access-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .access-info { text-align: center; margin-bottom: 20px; }
+  .access-name { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+  .access-addr { font-size: 17px; font-weight: 500; color: var(--text-sub); line-height: 1.85; }
+  .access-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.18);
+  }
+  .access-cta svg { width: 20px; height: 20px; flex: 0 0 20px; }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 16px 60px; }
+    .detail-title { font-size: 22px; }
+    .lead-quote { font-size: 18px; }
+    h3.section-title { font-size: 19px; }
+    .tel-cta { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-candle" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 8 Q28 14 32 18 Q36 14 32 8 Z" fill="currentColor" fill-opacity="0.3"/>
+    <rect x="24" y="22" width="16" height="28" rx="2" fill="currentColor" fill-opacity="0.1"/>
+    <line x1="32" y1="18" x2="32" y2="22"/>
+    <path d="M20 50 L44 50 L46 58 L18 58 Z" fill="currentColor" fill-opacity="0.15"/>
+  </symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+  </symbol>
+  <symbol id="i-line" viewBox="0 0 24 24">
+    <path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314M9.529 13.237h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.196h1.775c.35 0 .634.285.634.635 0 .348-.284.634-.634.634m2.486-.635c0 .35-.285.635-.635.635-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.83m5.826 0c0 .273-.176.517-.437.603-.066.023-.134.031-.201.031-.213 0-.395-.09-.515-.252l-2.474-3.366v2.984c0 .35-.284.635-.634.635-.351 0-.634-.285-.634-.635V7.772c0-.274.175-.517.437-.603.065-.023.135-.033.202-.033.199 0 .38.107.499.258l2.487 3.368V7.772c0-.35.283-.635.634-.635.35 0 .634.285.634.635v4.83m4.031-2.421c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775c.351 0 .634.285.634.635 0 .349-.283.635-.634.635h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.285-.635.634-.635h2.41c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775z"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.18 4.18 2 2 0 0 1 4.16 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <a class="back-btn" href="index.html"><svg><use href="#i-arrow-left"/></svg>仏事のご相談トップへ</a>
+
+  <div class="detail-head">
+    <div class="card-icon"><svg><use href="#i-candle"/></svg></div>
+    <div>
+      <div class="detail-title">お葬式</div>
+      <div class="detail-subtitle">葬儀・通夜・戒名</div>
+    </div>
+  </div>
+
+  <div class="urgent-box">
+    <div class="urgent-title">急なご逝去にも対応しております</div>
+    <p class="urgent-desc">夜間・早朝でもまずはお電話ください。<br>事前のご相談だけでも結構です。</p>
+    <a class="tel-cta" href="tel:0822417471">
+      <svg><use href="#i-phone"/></svg>082-241-7471
+    </a>
+  </div>
+
+  <div class="detail-body">
+    <p class="lead-quote">葬儀から始まる、仏さまとのご縁も大切に。</p>
+    <p>仏教で執り行った一番最初の葬儀は、お釈迦さまでした。葬儀は、亡き方にとっても大切な儀式でありますが、ご遺族の皆さまにとっても亡き方を弔うための大切な儀礼の場であります。</p>
+    <p>故人の遺志やご遺族の思いはさまざまあることでしょう。それらを最大限に尊重して、皆さまが納得のいく葬儀をしっかりとおつとめいただきたいと思います。妙慶院では、皆さまそれぞれが各々に相応しい葬儀をご一緒に執り行って参ります。</p>
+  </div>
+
+  <h3 class="section-title">葬儀までの流れ</h3>
+  <ol class="flow">
+    <li>事前相談でも構いませんので、まずはお電話・LINEでご連絡ください</li>
+    <li>日時や場所などのご相談をいたします（必要に応じて葬儀社さまをご紹介します）</li>
+    <li>ご当家さま、葬儀社さま、火葬場など諸々の予定を確認して日時と場所を決めます</li>
+    <li>ご親戚やご縁のある方々に日時と場所をお知らせください</li>
+    <li>枕経（またはお通夜）の際に細々としたお話を伺い、その後の流れをご相談します</li>
+    <li>お通夜やお葬儀を執り行います</li>
+  </ol>
+
+  <div class="note-box">
+    <ul>
+      <li>ご縁がございましたら、檀信徒に限らず葬儀をおつとめいたします</li>
+      <li>お寺での葬儀もいたしております</li>
+      <li>よそのお寺で葬儀をされる場合でも構いません、お気軽にご相談ください</li>
+    </ul>
+  </div>
+
+  <h3 class="section-title">本堂でのお葬式</h3>
+  <div class="detail-body">
+    <p style="font-size:19px;font-weight:900;color:var(--text);">阿弥陀さまの前で執り行うお葬式。</p>
+    <p>妙慶院では、何十年も前からお寺の本堂で葬儀を執り行ってきています。ご家族ご親族だけのこぢんまりしたものから、おおきなものまで広く承っております。社葬のような大規模なお葬儀でも、二階講堂で執り行うことができます。</p>
+  </div>
+
+  <div class="note-box">
+    <ul>
+      <li>檀信徒ではない方の葬儀も承ります、ご相談ください</li>
+      <li>通夜などでお泊まりいただくこともできます、ご相談ください</li>
+      <li>葬儀社の指定はございません</li>
+    </ul>
+  </div>
+
+  <h3 class="section-title">戒名について</h3>
+  <div class="detail-body">
+    <p>「戒名」は、仏教を信じ仏門に入る方にお授けする聖なる名前です。なるべく早めにご縁をいただいて戒を授かり、「戒名」を受けていただくことをお勧めしています。</p>
+    <p>葬儀が初めてのご縁となって「戒名」をお授けする場合は、亡き方の枕経（またはお通夜）の折に、いろいろとお話を伺ってお授けしています。<strong style="color:var(--accent);">（戒名料はいただきません）</strong></p>
+  </div>
+
+  <div class="ofuse-box">
+    <h4>お布施について</h4>
+    <p>皆さまのお志しによりお納めいただいています。どのくらいお包みしたらよいのかご相談をいただくことがございますが、額を提示することはいたしておりません。</p>
+    <p>亡き方を弔っていくのに、「安かったな」と思うことで粗末にならないよう、「充分にした」と思えるように、心をこめてお包みください。お布施は定額制ではありませんし、多寡によって葬儀に差が出ることはございません。</p>
+    <p>ご質問やご相談がございましたら、どのようなことでも構いません。どうぞお問合せください。</p>
+  </div>
+
+  <div class="message-box">
+    こちらをお読みくださっている方は、ご自身か大切な方の葬儀について<br>
+    ご心配されたりお考えになっていることが、色々とあることだと思います。<br>
+    どんな些細なことでも構いませんので、疑問や質問や心配事をお尋ねください。
+  </div>
+
+  <h3 class="section-title">ご縁の方のお声</h3>
+  <div class="voices">
+    <div class="voice">父の時も母の時も、お寺の本堂で丁重な葬儀をあげていただきました。<span class="voice-from">檀信徒 男性 60代</span></div>
+    <div class="voice">ご紹介をいただいて、こちらのお寺さまに葬儀をしていただきました。その時は何をどうしていいのかわからず戸惑うことばかりでしたが、いろいろと教えていただいたおかげで大変助かりました。その後もいつもお気遣いくださってありがたく思っています。<span class="voice-from">檀信徒 女性 70代</span></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-block-title">LINEからのご相談もどうぞ</div>
+    <p class="cta-block-desc">急ぎの場合はお電話、事前のご相談はLINEからもお気軽にどうぞ。<br>ご質問のみのお問合せでも大丈夫です。</p>
+    <!-- TODO: 妙慶院のお葬式相談用LINE URLに差し替え -->
+    <a class="line-cta" href="https://liff.line.me/2006055496-BbgMz69o" target="_blank" rel="noopener">
+      <svg><use href="#i-line"/></svg>LINEで相談する
+    </a>
+    <div class="line-cta-note">公式LINEに移動します</div>
+  </div>
+
+  <section class="access" aria-labelledby="accessTitle">
+    <h2 id="accessTitle" class="access-title">お寺へのアクセス</h2>
+    <div class="access-map">
+      <iframe
+        src="https://www.google.com/maps?q=34.388344,132.458776&hl=ja&z=17&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="妙慶院 清岸寺の地図"
+        allowfullscreen></iframe>
+    </div>
+    <div class="access-info">
+      <div class="access-name">浄土宗 妙慶院 清岸寺</div>
+      <div class="access-addr">〒730-0041<br>広島県広島市中区小町２番１号</div>
+    </div>
+    <a class="access-cta" href="http://wajun.or.jp/access/" target="_blank" rel="noopener">
+      <svg><use href="#i-pin"/></svg>詳しいアクセスを見る
+    </a>
+  </section>
+
+  <a class="back-btn back-btn-bottom" href="index.html"><svg><use href="#i-arrow-left"/></svg>仏事のご相談トップへ</a>
+
+</div>
+
+</body>
+</html>

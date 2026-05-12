@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>お墓（納骨堂・永代供養墓）｜妙慶院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --text: #1a1d22;
+    --text-sub: #3f464d;
+    --line: #dfe3e8;
+    --line-strong: #c4c9d0;
+    --accent: #4B8B3B;
+    --accent-bg: #eaf3e7;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "ヒラギノ角ゴシック", sans-serif;
+    font-size: 20px;
+    line-height: 1.95;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .back-btn svg { width: 22px; height: 22px; }
+  .back-btn-bottom {
+    margin-top: 28px;
+    margin-bottom: 8px;
+    padding: 14px 18px;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+  }
+
+  .detail-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .card-icon {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-bg);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-icon svg { width: 36px; height: 36px; }
+  .detail-title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.45;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .detail-subtitle {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 6px;
+    line-height: 1.7;
+  }
+
+  .lead-quote {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.7;
+    margin: 8px 0 16px;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--accent-bg);
+    color: var(--accent);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .detail-body p { margin-bottom: 20px; line-height: 2.1; font-size: 18px; font-weight: 500; }
+  .detail-body p:last-child { margin-bottom: 0; }
+
+  h3.section-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    margin: 32px 0 16px;
+    padding-left: 14px;
+    border-left: 5px solid var(--accent);
+    line-height: 1.5;
+  }
+  h4.section-subtitle {
+    font-size: 19px;
+    font-weight: 900;
+    color: var(--text);
+    margin: 24px 0 12px;
+    line-height: 1.6;
+  }
+
+  /* 特徴カード */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .feature {
+    background: var(--accent-bg);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* 料金テーブル */
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .price-table th, .price-table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    font-size: 17px;
+  }
+  .price-table tr:last-child th, .price-table tr:last-child td {
+    border-bottom: none;
+  }
+  .price-table th {
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-weight: 900;
+    width: 45%;
+  }
+  .price-table td {
+    font-weight: 900;
+    text-align: right;
+  }
+
+  /* 注意事項リスト */
+  .note-box {
+    background: #fafbfc;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 18px 0;
+  }
+  .note-box ul { list-style: none; padding: 0; }
+  .note-box li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.85;
+    color: var(--text-sub);
+  }
+  .note-box li::before {
+    content: "•";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    color: var(--accent);
+    font-weight: 900;
+    font-size: 18px;
+  }
+
+  /* ご縁の方のお声 */
+  .voices { display: grid; gap: 12px; margin: 12px 0; }
+  .voice {
+    background: #fafbfc;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-sub);
+    font-weight: 500;
+  }
+  .voice .voice-from {
+    display: block;
+    text-align: right;
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text-sub);
+    font-weight: 700;
+  }
+
+  /* CTA */
+  .cta-block {
+    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
+    border-radius: 14px;
+    padding: 22px 20px;
+    margin: 28px 0;
+  }
+  .cta-block-title {
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .cta-block-desc {
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-sub);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+  .line-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: #06C755;
+    color: #fff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #04a447;
+  }
+  .line-cta svg { width: 22px; height: 22px; fill: currentColor; flex: 0 0 22px; }
+  .line-cta-note {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-top: 4px;
+  }
+
+  /* 訴求メッセージ */
+  .message-box {
+    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin: 22px 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 2;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* アクセス */
+  .access {
+    margin: 40px 0 8px;
+    padding: 26px 22px;
+    background: #f6f7f9;
+    border: 1px solid #e3e6ea;
+    border-radius: 14px;
+  }
+  .access-title {
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+  }
+  .access-map {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #eaecef;
+  }
+  .access-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .access-info { text-align: center; margin-bottom: 20px; }
+  .access-name { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+  .access-addr { font-size: 17px; font-weight: 500; color: var(--text-sub); line-height: 1.85; }
+  .access-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.18);
+  }
+  .access-cta svg { width: 20px; height: 20px; flex: 0 0 20px; }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 16px 60px; }
+    .detail-title { font-size: 22px; }
+    .lead-quote { font-size: 18px; }
+    h3.section-title { font-size: 19px; }
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+    .price-table th, .price-table td { padding: 12px 14px; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-flower" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="22" r="5" fill="currentColor" fill-opacity="0.25"/>
+    <ellipse cx="32" cy="10" rx="5" ry="8" fill="currentColor" fill-opacity="0.15"/>
+    <ellipse cx="22" cy="18" rx="5" ry="8" transform="rotate(-55 22 18)" fill="currentColor" fill-opacity="0.15"/>
+    <ellipse cx="42" cy="18" rx="5" ry="8" transform="rotate(55 42 18)" fill="currentColor" fill-opacity="0.15"/>
+    <ellipse cx="22" cy="30" rx="5" ry="8" transform="rotate(-125 22 30)" fill="currentColor" fill-opacity="0.15"/>
+    <ellipse cx="42" cy="30" rx="5" ry="8" transform="rotate(125 42 30)" fill="currentColor" fill-opacity="0.15"/>
+    <path d="M32 28 Q32 42 28 52"/><path d="M32 40 Q24 42 22 50"/>
+  </symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+  </symbol>
+  <symbol id="i-line" viewBox="0 0 24 24">
+    <path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314M9.529 13.237h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.196h1.775c.35 0 .634.285.634.635 0 .348-.284.634-.634.634m2.486-.635c0 .35-.285.635-.635.635-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.83m5.826 0c0 .273-.176.517-.437.603-.066.023-.134.031-.201.031-.213 0-.395-.09-.515-.252l-2.474-3.366v2.984c0 .35-.284.635-.634.635-.351 0-.634-.285-.634-.635V7.772c0-.274.175-.517.437-.603.065-.023.135-.033.202-.033.199 0 .38.107.499.258l2.487 3.368V7.772c0-.35.283-.635.634-.635.35 0 .634.285.634.635v4.83m4.031-2.421c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775c.351 0 .634.285.634.635 0 .349-.283.635-.634.635h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.285-.635.634-.635h2.41c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775z"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <a class="back-btn" href="index.html"><svg><use href="#i-arrow-left"/></svg>仏事のご相談トップへ</a>
+
+  <div class="detail-head">
+    <div class="card-icon"><svg><use href="#i-flower"/></svg></div>
+    <div>
+      <div class="detail-title">お墓</div>
+      <div class="detail-subtitle">納骨堂・永代供養墓のご相談</div>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <div class="badge">平和記念公園から徒歩１０分　ビルのお寺の納骨堂</div>
+    <p class="lead-quote">ゆったり広い、街なかの納骨堂です。</p>
+    <p>福島正則公御母堂の菩提寺として、檀家０から歩み始めたお寺です。昭和５２年より、それまであった墓地を廃して納骨堂の募集を始めました。</p>
+    <p>緑豊かな平和大通りに面したビルのお寺の中にある、ゆったりとした広さの納骨仏壇です。お天気もお手入れも気にすることなくお参りできます。広島市の中心部にあるので、街へのおでかけと一緒にお墓参りもできる、最高の立地です。</p>
+  </div>
+
+  <h3 class="section-title">納骨堂　一般墓</h3>
+  <div class="detail-body">
+    <p style="font-size:19px;font-weight:900;color:var(--text);">ご家族ごとに一緒に入るお墓です。</p>
+    <p>ビルのお寺になった昭和５２年に始めた納骨仏壇のお墓です。三階本堂の隣にあり、一般的な石造りのお墓よりもたくさんの骨壺をお納めすることができます。</p>
+    <p>お墓の継承については、ご親族やご縁のある方であれば、ご相談のうえ幅広くご要望にお応えしています。ご見学ご相談はいつでもどうぞ。</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature">広島市中心部で<br>お参りに便利</div>
+    <div class="feature">天候を問わず<br>いつでもお参り</div>
+    <div class="feature">フリースペースで<br>おくつろぎいただけます</div>
+  </div>
+
+  <table class="price-table">
+    <tbody>
+      <tr><th>一般区画</th><td>1,000,000円</td></tr>
+      <tr><th>特別区画</th><td>1,500,000円</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <ul>
+      <li>分割でお納めいただいても結構です</li>
+      <li>使用年限も管理費もございません（お気持ちでお納めくださる方はいらっしゃいます）</li>
+      <li>エレベーターで三階までお参りできますので安心です</li>
+      <li>お寺の駐車場は３台分ございます</li>
+      <li>他所に菩提寺がある方はご遠慮いただいております</li>
+    </ul>
+  </div>
+
+  <h3 class="section-title">納骨堂　永代供養墓</h3>
+  <div class="detail-body">
+    <p style="font-size:19px;font-weight:900;color:var(--text);">みんなで一緒に入れるお墓です。</p>
+    <p>新たにお墓を構えるのを迷っておられる方や、お墓を継いでもらう人がいなくて先のことをご心配される方が年々増えてきています。いま、納骨堂の一角に、ご縁のある方が、みんなで一緒に入るお墓を計画しています。</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature">お墓を継承する方が<br>おられない方</div>
+    <div class="feature">次世代にお墓を<br>託すのは心苦しい方</div>
+    <div class="feature">気軽に皆さまに<br>お参りいただきたい方</div>
+  </div>
+
+  <div class="note-box">
+    <ul>
+      <li>近日中に工事に取りかかる予定です、完成まで少しお待ちください</li>
+      <li>生前中のお申込みやご相談も承っております</li>
+      <li>宗教や宗旨は問いませんが、お寺での法要は浄土宗のおつとめです</li>
+      <li>一時的なお骨預かりについては、ご相談ください</li>
+      <li>ご見学ご相談はいつでもどうぞ。まずはLINEからご連絡ください</li>
+    </ul>
+  </div>
+
+  <div class="message-box">
+    写真を見たり説明文を読むだけではわからないことが、たくさんあると思います。<br>
+    いつでもご自由に見ていただくことができますので、<br>
+    実際にお越しになってご覧になることをお勧めいたします。<br>
+    お電話やLINEでのご質問・ご相談も承っております。
+  </div>
+
+  <h3 class="section-title">ご縁の方のお声</h3>
+  <div class="voices">
+    <div class="voice">お寺の前にあるファミリーマートでお供えできるお花も売っているので、手ぶらでも気軽にお参りできるのが嬉しいです。<span class="voice-from">檀信徒 女性 30代</span></div>
+    <div class="voice">亡き義母がこのお寺とここの納骨堂を気に入ってお世話になるようになりました。主人を亡くしてお墓参りするのに、ここはとても便利で助かっています。今では義母にとても感謝しています。<span class="voice-from">檀信徒 女性 70代</span></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-block-title">LINEからご相談ください</div>
+    <p class="cta-block-desc">お墓・納骨堂のご見学・ご相談は、公式LINEからお気軽にどうぞ。<br>ご質問のみのお問合せでも大丈夫です。</p>
+    <!-- TODO: 妙慶院のご相談用LINE URLに差し替え -->
+    <a class="line-cta" href="https://liff.line.me/2006055496-BbgMz69o" target="_blank" rel="noopener">
+      <svg><use href="#i-line"/></svg>LINEで相談する
+    </a>
+    <div class="line-cta-note">公式LINEに移動します</div>
+  </div>
+
+  <section class="access" aria-labelledby="accessTitle">
+    <h2 id="accessTitle" class="access-title">お寺へのアクセス</h2>
+    <div class="access-map">
+      <iframe
+        src="https://www.google.com/maps?q=34.388344,132.458776&hl=ja&z=17&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="妙慶院 清岸寺の地図"
+        allowfullscreen></iframe>
+    </div>
+    <div class="access-info">
+      <div class="access-name">浄土宗 妙慶院 清岸寺</div>
+      <div class="access-addr">〒730-0041<br>広島県広島市中区小町２番１号</div>
+    </div>
+    <a class="access-cta" href="http://wajun.or.jp/access/" target="_blank" rel="noopener">
+      <svg><use href="#i-pin"/></svg>詳しいアクセスを見る
+    </a>
+  </section>
+
+  <a class="back-btn back-btn-bottom" href="index.html"><svg><use href="#i-arrow-left"/></svg>仏事のご相談トップへ</a>
+
+</div>
+
+</body>
+</html>

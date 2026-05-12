@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>仏事のご相談｜妙慶院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --text: #1a1d22;
+    --text-sub: #3f464d;
+    --line: #dfe3e8;
+    --line-strong: #c4c9d0;
+
+    /* 五色アクセント */
+    --c-purple: #6B4BA8;
+    --c-purple-bg: #efeaf7;
+    --c-red: #D64C3B;
+    --c-red-bg: #fceeec;
+    --c-yellow: #D9A514;
+    --c-yellow-bg: #fbf3d9;
+    --c-green: #4B8B3B;
+    --c-green-bg: #eaf3e7;
+    --c-indigo: #3f51b5;
+    --c-indigo-bg: #e8eaf6;
+    --c-pink: #D86A8B;
+    --c-pink-bg: #fbe9ef;
+
+    --accent: var(--c-purple);
+    --accent-bg: var(--c-purple-bg);
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "ヒラギノ角ゴシック", sans-serif;
+    font-size: 20px;
+    line-height: 1.95;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  .site-header {
+    text-align: center;
+    padding: 8px 0 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .site-title {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+  }
+  .site-sub {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-top: 10px;
+    line-height: 1.75;
+  }
+
+  .lead {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-sub);
+    margin-bottom: 16px;
+    line-height: 2.05;
+  }
+  .welcome-lead {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 24px;
+    padding: 14px 16px;
+    background: #fffdf1;
+    border: 1px solid #f0e4a3;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.85;
+    color: var(--text);
+  }
+  .welcome-lead .wakaba {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    margin-top: 2px;
+  }
+
+  /* 4カテゴリのグリッド */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 8px 0 32px;
+  }
+  .menu-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #ffffff;
+    border: 1.5px solid var(--line);
+    border-radius: 16px;
+    padding: 24px 16px 22px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform .1s ease, border-color .15s ease, box-shadow .15s ease;
+    min-height: 180px;
+    position: relative;
+    overflow: hidden;
+  }
+  .menu-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px rgba(42,74,107,0.08);
+  }
+  .menu-card:active { transform: scale(0.98); }
+  .menu-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--accent);
+  }
+  .menu-card-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+  }
+  .menu-card-sub {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .menu-card-icon {
+    margin: 14px 0 4px;
+    color: var(--accent);
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-card-icon svg { width: 56px; height: 56px; }
+
+  .menu-card[data-color="purple"] { --accent: var(--c-purple); --accent-bg: var(--c-purple-bg); }
+  .menu-card[data-color="green"]  { --accent: var(--c-green);  --accent-bg: var(--c-green-bg); }
+  .menu-card[data-color="indigo"] { --accent: var(--c-indigo); --accent-bg: var(--c-indigo-bg); }
+  .menu-card[data-color="pink"]   { --accent: var(--c-pink);   --accent-bg: var(--c-pink-bg); }
+
+  /* LINE CTA */
+  .line-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: #06C755;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #04a447;
+    transition: transform .08s ease;
+    letter-spacing: 0.01em;
+  }
+  .line-cta:hover { filter: brightness(1.03); }
+  .line-cta:active { transform: translateY(2px); box-shadow: 0 1px 0 #04a447; }
+  .line-cta svg { width: 22px; height: 22px; fill: currentColor; flex: 0 0 22px; }
+  .line-cta-note {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  /* 共通CTAブロック */
+  .quick-cta {
+    margin: 8px 0 32px;
+    padding: 22px 20px;
+    background: color-mix(in srgb, var(--c-green) 7%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--c-green) 18%, #ffffff);
+    border-radius: 14px;
+  }
+  .quick-cta-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+  .quick-cta-desc {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-sub);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  /* アクセス */
+  .access {
+    margin: 40px 0 8px;
+    padding: 26px 22px;
+    background: #f6f7f9;
+    border: 1px solid #e3e6ea;
+    border-radius: 14px;
+  }
+  .access-title {
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .access-map {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #eaecef;
+  }
+  .access-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .access-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .access-name {
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .access-addr {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-sub);
+    line-height: 1.85;
+  }
+  .access-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 18px;
+    background: #6B4BA8;
+    color: #fff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #4a2f82;
+    white-space: nowrap;
+    transition: transform .08s ease;
+  }
+  .access-cta:hover { filter: brightness(1.08); }
+  .access-cta:active { transform: translateY(2px); box-shadow: 0 1px 0 #4a2f82; }
+  .access-cta svg { width: 20px; height: 20px; flex: 0 0 20px; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-sub);
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    line-height: 1.9;
+  }
+  .footer-note a { color: var(--accent); }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 16px 60px; }
+    .site-title { font-size: 22px; }
+    .menu-card-title { font-size: 19px; }
+    .menu-card-sub { font-size: 12px; }
+    .menu-card { min-height: 160px; padding: 20px 12px 18px; }
+    .menu-card-icon { width: 48px; height: 48px; }
+    .menu-card-icon svg { width: 48px; height: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVGアイコン定義 -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-juzu" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="22" r="6" fill="currentColor" fill-opacity="0.15"/>
+    <circle cx="18" cy="30" r="4"/>
+    <circle cx="46" cy="30" r="4"/>
+    <circle cx="14" cy="42" r="4"/>
+    <circle cx="50" cy="42" r="4"/>
+    <circle cx="24" cy="50" r="4"/>
+    <circle cx="40" cy="50" r="4"/>
+    <circle cx="32" cy="54" r="4"/>
+    <path d="M28 28 Q22 30 18 34" />
+    <path d="M36 28 Q42 30 46 34" />
+  </symbol>
+  <symbol id="i-flower" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="22" r="5" fill="currentColor" fill-opacity="0.25"/>
+    <ellipse cx="32" cy="10" rx="5" ry="8" fill="currentColor" fill-opacity="0.15"/>
+    <ellipse cx="22" cy="18" rx="5" ry="8" transform="rotate(-55 22 18)" fill="currentColor" fill-opacity="0.15"/>
+    <ellipse cx="42" cy="18" rx="5" ry="8" transform="rotate(55 42 18)" fill="currentColor" fill-opacity="0.15"/>
+    <ellipse cx="22" cy="30" rx="5" ry="8" transform="rotate(-125 22 30)" fill="currentColor" fill-opacity="0.15"/>
+    <ellipse cx="42" cy="30" rx="5" ry="8" transform="rotate(125 42 30)" fill="currentColor" fill-opacity="0.15"/>
+    <path d="M32 28 Q32 42 28 52"/>
+    <path d="M32 40 Q24 42 22 50"/>
+  </symbol>
+  <symbol id="i-candle" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 8 Q28 14 32 18 Q36 14 32 8 Z" fill="currentColor" fill-opacity="0.3"/>
+    <rect x="24" y="22" width="16" height="28" rx="2" fill="currentColor" fill-opacity="0.1"/>
+    <line x1="32" y1="18" x2="32" y2="22"/>
+    <path d="M20 50 L44 50 L46 58 L18 58 Z" fill="currentColor" fill-opacity="0.15"/>
+  </symbol>
+  <symbol id="i-lotus" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 50 Q22 40 24 28 Q28 32 32 50" fill="currentColor" fill-opacity="0.2"/>
+    <path d="M32 50 Q42 40 40 28 Q36 32 32 50" fill="currentColor" fill-opacity="0.2"/>
+    <path d="M32 50 Q14 44 14 32 Q22 32 32 50" fill="currentColor" fill-opacity="0.15"/>
+    <path d="M32 50 Q50 44 50 32 Q42 32 32 50" fill="currentColor" fill-opacity="0.15"/>
+    <path d="M32 50 Q32 30 32 18 Q30 28 32 50" fill="currentColor" fill-opacity="0.25"/>
+    <path d="M12 52 Q32 56 52 52" />
+  </symbol>
+  <symbol id="i-wakaba" viewBox="0 0 24 24">
+    <path d="M12 2 L22 22 L12 22 Z" fill="#f4c12a"/>
+    <path d="M12 2 L2 22 L12 22 Z" fill="#2fa14d"/>
+  </symbol>
+  <symbol id="i-line" viewBox="0 0 24 24">
+    <path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314M9.529 13.237h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.196h1.775c.35 0 .634.285.634.635 0 .348-.284.634-.634.634m2.486-.635c0 .35-.285.635-.635.635-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.83m5.826 0c0 .273-.176.517-.437.603-.066.023-.134.031-.201.031-.213 0-.395-.09-.515-.252l-2.474-3.366v2.984c0 .35-.284.635-.634.635-.351 0-.634-.285-.634-.635V7.772c0-.274.175-.517.437-.603.065-.023.135-.033.202-.033.199 0 .38.107.499.258l2.487 3.368V7.772c0-.35.283-.635.634-.635.35 0 .634.285.634.635v4.83m4.031-2.421c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775c.351 0 .634.285.634.635 0 .349-.283.635-.634.635h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.285-.635.634-.635h2.41c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775z"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="site-title">仏事のご相談</div>
+    <div class="site-sub">浄土宗 妙慶院 清岸寺</div>
+  </header>
+
+  <p class="lead">妙慶院では、ご法事・ご葬儀・お墓・各種供養について、檀信徒の皆さまに限らず、幅広くご相談を承っています。</p>
+  <p class="welcome-lead">
+    <svg class="wakaba" aria-label="初心者マーク"><use href="#i-wakaba"/></svg>
+    どなた様もお気軽にご相談ください。ご質問のみのお問合せでも大丈夫です。
+  </p>
+
+  <!-- 4カテゴリ -->
+  <div class="menu-grid">
+    <a class="menu-card" href="houji.html" data-color="purple">
+      <div class="menu-card-title">ご法事</div>
+      <div class="menu-card-sub">中陰・年忌・月忌</div>
+      <div class="menu-card-icon"><svg><use href="#i-juzu"/></svg></div>
+    </a>
+    <a class="menu-card" href="ohaka.html" data-color="green">
+      <div class="menu-card-title">お墓</div>
+      <div class="menu-card-sub">納骨堂・永代供養墓</div>
+      <div class="menu-card-icon"><svg><use href="#i-flower"/></svg></div>
+    </a>
+    <a class="menu-card" href="osoushiki.html" data-color="indigo">
+      <div class="menu-card-title">お葬式</div>
+      <div class="menu-card-sub">葬儀・通夜・戒名</div>
+      <div class="menu-card-icon"><svg><use href="#i-candle"/></svg></div>
+    </a>
+    <a class="menu-card" href="kuyou.html" data-color="pink">
+      <div class="menu-card-title">供養</div>
+      <div class="menu-card-sub">水子供養・ペット供養</div>
+      <div class="menu-card-icon"><svg><use href="#i-lotus"/></svg></div>
+    </a>
+  </div>
+
+  <!-- 共通CTA -->
+  <div class="quick-cta">
+    <div class="quick-cta-title">どのご相談かまだ決まっていない方へ</div>
+    <p class="quick-cta-desc">「これって誰に聞いたらいいの？」というご相談も大歓迎です。<br>まずはLINEからお気軽にお声がけください。</p>
+    <!-- TODO: 妙慶院の公式LINE相談用URLに差し替え -->
+    <a class="line-cta" href="https://liff.line.me/2006055496-BbgMz69o" target="_blank" rel="noopener">
+      <svg><use href="#i-line"/></svg>LINEで相談する
+    </a>
+    <div class="line-cta-note">公式LINEに移動します</div>
+  </div>
+
+  <!-- アクセス -->
+  <section class="access" aria-labelledby="accessTitle">
+    <h2 id="accessTitle" class="access-title">お寺へのアクセス</h2>
+    <div class="access-map">
+      <iframe
+        src="https://www.google.com/maps?q=34.388344,132.458776&hl=ja&z=17&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="妙慶院 清岸寺の地図"
+        allowfullscreen></iframe>
+    </div>
+    <div class="access-info">
+      <div class="access-name">浄土宗 妙慶院 清岸寺</div>
+      <div class="access-addr">〒730-0041<br>広島県広島市中区小町２番１号</div>
+    </div>
+    <a class="access-cta" href="http://wajun.or.jp/access/" target="_blank" rel="noopener">
+      <svg><use href="#i-pin"/></svg>詳しいアクセスを見る
+    </a>
+  </section>
+
+</div>
+
+</body>
+</html>
