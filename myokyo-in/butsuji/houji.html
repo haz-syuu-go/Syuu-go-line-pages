@@ -3,479 +3,1589 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<title>ご法事のご相談｜妙慶院</title>
+<title>ご法事のご案内｜妙慶院</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #ffffff;
-    --text: #1a1d22;
-    --text-sub: #3f464d;
-    --line: #dfe3e8;
-    --line-strong: #c4c9d0;
-    --accent: #6B4BA8;
-    --accent-bg: #efeaf7;
+    --ink: #2a2521;
+    --ink-soft: #5a544e;
+    --ink-mute: #8a847e;
+    --paper: #ffffff;
+    --paper-2: #f7f3ec;
+    --paper-3: #fbf8f1;
+    --line: #d8d2c4;
+    --line-soft: #ece6d7;
+    --gold: #a07a3c;
+    --gold-soft: #c9a25e;
+    --indigo: #2f4858;
+    --vermillion: #b04a3a;
+    --shadow: 0 2px 8px rgba(42, 37, 33, 0.05);
   }
-  html { -webkit-text-size-adjust: 100%; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "ヒラギノ角ゴシック", sans-serif;
-    font-size: 20px;
-    line-height: 1.95;
-    font-weight: 500;
+    margin: 0;
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.9;
+    font-size: 18px;
     letter-spacing: 0.02em;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
 
-  .back-btn {
+  *:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .back-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: none;
-    border: none;
-    color: var(--accent);
-    font-size: 18px;
-    font-weight: 700;
-    padding: 8px 0;
-    margin-bottom: 20px;
-    cursor: pointer;
-    font-family: inherit;
+    gap: 0.4rem;
+    padding: 0.85rem 1.2rem;
+    color: var(--ink-soft);
     text-decoration: none;
+    font-size: 1rem;
+    min-height: 44px;
   }
-  .back-btn svg { width: 22px; height: 22px; }
-  .back-btn-bottom {
-    margin-top: 28px;
-    margin-bottom: 8px;
-    padding: 14px 18px;
-    border: 1px solid var(--accent);
-    border-radius: 10px;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-  }
+  .back-link:hover { color: var(--gold); }
+  .back-link svg { width: 14px; height: 14px; }
 
-  .detail-head {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 18px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--line);
-  }
-  .card-icon {
-    flex: 0 0 56px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--accent-bg);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .card-icon svg { width: 36px; height: 36px; }
-  .detail-title {
-    font-size: 28px;
-    font-weight: 900;
-    line-height: 1.45;
-    color: var(--text);
-    letter-spacing: 0.02em;
-  }
-  .detail-subtitle {
-    font-size: 17px;
+  .temple-mark {
+    text-align: center;
+    padding: 1.4rem 1rem 0.6rem;
     font-weight: 500;
-    color: var(--text-sub);
-    margin-top: 6px;
-    line-height: 1.7;
+    color: var(--ink);
+    letter-spacing: 0.55em;
+    font-size: 1.1rem;
+  }
+  .temple-mark::after {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0.85rem auto 0;
   }
 
-  .lead-quote {
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--accent);
-    line-height: 1.7;
-    margin: 8px 0 16px;
-    letter-spacing: 0.02em;
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.2rem 4rem;
   }
 
-  .detail-body p { margin-bottom: 20px; line-height: 2.1; font-size: 18px; font-weight: 500; }
-  .detail-body p:last-child { margin-bottom: 0; }
-
-  h3.section-title {
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--accent);
-    margin: 32px 0 16px;
-    padding-left: 14px;
-    border-left: 5px solid var(--accent);
+  .page-head {
+    text-align: center;
+    padding: 1.8rem 0 2.4rem;
+  }
+  .page-head h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ink);
     line-height: 1.5;
   }
-  h4.section-subtitle {
-    font-size: 19px;
-    font-weight: 900;
-    color: var(--text);
-    margin: 24px 0 12px;
-    line-height: 1.6;
+  .page-head .lead {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 2;
   }
 
-  /* 流れ */
-  .flow {
-    counter-reset: flow;
-    list-style: none;
-    margin: 12px 0;
+  .intro {
+    background: var(--paper-2);
+    border-left: 3px solid var(--gold);
+    padding: 1.4rem 1.4rem;
+    border-radius: 2px;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 2;
+    margin-bottom: 2.8rem;
   }
-  .flow li {
-    position: relative;
-    padding: 14px 16px 14px 56px;
-    background: var(--accent-bg);
-    border-radius: 10px;
-    margin-bottom: 10px;
-    font-size: 17px;
+  .intro strong { color: var(--ink); font-weight: 700; }
+
+  /* ===== フロー全体ラッパー（1〜4のステップ） ===== */
+  .flow-wrap {
+    margin-bottom: 3.5rem;
+  }
+  .flow-step {
+    margin-bottom: 0;
+  }
+  .flow-arrow {
+    text-align: center;
+    margin: 1.4rem 0;
+    color: var(--gold);
+    line-height: 0;
+  }
+  .flow-arrow svg { width: 28px; height: 28px; }
+
+  /* セクション */
+  .section { margin-bottom: 3.2rem; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .section-num-step {
+    background: var(--gold);
+  }
+  .section h2 {
+    font-size: 1.5rem;
     font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .section .sub {
+    font-size: 0.97rem;
+    color: var(--gold);
+    margin: 0 0 1.4rem;
+    padding-left: 3rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.8rem 1.6rem;
+    box-shadow: var(--shadow);
+  }
+  .lead-text {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.4rem;
+    line-height: 2;
+  }
+  .lead-text strong { color: var(--ink); font-weight: 700; }
+
+  .label-h {
+    font-size: 1.02rem;
+    color: var(--ink);
+    margin: 0 0 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .label-h::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .label-h:not(:first-of-type) { margin-top: 1.6rem; }
+
+  .timeslots {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin: 0 0 1.2rem;
+  }
+  .slot {
+    text-align: center;
+    padding: 0.95rem 0.3rem;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .slot small {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .slot-other {
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    text-align: center;
+    padding: 0.85rem;
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    border-radius: 3px;
+    margin-bottom: 1.4rem;
+  }
+  .slot-other strong { color: var(--ink); font-weight: 700; }
+
+  .info-list { list-style: none; padding: 0; margin: 0; }
+  .info-list li {
+    position: relative;
+    padding: 0.75rem 0 0.75rem 1.6rem;
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    border-bottom: 1px dashed var(--line-soft);
+    line-height: 1.85;
+  }
+  .info-list li:last-child { border-bottom: none; }
+  .info-list li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 1.25rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .info-list li strong { color: var(--ink); font-weight: 700; }
+
+  .notice-list { list-style: none; padding: 0; margin: 0; }
+  .notice-list li {
+    position: relative;
+    padding: 0.75rem 0 0.75rem 1.8rem;
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    border-bottom: 1px dashed var(--line-soft);
+    line-height: 1.85;
+  }
+  .notice-list li:last-child { border-bottom: none; }
+  .notice-list li::before {
+    content: "※";
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    color: var(--vermillion);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .notice-list li strong { color: var(--ink); font-weight: 700; }
+
+  .info-box {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin-top: 1.4rem;
+    padding: 1rem 1.1rem;
+    background: var(--paper-2);
+    border-radius: 3px;
+    line-height: 1.85;
+  }
+  .info-box strong { color: var(--ink); font-weight: 700; }
+
+  .cta-row {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    margin-top: 1.6rem;
+  }
+  .btn {
+    flex: 1 1 auto;
+    min-width: 220px;
+    min-height: 56px;
+    text-align: center;
+    padding: 1rem 1.2rem;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+  }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+  .btn-secondary {
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+
+  /* タブ */
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+    margin: 1.2rem 0 0;
+  }
+  .tab-btn {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    padding: 1.05rem 0.4rem;
+    font-family: inherit;
+    font-size: 1.02rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+    min-height: 52px;
+  }
+  .tab-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    font-weight: 700;
+  }
+  .tab-btn:hover:not(.active) { background: var(--paper-3); }
+
+  .tab-content {
+    display: none;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.6rem 1.4rem;
+    margin-top: 0.8rem;
+    box-shadow: var(--shadow);
+  }
+  .tab-content.active { display: block; }
+
+  .check-cat {
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin: 0 0 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+    letter-spacing: 0.08em;
+  }
+  .check-cat:not(:first-child) { margin-top: 1.8rem; }
+
+  .check-list { list-style: none; padding: 0; margin: 0; }
+  .check-item {
+    border-bottom: 1px solid var(--line-soft);
+    padding: 0.95rem 0;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: 0.85rem;
+    min-height: 32px;
+  }
+  .check-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 1.5px solid var(--ink-mute);
+    border-radius: 3px;
+    margin: 0;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    background: var(--paper);
+  }
+  .check-item input[type="checkbox"]:checked {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .check-item input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid var(--paper);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .check-item .item-body { flex: 1; min-width: 0; }
+  .check-item .item-name {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .check-item .item-detail {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    margin-top: 0.5rem;
+    line-height: 1.85;
+    display: none;
+    padding: 0.85rem 1rem;
+    background: var(--paper-2);
+    border-radius: 3px;
+  }
+  .check-item.expanded .item-detail { display: block; }
+  .check-item .item-detail strong { color: var(--ink); font-weight: 700; }
+  .check-item .item-detail a { color: var(--gold); text-decoration: underline; }
+
+  .toggle-detail {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 0.4rem;
+    padding: 0.3rem 0;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 32px;
+    font-weight: 500;
+  }
+  .toggle-detail svg {
+    width: 11px;
+    height: 11px;
+    transition: transform 0.2s;
+  }
+  .check-item.expanded .toggle-detail svg { transform: rotate(180deg); }
+
+  .pet-supplement {
+    background: var(--paper-2);
+    border-left: 3px solid var(--vermillion);
+    padding: 1.2rem 1.3rem;
+    margin-top: 1.8rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.95;
+  }
+  .pet-supplement strong { color: var(--ink); font-weight: 700; }
+  .pet-supplement .pet-title {
+    font-size: 1.05rem;
+    color: var(--ink);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .nenki-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  .nenki-table tr { border-bottom: 1px solid var(--line-soft); }
+  .nenki-table tr:last-child { border-bottom: none; }
+  .nenki-table td {
+    padding: 0.75rem 0;
+    color: var(--ink-soft);
     line-height: 1.7;
   }
-  .flow li::before {
-    counter-increment: flow;
-    content: counter(flow);
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: var(--accent);
+  .nenki-table td:last-child { text-align: right; }
+  .nenki-table td strong { color: var(--ink); font-weight: 700; }
+
+  .deadline-badge {
+    display: inline-block;
+    background: var(--vermillion);
     color: #fff;
+    padding: 0.35rem 0.95rem;
+    font-size: 0.95rem;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .toba-card p { margin: 0 0 1rem; font-size: 1.05rem; color: var(--ink-soft); line-height: 1.95; }
+  .toba-card p strong { color: var(--ink); font-weight: 700; }
+
+  .meal-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 1.6rem 0 0.7rem;
+    color: var(--ink);
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .meal-card h3:first-child { margin-top: 0; }
+  .meal-card p {
+    margin: 0 0 0.9rem;
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    line-height: 1.95;
+  }
+  .meal-card p strong { color: var(--ink); font-weight: 700; }
+  .meal-card ul {
+    margin: 0.4rem 0 0;
+    padding-left: 0;
+    list-style: none;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.95;
+  }
+  .meal-card ul li {
+    position: relative;
+    padding: 0.4rem 0 0.4rem 1.4rem;
+  }
+  .meal-card ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    width: 8px;
+    height: 1px;
+    background: var(--ink-mute);
+  }
+
+  /* ===== ご法事について（フロー＋情報） ===== */
+  .about-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.8rem 1.6rem;
+    box-shadow: var(--shadow);
+  }
+  .about-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    color: var(--ink);
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .about-card h3:not(:first-child) { margin-top: 2rem; }
+
+  .day-flow {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: dayflow;
+  }
+  .day-flow li {
+    counter-increment: dayflow;
+    padding: 0.85rem 0 0.85rem 3rem;
+    position: relative;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 1.02rem;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  .day-flow li:last-child { border-bottom: none; }
+  .day-flow li::before {
+    content: counter(dayflow);
+    position: absolute;
+    left: 0;
+    top: 0.95rem;
+    width: 32px;
+    height: 32px;
+    background: var(--paper-2);
+    color: var(--gold);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    font-weight: 900;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1px solid var(--line);
+  }
+  .day-flow li .step-title {
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .day-flow li .step-note {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    display: block;
+  }
+  .day-flow li .step-note strong { color: var(--ink); font-weight: 700; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .info-card {
+    background: var(--paper-3);
+    border: 1px solid var(--line);
+    padding: 1.1rem 1.1rem;
+    border-radius: 3px;
+  }
+  .info-card .ic-label {
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .info-card .ic-label svg { width: 14px; height: 14px; }
+  .info-card .ic-value {
+    font-size: 1.02rem;
+    color: var(--ink);
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .info-card .ic-value strong { font-weight: 700; }
+  .info-card .ic-note {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+    line-height: 1.7;
   }
 
-  /* 注意事項リスト */
-  .note-box {
-    background: #fafbfc;
+  .faq-item {
+    background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px 22px;
-    margin: 18px 0;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
   }
-  .note-box ul {
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 1.15rem 1.2rem;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    line-height: 1.7;
+    min-height: 52px;
+  }
+  .q-mark {
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+  .faq-q .arrow {
+    margin-left: auto;
+    color: var(--ink-mute);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+  .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+  .faq-a {
+    display: none;
+    padding: 1rem 1.2rem 1.2rem 2.95rem;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.95;
+    border-top: 1px dashed var(--line);
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-a strong { color: var(--ink); font-weight: 700; }
+  .faq-a a { color: var(--gold); text-decoration: underline; }
+
+  .contact-section {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2.6rem;
+    border-top: 1px solid var(--line);
+  }
+  .contact-section h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 0.7rem;
+    letter-spacing: 0.08em;
+  }
+  .contact-section p {
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.6rem;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2.2rem 1rem 1.8rem;
+    font-size: 0.92rem;
+    color: var(--ink-mute);
+    border-top: 1px solid var(--line);
+    line-height: 2;
+  }
+  footer .temple-name {
+    font-size: 1.1rem;
+    color: var(--ink);
+    letter-spacing: 0.4em;
+    margin-bottom: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* ===== スマホ最適化（文字大きく） ===== */
+  @media (max-width: 600px) {
+    body { font-size: 17px; line-height: 1.95; }
+    .container { padding: 0 1rem 4rem; }
+    .page-head h1 { font-size: 1.7rem; }
+    .page-head .lead { font-size: 1rem; }
+    .intro { font-size: 1rem; padding: 1.3rem 1.2rem; }
+    .timeslots { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+    .slot { padding: 0.85rem 0.3rem; font-size: 1.05rem; }
+    .tabs { grid-template-columns: 1fr; gap: 0.4rem; }
+    .tab-btn { padding: 1rem 0.5rem; font-size: 1.02rem; }
+    .section h2 { font-size: 1.3rem; }
+    .section .sub { padding-left: 0; font-size: 0.95rem; }
+    .btn { min-width: 100%; font-size: 1.05rem; }
+    .card, .about-card { padding: 1.4rem 1.1rem; }
+    .tab-content { padding: 1.4rem 1.1rem; }
+    .info-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+    .info-list li, .notice-list li { font-size: 1.02rem; }
+    .check-item .item-name { font-size: 1.05rem; }
+    .day-flow li { padding-left: 2.7rem; font-size: 1rem; }
+    .day-flow li::before { width: 30px; height: 30px; }
+    .lead-text { font-size: 1.02rem; }
+    .label-h { font-size: 1.02rem; }
+  }
+
+  /* === アコーディオン === */
+  .section.accordion .section-head {
+    cursor: pointer;
+    user-select: none;
+    padding: 0.4rem 0;
+    transition: opacity 0.2s;
+  }
+  .section.accordion .section-head:hover { opacity: 0.85; }
+  .section.accordion .section-head:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+    border-radius: 3px;
+  }
+  .section.accordion .section-toggle {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--gold);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.4rem 0.7rem;
+    background: var(--paper-2);
+    border-radius: 3px;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+  .section.accordion .section-toggle svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.25s;
+  }
+  .section.accordion .section-toggle .label-close { display: none; }
+  .section.accordion.open .section-toggle .label-open { display: none; }
+  .section.accordion.open .section-toggle .label-close { display: inline; }
+  .section.accordion.open .section-toggle svg { transform: rotate(180deg); }
+  .section.accordion .section-body {
+    display: none;
+    margin-top: 1.4rem;
+  }
+  .section.accordion.open .section-body { display: block; }
+
+  @media (max-width: 600px) {
+    .section.accordion .section-toggle {
+      font-size: 0.92rem;
+      padding: 0.4rem 0.6rem;
+    }
+    .section.accordion .section-toggle svg { width: 11px; height: 11px; }
+  }
+/* === /アコーディオン === */
+
+  /* === ふきだし === */
+  .speech-bubble {
+    position: relative;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    padding: 1.1rem 1.2rem 1.1rem 3.4rem;
+    border-radius: 12px;
+    margin: 1rem 0 1.6rem;
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.85;
+  }
+  .speech-bubble::before {
+    content: "";
+    position: absolute;
+    left: 0.85rem;
+    top: 0.95rem;
+    width: 38px;
+    height: 38px;
+    background: var(--gold);
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 21l3-6c-1-1.5-1.5-3.3-1.5-5C4.5 5.6 8.6 1.5 13.5 1.5S22.5 5.6 22.5 10.5 18.4 19.5 13.5 19.5c-1.7 0-3.5-.5-5-1.5L3 21z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 22px;
+  }
+  .speech-bubble::after {
+    content: "";
+    position: absolute;
+    left: 2.3rem;
+    top: 1.6rem;
+    border: 8px solid transparent;
+    border-right-color: var(--paper-2);
+    border-left: 0;
+    filter: drop-shadow(-1px 0 0 var(--line));
+  }
+  .speech-bubble strong { font-weight: 700; }
+
+  @media (max-width: 600px) {
+    .speech-bubble {
+      padding: 1rem 1rem 1rem 3.1rem;
+      font-size: 0.98rem;
+    }
+    .speech-bubble::before {
+      width: 34px;
+      height: 34px;
+      left: 0.7rem;
+      background-size: 20px;
+    }
+    .speech-bubble::after {
+      left: 2rem;
+    }
+  }
+  /* === /ふきだし === */
+
+  /* === チェックリスト 四角囲み === */
+  .check-list {
     list-style: none;
     padding: 0;
-  }
-  .note-box li {
-    padding: 6px 0 6px 22px;
-    position: relative;
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.85;
-    color: var(--text-sub);
-  }
-  .note-box li::before {
-    content: "•";
-    position: absolute;
-    left: 6px;
-    top: 6px;
-    color: var(--accent);
-    font-weight: 900;
-    font-size: 18px;
-  }
-
-  /* 一例タグ */
-  .tag-list {
+    margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 14px 0 8px;
+    flex-direction: column;
+    gap: 0.6rem;
   }
-  .tag-list .tag {
-    background: var(--accent-bg);
-    color: var(--accent);
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 16px;
-    font-weight: 700;
-  }
-
-  /* お布施ボックス */
-  .ofuse-box {
-    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
-    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
-    border-radius: 12px;
-    padding: 22px 24px;
-    margin: 24px 0;
-    text-align: left;
-  }
-  .ofuse-box h4 {
-    text-align: center;
-    color: var(--accent);
-    font-size: 19px;
-    font-weight: 900;
-    margin-bottom: 12px;
-  }
-  .ofuse-box p {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.95;
-    color: var(--text-sub);
-  }
-
-  /* ご縁の方のお声 */
-  .voices {
-    display: grid;
-    gap: 12px;
-    margin: 12px 0;
-  }
-  .voice {
-    background: #fafbfc;
+  .check-item {
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 16px 18px;
-    font-size: 16px;
-    line-height: 1.85;
-    color: var(--text-sub);
-    font-weight: 500;
+    background: var(--paper-3);
+    border-radius: 6px;
+    padding: 0.95rem 1rem;
+    transition: border-color 0.2s, background 0.2s;
   }
-  .voice .voice-from {
-    display: block;
-    text-align: right;
-    margin-top: 8px;
-    font-size: 14px;
-    color: var(--text-sub);
-    font-weight: 700;
+  .check-item:has(input[type="checkbox"]:checked),
+  .check-item.is-checked {
+    background: #fff;
+    border-color: var(--gold);
   }
+  /* === /チェックリスト 四角囲み === */
 
-  /* LINE CTA */
-  .cta-block {
-    background: color-mix(in srgb, var(--accent) 7%, #ffffff);
-    border: 1px solid color-mix(in srgb, var(--accent) 14%, #ffffff);
-    border-radius: 14px;
-    padding: 22px 20px;
-    margin: 28px 0;
-  }
-  .cta-block-title {
-    font-size: 18px;
-    font-weight: 900;
-    color: var(--text);
-    text-align: center;
-    margin-bottom: 12px;
-  }
-  .cta-block-desc {
-    text-align: center;
-    font-size: 15px;
-    color: var(--text-sub);
-    line-height: 1.85;
-    margin-bottom: 16px;
-  }
-  .line-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    background: #06C755;
-    color: #fff;
-    font-family: inherit;
-    font-size: 17px;
-    font-weight: 900;
-    text-decoration: none;
-    padding: 14px 16px;
-    border-radius: 10px;
-    box-shadow: 0 2px 0 #04a447;
-    letter-spacing: 0.01em;
-  }
-  .line-cta:hover { filter: brightness(1.03); }
-  .line-cta:active { transform: translateY(2px); box-shadow: 0 1px 0 #04a447; }
-  .line-cta svg { width: 22px; height: 22px; fill: currentColor; flex: 0 0 22px; }
-  .line-cta-note {
-    text-align: center;
-    font-size: 13px;
-    color: var(--text-sub);
-    margin-top: 4px;
-  }
-
-  /* アクセス */
-  .access {
-    margin: 40px 0 8px;
-    padding: 26px 22px;
-    background: #f6f7f9;
-    border: 1px solid #e3e6ea;
-    border-radius: 14px;
-  }
-  .access-title {
-    font-size: 22px;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 20px;
-    letter-spacing: 0.04em;
-    color: var(--text);
-  }
-  .access-map {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    background: #eaecef;
-  }
-  .access-map iframe { width: 100%; height: 100%; border: 0; display: block; }
-  .access-info { text-align: center; margin-bottom: 20px; }
-  .access-name { font-size: 18px; font-weight: 900; margin-bottom: 6px; color: var(--text); }
-  .access-addr { font-size: 17px; font-weight: 500; color: var(--text-sub); line-height: 1.85; }
-  .access-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 14px 18px;
-    background: var(--accent);
-    color: #fff;
-    font-family: inherit;
-    font-size: 17px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.18);
-    white-space: nowrap;
-  }
-  .access-cta svg { width: 20px; height: 20px; flex: 0 0 20px; }
-
-  @media (max-width: 480px) {
-    .wrap { padding: 20px 16px 60px; }
-    .detail-title { font-size: 22px; }
-    .lead-quote { font-size: 19px; }
-    h3.section-title { font-size: 19px; }
-    h4.section-subtitle { font-size: 17px; }
-  }
 </style>
 </head>
 <body>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-  <symbol id="i-juzu" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="32" cy="22" r="6" fill="currentColor" fill-opacity="0.15"/>
-    <circle cx="18" cy="30" r="4"/><circle cx="46" cy="30" r="4"/>
-    <circle cx="14" cy="42" r="4"/><circle cx="50" cy="42" r="4"/>
-    <circle cx="24" cy="50" r="4"/><circle cx="40" cy="50" r="4"/>
-    <circle cx="32" cy="54" r="4"/>
-    <path d="M28 28 Q22 30 18 34" /><path d="M36 28 Q42 30 46 34" />
-  </symbol>
-  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-  </symbol>
-  <symbol id="i-line" viewBox="0 0 24 24">
-    <path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314M9.529 13.237h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.196h1.775c.35 0 .634.285.634.635 0 .348-.284.634-.634.634m2.486-.635c0 .35-.285.635-.635.635-.35 0-.634-.285-.634-.635V7.772c0-.35.284-.635.634-.635.35 0 .635.285.635.635v4.83m5.826 0c0 .273-.176.517-.437.603-.066.023-.134.031-.201.031-.213 0-.395-.09-.515-.252l-2.474-3.366v2.984c0 .35-.284.635-.634.635-.351 0-.634-.285-.634-.635V7.772c0-.274.175-.517.437-.603.065-.023.135-.033.202-.033.199 0 .38.107.499.258l2.487 3.368V7.772c0-.35.283-.635.634-.635.35 0 .634.285.634.635v4.83m4.031-2.421c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775c.351 0 .634.285.634.635 0 .349-.283.635-.634.635h-2.41c-.35 0-.634-.285-.634-.635V7.772c0-.35.285-.635.634-.635h2.41c.351 0 .634.285.634.635 0 .349-.283.634-.634.634h-1.775v1.138h1.775z"/>
-  </symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-  </symbol>
-</svg>
+<a class="back-link" href="index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  仏事のご相談トップへ戻る
+</a>
 
-<div class="wrap">
+<div class="temple-mark">妙 慶 院</div>
 
-  <a class="back-btn" href="index.html"><svg><use href="#i-arrow-left"/></svg>仏事のご相談トップへ</a>
+<div class="container">
 
-  <div class="detail-head">
-    <div class="card-icon"><svg><use href="#i-juzu"/></svg></div>
-    <div>
-      <div class="detail-title">ご法事</div>
-      <div class="detail-subtitle">中陰・年忌・月忌など</div>
+  <header class="page-head">
+    <h1>ご法事のご案内</h1>
+    <p class="lead">
+      ご法事の日程ご相談から当日のご準備まで<br>
+      安心してお迎えいただけるようご案内いたします
+    </p>
+  </header>
+
+  <div class="intro">
+    ご法事を執り行うにあたり、ご相談いただきたいことや、当日までにご準備いただくことをまとめております。<br>
+    ご不明な点は、いつでも<strong>LINE・お電話</strong>にてお気軽にお問い合わせください。
+  </div>
+
+  <!-- ===== フロー（1〜4） ===== -->
+  <div class="flow-wrap">
+
+    <!-- ① 日程ご相談 -->
+    <section class="section flow-step accordion">
+      <div class="section-head" role="button" tabindex="0" aria-expanded="false" onclick="toggleAccordion(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAccordion(this);}">
+        <span class="section-num section-num-step">1</span>
+        <h2>ご法事の日程ご相談</h2>
+        <span class="section-toggle" aria-hidden="true">
+          <span class="label-open">詳細を見る</span>
+          <span class="label-close">閉じる</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
+      </div>
+      <p class="sub">まずは候補日をお寺にお知らせください</p>
+      <div class="section-body">
+
+      <div class="card">
+        <div class="speech-bubble">ご法事の日時は、ご家族のご都合と本堂の予定を合わせて調整いたします。<br>
+          <strong>第一希望・第二希望の日付</strong>をお決めの上、ご連絡ください。</div>
+
+        <p class="label-h">ご希望時間帯</p>
+        <div class="timeslots" style="grid-template-columns:repeat(2, 1fr);">
+          <div class="slot">午前<small>9:00 〜 12:00</small></div>
+          <div class="slot">午後<small>13:00 以降</small></div>
+        </div>
+        <div class="slot-other">
+          ご希望は<strong>30分刻み</strong>で承っております。お気軽にご相談ください。
+        </div>
+
+        <p class="label-h">ご相談の際にお知らせいただきたいこと</p>
+        <ul class="info-list">
+          <li><strong>法要の種類</strong>(四十九日法要・年忌法要・新盆・納骨法要 など)</li>
+          <li><strong>ご希望日時</strong>(第一希望・第二希望)</li>
+          <li><strong>ご法要の場所</strong>(お寺・ご自宅・指定会館 など)</li>
+          <li><strong>施主様のお名前・ご参列人数</strong></li>
+          <li>お寺にご依頼されたいこと(お花・お供物 など)</li>
+        </ul>
+
+        <p class="label-h">ご相談時期について</p>
+        <ul class="notice-list">
+          <li>ご相談は<strong>遅くとも1ヶ月前まで</strong>にお願いいたします</li>
+          <li><strong>土日のご希望は混み合います</strong>ので、お早めにご連絡ください</li>
+          <li>1ヶ月以内の直前のご相談は、<strong>お電話にて</strong>ご対応いたします</li>
+        </ul>
+
+        <div class="info-box">
+          日程確定後、<strong>ご法事の準備チェックリスト</strong>を添えて改めてご案内いたします。
+        </div>
+
+        <div class="cta-row">
+          <!-- TODO: 妙慶院のご法事相談用LINE URLに差し替え -->
+          <a class="btn btn-primary" href="https://liff.line.me/2006055496-BbgMz69o" target="_blank" rel="noopener" aria-label="LINEで日程を相談する">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.398-.094-.515-.262l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.131-.033.196-.033.197 0 .378.105.494.256l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+            LINEで日程を相談する
+          </a>
+          <a class="btn btn-secondary" href="tel:0822417471" aria-label="電話で相談する">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            お電話で相談する
+          </a>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 矢印 -->
+    <div class="flow-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
     </div>
+
+    <!-- ② チェックリスト -->
+    <section class="section flow-step accordion">
+      <div class="section-head" role="button" tabindex="0" aria-expanded="false" onclick="toggleAccordion(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAccordion(this);}">
+        <span class="section-num section-num-step">2</span>
+        <h2>ご法事の準備チェックリスト</h2>
+        <span class="section-toggle" aria-hidden="true">
+          <span class="label-open">詳細を見る</span>
+          <span class="label-close">閉じる</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
+      </div>
+      <p class="sub">日程確定後、当日までにご確認ください</p>
+      <div class="section-body">
+
+      <p style="font-size:1rem; color:var(--ink-soft); margin:0 0 1rem;">
+        法要の種類をお選びください
+      </p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" onclick="switchTab('shijuku', this)" role="tab" aria-selected="true">四十九日法要</button>
+        <button class="tab-btn" onclick="switchTab('nenki', this)" role="tab" aria-selected="false">年忌法要</button>
+        <button class="tab-btn" onclick="switchTab('heishu', this)" role="tab" aria-selected="false">新盆・併修</button>
+        <button class="tab-btn" onclick="switchTab('ryakushiki', this)" role="tab" aria-selected="false">納骨法要</button>
+      </div>
+
+      <!-- 四十九日法要 -->
+      <div id="tab-shijuku" class="tab-content active" role="tabpanel">
+        <p class="check-cat">準備いただきたいこと</p>
+        <ul class="check-list">
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">御遺骨</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">ご納骨を行うため、必ずお持ちください。</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">白木位牌</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">ご葬儀の際にお渡しした白木のお位牌をお持ちください。</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">本位牌</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail"><strong>故人さまのお戒名を刻んでお持ちください。</strong>本位牌開眼を併せて執り行います。</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">御写真</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">小さい御写真でも差し支えございません。</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">数珠</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">四十九日法要お布施</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">四十九日法要・本位牌開眼を含みます。金額の目安は<strong>住職までお問い合わせください。</strong></div>
+              </div>
+            </label>
+          </li>
+        </ul>
+
+        <div class="info-box" style="margin-top:1.4rem;">
+          ※ 当日まとめてのご納入にてお願いいたします。
+        </div>
+      </div>
+
+      <!-- 年忌法要 -->
+      <div id="tab-nenki" class="tab-content" role="tabpanel">
+        <p class="check-cat">準備いただきたいこと</p>
+        <ul class="check-list">
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">御位牌</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">御写真</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">小さい御写真でも差し支えございません。</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">数珠</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">年忌法要お布施</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">金額の目安は<strong>住職までお問い合わせください。</strong></div>
+              </div>
+            </label>
+          </li>
+        </ul>
+
+        <p class="check-cat">年回忌の早見表</p>
+        <table class="nenki-table">
+          <tbody>
+            <tr><td>一周忌</td><td>亡くなって<strong>1年後</strong></td></tr>
+            <tr><td>三回忌</td><td>亡くなって<strong>2年後</strong></td></tr>
+            <tr><td>七回忌</td><td>亡くなって<strong>6年後</strong></td></tr>
+            <tr><td>十三回忌</td><td>亡くなって<strong>12年後</strong></td></tr>
+            <tr><td>十七回忌</td><td>亡くなって<strong>16年後</strong></td></tr>
+            <tr><td>二十三回忌</td><td>亡くなって<strong>22年後</strong></td></tr>
+            <tr><td>二十七回忌</td><td>亡くなって<strong>26年後</strong></td></tr>
+            <tr><td>三十三回忌</td><td>亡くなって<strong>32年後</strong>(弔い上げ)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box" style="margin-top:1.4rem;">
+          ※ 当日まとめてのご納入にてお願いいたします。
+        </div>
+      </div>
+
+      <!-- 新盆・併修 -->
+      <div id="tab-heishu" class="tab-content" role="tabpanel">
+        <p class="check-cat">準備いただきたいこと</p>
+        <ul class="check-list">
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">御位牌</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">御写真</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">小さい御写真でも差し支えございません。</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">数珠</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">新盆供養お布施</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">金額の目安は<strong>住職までお問い合わせください。</strong></div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">年忌法要お布施(併修される場合)</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">年忌法要を併修される場合は、年忌分のお布施もお納めください。金額の目安は<strong>住職までお問い合わせください。</strong></div>
+              </div>
+            </label>
+          </li>
+        </ul>
+
+        <div class="info-box" style="margin-top:1.4rem;">
+          ※ 当日まとめてのご納入にてお願いいたします。
+        </div>
+      </div>
+
+      <!-- 納骨法要 -->
+      <div id="tab-ryakushiki" class="tab-content" role="tabpanel">
+        <p class="check-cat">準備いただきたいこと</p>
+        <ul class="check-list">
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">御遺骨</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">白木位牌</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">本位牌</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">御写真</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">小さい御写真でも差し支えございません。</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">数珠</div>
+              </div>
+            </label>
+          </li>
+          <li class="check-item">
+            <label>
+              <input type="checkbox">
+              <div class="item-body">
+                <div class="item-name">お布施</div>
+                <button type="button" class="toggle-detail" onclick="toggleDetail(this, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  詳しく見る
+                </button>
+                <div class="item-detail">納骨法要・お戒名・四十九日法要・本位牌開眼を含みます。金額の目安は<strong>住職までお問い合わせください。</strong></div>
+              </div>
+            </label>
+          </li>
+        </ul>
+
+        <div class="info-box" style="margin-top:1.4rem;">
+          ※ 当日まとめてのご納入にてお願いいたします。
+        </div>
+      </div>
+      </div>
+    </section>
+
   </div>
+  <!-- ===== /フロー ===== -->
 
-  <div class="detail-body">
-    <p class="lead-quote">亡き方を丁寧に弔う心は、とても大切です。</p>
-    <p>阿弥陀さまの極楽浄土にご往生された方々は、いつも私たちのことを見守り導いてくださっています。亡き方に想いを馳せ、私たちが手を合わせお念仏していくことは、何よりもよろこんでいただけます。</p>
-    <p>仏事は私たち一人ひとりにとって、とても大切なご縁を結ぶ場です。安心して極楽浄土から見ていてくださいとご報告するためにも、ぜひ小さなお子さまもお連れいただいて、皆さまとご一緒にご法事をおつとめしましょう。</p>
-  </div>
+  <!-- ご法事について -->
+  <section class="section accordion">
+    <div class="section-head" role="button" tabindex="0" aria-expanded="false" onclick="toggleAccordion(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAccordion(this);}">
+      <span class="section-num">5</span>
+      <h2>ご法事について</h2>
+        <span class="section-toggle" aria-hidden="true">
+          <span class="label-open">詳細を見る</span>
+          <span class="label-close">閉じる</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
+      </div>
+    <p class="sub">当日の流れ・所要時間・駐車場のご案内</p>
+      <div class="section-body">
 
-  <h3 class="section-title">承っているご法事の一例</h3>
-  <div class="tag-list">
-    <span class="tag">中陰</span>
-    <span class="tag">月忌</span>
-    <span class="tag">祥月命日</span>
-    <span class="tag">年忌</span>
-    <span class="tag">ご回向</span>
-    <span class="tag">ご供養</span>
-  </div>
+    <div class="about-card">
+      <h3>当日の流れ</h3>
+      <ol class="day-flow">
+        <li>
+          <span class="step-title">ご集合</span>
+          <span class="step-note">法要開始の<strong>15〜20分前</strong>までにお越しください。余裕をもってお越しいただくと安心です。</span>
+        </li>
+        <li>
+          <span class="step-title">受付</span>
+          <span class="step-note">本堂にて受付をいたします。</span>
+        </li>
+        <li>
+          <span class="step-title">読経・お焼香</span>
+          <span class="step-note">ご参列の皆様にお焼香いただきます。</span>
+        </li>
+        <li>
+          <span class="step-title">法話</span>
+          <span class="step-note">住職よりお話をさせていただきます。</span>
+        </li>
+        <li>
+          <span class="step-title">お墓参り</span>
+          <span class="step-note">ご納骨やお墓のあるご家族はお参りいたします。</span>
+        </li>
+        <li>
+          <span class="step-title">お食事(任意)</span>
+          <span class="step-note">ご家族・ご親族とお会いできるたいせつなお時間です。お寺にてお食事いただくことも可能です。</span>
+        </li>
+      </ol>
 
-  <h3 class="section-title">ご法事までの流れ</h3>
-  <ol class="flow">
-    <li>まずはLINEでご連絡ください（ご相談やご質問だけでも結構です）</li>
-    <li>ご希望の日時と場所をお知らせください</li>
-    <li>お申込みの後でもご質問やご相談はいつでもどうぞ</li>
-  </ol>
+      <h3>当日のご案内</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="ic-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            集合時間
+          </div>
+          <div class="ic-value">法要開始の<strong>15〜20分前</strong></div>
+          <div class="ic-note">余裕をもってお越しください</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M7 10h2"></path><path d="M15 10h2"></path></svg>
+            駐車場
+          </div>
+          <div class="ic-value"><strong>境内に駐車スペースあり</strong></div>
+          <div class="ic-note">台数に限りがありますので、満車の場合はお近くのパーキングをご利用ください</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            所要時間の目安
+          </div>
+          <div class="ic-value">年忌・四十九日：<strong>約1時間</strong></div>
+          <div class="ic-note">読経・法話・お墓参りを含みます</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            お布施について
+          </div>
+          <div class="ic-value">目安は<strong>遠慮なくお尋ねください</strong></div>
+          <div class="ic-note">住職より丁寧にご説明いたします</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            会場・設備
+          </div>
+          <div class="ic-value"><strong>冷暖房完備・椅子席<br>お手洗いあり</strong></div>
+          <div class="ic-note">本堂・客殿ともに椅子席で正座は不要です</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+            お子さま連れ
+          </div>
+          <div class="ic-value"><strong>ぜひお連れください</strong></div>
+          <div class="ic-note">お手洗いもご用意しております</div>
+        </div>
+      </div>
 
-  <div class="note-box">
-    <ul>
-      <li>檀信徒に限らず、幅広くご法事を承ります（初めてのご縁の方もどうぞ）</li>
-      <li>お寺でのご法事は、すべて椅子席でございます</li>
-      <li>なるべく余裕を持ってお申込みいただけると助かります</li>
-      <li>日時や場所の変更がございましたら、お早めにご連絡ください</li>
-    </ul>
-  </div>
-
-  <h3 class="section-title">ご法事を依頼される方へ</h3>
-  <div class="detail-body">
-    <p>まずはお気軽にご連絡ください。ご質問やご相談だけでも結構です。</p>
-    <p>ご法事は、ご命日の当日か、ご命日よりも前におつとめいたしておりますので、なるべくお日にちには余裕を持っていただけると助かります。</p>
-    <p>お寺でご法事をご希望される方には、事前に本堂をご見学いただくこともございます。いろいろお話をしてご要望に見合うようでしたら、日時と場所を決めてご法事をお申込みください。</p>
-  </div>
-
-  <div class="ofuse-box">
-    <h4>お布施について</h4>
-    <p>皆さまのお志しによりお納めいただいています。どのくらいお包みしたらよいのかご相談をいただくことがございますが、額を提示することはいたしておりません。</p>
-    <p>亡き方を弔っていくのに、「安かったな」と思うことで粗末にならないよう、「充分にした」と思えるように、心をこめてお包みください。お布施は定額制ではありませんし、多寡によってご法事に差が出ることはございません。</p>
-    <p>ご質問やご相談がございましたら、どのようなことでも構いません。どうぞお問合せください。</p>
-  </div>
-
-  <h3 class="section-title">ご縁の方のお声</h3>
-  <div class="voices">
-    <div class="voice">このたびは初めてのご縁でしたが、お通夜の時、葬儀の時、初七日の時、満中陰の時、百箇日の時、その時どきの法話がとても心に沁み入りました。今後も引き続きお願いしたいと思います。<span class="voice-from">檀信徒 女性 80代</span></div>
-    <div class="voice">ホームページを見て法事をお願いしましたところ、快くお引き受けいただきまして大変にありがたかったです。また次の法事もよろしくお願いします。<span class="voice-from">檀信徒 男性 60代</span></div>
-    <div class="voice">今のご住職も、前のご住職も、お二人ともすばらしいお声のお経で、いつも聞き惚れています。親戚の方に「あなたのところは良いわね」と言われていて、とても誇らしく思っています。<span class="voice-from">檀信徒 女性 70代</span></div>
-  </div>
-
-  <div class="cta-block">
-    <div class="cta-block-title">LINEからご相談ください</div>
-    <p class="cta-block-desc">ご法事のご相談・お申込みは、公式LINEからお気軽にどうぞ。<br>ご質問のみのお問合せでも大丈夫です。</p>
-    <!-- TODO: 妙慶院のご法事相談用LINE URLに差し替え -->
-    <a class="line-cta" href="https://liff.line.me/2006055496-BbgMz69o" target="_blank" rel="noopener">
-      <svg><use href="#i-line"/></svg>LINEで相談する
-    </a>
-    <div class="line-cta-note">公式LINEに移動します</div>
-  </div>
-
-  <section class="access" aria-labelledby="accessTitle">
-    <h2 id="accessTitle" class="access-title">お寺へのアクセス</h2>
-    <div class="access-map">
-      <iframe
-        src="https://www.google.com/maps?q=34.388344,132.458776&hl=ja&z=17&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="妙慶院 清岸寺の地図"
-        allowfullscreen></iframe>
+      <h3>当日の服装について</h3>
+      <p style="font-size:1rem; color:var(--ink-soft); line-height:1.95; margin:0 0 0.6rem;">
+        <strong style="color:var(--ink); font-weight:700;">平服</strong>でお越しください。ご家族のみのご法事もご親族が集まる場合も、平服で差し支えございません。
+      </p>
+      <ul style="list-style:none; padding-left:0; margin:0.8rem 0 0;">
+        <li style="position:relative; padding:0.55rem 0 0.55rem 1.4rem; font-size:1rem; color:var(--ink-soft); border-bottom:1px dashed var(--line-soft);">
+          <span style="position:absolute; left:0; top:1rem; width:8px; height:1px; background:var(--gold);"></span>
+          <strong style="color:var(--ink); font-weight:700;">夏：</strong>熱中症予防のため、涼やかな平服でお越しください
+        </li>
+        <li style="position:relative; padding:0.55rem 0 0.55rem 1.4rem; font-size:1rem; color:var(--ink-soft);">
+          <span style="position:absolute; left:0; top:1rem; width:8px; height:1px; background:var(--gold);"></span>
+          <strong style="color:var(--ink); font-weight:700;">冬：</strong>暖房はございますが、念のため温かい服装でお越しください
+        </li>
+      </ul>
     </div>
-    <div class="access-info">
-      <div class="access-name">浄土宗 妙慶院 清岸寺</div>
-      <div class="access-addr">〒730-0041<br>広島県広島市中区小町２番１号</div>
-    </div>
-    <a class="access-cta" href="http://wajun.or.jp/access/" target="_blank" rel="noopener">
-      <svg><use href="#i-pin"/></svg>詳しいアクセスを見る
-    </a>
   </section>
 
-  <a class="back-btn back-btn-bottom" href="index.html"><svg><use href="#i-arrow-left"/></svg>仏事のご相談トップへ</a>
+  <!-- よくある質問 -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">6</span>
+      <h2>よくあるご質問</h2>
+    </div>
+    <p class="sub">皆さまから多くいただくご質問</p>
+
+    <div class="faq-list">
+
+<div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span class="q-mark">Q</span>
+          <span>何回忌までご法事をすればよいですか?</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a">
+          ご家庭のご事情に合わせて柔軟にご相談ください。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span class="q-mark">Q</span>
+          <span>駐車場はありますか?</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a">
+          境内に<strong>駐車スペースがございます（3台分）。</strong>台数に限りがありますので、満車の場合はお近くのパーキングをご利用ください。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span class="q-mark">Q</span>
+          <span>ご法事の日程はいつ頃決めればよいですか?</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a">
+          <strong>2〜3ヶ月前</strong>にはご相談いただけると、ご希望の日時で調整しやすくなります。特に土日・お盆・お彼岸の時期は混み合いますので、お早めにご連絡ください。1ヶ月以内の直前のご相談はお電話にてご対応いたします。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span class="q-mark">Q</span>
+          <span>お寺でのご法事と自宅でのご法事、どちらがよいですか?</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a">
+          どちらでも結構です。ご家族のご都合の良い場所でお勤めいたします。ご自宅でも指定会館でもご法事をお受けしております。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span class="q-mark">Q</span>
+          <span>小さなお子さま連れでも大丈夫ですか?</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a">
+          もちろんです。<strong>お子さま連れでも安心してお越しください。</strong>故人さまもきっとお喜びになることと思います。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span class="q-mark">Q</span>
+          <span>祖父と祖母のご法事を一緒にできますか?</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a">
+          はい、<strong>併修(へいしゅう)として一緒にお勤めすることが可能です。</strong>ご家族のご都合に合わせて柔軟に対応いたしますので、お気軽にご相談ください。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span class="q-mark">Q</span>
+          <span>お布施の目安を教えてください</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a">
+          目安などのご質問は、<strong>住職よりお答えしております。</strong>遠慮なくご相談ください。
+        </div>
+      </div>
+
+<!-- 検討中(5/8議事録): 同称十念の説明 -->
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span class="q-mark">Q</span>
+          <span>法要中の「同称十念(どうしょうじゅうねん)」とは何ですか?</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a">
+          浄土宗では、皆さまとご一緒に「<strong>南無阿弥陀仏</strong>」のお念仏を十遍お称えする「<strong>同称十念</strong>」をお勤めいたします。はじめてご参列の方も、住職に合わせて「なむあみだぶ」と声に出してお称えください。難しい作法はございませんので、どうぞご安心ください。
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="contact-section">
+    <h2>お問い合わせ</h2>
+    <p>ご不明な点がございましたら、お気軽にご連絡ください</p>
+    <div class="cta-row">
+      <!-- TODO: 妙慶院のご法事相談用LINE URLに差し替え -->
+      <a class="btn btn-primary" href="https://liff.line.me/2006055496-BbgMz69o" target="_blank" rel="noopener" aria-label="LINEで相談する">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.398-.094-.515-.262l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.131-.033.196-.033.197 0 .378.105.494.256l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINEで相談する
+      </a>
+      <a class="btn btn-secondary" href="tel:0822417471" aria-label="電話で相談する">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        082-241-7471
+      </a>
+    </div>
+  </div>
 
 </div>
+
+<footer>
+  <div class="temple-name">妙 慶 院</div>
+  〒730-0041　広島県広島市中区小町２番１号<br>
+  TEL: 082-241-7471<br><br>
+  © 浄土宗 妙慶院 清岸寺
+</footer>
+
+<script>
+  function toggleAccordion(headEl) {
+    const section = headEl.closest('.section');
+    const isOpen = section.classList.toggle('open');
+    headEl.setAttribute('aria-expanded', isOpen);
+  }
+
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => {
+      el.classList.remove('active');
+      el.setAttribute('aria-selected', 'false');
+    });
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+  }
+
+  function toggleDetail(btn, event) {
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+    btn.closest('.check-item').classList.toggle('expanded');
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', item.classList.contains('open'));
+  }
+
+  // チェックリスト :has()フォールバック
+  document.addEventListener('change', function(e) {
+    if (e.target && e.target.matches('.check-item input[type="checkbox"]')) {
+      const item = e.target.closest('.check-item');
+      if (item) item.classList.toggle('is-checked', e.target.checked);
+    }
+  });
+</script>
 
 </body>
 </html>
