@@ -26,6 +26,8 @@
     --c-yellow-bg: #fbf3d9;
     --c-green: #4B8B3B;
     --c-green-bg: #eaf3e7;
+    --c-indigo: #3f51b5;
+    --c-indigo-bg: #e8eaf6;
     --c-white: #ffffff;
 
     /* ベースのアクセントは紫 */
@@ -280,6 +282,28 @@
   .card[data-open="bzcf"], #detail-bzcf   { --accent: var(--c-red);    --accent-bg: var(--c-red-bg); }
   .card[data-open="tfday"], #detail-tfday { --accent: var(--c-yellow); --accent-bg: var(--c-yellow-bg); }
   .card[data-open="sarana"], #detail-sarana { --accent: var(--c-green); --accent-bg: var(--c-green-bg); }
+  .card[data-open="kosha"], #detail-kosha { --accent: var(--c-indigo); --accent-bg: var(--c-indigo-bg); }
+
+  /* イベントクイックナビ */
+  .event-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 18px 0 24px; }
+  .event-nav-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 14px; border-radius: 10px;
+    background: #fff; border: 1.5px solid #e0e0e0;
+    text-decoration: none; color: #333; font-size: 14px; font-weight: 600;
+    transition: background .15s, border-color .15s, transform .1s;
+    scroll-margin-top: 16px;
+  }
+  .event-nav-btn:hover { background: #f8f8f8; border-color: #b8b8b8; }
+  .event-nav-btn:active { transform: scale(0.98); }
+  .event-nav-btn svg { width: 22px; height: 22px; flex: 0 0 22px; }
+  .event-nav-btn[data-color="purple"] { color: var(--c-purple); border-color: var(--c-purple); }
+  .event-nav-btn[data-color="red"]    { color: var(--c-red);    border-color: var(--c-red); }
+  .event-nav-btn[data-color="yellow"] { color: var(--c-yellow); border-color: var(--c-yellow); }
+  .event-nav-btn[data-color="green"]  { color: var(--c-green);  border-color: var(--c-green); }
+  .event-nav-btn[data-color="indigo"] { color: var(--c-indigo); border-color: var(--c-indigo); }
+  .card { scroll-margin-top: 16px; }
+  html { scroll-behavior: smooth; }
 
   /* カード上部に色の帯 */
   .card { position: relative; overflow: hidden; }
@@ -579,9 +603,17 @@
     はじめての方も大歓迎！お知合をお誘いあわせの上ご参加ください。
   </p>
 
+  <nav class="event-nav" aria-label="イベント一覧へ移動">
+    <a class="event-nav-btn" href="#card-tcafe" data-color="purple"><svg><use href="#i-brush"/></svg><span>寺カフェ</span></a>
+    <a class="event-nav-btn" href="#card-bzcf" data-color="red"><svg><use href="#i-coffee"/></svg><span>坊主café</span></a>
+    <a class="event-nav-btn" href="#card-tfday" data-color="yellow"><svg><use href="#i-users"/></svg><span>テラ・フライデー</span></a>
+    <a class="event-nav-btn" href="#card-sarana" data-color="green"><svg><use href="#i-heart"/></svg><span>サラナ親子サロン</span></a>
+    <a class="event-nav-btn" href="#card-kosha" data-color="indigo"><svg><use href="#i-brush"/></svg><span>古式写経会</span></a>
+  </nav>
+
   <div class="event-list" id="eventList">
 
-    <button class="card" type="button" data-open="tcafe">
+    <button class="card" id="card-tcafe" type="button" data-open="tcafe">
       <div class="card-head">
         <div class="card-icon"><svg><use href="#i-brush"/></svg></div>
         <div>
@@ -598,7 +630,7 @@
       <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
     </button>
 
-    <button class="card" type="button" data-open="bzcf">
+    <button class="card" id="card-bzcf" type="button" data-open="bzcf">
       <div class="card-head">
         <div class="card-icon"><svg><use href="#i-coffee"/></svg></div>
         <div>
@@ -615,7 +647,7 @@
       <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
     </button>
 
-    <button class="card" type="button" data-open="tfday">
+    <button class="card" id="card-tfday" type="button" data-open="tfday">
       <div class="card-head">
         <div class="card-icon"><svg><use href="#i-users"/></svg></div>
         <div>
@@ -632,7 +664,7 @@
       <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
     </button>
 
-    <button class="card" type="button" data-open="sarana">
+    <button class="card" id="card-sarana" type="button" data-open="sarana">
       <div class="card-head">
         <div class="card-icon"><svg><use href="#i-heart"/></svg></div>
         <div>
@@ -646,6 +678,23 @@
       <div class="card-meta"><svg><use href="#i-calendar"/></svg>毎月 第１木曜日</div>
       <div class="card-meta"><svg><use href="#i-clock"/></svg>10:00 〜 13:00</div>
       <div class="card-summary">保育士と看護師とお坊さんがお迎えする親子のあつまり。お子さんが泣いてもぐずっても大丈夫です。</div>
+      <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
+    </button>
+
+    <button class="card" id="card-kosha" type="button" data-open="kosha">
+      <div class="card-head">
+        <div class="card-icon"><svg><use href="#i-brush"/></svg></div>
+        <div>
+          <div class="card-title">古式写経会</div>
+          <div class="card-subtitle">〜年に一度の特別な写経〜</div>
+        </div>
+      </div>
+      <div class="card-photo">
+        <img src="images/260615kosha-768x768.jpg" alt="古式写経会の様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=card-photo-fallback><svg><use href=#i-image/></svg></div>'">
+      </div>
+      <div class="card-meta"><svg><use href="#i-calendar"/></svg>年数回 不定期開催</div>
+      <div class="card-meta"><svg><use href="#i-clock"/></svg>13:30 〜 16:00</div>
+      <div class="card-summary">真っ暗な本堂で行灯の明かりに照らされながら、法然上人「一枚起請文」を写経いただく特別な会です。</div>
       <span class="card-cta">詳細を見る<svg><use href="#i-arrow-right"/></svg></span>
     </button>
 
@@ -843,6 +892,57 @@
         <svg><use href="#i-yen"/></svg>
         <span class="info-label">会費</span>
         <span class="info-val">お布施 500円</span>
+      </div>
+    </div>
+    <button class="back-btn back-btn-bottom" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+  </section>
+
+  <!-- 詳細ビュー：古式写経会 -->
+  <section class="detail" id="detail-kosha" aria-hidden="true">
+    <button class="back-btn" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
+    <div class="detail-head">
+      <div class="card-icon"><svg><use href="#i-brush"/></svg></div>
+      <div>
+        <div class="detail-title">古式写経会</div>
+        <div class="detail-subtitle">〜年に一度の特別な写経〜</div>
+      </div>
+    </div>
+    <div class="detail-photo">
+      <img src="images/260615kosha-768x768.jpg" alt="古式写経会の様子" loading="lazy" onerror="this.parentNode.innerHTML='<div class=detail-photo-fallback><svg><use href=#i-image/></svg></div>'">
+    </div>
+    <div class="detail-body">
+      <p>古式に則った作法に基づく、年に一度の特別な写経会です。まちのビルのお寺という利点を活かして、本堂が真っ暗な写経の道場に変身します。</p>
+      <p>ご本尊さまの前、行灯（あんどん）の明かりに照らされながら、お念仏や声明・楽の調べに包まれて行う写経は、とても厳かな雰囲気です。たくさんのお坊さんに手伝っていただき、一人ひとりのもとに灯明と写経用紙と筆が配られてからはじまります。</p>
+      <p>写経いただくのは法然上人の「一枚起請文（いちまいきしょうもん）」です。写経用紙に薄く印刷されている上をなぞるだけですので、筆が苦手という方もご安心ください。</p>
+    </div>
+    <div class="info">
+      <div class="info-row">
+        <svg><use href="#i-calendar"/></svg>
+        <span class="info-label">開催日</span>
+        <span class="info-val">年数回 不定期開催<span class="sub">次回：2026/6/15（月）</span></span>
+      </div>
+      <a class="line-cta" href="https://wajun.or.jp/news/kosha260615/" target="_blank" rel="noopener">
+        <svg><use href="#i-line"/></svg>詳しい情報を見る・申込む
+      </a>
+      <div class="line-cta-note">妙慶院の公式ページに移動します</div>
+      <div class="info-row">
+        <svg><use href="#i-clock"/></svg>
+        <span class="info-label">時間</span>
+        <span class="info-val">
+          13:30 はじまり 〜 16:00 終了予定
+          <span class="sub">13:00 より受付</span>
+          <span class="sub">15:00〜15:20 休憩</span>
+        </span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-pin"/></svg>
+        <span class="info-label">会場</span>
+        <span class="info-val">妙慶院 三階 本堂</span>
+      </div>
+      <div class="info-row">
+        <svg><use href="#i-yen"/></svg>
+        <span class="info-label">会費</span>
+        <span class="info-val">5,000円<span class="sub">定員 30人（事前予約制）／持参品：老眼鏡・数珠（お持ちの方）</span></span>
       </div>
     </div>
     <button class="back-btn back-btn-bottom" type="button" data-back><svg><use href="#i-arrow-left"/></svg>一覧にもどる</button>
