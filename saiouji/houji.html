@@ -770,20 +770,49 @@
   }
 
   /* === アコーディオン === */
-  .section.accordion {
+  /* セクション1〜6: 時系列カード(左にゴールド帯) */
+  .section.flow-step {
     background: var(--paper);
     border: 1px solid var(--line);
+    border-left: 5px solid var(--gold);
     border-radius: 8px;
     padding: 1.4rem 1.4rem;
     box-shadow: var(--shadow);
     margin-bottom: 1.2rem;
     transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
   }
-  .section.accordion:hover {
+  .section.flow-step:hover {
     border-color: var(--gold-soft);
+    border-left-color: var(--gold);
   }
-  .section.accordion.open {
+  .section.flow-step.accordion.open {
     border-color: var(--gold);
+    border-left-color: var(--gold);
+  }
+  /* タイミングバッジ */
+  .step-timing {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    background: var(--paper-2);
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    margin: 0.6rem 0 0.4rem;
+    border: 1px solid var(--line);
+    line-height: 1.4;
+  }
+  .step-timing::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-right: 0.5rem;
+    vertical-align: middle;
   }
   .section.accordion .section-head {
     cursor: pointer;
@@ -851,6 +880,8 @@
       padding: 0.5rem 0.8rem;
     }
     .section.accordion .section-toggle svg { width: 11px; height: 11px; }
+    .section.flow-step { padding: 1.1rem 1rem; border-left-width: 4px; }
+    .step-timing { font-size: 0.8rem; padding: 0.25rem 0.6rem; }
   }
 /* === /アコーディオン === */
 
@@ -972,6 +1003,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </span>
       </div>
+      <p class="step-timing">約2〜3ヶ月前</p>
       <p class="sub">まずは候補日をお寺にお知らせください</p>
       <div class="section-body">
 
@@ -1040,6 +1072,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </span>
       </div>
+      <p class="step-timing">日程確定後</p>
       <p class="sub">日程確定後、当日までにご確認ください</p>
       <div class="section-body">
 
@@ -1676,6 +1709,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </span>
       </div>
+      <p class="step-timing">1週間前まで</p>
       <p class="sub">ご法事の1週間前までにお申込みください</p>
       <div class="section-body">
 
@@ -1711,6 +1745,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </span>
       </div>
+      <p class="step-timing">事前手配</p>
       <p class="sub">ご法事後のお時間も大切にお過ごしください</p>
       <div class="section-body">
 
@@ -1745,9 +1780,9 @@
   <!-- ===== /フロー ===== -->
 
   <!-- ご法事について -->
-  <section class="section accordion">
+  <section class="section flow-step accordion">
     <div class="section-head" role="button" tabindex="0" aria-expanded="false" onclick="toggleAccordion(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAccordion(this);}">
-      <span class="section-num">5</span>
+      <span class="section-num section-num-step">5</span>
       <h2>ご法事について</h2>
         <span class="section-toggle" aria-hidden="true">
           <span class="label-open">詳細を見る</span>
@@ -1755,7 +1790,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </span>
       </div>
-    <p class="sub">当日の流れ・所要時間・駐車場のご案内</p>
+    <p class="step-timing">当日</p>
+      <p class="sub">当日の流れ・服装について</p>
       <div class="section-body">
 
     <div class="about-card">
@@ -1809,12 +1845,13 @@
   </section>
 
     <!-- 当日のご案内 (5/12: ご法事について から切り出し、よくあるご質問の上に表示) -->
-  <section class="section">
+  <section class="section flow-step">
     <div class="section-head">
-      <span class="section-num">6</span>
+      <span class="section-num section-num-step">6</span>
       <h2>当日のご案内</h2>
     </div>
-    <p class="sub">設備・所要時間・駐車場のご案内</p>
+    <p class="step-timing">当日</p>
+      <p class="sub">設備・所要時間・駐車場のご案内</p>
 
     <div class="about-card">
       <div class="info-grid">
@@ -1863,7 +1900,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
             お子さま連れ
           </div>
-          <div class="ic-value"><strong>歓迎いたします</strong></div>
+          <div class="ic-value"><strong>お子さまも安心してご参加ください</strong></div>
           <div class="ic-note">お手洗い・おむつ替え台もご用意しております</div>
         </div>
       </div>
