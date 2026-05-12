@@ -1,1 +1,751 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お塔婆のお申込み｜西往寺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2a2521;
+    --ink-soft: #5a544e;
+    --ink-mute: #8a847e;
+    --paper: #ffffff;
+    --paper-2: #f7f3ec;
+    --paper-3: #fbf8f1;
+    --line: #d8d2c4;
+    --gold: #a07a3c;
+    --gold-soft: #c9a25e;
+    --indigo: #2f4858;
+    --vermillion: #b04a3a;
+    --shadow: 0 2px 6px rgba(42, 37, 33, 0.06);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.9;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 1.2rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    min-height: 44px;
+  }
+  .back-link:hover { color: var(--gold); }
+  .back-link svg { width: 14px; height: 14px; }
+
+  .temple-mark {
+    text-align: center;
+    padding: 1.4rem 1rem 0.6rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.55em;
+    font-size: 1.05rem;
+  }
+  .temple-mark::after {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0.85rem auto 0;
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 1.2rem 4rem;
+  }
+
+  .page-head {
+    text-align: center;
+    padding: 1.8rem 0 2rem;
+  }
+  .page-head h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.7rem;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+  }
+  .page-head .lead {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 2;
+  }
+
+  .deadline-banner {
+    background: var(--paper-2);
+    border-left: 3px solid var(--vermillion);
+    padding: 1.1rem 1.2rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .deadline-banner .badge {
+    background: var(--vermillion);
+    color: #fff;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .deadline-banner strong { font-weight: 700; }
+
+  .form-section {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.8rem 1.6rem;
+    margin-bottom: 1.2rem;
+    box-shadow: var(--shadow);
+  }
+  .form-section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .form-section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .field { margin-bottom: 1.4rem; }
+  .field:last-child { margin-bottom: 0; }
+  .field-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .req {
+    background: var(--vermillion);
+    color: #fff;
+    font-size: 0.78rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .opt {
+    background: var(--ink-mute);
+    color: #fff;
+    font-size: 0.78rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .field-help {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.7rem;
+    line-height: 1.85;
+  }
+  .field-help strong { color: var(--ink); font-weight: 700; }
+
+  .input, .select, .textarea {
+    width: 100%;
+    padding: 0.95rem 0.95rem;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper);
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: var(--ink);
+    transition: border-color 0.2s, background 0.2s;
+    min-height: 50px;
+  }
+  .input:focus, .select:focus, .textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: #fff;
+  }
+  .textarea { min-height: 110px; resize: vertical; line-height: 1.85; font-size: 1rem; }
+
+  .name-list {
+    display: none;
+    margin-top: 0.6rem;
+  }
+  .name-list.show { display: block; }
+  .name-row-block {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line-soft, #ece6d7);
+  }
+  .name-row-block:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .name-row-block .row-num {
+    font-size: 0.92rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  .name-row .row-num {
+    font-size: 0.92rem;
+    color: var(--ink-mute);
+    width: 44px;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .name-row .input { flex: 1; }
+
+  .submit-row {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .btn-submit {
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 1.05rem 2.5rem;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.08em;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .btn-submit svg { width: 16px; height: 16px; }
+  .btn-submit:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .submit-note {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin-top: 0.85rem;
+  }
+
+  .info-box-form {
+    background: var(--paper-2);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.2rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin: 1.2rem 0;
+  }
+  .info-box-form strong { color: var(--ink); font-weight: 700; }
+
+  .confirm-screen {
+    display: none;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.8rem 1.6rem;
+    box-shadow: var(--shadow);
+  }
+  .confirm-screen.show { display: block; }
+  .confirm-screen h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .confirm-screen .confirm-lead {
+    text-align: center;
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.6rem;
+    line-height: 1.85;
+  }
+  .confirm-block {
+    border-bottom: 1px solid var(--paper-2);
+    padding: 1rem 0;
+  }
+  .confirm-block:last-of-type {
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.6rem;
+  }
+  .confirm-block .label {
+    font-size: 0.85rem;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .confirm-block .value {
+    font-size: 1.02rem;
+    color: var(--ink);
+    line-height: 1.85;
+    white-space: pre-wrap;
+    font-weight: 500;
+  }
+
+  .confirm-buttons {
+    display: flex;
+    gap: 0.7rem;
+  }
+  .btn-back {
+    flex: 1;
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-height: 52px;
+  }
+  .btn-back:hover { background: var(--paper-2); }
+  .btn-send {
+    flex: 1;
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    min-height: 52px;
+  }
+  .btn-send:hover { background: var(--gold); border-color: var(--gold); }
+
+  .complete-screen {
+    display: none;
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 3rem 1.6rem;
+    box-shadow: var(--shadow);
+  }
+  .complete-screen.show { display: block; }
+  .complete-screen .check-icon {
+    width: 60px;
+    height: 60px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+  }
+  .complete-screen .check-icon svg { width: 28px; height: 28px; }
+  .complete-screen h2 {
+    font-size: 1.3rem;
+    margin: 0 0 0.9rem;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .complete-screen p {
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    line-height: 1.95;
+    margin: 0 0 1.6rem;
+  }
+  .complete-screen .btn-back-link {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.95rem 2rem;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    min-height: 52px;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+  .complete-screen .btn-back-link:hover {
+    background: var(--gold);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2.2rem 1rem 1.8rem;
+    font-size: 0.88rem;
+    color: var(--ink-mute);
+    border-top: 1px solid var(--line);
+    line-height: 2;
+  }
+  footer .temple-name {
+    font-size: 1.05rem;
+    color: var(--ink);
+    letter-spacing: 0.4em;
+    margin-bottom: 0.9rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 17px; line-height: 1.95; }
+    .container { padding: 0 1rem 4rem; }
+    .page-head h1 { font-size: 1.6rem; }
+    .page-head .lead { font-size: 1rem; }
+    .deadline-banner { flex-direction: column; align-items: flex-start; gap: 0.6rem; font-size: 1.02rem; }
+    .form-section { padding: 1.4rem 1.1rem; }
+    .form-section h2 { font-size: 1.15rem; }
+    .field-label { font-size: 1.05rem; }
+    .field-help { font-size: 0.98rem; }
+    .input, .select { font-size: 1.1rem; min-height: 54px; padding: 1rem 0.95rem; }
+    .textarea { font-size: 1.05rem; }
+    .btn-submit { padding: 1.05rem 2rem; width: 100%; font-size: 1.1rem; }
+    .confirm-buttons { flex-direction: column; }
+    .confirm-screen { padding: 1.5rem 1.2rem; }
+    .confirm-block .value { font-size: 1.05rem; }
+    .complete-screen { padding: 2.5rem 1.2rem; }
+    .complete-screen h2 { font-size: 1.25rem; }
+    .complete-screen p { font-size: 1.02rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="houji.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  ご法事のご案内へ戻る
+</a>
+
+<div class="temple-mark">西 往 寺</div>
+
+<div class="container">
+
+  <header class="page-head">
+    <h1>お塔婆のお申込み</h1>
+    <p class="lead">必要事項をご入力のうえ、お申込みください</p>
+  </header>
+
+  <div class="deadline-banner">
+    <span class="badge">1週間前まで</span>
+    <span>ご法事の<strong>1週間前まで</strong>にお申込みください<br><span style="font-size:0.92rem; color:var(--ink-soft);">お塔婆料: <strong>1本 ¥4,000</strong></span></span>
+  </div>
+
+  <div id="form-screen">
+
+    <div class="form-section">
+      <h2><span class="num">1</span>施主・志主のお名前</h2>
+      <div class="field">
+        <label class="field-label" for="seshu-name">施主のお名前 <span class="req">必須</span></label>
+        <p class="field-help">ご法事を執り行う施主様のお名前をご入力ください。</p>
+        <input class="input" id="seshu-name" type="text" placeholder="例)西往 太郎">
+      </div>
+      <div class="field">
+        <label class="field-label" for="seshu-furigana">施主のお名前(ふりがな) <span class="req">必須</span></label>
+        <input class="input" id="seshu-furigana" type="text" placeholder="例)さいおう たろう">
+      </div>
+      <div class="field">
+        <label class="field-label" for="shishu-name">志主のお名前 <span class="opt">任意</span></label>
+        <p class="field-help">施主様とは別に志主様がいらっしゃる場合のみご入力ください。</p>
+        <input class="input" id="shishu-name" type="text" placeholder="例)西往 花子">
+      </div>
+      <div class="field">
+        <label class="field-label" for="shishu-furigana">志主のお名前(ふりがな) <span class="opt">任意</span></label>
+        <input class="input" id="shishu-furigana" type="text" placeholder="例)さいおう はなこ">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2><span class="num">2</span>ご供養される方のお名前</h2>
+      <div class="field">
+        <label class="field-label" for="kuyo-name">お名前 <span class="req">必須</span></label>
+        <p class="field-help">ご戒名・俗名など、お塔婆に記すお名前をご入力ください。</p>
+        <input class="input" id="kuyo-name" type="text" placeholder="例)〇〇院〇〇〇〇居士 / 〇〇〇〇 様">
+      </div>
+      <div class="field">
+        <label class="field-label" for="kuyo-furigana">お名前(ふりがな) <span class="req">必須</span></label>
+        <input class="input" id="kuyo-furigana" type="text" placeholder="ふりがなをご入力ください">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2><span class="num">3</span>お塔婆の本数</h2>
+      <div class="field">
+        <label class="field-label" for="toba-count">本数をお選びください <span class="req">必須</span></label>
+        <p class="field-help">お塔婆料: <strong>1本 ¥4,000</strong> (当日まとめてご納入ください)</p>
+        <select class="select" id="toba-count" onchange="updateNameRows()">
+          <option value="">選択してください</option>
+          <option value="1">1本 (¥4,000)</option>
+          <option value="2">2本 (¥8,000)</option>
+          <option value="3">3本 (¥12,000)</option>
+          <option value="4">4本 (¥16,000)</option>
+          <option value="5">5本 (¥20,000)</option>
+          <option value="6">6本 (¥24,000)</option>
+          <option value="7">7本 (¥28,000)</option>
+          <option value="8">8本 (¥32,000)</option>
+          <option value="9">9本 (¥36,000)</option>
+          <option value="10">10本 (¥40,000)</option>
+          <option value="11">11本 (¥44,000)</option>
+          <option value="12">12本 (¥48,000)</option>
+        </select>
+        <p class="field-help" style="margin-top:0.6rem;">本数を選ぶと、<strong>お建てになる方のお名前</strong>の入力欄が表示されます。</p>
+      </div>
+
+      <div class="field name-list" id="name-list">
+        <label class="field-label">お建てになる方のお名前 <span class="req">必須</span></label>
+        <p class="field-help">お塔婆1本につき、お建てになる方のお名前をご入力ください。お名前にはふりがなを併せてご記入ください。</p>
+        <div id="name-rows"></div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2><span class="num">4</span>当日のご参拝人数</h2>
+      <div class="field">
+        <label class="field-label" for="attendees">ご参拝人数 <span class="req">必須</span></label>
+        <p class="field-help">当日、お参りされるご家族・ご親族の人数をご入力ください。</p>
+        <input class="input" id="attendees" type="number" min="1" max="100" placeholder="例)5">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2><span class="num">5</span>申し送り事項</h2>
+      <div class="field">
+        <label class="field-label" for="memo">ご連絡事項 <span class="opt">任意</span></label>
+        <p class="field-help">特記事項やご質問がございましたらご記入ください。</p>
+        <textarea class="textarea" id="memo" placeholder="例)〇月〇日のご法事に合わせてお願いします"></textarea>
+      </div>
+    </div>
+
+    <div class="info-box-form">
+      お申込みは<strong>FAXでも承ります</strong>。FAX: 048-922-5523
+    </div>
+
+    <div class="submit-row">
+      <button class="btn-submit" type="button" onclick="showConfirm()">
+        入力内容を確認する
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <p class="submit-note">次の画面で入力内容をご確認いただけます</p>
+    </div>
+
+  </div>
+
+  <div class="confirm-screen" id="confirm-screen">
+    <h2>ご入力内容のご確認</h2>
+    <p class="confirm-lead">下記の内容で送信されます。よろしければ「送信する」を押してください。</p>
+
+    <div class="confirm-block">
+      <div class="label">施主のお名前</div>
+      <div class="value" id="c-seshu-name"></div>
+    </div>
+    <div class="confirm-block">
+      <div class="label">志主のお名前</div>
+      <div class="value" id="c-shishu-name"></div>
+    </div>
+    <div class="confirm-block">
+      <div class="label">ご供養される方のお名前</div>
+      <div class="value" id="c-kuyo-name"></div>
+    </div>
+    <div class="confirm-block">
+      <div class="label">お塔婆の本数・料金</div>
+      <div class="value" id="c-count"></div>
+    </div>
+    <div class="confirm-block">
+      <div class="label">お建てになる方のお名前</div>
+      <div class="value" id="c-names"></div>
+    </div>
+    <div class="confirm-block">
+      <div class="label">当日のご参拝人数</div>
+      <div class="value" id="c-attendees"></div>
+    </div>
+    <div class="confirm-block">
+      <div class="label">申し送り事項</div>
+      <div class="value" id="c-memo"></div>
+    </div>
+
+    <div class="confirm-buttons">
+      <button class="btn-back" type="button" onclick="backToForm()">修正する</button>
+      <button class="btn-send" type="button" onclick="sendForm()">送信する</button>
+    </div>
+  </div>
+
+  <div class="complete-screen" id="complete-screen">
+    <div class="check-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h2>お申込みを承りました</h2>
+    <p>
+      お塔婆のお申込みありがとうございました。<br>
+      ご法事当日に向けて準備を進めさせていただきます。<br>
+      ご不明な点がございましたら、お気軽にお問い合わせください。
+    </p>
+    <a class="btn-back-link" href="houji.html">ご法事のご案内へ戻る</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="temple-name">西 往 寺</div>
+  埼玉県<br>
+  TEL: 048-922-3229<br><br>
+  © 西往寺
+</footer>
+
+<script>
+  function updateNameRows() {
+    const count = parseInt(document.getElementById('toba-count').value);
+    const wrap = document.getElementById('name-list');
+    const rows = document.getElementById('name-rows');
+    if (!count) {
+      wrap.classList.remove('show');
+      rows.innerHTML = '';
+      return;
+    }
+    wrap.classList.add('show');
+    let html = '';
+    for (let i = 1; i <= count; i++) {
+      html += `
+        <div class="name-row-block">
+          <div class="row-num">${i}本目</div>
+          <input class="input" type="text" data-name-index="${i}" placeholder="お建てになる方のお名前">
+          <input class="input" type="text" data-furigana-index="${i}" placeholder="ふりがな" style="margin-top:0.4rem;">
+        </div>`;
+    }
+    rows.innerHTML = html;
+  }
+
+  function showConfirm() {
+    const seshuName = document.getElementById('seshu-name').value.trim();
+    const seshuFurigana = document.getElementById('seshu-furigana').value.trim();
+    const shishuName = document.getElementById('shishu-name').value.trim();
+    const shishuFurigana = document.getElementById('shishu-furigana').value.trim();
+    const kuyoName = document.getElementById('kuyo-name').value.trim();
+    const kuyoFurigana = document.getElementById('kuyo-furigana').value.trim();
+    const countVal = document.getElementById('toba-count').value;
+    const attendees = document.getElementById('attendees').value.trim();
+    const memo = document.getElementById('memo').value.trim();
+    const nameInputs = document.querySelectorAll('[data-name-index]');
+    const furiganaInputs = document.querySelectorAll('[data-furigana-index]');
+    const names = [];
+    const furiganas = [];
+    nameInputs.forEach(el => names.push(el.value.trim()));
+    furiganaInputs.forEach(el => furiganas.push(el.value.trim()));
+
+    // バリデーション
+    if (!seshuName) {
+      alert('施主のお名前をご入力ください。');
+      document.getElementById('seshu-name').focus();
+      return;
+    }
+    if (!seshuFurigana) {
+      alert('施主のお名前(ふりがな)をご入力ください。');
+      document.getElementById('seshu-furigana').focus();
+      return;
+    }
+    if (!kuyoName) {
+      alert('ご供養される方のお名前をご入力ください。');
+      document.getElementById('kuyo-name').focus();
+      return;
+    }
+    if (!kuyoFurigana) {
+      alert('ご供養される方のお名前(ふりがな)をご入力ください。');
+      document.getElementById('kuyo-furigana').focus();
+      return;
+    }
+    if (!countVal) {
+      alert('お塔婆の本数をお選びください。');
+      document.getElementById('toba-count').focus();
+      return;
+    }
+    if (names.filter(n => n).length !== parseInt(countVal)) {
+      alert('お建てになる方のお名前を、本数分すべてご入力ください。');
+      return;
+    }
+    if (!attendees) {
+      alert('当日のご参拝人数をご入力ください。');
+      document.getElementById('attendees').focus();
+      return;
+    }
+
+    const total = parseInt(countVal) * 4000;
+    document.getElementById('c-seshu-name').textContent = `${seshuName} (${seshuFurigana})`;
+    document.getElementById('c-shishu-name').textContent = shishuName ? `${shishuName}${shishuFurigana ? ' (' + shishuFurigana + ')' : ''}` : '(なし)';
+    document.getElementById('c-kuyo-name').textContent = `${kuyoName} (${kuyoFurigana})`;
+    document.getElementById('c-count').textContent = `${countVal}本 / ¥${total.toLocaleString()}`;
+    document.getElementById('c-names').textContent = names.map((n, i) => {
+      const f = furiganas[i] ? ` (${furiganas[i]})` : '';
+      return `${i + 1}本目: ${n}${f}`;
+    }).join('\n');
+    document.getElementById('c-attendees').textContent = `${attendees} 名`;
+    document.getElementById('c-memo').textContent = memo || '(なし)';
+
+    document.getElementById('form-screen').style.display = 'none';
+    document.getElementById('confirm-screen').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function backToForm() {
+    document.getElementById('confirm-screen').classList.remove('show');
+    document.getElementById('form-screen').style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function sendForm() {
+    // TODO: 送信先(GAS等)を後ほど差し替え
+    document.getElementById('confirm-screen').classList.remove('show');
+    document.getElementById('complete-screen').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
