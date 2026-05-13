@@ -124,6 +124,34 @@
   }
   .flow-arrow svg { width: 28px; height: 28px; }
 
+  /* タイミングバッジ */
+  .step-timing {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    background: var(--paper-2);
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    margin: 0.6rem 0 0.4rem;
+    border: 1px solid var(--line);
+    line-height: 1.4;
+  }
+  .step-timing::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+  @media (max-width: 600px) {
+    .step-timing { font-size: 0.8rem; padding: 0.25rem 0.6rem; }
+  }
+
   /* セクション */
   .section { margin-bottom: 3.2rem; }
   .section-head {
@@ -938,6 +966,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </span>
       </div>
+      <p class="step-timing">約2〜3ヶ月前</p>
       <p class="sub">まずは候補日をお寺にお知らせください</p>
       <div class="section-body">
 
@@ -1005,6 +1034,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </span>
       </div>
+      <p class="step-timing">日程確定後</p>
       <p class="sub">日程確定後、当日までにご確認ください</p>
       <div class="section-body">
 
@@ -1309,220 +1339,6 @@
 
   </div>
   <!-- ===== /フロー ===== -->
-
-  <!-- ご法事について -->
-  <section class="section accordion">
-    <div class="section-head" role="button" tabindex="0" aria-expanded="false" onclick="toggleAccordion(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAccordion(this);}">
-      <span class="section-num">5</span>
-      <h2>ご法事について</h2>
-        <span class="section-toggle" aria-hidden="true">
-          <span class="label-open">詳細を見る</span>
-          <span class="label-close">閉じる</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </span>
-      </div>
-    <p class="sub">当日の流れ・所要時間・駐車場のご案内</p>
-      <div class="section-body">
-
-    <div class="about-card">
-      <h3>当日の流れ</h3>
-      <ol class="day-flow">
-        <li>
-          <span class="step-title">ご集合</span>
-          <span class="step-note">法要開始の<strong>15〜20分前</strong>までにお越しください。余裕をもってお越しいただくと安心です。</span>
-        </li>
-        <li>
-          <span class="step-title">受付</span>
-          <span class="step-note">本堂にて受付をいたします。</span>
-        </li>
-        <li>
-          <span class="step-title">読経・お焼香</span>
-          <span class="step-note">ご参列の皆様にお焼香いただきます。</span>
-        </li>
-        <li>
-          <span class="step-title">法話</span>
-          <span class="step-note">住職よりお話をさせていただきます。</span>
-        </li>
-        <li>
-          <span class="step-title">お墓参り</span>
-          <span class="step-note">ご納骨やお墓のあるご家族はお参りいたします。</span>
-        </li>
-        <li>
-          <span class="step-title">お食事(任意)</span>
-          <span class="step-note">ご家族・ご親族とお会いできるたいせつなお時間です。お寺にてお食事いただくことも可能です。</span>
-        </li>
-      </ol>
-
-      <h3>当日のご案内</h3>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="ic-label">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            集合時間
-          </div>
-          <div class="ic-value">法要開始の<strong>15〜20分前</strong></div>
-          <div class="ic-note">余裕をもってお越しください</div>
-        </div>
-        <div class="info-card">
-          <div class="ic-label">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M7 10h2"></path><path d="M15 10h2"></path></svg>
-            駐車場
-          </div>
-          <div class="ic-value"><strong>境内に駐車スペースあり</strong></div>
-          <div class="ic-note">台数に限りがありますので、満車の場合はお近くのパーキングをご利用ください</div>
-        </div>
-        <div class="info-card">
-          <div class="ic-label">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-            所要時間の目安
-          </div>
-          <div class="ic-value">年忌・四十九日：<strong>約1時間</strong></div>
-          <div class="ic-note">読経・法話・お墓参りを含みます</div>
-        </div>
-        <div class="info-card">
-          <div class="ic-label">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-            お布施について
-          </div>
-          <div class="ic-value">目安は<strong>遠慮なくお尋ねください</strong></div>
-          <div class="ic-note">住職より丁寧にご説明いたします</div>
-        </div>
-        <div class="info-card">
-          <div class="ic-label">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            会場・設備
-          </div>
-          <div class="ic-value"><strong>冷暖房完備・椅子席<br>お手洗いあり</strong></div>
-          <div class="ic-note">本堂・客殿ともに椅子席で正座は不要です</div>
-        </div>
-        <div class="info-card">
-          <div class="ic-label">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
-            お子さま連れ
-          </div>
-          <div class="ic-value"><strong>ぜひお連れください</strong></div>
-          <div class="ic-note">お手洗いもご用意しております</div>
-        </div>
-      </div>
-
-      <h3>当日の服装について</h3>
-      <p style="font-size:1rem; color:var(--ink-soft); line-height:1.95; margin:0 0 0.6rem;">
-        <strong style="color:var(--ink); font-weight:700;">平服</strong>でお越しください。ご家族のみのご法事もご親族が集まる場合も、平服で差し支えございません。
-      </p>
-      <ul style="list-style:none; padding-left:0; margin:0.8rem 0 0;">
-        <li style="position:relative; padding:0.55rem 0 0.55rem 1.4rem; font-size:1rem; color:var(--ink-soft); border-bottom:1px dashed var(--line-soft);">
-          <span style="position:absolute; left:0; top:1rem; width:8px; height:1px; background:var(--gold);"></span>
-          <strong style="color:var(--ink); font-weight:700;">夏：</strong>熱中症予防のため、涼やかな平服でお越しください
-        </li>
-        <li style="position:relative; padding:0.55rem 0 0.55rem 1.4rem; font-size:1rem; color:var(--ink-soft);">
-          <span style="position:absolute; left:0; top:1rem; width:8px; height:1px; background:var(--gold);"></span>
-          <strong style="color:var(--ink); font-weight:700;">冬：</strong>暖房はございますが、念のため温かい服装でお越しください
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- よくある質問 -->
-  <section class="section">
-    <div class="section-head">
-      <span class="section-num">6</span>
-      <h2>よくあるご質問</h2>
-    </div>
-    <p class="sub">皆さまから多くいただくご質問</p>
-
-    <div class="faq-list">
-
-<div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span class="q-mark">Q</span>
-          <span>何回忌までご法事をすればよいですか?</span>
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="faq-a">
-          ご家庭のご事情に合わせて柔軟にご相談ください。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span class="q-mark">Q</span>
-          <span>駐車場はありますか?</span>
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="faq-a">
-          境内に<strong>駐車スペースがございます（3台分）。</strong>台数に限りがありますので、満車の場合はお近くのパーキングをご利用ください。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span class="q-mark">Q</span>
-          <span>ご法事の日程はいつ頃決めればよいですか?</span>
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="faq-a">
-          <strong>2〜3ヶ月前</strong>にはご相談いただけると、ご希望の日時で調整しやすくなります。特に土日・お盆・お彼岸の時期は混み合いますので、お早めにご連絡ください。1ヶ月以内の直前のご相談はお電話にてご対応いたします。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span class="q-mark">Q</span>
-          <span>お寺でのご法事と自宅でのご法事、どちらがよいですか?</span>
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="faq-a">
-          どちらでも結構です。ご家族のご都合の良い場所でお勤めいたします。ご自宅でも指定会館でもご法事をお受けしております。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span class="q-mark">Q</span>
-          <span>小さなお子さま連れでも大丈夫ですか?</span>
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="faq-a">
-          もちろんです。<strong>お子さま連れでも安心してお越しください。</strong>故人さまもきっとお喜びになることと思います。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span class="q-mark">Q</span>
-          <span>祖父と祖母のご法事を一緒にできますか?</span>
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="faq-a">
-          はい、<strong>併修(へいしゅう)として一緒にお勤めすることが可能です。</strong>ご家族のご都合に合わせて柔軟に対応いたしますので、お気軽にご相談ください。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span class="q-mark">Q</span>
-          <span>お布施の目安を教えてください</span>
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="faq-a">
-          目安などのご質問は、<strong>住職よりお答えしております。</strong>遠慮なくご相談ください。
-        </div>
-      </div>
-
-<!-- 検討中(5/8議事録): 同称十念の説明 -->
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span class="q-mark">Q</span>
-          <span>法要中の「同称十念(どうしょうじゅうねん)」とは何ですか?</span>
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="faq-a">
-          浄土宗では、皆さまとご一緒に「<strong>南無阿弥陀仏</strong>」のお念仏を十遍お称えする「<strong>同称十念</strong>」をお勤めいたします。はじめてご参列の方も、住職に合わせて「なむあみだぶ」と声に出してお称えください。難しい作法はございませんので、どうぞご安心ください。
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <div class="contact-section">
     <h2>お問い合わせ</h2>
