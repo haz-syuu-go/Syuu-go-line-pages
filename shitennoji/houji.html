@@ -65,18 +65,25 @@
   /* ── Tabs ── */
   .tabs-wrap { max-width: 520px; margin: 0 auto; }
   .tab-btns {
-    display: flex; border-radius: var(--radius) var(--radius) 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: var(--radius) var(--radius) 0 0;
     overflow: hidden; border: 2px solid var(--green); border-bottom: none;
   }
   .tab-btn {
-    flex: 1; padding: 16px 8px; text-align: center; font-size: 15px; font-weight: 700;
+    padding: 14px 6px; text-align: center; font-size: 14px; font-weight: 700;
     cursor: pointer; background: #fff; color: var(--green); border: none;
-    border-right: 1px solid var(--border); transition: all .2s; font-family: inherit; line-height: 1.4;
+    border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    transition: all .2s; font-family: inherit; line-height: 1.4;
   }
-  .tab-btn:last-child { border-right: none; }
+  /* 2x2 layout: 2列目はborder-right不要、3行目以降はborder-bottom不要 */
+  .tab-btn:nth-child(2n) { border-right: none; }
+  .tab-btn:nth-last-child(-n+2) { border-bottom: none; }
   .tab-btn.active { background: var(--green); color: #fff; }
   .tab-btn.active svg { stroke: #fff; }
   .tab-btn .tab-icon { display: flex; justify-content: center; margin-bottom: 6px; }
+  .tab-btn .tab-label { display: block; font-size: 13px; line-height: 1.3; }
+  .tab-btn .tab-sub { display: block; font-size: 11px; font-weight: 500; opacity: .75; margin-top: 2px; }
 
   /* ── Tab content ── */
   .tab-panel {
@@ -208,7 +215,12 @@
     section { padding: 56px 24px; }
     .header { padding: 56px 24px 44px; }
     .header h1 { font-size: 32px; }
-    .tab-btn { font-size: 16px; padding: 18px 12px; }
+    /* デスクトップでは4タブを横一列に */
+    .tab-btns { grid-template-columns: repeat(4, 1fr); }
+    .tab-btn { font-size: 15px; padding: 18px 10px; border-bottom: none !important; }
+    .tab-btn:not(:last-child) { border-right: 1px solid var(--border); }
+    .tab-btn:last-child { border-right: none; }
+    .tab-btn .tab-label { font-size: 14px; }
   }
 </style>
 </head>
@@ -366,13 +378,24 @@
   <div class="tabs-wrap">
     <div class="tab-btns">
       <button class="tab-btn active" onclick="switchTab('shijukunichi')">
-        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-candle" stroke="#fff"/></svg></span>四十九日(納骨法要)
+        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-candle" stroke="#fff"/></svg></span>
+        <span class="tab-label">四十九日</span>
+        <span class="tab-sub">納骨法要</span>
       </button>
       <button class="tab-btn" onclick="switchTab('nenki')">
-        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-beads" stroke="#2e7d32"/></svg></span>年回忌法要
+        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-beads" stroke="#2e7d32"/></svg></span>
+        <span class="tab-label">年回忌法要</span>
+        <span class="tab-sub">一周忌・三回忌など</span>
       </button>
       <button class="tab-btn" onclick="switchTab('hatsubon')">
-        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-lantern" stroke="#2e7d32"/></svg></span>初盆法要
+        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-lantern" stroke="#2e7d32"/></svg></span>
+        <span class="tab-label">初盆法要</span>
+        <span class="tab-sub">はじめてのお盆</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('animal')">
+        <span class="tab-icon"><svg width="24" height="24"><use href="#ic-pray" stroke="#2e7d32"/></svg></span>
+        <span class="tab-label">動物供養</span>
+        <span class="tab-sub">ペットのご供養</span>
       </button>
     </div>
 
@@ -606,71 +629,51 @@
         <div class="progress-bar"><div class="progress-fill" id="fill-hatsubon"></div></div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- 動物供養 -->
-<section class="bg-warm">
-  <h2 class="section-title">動物供養について</h2>
-  <div class="divider"></div>
-  <p class="section-sub">大切な家族として共に過ごしたペットの<br>ご供養も承っております</p>
-  <div style="max-width:520px; margin:0 auto;">
-    <div style="background:#fff; border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:20px;">
-      <h3 style="font-size:18px; font-weight:900; color:var(--green-dark); margin-bottom:12px; display:flex; align-items:center; gap:8px;">
-        <svg width="22" height="22"><use href="#ic-pray" stroke="#1b5e20"/></svg>
-        ご供養の内容
-      </h3>
-      <p style="font-size:15px; color:var(--gray); line-height:1.9;">
-        ご家族のもとに長く寄り添ってくれたペットを、心を込めてお見送りいたします。<br>
-        ご自宅でのご供養・お寺でのご供養、いずれもご相談ください。
-      </p>
-    </div>
+    <!-- ====== 動物供養 ====== -->
+    <div class="tab-panel" id="panel-animal">
+      <div class="tab-panel-header">
+        <svg width="36" height="36"><use href="#ic-pray" stroke="#1b5e20"/></svg>
+        <h3 class="tab-panel-title">動物供養</h3>
+      </div>
+      <p class="tab-panel-desc">大切な家族として共に過ごしたペットの<br>ご供養も承っております</p>
 
-    <h4 style="font-size:16px; font-weight:900; color:var(--green-dark); margin-bottom:12px; padding-left:4px;">当日お持ちいただくもの</h4>
-    <ul class="checklist" id="list-animal">
-      <li>
-        <div class="check-row" onclick="toggleCheck(this)">
-          <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
-          <div class="check-label"><div class="item-name">ご遺骨・お写真</div></div>
-        </div>
-        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
-        <div class="check-note"><div class="check-note-inner"><span>ご遺骨をお持ちいただける場合はお持ちください。お写真のみのご供養もお受けしております。</span></div></div>
-      </li>
-      <li>
-        <div class="check-row" onclick="toggleCheck(this)">
-          <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
-          <div class="check-label"><div class="item-name">お花・お供え物（任意）</div></div>
-        </div>
-        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
-        <div class="check-note"><div class="check-note-inner"><span>生前に好きだったおやつ・おもちゃなどをお持ちいただいても結構です。</span></div></div>
-      </li>
-      <li>
-        <div class="check-row" onclick="toggleCheck(this)">
-          <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
-          <div class="check-label"><div class="item-name">お布施</div></div>
-        </div>
-        <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
-        <div class="check-note"><div class="check-note-inner"><span>目安など、ご質問は<strong>住職よりお答えしております。遠慮なくご相談ください。</strong></span></div></div>
-      </li>
-    </ul>
-    <div class="progress-bar-wrap">
-      <div class="progress-text" id="progress-animal">チェック：0 / 3</div>
-      <div class="progress-bar"><div class="progress-fill" id="fill-animal"></div></div>
-    </div>
+      <div style="background:var(--green-pale); border-radius:var(--radius); padding:18px 16px; margin-bottom:20px;">
+        <p style="font-size:15px; color:var(--green-dark); line-height:1.9; margin:0;">
+          ご家族のもとに長く寄り添ってくれたペットを、心を込めてお見送りいたします。ご自宅でのご供養・お寺でのご供養、いずれもご相談ください。
+        </p>
+      </div>
 
-    <div style="margin-top:24px; background:var(--green-pale); border-radius:var(--radius); padding:20px; text-align:center;">
-      <p style="font-size:15px; color:var(--green-dark); line-height:1.8; margin-bottom:14px;">
-        ご供養の日程やご相談は、<br>LINE・お電話にてお気軽にお問い合わせください。
-      </p>
-      <div style="display:grid; gap:10px;">
-        <a href="https://lin.ee/y2Sumjo" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; gap:8px; background:#06c755; color:#fff; padding:14px 20px; border-radius:30px; font-size:16px; font-weight:700; text-decoration:none;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .348-.281.63-.63.63h-2.02v1.318h2.02c.349 0 .63.284.63.63 0 .349-.281.631-.63.631h-2.65a.63.63 0 01-.63-.631V8.282a.63.63 0 01.63-.63h2.65c.349 0 .63.283.63.63 0 .349-.281.631-.63.631h-2.02v1.32h2.02zm-3.91 3.21a.63.63 0 01-.63.63.63.63 0 01-.51-.262l-2.786-3.79v3.422a.63.63 0 01-1.261 0V8.282a.63.63 0 01.63-.63c.2 0 .381.095.51.262l2.786 3.79V8.282a.63.63 0 011.261 0v4.791zm-6.485.63a.63.63 0 01-.63-.63V8.282a.63.63 0 011.261 0v4.791a.63.63 0 01-.63.63zm-2.146 0h-2.65a.63.63 0 01-.631-.63V8.282a.63.63 0 011.261 0v4.161h2.02c.349 0 .63.284.63.63 0 .349-.281.631-.63.631zM12 2C6.477 2 2 5.92 2 10.667c0 4.27 3.79 7.853 8.907 8.531.347.075.819.229.938.525.107.272.07.696.035.97l-.152.913c-.046.272-.213 1.065.933.58 1.146-.484 6.18-3.64 8.434-6.232C22.768 14.067 22 12.463 22 10.667 22 5.92 17.523 2 12 2z"/></svg>
-          LINEで相談する
-        </a>
-        <a href="tel:059-228-6797" style="display:flex; align-items:center; justify-content:center; gap:8px; background:#fff; color:var(--green-dark); border:2px solid var(--green); padding:12px 20px; border-radius:30px; font-size:16px; font-weight:700; text-decoration:none;">
-          <svg width="18" height="18"><use href="#ic-phone" stroke="#1b5e20"/></svg>
-          お電話で相談する
-        </a>
+      <h4 style="font-size:16px; font-weight:900; color:var(--green-dark); margin-bottom:12px; padding-left:4px;">当日お持ちいただくもの</h4>
+      <ul class="checklist" id="list-animal">
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">ご遺骨・お写真</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>ご遺骨をお持ちいただける場合はお持ちください。お写真のみのご供養もお受けしております。</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">お花・お供え物（任意）</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>生前に好きだったおやつ・おもちゃなどをお持ちいただいても結構です。</span></div></div>
+        </li>
+        <li>
+          <div class="check-row" onclick="toggleCheck(this)">
+            <div class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 6-7"/></svg></div>
+            <div class="check-label"><div class="item-name">お布施</div></div>
+          </div>
+          <button class="check-note-toggle" onclick="toggleNote(this)"><span class="toggle-chevron">▼</span> 詳しく見る</button>
+          <div class="check-note"><div class="check-note-inner"><span>目安など、ご質問は<strong>住職・職員よりお答えしております。遠慮なくご相談ください。</strong></span></div></div>
+        </li>
+      </ul>
+      <div class="progress-bar-wrap">
+        <div class="progress-text" id="progress-animal">チェック：0 / 3</div>
+        <div class="progress-bar"><div class="progress-fill" id="fill-animal"></div></div>
       </div>
     </div>
   </div>
