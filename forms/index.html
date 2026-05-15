@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お寺について｜仕様書ヒアリング</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", "メイリオ", sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 20px 120px;
+  }
+  header.topbar {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+  }
+  .crumbs {
+    color: #555;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  .crumbs .chip {
+    display: inline-block;
+    background: transparent;
+    color: #b8860b;
+    border: 1.5px solid #b8860b;
+    border-radius: 999px;
+    padding: 2px 12px;
+    margin-right: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    vertical-align: 2px;
+  }
+  .progress {
+    margin-top: 14px;
+    background: #f3efe2;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress > div {
+    height: 100%;
+    background: linear-gradient(90deg, #d4a017, #b8860b);
+    width: 0%;
+    transition: width .35s ease;
+  }
+  .progress-label {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-align: right;
+  }
+
+  /* 質問カード（マスコット＋質問を一体化） */
+  .qcard {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    margin: 4px 0 24px;
+    padding: 22px 24px;
+    background: linear-gradient(180deg, #fffdf6, #fffaeb);
+    border: 1px solid #efe2b0;
+    border-left: 5px solid #b8860b;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(184, 134, 11, .08);
+    animation: fadeUp .35s ease both;
+  }
+  .qcard .avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1.5px solid #efe2b0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    flex-shrink: 0;
+    animation: bob 3s ease-in-out infinite;
+    box-shadow: 0 2px 8px rgba(184,134,11,.10);
+  }
+  .qcard .qbody { flex: 1; min-width: 0; }
+  .qcard .qtitle {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0 0 6px;
+    letter-spacing: .01em;
+  }
+  .qcard .qhint {
+    font-size: 16px;
+    color: #6b6b6b;
+    font-weight: 500;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-left: 10px;
+    vertical-align: 5px;
+    font-weight: 700;
+    letter-spacing: .08em;
+  }
+  .badge.required { background: #c62828; color: #fff; }
+  .badge.optional { background: #ede8d8; color: #6b5d2c; }
+
+  /* 設問本文外の補助テキスト（数字入力の単位など） */
+  .qhint {
+    font-size: 17px;
+    color: #555;
+    margin: 4px 0 14px;
+    font-weight: 500;
+  }
+
+  /* 選択肢 大ボタン */
+  .options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 12px 0 8px;
+  }
+  @media (min-width: 560px) {
+    .options.grid2 { grid-template-columns: 1fr 1fr; }
+  }
+  .opt {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1.5px solid #e3e3e3;
+    border-radius: 14px;
+    padding: 18px 22px;
+    cursor: pointer;
+    background: #fff;
+    transition: all .18s ease;
+    font-size: 21px;
+    font-weight: 700;
+    user-select: none;
+  }
+  .opt:hover {
+    border-color: #b8860b;
+    background: #fffaeb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(184,134,11,.08);
+  }
+  .opt.selected {
+    border-color: #b8860b;
+    background: #fff3e0;
+    box-shadow: 0 0 0 3px rgba(184,134,11,.18) inset, 0 4px 12px rgba(184,134,11,.10);
+  }
+  .opt .mark {
+    width: 26px; height: 26px;
+    border: 2px solid #888;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: #fff;
+  }
+  .opt.selected .mark {
+    border-color: #b8860b;
+    background: #b8860b;
+  }
+  .opt.selected .mark::after {
+    content: "";
+    width: 12px; height: 12px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .opt.checkbox .mark { border-radius: 6px; }
+  .opt.checkbox.selected .mark::after {
+    content: "";
+    width: 14px; height: 8px;
+    border-left: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    transform: rotate(-45deg);
+    background: transparent;
+    border-radius: 0;
+    margin-top: -3px;
+  }
+
+  input[type="text"], textarea, select {
+    width: 100%;
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 16px 18px;
+    border: 2px solid #cfcfcf;
+    border-radius: 12px;
+    background: #fff;
+    color: #111;
+    line-height: 1.6;
+  }
+  textarea { min-height: 160px; resize: vertical; }
+  input[type="text"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #b8860b;
+    box-shadow: 0 0 0 3px rgba(184,134,11,.18);
+  }
+  .other-input {
+    margin-top: 10px;
+    display: none;
+  }
+  .other-input.show { display: block; }
+
+  /* ナビゲーション */
+  .nav {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,.96);
+    border-top: 2px solid #eaeaea;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+  }
+  .nav .inner {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    gap: 12px;
+  }
+  .btn {
+    flex: 1;
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 16px 18px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .btn-back {
+    background: #fff;
+    color: #444;
+    border-color: #bbb;
+  }
+  .btn-back:hover { background: #f3f3f3; }
+  .btn-next {
+    background: #b8860b;
+    color: #fff;
+  }
+  .btn-next:hover { background: #e65100; }
+  .btn-next:disabled { background: #aaa; cursor: not-allowed; }
+
+  .err {
+    color: #c62828;
+    font-weight: 700;
+    margin-top: 10px;
+    font-size: 18px;
+    display: none;
+  }
+  .err.show { display: block; }
+
+  /* 完了画面 */
+  .done h1 {
+    font-size: 32px;
+    margin: 8px 0 16px;
+  }
+  .md-box {
+    background: #f7f7f7;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 18px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 16px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 50vh;
+    overflow: auto;
+    color: #222;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+  .actions .btn { flex: 1 1 220px; }
+  .btn-copy { background: #1565c0; color: #fff; }
+  .btn-copy:hover { background: #0d47a1; }
+  .btn-download { background: #b8860b; color: #fff; }
+  .btn-download:hover { background: #e65100; }
+  .toast {
+    position: fixed;
+    bottom: 100px; left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a; color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity .25s;
+    z-index: 50;
+    font-size: 18px;
+  }
+  .toast.show { opacity: 1; }
+
+  /* 行事リスト */
+  .event-list { display: grid; gap: 12px; }
+  .event-row { border-radius: 12px; }
+  .event-row .opt { width: 100%; }
+  .event-month {
+    display: none;
+    margin: 10px 0 0 8px;
+    padding: 14px 18px;
+    background: #fff8f0;
+    border: 2px dashed #ffcc80;
+    border-radius: 10px;
+  }
+  .event-month.show { display: block; }
+  .event-month .month-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 19px;
+  }
+  .event-month .month-label {
+    display: inline-block;
+    min-width: 44px;
+    text-align: center;
+    font-size: 26px;
+    color: #b8860b;
+    font-weight: 800;
+  }
+  .event-month input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px;
+    background: #ffe0b2;
+    border-radius: 8px;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  .event-month input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px; height: 30px;
+    background: #b8860b;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  }
+  .event-month input[type="range"]::-moz-range-thumb {
+    width: 30px; height: 30px;
+    background: #b8860b;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+  .month-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #777;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* 役割カード（人物イメージ） */
+  .role-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 560px) {
+    .role-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .role-card {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    border: 2px solid #cfcfcf;
+    border-radius: 14px;
+    padding: 16px 18px;
+    background: #fff;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .role-card:hover { border-color: #b8860b; background: #fff8f0; }
+  .role-card.selected {
+    border-color: #b8860b;
+    background: #fff3e0;
+    box-shadow: 0 0 0 3px rgba(184,134,11,.15) inset;
+  }
+  .role-card .face {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: #f3f3f3;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
+    border: 2px solid #ddd;
+  }
+  .role-card.selected .face {
+    background: #fff;
+    border-color: #b8860b;
+  }
+  .role-card .body { flex: 1; }
+  .role-card .role-name {
+    font-weight: 800;
+    font-size: 21px;
+    margin-bottom: 2px;
+  }
+  .role-card .role-desc {
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+  .role-card .mark {
+    width: 26px; height: 26px;
+    border: 2px solid #888;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: #fff;
+    margin-top: 4px;
+  }
+  .role-card.selected .mark {
+    border-color: #b8860b;
+    background: #b8860b;
+  }
+  .role-card.selected .mark::after {
+    content: "";
+    width: 14px; height: 8px;
+    border-left: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    transform: rotate(-45deg);
+    margin-top: -3px;
+  }
+
+  /* ======== ワクワク要素 ======== */
+
+  /* 設問エントランス */
+  .options, .role-grid, .event-list, input[type=text], textarea, select, .other-input {
+    animation: fadeUp .35s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bob {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-4px); }
+  }
+
+  /* 選択時のポップ */
+  @keyframes pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.04); }
+    100% { transform: scale(1); }
+  }
+  .opt.just-popped, .role-card.just-popped { animation: pop .25s ease; }
+
+  /* セクション切替オーバーレイ */
+  .section-overlay {
+    position: fixed; inset: 0;
+    background: rgba(255,255,255,.92);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+  }
+  .section-overlay.show { opacity: 1; pointer-events: auto; }
+  .section-overlay .chap {
+    font-size: 22px;
+    color: #b8860b;
+    font-weight: 800;
+    letter-spacing: .15em;
+    margin-bottom: 12px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all .4s ease .05s;
+  }
+  .section-overlay .chap-title {
+    font-size: 38px;
+    font-weight: 900;
+    color: #1a1a1a;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all .4s ease .15s;
+  }
+  .section-overlay .chap-icon {
+    font-size: 56px;
+    margin-bottom: 12px;
+    transform: scale(.6) rotate(-15deg);
+    opacity: 0;
+    transition: all .5s cubic-bezier(.34,1.56,.64,1);
+  }
+  .section-overlay .chap-sub {
+    margin-top: 14px;
+    font-size: 18px;
+    color: #6d4c00;
+    font-weight: 700;
+    background: #fff8e1;
+    border: 1.5px solid #ffe082;
+    padding: 8px 18px;
+    border-radius: 999px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all .4s ease .25s;
+  }
+  .section-overlay.show .chap,
+  .section-overlay.show .chap-title,
+  .section-overlay.show .chap-sub { opacity: 1; transform: translateY(0); }
+  .section-overlay.show .chap-icon  { opacity: 1; transform: scale(1) rotate(0); }
+
+  /* マイルストーンバナー */
+  .milestone {
+    position: fixed;
+    top: 80px; left: 50%;
+    transform: translate(-50%, -10px);
+    background: #fff8e1;
+    border: 2px solid #ffb74d;
+    color: #6d4c00;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 18px;
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .4s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  }
+  .milestone.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* 進捗バーに桜マーカー */
+  .progress { position: relative; }
+  .progress .marker {
+    position: absolute; top: -4px;
+    transform: translateX(-50%);
+    font-size: 18px;
+    pointer-events: none;
+    transition: opacity .3s;
+  }
+  .progress .marker.passed { opacity: .35; filter: grayscale(.4); }
+
+  /* 花びら（完了演出） */
+  .petal {
+    position: fixed;
+    top: -40px;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 80;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* 完了スタンプ */
+  .stamp {
+    display: inline-block;
+    color: #c62828;
+    border: 4px double #c62828;
+    padding: 16px 28px;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: .2em;
+    border-radius: 12px;
+    transform: rotate(-8deg) scale(.4);
+    opacity: 0;
+    margin: 10px 0 18px;
+    background: rgba(255,255,255,.7);
+    animation: stampIn .5s cubic-bezier(.34,1.56,.64,1) .2s forwards;
+  }
+  @keyframes stampIn {
+    0%   { transform: rotate(-30deg) scale(2.2); opacity: 0; }
+    60%  { transform: rotate(-10deg) scale(.95); opacity: 1; }
+    100% { transform: rotate(-8deg) scale(1); opacity: 1; }
+  }
+
+  /* 最終編集中の演出 */
+  .finalizing { text-align: center; padding: 40px 0 60px; }
+  .finalizing h1 { font-size: 32px; margin: 12px 0 4px; }
+  .finalizing .lead { font-size: 18px; color: #555; margin-bottom: 12px; }
+  .finalizing .big-anim {
+    font-size: 80px;
+    display: inline-block;
+    animation: spinBob 1.6s ease-in-out infinite;
+  }
+  @keyframes spinBob {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50%      { transform: translateY(-10px) rotate(8deg); }
+  }
+  .dots { display: flex; gap: 10px; justify-content: center; margin: 14px 0 18px; }
+  .dots span {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #b8860b;
+    display: inline-block;
+    animation: bounce 1s ease-in-out infinite;
+  }
+  .dots span:nth-child(2) { animation-delay: .15s; }
+  .dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: .5; }
+    50%      { transform: translateY(-12px); opacity: 1; }
+  }
+  .processing-list {
+    margin-top: 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .proc-item {
+    font-size: 19px; font-weight: 700;
+    padding: 10px 18px;
+    background: #fff8e1;
+    border: 2px solid #ffe082;
+    border-radius: 999px;
+    color: #6d4c00;
+    animation: fadeUp .4s ease both;
+    max-width: 420px;
+  }
+  .proc-item.done {
+    background: #fffaeb;
+    color: #8a6d00;
+    text-decoration: line-through;
+    opacity: .8;
+  }
+
+  /* 動きを減らす設定の方向け */
+  @media (prefers-reduced-motion: reduce) {
+    .mascot .avatar { animation: none; }
+    .qtitle, .qhint, .options, .role-grid, .event-list,
+    input[type=text], textarea, select, .other-input { animation: none; }
+    .opt.just-popped, .role-card.just-popped { animation: none; }
+    .stamp { animation: none; opacity: 1; transform: rotate(-8deg); }
+    .petal { display: none; }
+    .section-overlay { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="crumbs"><span class="chip" id="sectionChip">CHAPTER 1</span><span id="sectionName">お寺について</span>（仕様書ヒアリング）</div>
+    <div class="progress"><div id="bar"></div></div>
+    <div class="progress-label" id="progressLabel">1 / 11</div>
+  </header>
+
+  <main id="app"></main>
+</div>
+
+<div class="nav" id="navBar">
+  <div class="inner">
+    <button class="btn btn-back" id="btnBack">← 戻る</button>
+    <button class="btn btn-next" id="btnNext">次へ →</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="milestone" id="milestone"></div>
+
+<div class="section-overlay" id="sectionOverlay">
+  <div class="chap-icon" id="chapIcon">🐢</div>
+  <div class="chap" id="chapNumber">CHAPTER</div>
+  <div class="chap-title" id="chapTitle"></div>
+  <div class="chap-sub" id="chapSub"></div>
+</div>
+
+<script>
+/* ==========================================================
+   設問定義
+   type: "single"   = 単一選択（その他で自由入力）
+        "multi"     = 複数選択（その他で自由入力）
+        "text"      = 1行テキスト
+        "textarea"  = 複数行テキスト
+        "select"    = プルダウン選択
+   required: true で必須
+========================================================== */
+const QUESTIONS = [
+  {
+    key: "shumei",
+    title: "宗派を教えてください",
+    hint: "下の一覧からお選びください。一覧にない場合は「その他」を選び、ご記入ください。",
+    type: "select",
+    required: true,
+    options: [
+      "真言宗",
+      "天台宗",
+      "浄土宗", "浄土真宗本願寺派", "真宗大谷派",
+      "曹洞宗", "臨済宗",
+      "日蓮宗",
+      "黄檗宗", "華厳宗", "法相宗",
+      "その他"
+    ]
+  },
+  {
+    key: "name",
+    title: "お寺の正式名称を教えてください",
+    hint: "例：◯◯山 □□寺",
+    type: "text",
+    required: true,
+    placeholder: "例：◯◯山 □□寺"
+  },
+  {
+    key: "honzon",
+    title: "ご本尊さまについて",
+    hint: "あてはまるものを いくつでも 選べます。一覧にないご本尊は「その他」にご記入ください。",
+    type: "multi",
+    required: true,
+    options: [
+      "阿弥陀如来", "釈迦如来", "大日如来",
+      "薬師如来", "観音菩薩", "地蔵菩薩",
+      "不動明王", "毘沙門天", "弁財天",
+      "その他"
+    ]
+  },
+  {
+    key: "era",
+    title: "創建された時代をお選びください",
+    hint: "おおよそで構いません。",
+    type: "single",
+    required: true,
+    options: [
+      "平安時代以前", "鎌倉時代", "室町時代",
+      "戦国・安土桃山時代", "江戸時代", "明治以降", "わからない"
+    ]
+  },
+  {
+    key: "history",
+    title: "歴史で伝えたいことがあれば教えてください",
+    hint: "創建のいきさつ、由緒、これまでの出来事など。空欄でも次に進めます。",
+    type: "textarea",
+    required: false,
+    placeholder: "例：◯◯天皇の勅願により創建されました。"
+  },
+  {
+    key: "pref",
+    title: "所在地の都道府県を選んでください",
+    hint: "",
+    type: "select",
+    required: true,
+    options: [
+      "北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
+      "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
+      "新潟県","富山県","石川県","福井県","山梨県","長野県",
+      "岐阜県","静岡県","愛知県","三重県",
+      "滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県",
+      "鳥取県","島根県","岡山県","広島県","山口県",
+      "徳島県","香川県","愛媛県","高知県",
+      "福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"
+    ]
+  },
+  {
+    key: "address",
+    title: "市区町村以降のご住所を教えてください",
+    hint: "番地・建物名まで入れてください。",
+    type: "text",
+    required: true,
+    placeholder: "例：◯◯市△△町1-2-3"
+  },
+  {
+    key: "jushokuName",
+    title: "ご住職のお名前を教えてください",
+    hint: "",
+    type: "text",
+    required: true,
+    placeholder: "例：山田 一郎"
+  },
+  {
+    key: "dai",
+    title: "ご住職は何代目ですか",
+    hint: "半角数字でご記入ください。わからない場合は「0」とご入力ください。",
+    type: "number",
+    required: true,
+    placeholder: "例：23",
+    min: 0,
+    max: 999
+  },
+  {
+    key: "jushokuProfile",
+    title: "ご住職の経歴や想いを教えてください",
+    hint: "略歴・大切にしていること・趣味など。空欄でも次に進めます。",
+    type: "textarea",
+    required: false,
+    placeholder: "例：◯◯大学卒業後、◯◯寺で修行。地域に開かれたお寺を目指しています。"
+  },
+  {
+    key: "policy",
+    title: "基本方針として大切にしていることをお選びください",
+    hint: "あてはまるものを いくつでも 選べます。",
+    type: "multi",
+    required: true,
+    options: [
+      "開かれたお寺づくり",
+      "地域とのつながり",
+      "ご供養を丁寧に",
+      "伝統を守る",
+      "新しい取り組みへの挑戦",
+      "悩みごと相談・心の支え",
+      "子育て・若い世代の支援",
+      "学びの場の提供",
+      "その他"
+    ]
+  },
+  {
+    key: "events",
+    title: "自坊で行っている年間行事をお選びください",
+    hint: "宗派に合わせた行事の候補を表示しています。行っているものにチェックを入れ、開催月の目盛りを動かしてください。一覧にない行事は下の欄にご自由にご記入ください。",
+    type: "events",
+    required: false,
+    section: "年間行事"
+  },
+  {
+    key: "aiRole",
+    title: "このプロジェクトにおいて、AIにどんな“役割”を担ってほしいですか？",
+    hint: "ふだん相談する相手として、いちばん近い人物像をお選びください。複数選んでも構いません。",
+    type: "roles",
+    required: true,
+    section: "AIに求めるスタンス",
+    options: [
+      { face: "📒", name: "秘書", desc: "事務作業・スケジュール調整・整理整頓を手伝ってくれる存在" },
+      { face: "🧘", name: "副住職・お弟子さん", desc: "お寺の運営をともに考え、相談に乗ってくれる存在" },
+      { face: "✒️", name: "編集者・ライター", desc: "文章の表現や構成を整えてくれる存在" },
+      { face: "📣", name: "広報・マーケター", desc: "発信や見せ方を一緒に考えてくれる存在" },
+      { face: "🌱", name: "カウンセラー", desc: "気持ちを受け止め、整理を手伝ってくれる存在" },
+      { face: "📚", name: "学者・研究者", desc: "仏教学・歴史・典拠を丁寧に調べてくれる存在" },
+      { face: "🤝", name: "信頼できる友人", desc: "肩の力を抜いて、雑談しながら考えてくれる存在" },
+      { face: "🧭", name: "経営コンサルタント", desc: "運営の戦略や数字の整理を一緒に考えてくれる存在" }
+    ]
+  },
+  {
+    key: "aiAnswerStance",
+    title: "AIには、どんな関わり方をしてほしいですか？",
+    hint: "いちばん近しいものを選んでください。",
+    type: "single",
+    required: true,
+    section: "AIに求めるスタンス",
+    options: [
+      "一緒に考える“パートナー”として",
+      "端的に答える“アシスタント”として",
+      "案を提示してくれる“相談役”として",
+      "その他"
+    ]
+  },
+  {
+    key: "aiTone",
+    title: "AIの言葉づかいはどれがよいですか？",
+    hint: "ひとつだけ選んでください。",
+    type: "single",
+    required: true,
+    section: "AIに求めるスタンス",
+    options: [
+      "丁寧で格式ある言葉（〜でございます）",
+      "親しみやすい話し言葉（〜ですね）",
+      "やさしい ですます調",
+      "古風・武家風（殿・拙僧 など）",
+      "その他"
+    ]
+  },
+  {
+    key: "aiLength",
+    title: "回答の長さは、どれくらいが好みですか？",
+    hint: "いちばん近しいものを選んでください。",
+    type: "single",
+    required: true,
+    section: "AIに求めるスタンス",
+    options: [
+      "短く・要点だけ",
+      "ほどよい長さ（要点＋理由）",
+      "じっくり詳しく"
+    ]
+  },
+  {
+    key: "aiCritique",
+    title: "ご指摘や改善提案は、どう伝えてほしいですか？",
+    hint: "いちばん近しいものを選んでください。",
+    type: "single",
+    required: true,
+    section: "AIに求めるスタンス",
+    options: [
+      "はっきり指摘してほしい",
+      "やわらかく提案してほしい",
+      "良い点と一緒に伝えてほしい"
+    ]
+  },
+  {
+    key: "aiFreeNote",
+    title: "AIに伝えておきたいことがあれば、ご自由にお書きください",
+    hint: "苦手なこと・避けてほしい表現・特別なお願いなど。空欄でも次に進めます。",
+    type: "textarea",
+    required: false,
+    section: "AIに求めるスタンス",
+    placeholder: "例：◯◯という表現は避けてください。檀家さん向けの文章は特にやわらかくお願いします。"
+  }
+];
+
+/* ==========================================================
+   宗派別 主な年間行事（共通＋宗派固有）
+========================================================== */
+const COMMON_EVENTS = [
+  { name: "修正会（しゅしょうえ）", month: 1 },
+  { name: "涅槃会（ねはんえ）", month: 2 },
+  { name: "春彼岸会", month: 3 },
+  { name: "花まつり（灌仏会）", month: 4 },
+  { name: "施餓鬼会（せがきえ）", month: 7 },
+  { name: "盂蘭盆会（お盆）", month: 8 },
+  { name: "秋彼岸会", month: 9 },
+  { name: "成道会（じょうどうえ）", month: 12 },
+  { name: "除夜会・除夜の鐘", month: 12 }
+];
+const SECT_EVENTS = {
+  "浄土宗": [
+    { name: "御忌会（法然上人忌）", month: 1 },
+    { name: "十夜法要（じゅうやほうよう）", month: 11 }
+  ],
+  "浄土真宗本願寺派": [
+    { name: "御正忌報恩講", month: 1 },
+    { name: "永代経法要", month: 5 },
+    { name: "降誕会（親鸞聖人）", month: 5 }
+  ],
+  "真宗大谷派": [
+    { name: "報恩講", month: 11 },
+    { name: "御正忌報恩講", month: 11 }
+  ],
+  "曹洞宗": [
+    { name: "両祖忌（道元・瑩山禅師）", month: 9 },
+    { name: "達磨忌", month: 10 }
+  ],
+  "臨済宗": [
+    { name: "臨済忌", month: 1 },
+    { name: "達磨忌", month: 10 }
+  ],
+  "真言宗": [
+    { name: "正御影供（しょうみえく・弘法大師忌）", month: 3 },
+    { name: "青葉まつり（弘法大師降誕会）", month: 6 }
+  ],
+  "天台宗": [
+    { name: "山家会（さんげえ・最澄忌）", month: 6 },
+    { name: "霜月会（しもつきえ）", month: 11 }
+  ],
+  "日蓮宗": [
+    { name: "立教開宗会", month: 4 },
+    { name: "御会式（おえしき）", month: 10 }
+  ],
+  "黄檗宗": [
+    { name: "隠元忌", month: 4 }
+  ],
+  "華厳宗": [
+    { name: "良弁忌", month: 12 }
+  ],
+  "法相宗": [
+    { name: "慈恩会（じおんえ）", month: 11 }
+  ]
+};
+function getEventsForSect(sect) {
+  const extra = SECT_EVENTS[sect] || [];
+  // 重複除去（名前ベース）
+  const map = new Map();
+  [...COMMON_EVENTS, ...extra].forEach(e => { if (!map.has(e.name)) map.set(e.name, e); });
+  return Array.from(map.values());
+}
+
+/* ========================== セクション/応援 ========================== */
+const SECTION_META = {
+  "お寺について":      { num: "CHAPTER 1", icon: "🐢", sub: "まずは自坊のことから、のんびりまいりましょう。" },
+  "年間行事":          { num: "CHAPTER 2", icon: "🐰", sub: "宗派にあわせた行事の候補をご用意しました！" },
+  "AIに求めるスタンス": { num: "CHAPTER 3", icon: "🦉", sub: "あなたとAIの“ちょうどいい距離感”を決めましょう。" }
+};
+// 設問ごとに動物が変わる（口調はなし。質問は吹き出しの中に表示）
+const QUESTION_ANIMAL = {
+  shumei:        "🐱",
+  name:          "🐰",
+  honzon:        "🦉",
+  era:           "🐢",
+  history:       "🦊",
+  pref:          "🐧",
+  address:       "🐶",
+  jushokuName:   "🐮",
+  dai:           "🦉",
+  jushokuProfile:"🦊",
+  policy:        "🐼",
+  events:        "🐰",
+  aiRole:        "🦊",
+  aiAnswerStance:"🐶",
+  aiTone:        "🐧",
+  aiLength:      "🐢",
+  aiCritique:    "🐻",
+  aiFreeNote:    "🐹"
+};
+function pickAnimal(q) {
+  return QUESTION_ANIMAL[q.key] || "🐱";
+}
+const MILESTONES = [
+  { pct: 20, msg: "🐰 ぴょんっ！ 20%突破です♪" },
+  { pct: 40, msg: "🦊 40%まで来ました！ 軽やか軽やか〜" },
+  { pct: 50, msg: "🎉 ちょうど折り返し！ ナイスペースです！" },
+  { pct: 70, msg: "🐢 70%通過。じっくりまいりましょう。" },
+  { pct: 90, msg: "✨ もうすぐゴール！ あと少しです！" }
+];
+function showMilestoneIfCrossed(prevIdx, currIdx, total) {
+  const prev = (prevIdx / total) * 100;
+  const curr = (currIdx / total) * 100;
+  for (const m of MILESTONES) {
+    if (prev < m.pct && curr >= m.pct) {
+      const el = document.getElementById("milestone");
+      el.textContent = m.msg;
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 1900);
+      return;
+    }
+  }
+}
+function showSectionOverlay(name) {
+  const ov = document.getElementById("sectionOverlay");
+  const data = SECTION_META[name] || { num: "CHAPTER", icon: "🐢", sub: "" };
+  document.getElementById("chapTitle").textContent = name;
+  document.getElementById("chapNumber").textContent = data.num;
+  document.getElementById("chapIcon").textContent = data.icon;
+  document.getElementById("chapSub").textContent = data.sub || "";
+  ov.classList.add("show");
+  setTimeout(() => ov.classList.remove("show"), 1700);
+}
+function launchPetals() {
+  const petals = ['🌸', '🌸', '💮', '🌼', '🪷'];
+  for (let i = 0; i < 28; i++) {
+    setTimeout(() => {
+      const p = document.createElement("div");
+      p.className = "petal";
+      p.textContent = petals[Math.floor(Math.random() * petals.length)];
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDuration = (4 + Math.random() * 3) + "s";
+      p.style.fontSize = (18 + Math.random() * 22) + "px";
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 8000);
+    }, i * 110);
+  }
+}
+
+/* ========================== 状態 ========================== */
+const state = {
+  index: 0,
+  currentSection: null,
+  answers: {} // key -> { value, other }
+};
+
+const app = document.getElementById("app");
+const bar = document.getElementById("bar");
+const progressLabel = document.getElementById("progressLabel");
+const btnBack = document.getElementById("btnBack");
+const btnNext = document.getElementById("btnNext");
+const navBar = document.getElementById("navBar");
+const toastEl = document.getElementById("toast");
+
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add("show");
+  setTimeout(() => toastEl.classList.remove("show"), 1800);
+}
+
+function updateProgress() {
+  const total = QUESTIONS.length;
+  const cur = Math.min(state.index + 1, total);
+  const pct = state.index >= total ? 100 : (state.index / total) * 100;
+  bar.style.width = pct + "%";
+  progressLabel.textContent = state.index >= total ? "完了" : `${cur} / ${total}`;
+}
+
+function render() {
+  if (state.index >= QUESTIONS.length) {
+    if (!state.finalizingShown) {
+      state.finalizingShown = true;
+      renderFinalizing();
+    } else {
+      renderDone();
+    }
+    return;
+  }
+  const q = QUESTIONS[state.index];
+  const a = state.answers[q.key] || {};
+
+  // セクション切替の演出（前回と異なるセクションに入ったら）
+  const newSection = q.section || "お寺について";
+  if (newSection !== state.currentSection) {
+    showSectionOverlay(newSection);
+    state.currentSection = newSection;
+  }
+  document.getElementById("sectionName").textContent = newSection;
+
+  const animal = pickAnimal(q);
+
+  let html = `
+    <div class="qcard">
+      <div class="avatar">${animal}</div>
+      <div class="qbody">
+        <div class="qtitle">${q.title}<span class="badge ${q.required ? 'required' : 'optional'}">${q.required ? '必須' : '任意'}</span></div>
+        ${q.hint ? `<div class="qhint">${q.hint}</div>` : ''}
+      </div>
+    </div>
+  `;
+
+  if (q.type === "single") {
+    const isGrid2 = q.options.length >= 6 ? "grid2" : "";
+    html += `<div class="options ${isGrid2}">`;
+    for (const opt of q.options) {
+      const sel = a.value === opt ? "selected" : "";
+      html += `<div class="opt ${sel}" data-value="${opt}"><span class="mark"></span><span>${opt}</span></div>`;
+    }
+    html += `</div>`;
+    const showOther = a.value === "その他";
+    html += `<div class="other-input ${showOther ? "show" : ""}" id="otherWrap">
+      <input type="text" id="otherInput" placeholder="その他の内容をご記入ください" value="${escapeAttr(a.other || "")}">
+    </div>`;
+  } else if (q.type === "multi") {
+    html += `<div class="options grid2">`;
+    const arr = a.value || [];
+    for (const opt of q.options) {
+      const sel = arr.includes(opt) ? "selected" : "";
+      html += `<div class="opt checkbox ${sel}" data-value="${opt}"><span class="mark"></span><span>${opt}</span></div>`;
+    }
+    html += `</div>`;
+    const showOther = (a.value || []).includes("その他");
+    html += `<div class="other-input ${showOther ? "show" : ""}" id="otherWrap">
+      <input type="text" id="otherInput" placeholder="その他の内容をご記入ください" value="${escapeAttr(a.other || "")}">
+    </div>`;
+  } else if (q.type === "text") {
+    html += `<input type="text" id="textInput" placeholder="${q.placeholder || ""}" value="${escapeAttr(a.value || "")}">`;
+  } else if (q.type === "number") {
+    html += `<input type="number" id="textInput" inputmode="numeric" min="${q.min ?? 0}" max="${q.max ?? 9999}" placeholder="${q.placeholder || ""}" value="${escapeAttr(a.value || "")}" style="max-width:240px;font-size:28px;text-align:center;">`;
+    html += `<div class="qhint" style="margin-top:6px;">代目（だいめ）</div>`;
+  } else if (q.type === "textarea") {
+    html += `<textarea id="textInput" placeholder="${q.placeholder || ""}">${escapeText(a.value || "")}</textarea>`;
+  } else if (q.type === "select") {
+    html += `<select id="selectInput">
+      <option value="">— 選んでください —</option>
+      ${q.options.map(o => `<option value="${escapeAttr(o)}" ${a.value === o ? "selected" : ""}>${o}</option>`).join("")}
+    </select>`;
+    const showOther = a.value === "その他";
+    html += `<div class="other-input ${showOther ? "show" : ""}" id="otherWrap">
+      <input type="text" id="otherInput" placeholder="その他の内容をご記入ください" value="${escapeAttr(a.other || "")}">
+    </div>`;
+  } else if (q.type === "events") {
+    const sect = state.answers.shumei?.value || "";
+    const events = getEventsForSect(sect);
+    const ans = state.answers.events || { selected: {}, other: "" };
+    state.answers.events = ans;
+    if (sect) {
+      html += `<p class="qhint" style="margin-top:-10px;">▼ <strong>${escapeText(sect)}</strong> の代表的な行事を表示しています。</p>`;
+    }
+    html += `<div class="event-list">`;
+    events.forEach(ev => {
+      const isSel = ev.name in ans.selected;
+      const month = isSel ? ans.selected[ev.name] : ev.month;
+      html += `
+        <div class="event-row" data-evname="${escapeAttr(ev.name)}">
+          <div class="opt checkbox ${isSel ? 'selected' : ''}" data-toggle><span class="mark"></span><span>${escapeText(ev.name)}</span></div>
+          <div class="event-month ${isSel ? 'show' : ''}">
+            <div class="month-line">
+              <span>開催月</span>
+              <span class="month-label" data-month-label>${month}</span>
+              <span>月</span>
+              <input type="range" min="1" max="12" value="${month}" data-month>
+            </div>
+            <div class="month-scale">
+              <span>1月</span><span>3月</span><span>6月</span><span>9月</span><span>12月</span>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    html += `</div>`;
+    html += `<div style="margin-top:24px;">
+      <label style="display:block;font-weight:800;font-size:20px;margin-bottom:8px;">その他の行事（自由記載）</label>
+      <textarea id="eventsOther" placeholder="例：◯◯祭（5月）、地域の合同供養祭（8月）など">${escapeText(ans.other || "")}</textarea>
+    </div>`;
+  } else if (q.type === "roles") {
+    const arr = a.value || [];
+    html += `<div class="role-grid">`;
+    q.options.forEach(opt => {
+      const sel = arr.includes(opt.name) ? "selected" : "";
+      html += `
+        <div class="role-card ${sel}" data-role="${escapeAttr(opt.name)}">
+          <div class="face">${opt.face}</div>
+          <div class="body">
+            <div class="role-name">${escapeText(opt.name)}</div>
+            <div class="role-desc">${escapeText(opt.desc)}</div>
+          </div>
+          <div class="mark"></div>
+        </div>
+      `;
+    });
+    html += `</div>`;
+    const showOther = (a.value || []).includes("その他");
+    html += `<div class="role-grid" style="margin-top:12px;">
+      <div class="role-card ${arr.includes("その他") ? 'selected' : ''}" data-role="その他">
+        <div class="face">✏️</div>
+        <div class="body">
+          <div class="role-name">その他</div>
+          <div class="role-desc">あてはまる人物像があれば、下にご記入ください。</div>
+        </div>
+        <div class="mark"></div>
+      </div>
+    </div>
+    <div class="other-input ${showOther ? "show" : ""}" id="otherWrap">
+      <input type="text" id="otherInput" placeholder="例：先輩住職、家族 など" value="${escapeAttr(a.other || "")}">
+    </div>`;
+  }
+
+  html += `<div class="err" id="err"></div>`;
+  app.innerHTML = html;
+
+  // バインド
+  if (q.type === "single") {
+    document.querySelectorAll(".opt").forEach(el => {
+      el.addEventListener("click", () => {
+        document.querySelectorAll(".opt").forEach(e => e.classList.remove("selected"));
+        el.classList.add("selected");
+        const v = el.dataset.value;
+        state.answers[q.key] = { value: v, other: state.answers[q.key]?.other || "" };
+        const wrap = document.getElementById("otherWrap");
+        if (v === "その他") wrap.classList.add("show");
+        else wrap?.classList.remove("show");
+      });
+    });
+    document.getElementById("otherInput")?.addEventListener("input", e => {
+      state.answers[q.key] = { ...(state.answers[q.key] || {}), other: e.target.value };
+    });
+  } else if (q.type === "multi") {
+    document.querySelectorAll(".opt").forEach(el => {
+      el.addEventListener("click", () => {
+        el.classList.toggle("selected");
+        const arr = Array.from(document.querySelectorAll(".opt.selected")).map(e => e.dataset.value);
+        state.answers[q.key] = { value: arr, other: state.answers[q.key]?.other || "" };
+        const wrap = document.getElementById("otherWrap");
+        if (arr.includes("その他")) wrap.classList.add("show");
+        else wrap?.classList.remove("show");
+      });
+    });
+    document.getElementById("otherInput")?.addEventListener("input", e => {
+      state.answers[q.key] = { ...(state.answers[q.key] || {}), other: e.target.value };
+    });
+  } else if (q.type === "text" || q.type === "textarea" || q.type === "number") {
+    document.getElementById("textInput").addEventListener("input", e => {
+      state.answers[q.key] = { value: e.target.value };
+    });
+  } else if (q.type === "select") {
+    document.getElementById("selectInput").addEventListener("change", e => {
+      const v = e.target.value;
+      state.answers[q.key] = { value: v, other: state.answers[q.key]?.other || "" };
+      const wrap = document.getElementById("otherWrap");
+      if (v === "その他") wrap.classList.add("show");
+      else wrap?.classList.remove("show");
+    });
+    document.getElementById("otherInput")?.addEventListener("input", e => {
+      state.answers[q.key] = { ...(state.answers[q.key] || {}), other: e.target.value };
+    });
+  } else if (q.type === "events") {
+    const ans = state.answers.events;
+    document.querySelectorAll(".event-row").forEach(row => {
+      const name = row.dataset.evname;
+      const toggle = row.querySelector("[data-toggle]");
+      const monthBox = row.querySelector(".event-month");
+      const slider = row.querySelector("[data-month]");
+      const label = row.querySelector("[data-month-label]");
+      toggle.addEventListener("click", () => {
+        if (name in ans.selected) {
+          delete ans.selected[name];
+          toggle.classList.remove("selected");
+          monthBox.classList.remove("show");
+        } else {
+          ans.selected[name] = parseInt(slider.value, 10);
+          toggle.classList.add("selected");
+          monthBox.classList.add("show");
+        }
+      });
+      slider.addEventListener("input", () => {
+        label.textContent = slider.value;
+        if (name in ans.selected) {
+          ans.selected[name] = parseInt(slider.value, 10);
+        }
+      });
+    });
+    document.getElementById("eventsOther").addEventListener("input", e => {
+      ans.other = e.target.value;
+    });
+  } else if (q.type === "roles") {
+    document.querySelectorAll(".role-card").forEach(card => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("selected");
+        const arr = Array.from(document.querySelectorAll(".role-card.selected")).map(c => c.dataset.role);
+        state.answers[q.key] = { value: arr, other: state.answers[q.key]?.other || "" };
+        const wrap = document.getElementById("otherWrap");
+        if (arr.includes("その他")) wrap.classList.add("show");
+        else wrap?.classList.remove("show");
+      });
+    });
+    document.getElementById("otherInput")?.addEventListener("input", e => {
+      state.answers[q.key] = { ...(state.answers[q.key] || {}), other: e.target.value };
+    });
+  }
+
+  btnBack.disabled = state.index === 0;
+  btnBack.style.visibility = state.index === 0 ? "hidden" : "visible";
+  btnNext.textContent = state.index === QUESTIONS.length - 1 ? "完了 → 仕様書を作る" : "次へ →";
+  updateProgress();
+}
+
+function validate() {
+  const q = QUESTIONS[state.index];
+  const a = state.answers[q.key];
+  const err = document.getElementById("err");
+  err.classList.remove("show");
+  if (!q.required) return true;
+
+  let ok = true;
+  let msg = "";
+  if (q.type === "single") {
+    if (!a || !a.value) { ok = false; msg = "選択してください。"; }
+    else if (a.value === "その他" && !(a.other || "").trim()) { ok = false; msg = "「その他」の内容をご記入ください。"; }
+  } else if (q.type === "multi" || q.type === "roles") {
+    if (!a || !a.value || a.value.length === 0) { ok = false; msg = "1つ以上選択してください。"; }
+    else if (a.value.includes("その他") && !(a.other || "").trim()) { ok = false; msg = "「その他」の内容をご記入ください。"; }
+  } else if (q.type === "select") {
+    if (!a || !(a.value || "").trim()) { ok = false; msg = "選択してください。"; }
+    else if (a.value === "その他" && !(a.other || "").trim()) { ok = false; msg = "「その他」の内容をご記入ください。"; }
+  } else if (q.type === "number") {
+    if (!a || !(a.value || "").toString().trim()) { ok = false; msg = "数字をご記入ください。"; }
+    else if (isNaN(parseInt(a.value, 10))) { ok = false; msg = "半角数字でご記入ください。"; }
+  } else if (q.type === "text" || q.type === "textarea") {
+    if (!a || !(a.value || "").trim()) { ok = false; msg = "ご記入ください。"; }
+  } else if (q.type === "events") {
+    // events は任意。ただし required:true の場合のみ最低1つ必要
+    const sel = a?.selected || {};
+    const other = (a?.other || "").trim();
+    if (Object.keys(sel).length === 0 && !other) { ok = false; msg = "1つ以上選ぶか、その他をご記入ください。"; }
+  }
+
+  if (!ok) { err.textContent = msg; err.classList.add("show"); }
+  return ok;
+}
+
+btnNext.addEventListener("click", () => {
+  if (state.index < QUESTIONS.length) {
+    if (!validate()) return;
+    const prev = state.index;
+    state.index++;
+    showMilestoneIfCrossed(prev, state.index, QUESTIONS.length);
+    window.scrollTo(0, 0);
+    render();
+  }
+});
+
+// ふわっとポップ（クリック時の小さな喜び）
+app.addEventListener("click", e => {
+  const t = e.target.closest(".opt, .role-card");
+  if (t) {
+    t.classList.add("just-popped");
+    setTimeout(() => t.classList.remove("just-popped"), 260);
+  }
+});
+btnBack.addEventListener("click", () => {
+  if (state.index > 0) {
+    state.index--;
+    window.scrollTo(0, 0);
+    render();
+  } else if (state.index >= QUESTIONS.length) {
+    state.index = QUESTIONS.length - 1;
+    render();
+  }
+});
+
+/* ========================== Markdown 出力 ========================== */
+function buildMarkdown() {
+  const a = state.answers;
+  const get = (k) => {
+    const v = a[k];
+    if (!v) return "（未入力）";
+    if (Array.isArray(v.value)) {
+      return v.value.map(x => x === "その他" && v.other ? `その他（${v.other}）` : x).join("、");
+    }
+    if (v.value === "その他" && v.other) return `その他（${v.other}）`;
+    return v.value || "（未入力）";
+  };
+  const listOf = (k) => {
+    const v = a[k]?.value;
+    if (!v || v.length === 0) return "（未入力）";
+    return v.map(x => x === "その他" && a[k].other ? `- その他（${a[k].other}）` : `- ${x}`).join("\n");
+  };
+
+  // 行事を月順にまとめる
+  const evAns = a.events || { selected: {}, other: "" };
+  const evRows = Object.entries(evAns.selected || {})
+    .sort((x, y) => x[1] - y[1])
+    .map(([name, m]) => `| ${m}月 | ${name} |`).join("\n");
+  const eventsTable = evRows
+    ? `| 開催月 | 行事 |\n|---|---|\n${evRows}`
+    : "（未選択）";
+  const eventsOther = evAns.other?.trim() ? evAns.other.trim() : "（なし）";
+
+  const md = `# 仕様書：お寺について／AIに求めるスタンス
+
+このドキュメントは、ChatGPT / Claude などのAIに渡すための「お寺の基本情報」と「AIに求めるスタンス」をまとめた仕様書です。
+プロジェクト機能に常設して、毎回参照される状態にしてご利用ください。
+
+---
+
+# 1. お寺について
+
+## 1-1. 基本情報
+- **お寺の名称**：${get("name")}
+- **宗派**：${get("shumei")}
+- **ご本尊**：${get("honzon")}
+- **創建時代**：${get("era")}
+
+## 1-2. 所在地
+- **都道府県**：${get("pref")}
+- **住所**：${get("address")}
+
+## 1-3. 歴史・由緒
+${a.history?.value?.trim() ? a.history.value.trim() : "（未入力）"}
+
+## 1-4. 住職プロフィール
+- **お名前**：${get("jushokuName")}
+- **代数**：${(() => {
+  const v = a.dai?.value;
+  if (!v && v !== 0) return "（未入力）";
+  const n = parseInt(v, 10);
+  if (isNaN(n)) return "（未入力）";
+  if (n === 0) return "不明";
+  return `${n}代目`;
+})()}
+- **経歴・想い**：
+${a.jushokuProfile?.value?.trim() ? a.jushokuProfile.value.trim() : "（未入力）"}
+
+## 1-5. 基本方針・大切にしていること
+${listOf("policy")}
+
+---
+
+# 2. 年間行事
+
+${eventsTable}
+
+**その他の行事**：
+${eventsOther}
+
+---
+
+# 3. AIに求めるスタンス
+
+## 3-1. AIに担ってほしい役割
+${listOf("aiRole")}
+
+## 3-2. 関わり方
+- **関わり方**：${get("aiAnswerStance")}
+- **言葉づかい**：${get("aiTone")}
+- **回答の長さ**：${get("aiLength")}
+- **指摘・提案の伝え方**：${get("aiCritique")}
+
+## 3-3. その他のお願い
+${a.aiFreeNote?.value?.trim() ? a.aiFreeNote.value.trim() : "（特になし）"}
+
+---
+※この仕様書は「ヒアリングページ」で自動生成されました。
+内容に変更があれば、再度入力し直して上書きしてください。
+`;
+  return md;
+}
+
+function renderFinalizing() {
+  navBar.style.display = "none";
+  document.getElementById("sectionName").textContent = "最終編集中";
+  app.innerHTML = `
+    <div class="finalizing">
+      <div class="big-anim">📜</div>
+      <h1>最終編集中…</h1>
+      <p class="lead">動物たちが文章を整えています。少しだけお待ちください。</p>
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="processing-list" id="procList"></div>
+    </div>
+  `;
+  const steps = [
+    "🐢 ご回答をひとつずつ確認しています…",
+    "🦊 文章のつながりを整えています…",
+    "🦉 全体を読み返しています…",
+    "🐰 仕上げの装飾中…"
+  ];
+  const list = document.getElementById("procList");
+  steps.forEach((s, i) => {
+    setTimeout(() => {
+      const item = document.createElement("div");
+      item.className = "proc-item";
+      item.textContent = s;
+      list.appendChild(item);
+      // 直前のものを完了済みに
+      const prev = list.children[i - 1];
+      if (prev) prev.classList.add("done");
+    }, i * 700);
+  });
+  setTimeout(() => {
+    const last = list.lastElementChild;
+    if (last) last.classList.add("done");
+    renderDone();
+  }, steps.length * 700 + 700);
+}
+
+function renderDone() {
+  navBar.style.display = "none"; // 下部ナビは隠す
+  document.getElementById("sectionName").textContent = "完了";
+  const md = buildMarkdown();
+  app.innerHTML = `
+    <div class="done" style="text-align:center;">
+      <div class="stamp">完　成</div>
+      <h1>仕様書ができました</h1>
+      <p class="qhint">下のボタンから コピー または ダウンロード できます。<br>
+      入力をやり直したい場合は「最初からやり直す」を押してください。</p>
+      <div class="actions">
+        <button class="btn btn-copy" id="btnCopy">📋 コピーする</button>
+        <button class="btn btn-download" id="btnDownload">⬇ ダウンロード(.md)</button>
+      </div>
+      <div class="md-box" id="mdBox" style="text-align:left;">${escapeText(md)}</div>
+      <div class="actions" style="margin-top:24px;">
+        <button class="btn btn-back" id="btnEdit">← 入力を見直す</button>
+        <button class="btn btn-back" id="btnReset">最初からやり直す</button>
+      </div>
+    </div>
+  `;
+  updateProgress();
+
+  document.getElementById("btnCopy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(md);
+      showToast("コピーしました");
+    } catch (e) {
+      // フォールバック
+      const ta = document.createElement("textarea");
+      ta.value = md;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      showToast("コピーしました");
+    }
+  });
+
+  document.getElementById("btnDownload").addEventListener("click", () => {
+    const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const name = (state.answers.name?.value || "お寺").replace(/[\\\/:*?"<>|]/g, "");
+    a.href = url;
+    a.download = `仕様書_${name}.md`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById("btnEdit").addEventListener("click", () => {
+    state.index = QUESTIONS.length - 1;
+    navBar.style.display = "";
+    render();
+  });
+
+  document.getElementById("btnReset").addEventListener("click", () => {
+    if (!confirm("入力をすべて消して最初から始めます。よろしいですか？")) return;
+    state.index = 0;
+    state.answers = {};
+    state.currentSection = null;
+    state.finalizingShown = false;
+    navBar.style.display = "";
+    render();
+  });
+
+  // 完了の祝祭：花びらを舞わせる
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    launchPetals();
+  }
+}
+
+/* ========================== utils ========================== */
+function escapeAttr(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function escapeText(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+render();
+</script>
+</body>
+</html>
