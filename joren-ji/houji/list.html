@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご法事前のチェックリスト｜静蓮寺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent:        #4a7c59;
+    --accent-light:  #eaf2eb;
+    --accent-mid:    #c5d9c8;
+    --accent-subtle: #f2f7f3;
+    --text-primary:  #1a1a1a;
+    --text-secondary:#555555;
+    --text-muted:    #888888;
+    --border:        #e0e0e0;
+    --bg:            #ffffff;
+    --bg-surface:    #f5faf5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.9;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; background: var(--bg); }
+
+  .page-header {
+    background: var(--accent);
+    color: #ffffff;
+    padding: 18px 16px 14px;
+  }
+  .page-header-title { font-size: 18px; font-weight: 700; }
+  .page-header-sub   { font-size: 13px; opacity: 0.75; margin-top: 4px; line-height: 1.7; }
+
+  .tab-row {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    background: #f6f6f4;
+  }
+  .tab {
+    flex: 1; font-size: 13px; text-align: center;
+    padding: 11px 4px; color: var(--text-muted);
+    border-bottom: 2px solid transparent; cursor: pointer;
+  }
+  .tab.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    font-weight: 700; background: var(--bg);
+  }
+
+  .tab-panel { display: none; padding: 18px 16px 24px; }
+  .tab-panel.first { display: block; }
+
+  .section-title {
+    font-size: 15px; font-weight: 700;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+    margin: 4px 0 14px;
+    line-height: 1.4;
+  }
+  .section-title + .section-title { margin-top: 24px; }
+  .section-title.spacer { margin-top: 24px; }
+
+  /* Accordion */
+  .accordion {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .acc-header {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 13px 12px; cursor: pointer; background: var(--bg);
+  }
+  .acc-header input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px; height: 18px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+  .acc-title-wrap { flex: 1; min-width: 0; }
+  .acc-title { font-size: 15px; font-weight: 700; color: var(--text-primary); line-height: 1.5; }
+  .acc-title-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; line-height: 1.6; }
+  .acc-toggle { font-size: 12px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+  .acc-body { display: none; padding: 0 13px 13px; border-top: 1px solid var(--border); background: #fafafa; }
+  .acc-body.open { display: block; }
+  .acc-detail { font-size: 13px; color: var(--text-secondary); line-height: 1.9; padding-top: 10px; }
+
+  /* Simple item (no accordion) */
+  .simple-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 12px;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg);
+  }
+  .simple-item input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+  .simple-title { font-size: 15px; font-weight: 700; color: var(--text-primary); line-height: 1.5; }
+
+  /* Apply button */
+  .apply-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--accent); color: #fff;
+    border-radius: 8px; padding: 12px;
+    font-size: 14px; font-weight: 700;
+    margin-top: 10px; text-decoration: none;
+  }
+
+  /* Cost box */
+  .cost-box {
+    border: 1px solid var(--accent-mid);
+    border-radius: 8px;
+    background: var(--accent-subtle);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+  .cost-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 14px; color: var(--text-primary);
+    padding: 6px 0; border-bottom: 1px dotted var(--border); line-height: 1.7;
+  }
+  .cost-row:last-of-type { border-bottom: none; }
+  .cost-label { color: var(--text-muted); font-size: 13px; }
+  .cost-val { font-weight: 700; }
+  .cost-note { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.7; }
+
+  /* Contact */
+  .contact-box {
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .contact-row {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+  .contact-name { font-weight: 700; color: var(--text-primary); }
+  .contact-box a { color: var(--accent); text-decoration: none; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-header">
+    <div class="page-header-title">ご法事前のチェックリスト</div>
+    <div class="page-header-sub">当日にお持ちいただくもの・事前のご連絡事項をご確認ください</div>
+  </div>
+
+  <div class="tab-row">
+    <div class="tab active">納骨</div>
+    <div class="tab">年忌法要</div>
+    <div class="tab">新盆</div>
+  </div>
+
+  <!-- ────── 納骨タブ ────── -->
+  <div class="tab-panel first">
+
+    <div class="section-title">必ずお持ちいただくもの</div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">白木のお位牌</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">ご葬儀の際にお渡しした白木のお位牌をお持ちください。</div>
+      </div>
+    </div>
+
+    <div class="simple-item">
+      <input type="checkbox">
+      <div class="simple-title">お骨</div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">御写真</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">小さい御写真でも差し支えございません。</div>
+      </div>
+    </div>
+
+    <div class="simple-item">
+      <input type="checkbox">
+      <div class="simple-title">お供物（果物・お菓子など）</div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">塗りのお位牌</div>
+          <div class="acc-title-sub">サイズ・予算のご相談を承ります</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">
+          高級品：4〜5寸 ¥50,000前後<br>
+          普及品：¥10,000〜¥30,000前後<br>
+          ご予算に合わせてご相談ください。
+        </div>
+      </div>
+    </div>
+
+    <div class="simple-item">
+      <input type="checkbox">
+      <div class="simple-title">墓参花</div>
+    </div>
+
+    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">塔婆のお申込み</div>
+          <div class="acc-title-sub">1週間前までにFAX・メールで</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">
+          施主 大塔婆 ¥5,000／志主 小塔婆 ¥3,000<br>
+          フリガナを添えて1週間前までにFAXまたはメールでお申込みください。<br>
+          FAX：03-3843-3442／Mail：zen0801key@gmail.com
+        </div>
+        <a href="#" class="apply-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          塔婆を申し込む
+        </a>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">お位牌のサイズご連絡</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">当寺へ作成をご依頼の場合は、お早めにご連絡ください。</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">当日の人数</div>
+          <div class="acc-title-sub">前日までにご連絡ください</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">お席のご準備のため、前日までに当日のご参列人数をお知らせください。</div>
+      </div>
+    </div>
+
+    <div class="section-title spacer">諸費用の目安</div>
+
+    <div class="cost-box">
+      <div class="cost-row">
+        <div class="cost-label">納骨料</div>
+        <div class="cost-val">¥20,000</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">墓石戒名彫り</div>
+        <div class="cost-val">¥35,000</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">お位牌（高級品）</div>
+        <div class="cost-val">4〜5寸 ¥50,000前後</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">お位牌（普及品）</div>
+        <div class="cost-val">¥10,000〜¥30,000前後</div>
+      </div>
+      <div class="cost-note">※ 納骨料・戒名彫りは石材店へ直接お支払いください。戒名彫りが必要な場合は事前にご連絡ください。</div>
+    </div>
+
+    <div class="section-title spacer">お問い合わせ</div>
+
+    <div class="contact-box">
+      <div class="contact-row"><span class="contact-name">静蓮寺</span>　<a href="tel:03-3843-4034">03-3843-4034</a> ／ FAX 03-3843-3442</div>
+      <div class="contact-row"><span class="contact-name">正定寺</span>　<a href="tel:03-3841-1853">03-3841-1853</a> ／ FAX 03-3841-1777</div>
+      <div class="contact-row"><span class="contact-name">住職携帯</span>　<a href="tel:090-4064-8033">090-4064-8033</a></div>
+      <div class="contact-row"><a href="mailto:zen0801key@gmail.com">zen0801key@gmail.com</a></div>
+    </div>
+
+  </div>
+
+  <!-- ────── 年忌法要タブ ────── -->
+  <div class="tab-panel">
+
+    <div class="section-title">必ずお持ちいただくもの</div>
+
+    <div class="simple-item"><input type="checkbox"><div class="simple-title">御位牌</div></div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">御写真</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">小さい御写真でも差し支えございません。</div>
+      </div>
+    </div>
+
+    <div class="simple-item"><input type="checkbox"><div class="simple-title">数珠</div></div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">年忌法要お布施</div>
+          <div class="acc-title-sub">金額の目安は住職までお問い合わせください</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">お布施の金額の目安につきましては、住職までお気軽にお問い合わせください。</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">名義変更のご印鑑</div>
+          <div class="acc-title-sub">施主名変更がある場合のみ</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">施主名の変更がある場合のみ、ご印鑑をお持ちください。</div>
+      </div>
+    </div>
+
+    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">塔婆のお申込み</div>
+          <div class="acc-title-sub">1週間前までにFAX・メールで</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">
+          施主 大塔婆 ¥5,000／志主 小塔婆 ¥3,000<br>
+          フリガナを添えて1週間前までにFAXまたはメールでお申込みください。<br>
+          FAX：03-3843-3442／Mail：zen0801key@gmail.com
+        </div>
+        <a href="#" class="apply-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          塔婆を申し込む
+        </a>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">お位牌のサイズご連絡</div>
+          <div class="acc-title-sub">当寺へ作成依頼の場合</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">当寺へ作成をご依頼の場合は、お早めにご連絡ください。</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">当日の人数</div>
+          <div class="acc-title-sub">前日までにご連絡ください</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">お席のご準備のため、前日までに当日のご参列人数をお知らせください。</div>
+      </div>
+    </div>
+
+    <div class="section-title spacer">お問い合わせ</div>
+
+    <div class="contact-box">
+      <div class="contact-row"><span class="contact-name">静蓮寺</span>　<a href="tel:03-3843-4034">03-3843-4034</a> ／ FAX 03-3843-3442</div>
+      <div class="contact-row"><span class="contact-name">正定寺</span>　<a href="tel:03-3841-1853">03-3841-1853</a> ／ FAX 03-3841-1777</div>
+      <div class="contact-row"><span class="contact-name">住職携帯</span>　<a href="tel:090-4064-8033">090-4064-8033</a></div>
+      <div class="contact-row"><a href="mailto:zen0801key@gmail.com">zen0801key@gmail.com</a></div>
+    </div>
+
+  </div>
+
+  <!-- ────── 新盆タブ ────── -->
+  <div class="tab-panel">
+
+    <div class="section-title">必ずお持ちいただくもの</div>
+
+    <div class="simple-item"><input type="checkbox"><div class="simple-title">御位牌</div></div>
+    <div class="simple-item"><input type="checkbox"><div class="simple-title">御写真</div></div>
+    <div class="simple-item"><input type="checkbox"><div class="simple-title">数珠</div></div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">新盆供養お布施</div>
+          <div class="acc-title-sub">施主様の塔婆1本分が含まれます</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">新盆供養のお布施には、施主様の塔婆1本分が含まれます。</div>
+      </div>
+    </div>
+
+    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">塔婆のお申込み</div>
+          <div class="acc-title-sub">1週間前までにFAX・メールで</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">
+          施主 大塔婆 ¥5,000／志主 小塔婆 ¥3,000<br>
+          フリガナを添えて1週間前までにFAXまたはメールでお申込みください。<br>
+          FAX：03-3843-3442／Mail：zen0801key@gmail.com
+        </div>
+        <a href="#" class="apply-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          塔婆を申し込む
+        </a>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <input type="checkbox" onclick="event.stopPropagation()">
+        <div class="acc-title-wrap">
+          <div class="acc-title">当日の人数</div>
+          <div class="acc-title-sub">前日までにご連絡ください</div>
+        </div>
+        <div class="acc-toggle">詳細 ∨</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-detail">お席のご準備のため、前日までに当日のご参列人数をお知らせください。</div>
+      </div>
+    </div>
+
+    <div class="section-title spacer">お問い合わせ</div>
+
+    <div class="contact-box">
+      <div class="contact-row"><span class="contact-name">静蓮寺</span>　<a href="tel:03-3843-4034">03-3843-4034</a> ／ FAX 03-3843-3442</div>
+      <div class="contact-row"><span class="contact-name">正定寺</span>　<a href="tel:03-3841-1853">03-3841-1853</a> ／ FAX 03-3841-1777</div>
+      <div class="contact-row"><span class="contact-name">住職携帯</span>　<a href="tel:090-4064-8033">090-4064-8033</a></div>
+      <div class="contact-row"><a href="mailto:zen0801key@gmail.com">zen0801key@gmail.com</a></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  // Tab switching
+  const tabs   = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.style.display = 'none');
+      tab.classList.add('active');
+      panels[i].style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Accordion toggle
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    const btn  = header.querySelector('.acc-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open');
+    btn.textContent = isOpen ? '詳細 ∨' : '閉じる ∧';
+  }
+</script>
+</body>
+</html>

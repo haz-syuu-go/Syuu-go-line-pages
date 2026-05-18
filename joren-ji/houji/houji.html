@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご法事のご案内｜静蓮寺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent:        #4a7c59;
+    --accent-light:  #eaf2eb;
+    --accent-mid:    #c5d9c8;
+    --accent-subtle: #f2f7f3;
+    --text-primary:  #1a1a1a;
+    --text-secondary:#555555;
+    --text-muted:    #888888;
+    --border:        #e0e0e0;
+    --bg:            #ffffff;
+    --bg-surface:    #f5faf5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.9;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; background: var(--bg); }
+
+  .hero {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--accent) 0%, #3a6446 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-fallback {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .page-intro { padding: 22px 16px 8px; }
+  .page-title {
+    font-size: 20px; font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .page-lead {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+
+  .menu-list { padding: 18px 16px 24px; }
+  .menu-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--bg);
+    text-decoration: none;
+    color: inherit;
+  }
+  .menu-card.active { border-color: var(--accent); }
+  .menu-card.disabled { opacity: 0.38; pointer-events: none; cursor: default; }
+
+  .num-badge {
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .num-badge.gray { background: #aaaaaa; }
+
+  .menu-body { flex: 1; min-width: 0; }
+  .menu-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .menu-icon { flex-shrink: 0; display: flex; }
+  .menu-title { font-size: 15px; font-weight: 700; line-height: 1.5; }
+  .menu-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+
+  .menu-note {
+    font-size: 13px;
+    color: #c0703a;
+    background: #fff8f3;
+    border-radius: 4px;
+    padding: 6px 8px;
+    margin-top: 6px;
+    line-height: 1.7;
+  }
+
+  .menu-arrow {
+    flex-shrink: 0;
+    align-self: center;
+    color: var(--accent);
+  }
+  .menu-card.disabled .menu-arrow { color: #aaa; }
+
+  .footer-info {
+    background: var(--accent-subtle);
+    padding: 18px 16px;
+    margin-top: 8px;
+  }
+  .footer-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    line-height: 1.6;
+  }
+  .footer-row {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+  .footer-row a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .footer-bar {
+    background: var(--accent);
+    color: rgba(255,255,255,0.75);
+    font-size: 12px;
+    text-align: center;
+    padding: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <img src="../images/jorenji_hondo.jpg" alt="静蓮寺 本堂" onerror="this.style.display='none';this.parentElement.querySelector('.hero-fallback').style.display='block';">
+    <div class="hero-fallback" style="display:none;">静蓮寺</div>
+  </div>
+
+  <div class="page-intro">
+    <div class="page-title">ご法事のご案内</div>
+    <div class="page-lead">日程のご相談から当日のご準備まで、安心してお迎えいただけるようご案内します</div>
+  </div>
+
+  <div class="menu-list">
+
+    <a class="menu-card disabled" href="#" aria-disabled="true">
+      <div class="num-badge gray">01</div>
+      <div class="menu-body">
+        <div class="menu-row">
+          <div class="menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <div class="menu-title">日程のご相談</div>
+        </div>
+        <div class="menu-desc">法要の日時をご相談・ご予約いただけます</div>
+        <div class="menu-note">3ヶ月前を目安にご相談ください。土日は混み合いますのでお早めに。</div>
+      </div>
+      <div class="menu-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+    </a>
+
+    <a class="menu-card active" href="./list.html">
+      <div class="num-badge">02</div>
+      <div class="menu-body">
+        <div class="menu-row">
+          <div class="menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+          </div>
+          <div class="menu-title">ご法事前のチェックリスト</div>
+        </div>
+        <div class="menu-desc">当日の持ち物・準備事項をご確認ください</div>
+      </div>
+      <div class="menu-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+    </a>
+
+    <a class="menu-card disabled" href="#" aria-disabled="true">
+      <div class="num-badge gray">03</div>
+      <div class="menu-body">
+        <div class="menu-row">
+          <div class="menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="2" width="8" height="20" rx="1"></rect>
+              <line x1="10" y1="7" x2="14" y2="7"></line>
+              <line x1="10" y1="11" x2="14" y2="11"></line>
+              <line x1="10" y1="15" x2="14" y2="15"></line>
+            </svg>
+          </div>
+          <div class="menu-title">お塔婆の申込み</div>
+        </div>
+        <div class="menu-desc">法要に合わせてお塔婆をお建てになれます</div>
+      </div>
+      <div class="menu-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+    </a>
+
+    <a class="menu-card active" href="./flow.html">
+      <div class="num-badge">04</div>
+      <div class="menu-body">
+        <div class="menu-row">
+          <div class="menu-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="menu-title">当日の流れ</div>
+        </div>
+        <div class="menu-desc">当日の進行・服装についてご案内します</div>
+      </div>
+      <div class="menu-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer-info">
+    <div class="footer-name">浄土宗 紫金山 妙雲院 静蓮寺</div>
+    <div class="footer-row">〒110-0004 東京都台東区下谷1-12-21</div>
+    <div class="footer-row">電話：<a href="tel:03-3843-4034">03-3843-4034</a></div>
+  </div>
+
+  <footer class="footer-bar">© 静蓮寺</footer>
+
+</div>
+</body>
+</html>
