@@ -180,6 +180,32 @@
     padding: 1px 6px; font-weight: 400; margin-left: 6px;
   }
 
+  /* 強調見出し（事前連絡セクション） */
+  .section-title.emph {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--accent);
+  }
+  .section-note {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: -6px 0 14px;
+    line-height: 1.8;
+    padding: 0 2px;
+  }
+
+  /* チェックで斜線 */
+  .simple-item input[type="checkbox"]:checked ~ .simple-title {
+    text-decoration: line-through;
+    color: var(--text-muted);
+  }
+  .acc-header input[type="checkbox"]:checked ~ .acc-title-wrap .acc-title {
+    text-decoration: line-through;
+    color: var(--text-muted);
+  }
+
   /* Apply button */
   .apply-btn {
     display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -258,7 +284,7 @@
   <!-- ────── 納骨タブ ────── -->
   <div class="tab-panel first">
 
-    <div class="section-title">必ずお持ちいただくもの</div>
+    <div class="section-title">お持ち物</div>
 
     <div class="accordion">
       <div class="acc-header" onclick="toggleAcc(this)">
@@ -282,7 +308,7 @@
       <div class="acc-header" onclick="toggleAcc(this)">
         <input type="checkbox" onclick="event.stopPropagation()">
         <div class="acc-title-wrap">
-          <div class="acc-title">御写真</div>
+          <div class="acc-title">御写真　<span class="opt-tag">任意</span></div>
         </div>
         <div class="acc-toggle">詳細 ∨</div>
       </div>
@@ -319,7 +345,8 @@
       <div class="simple-title">墓参花</div>
     </div>
 
-    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+    <div class="section-title spacer emph">事前にご連絡いただきたいこと</div>
+    <div class="section-note">1週間前までにLINEかお電話にてお知らせください</div>
 
     <div class="accordion">
       <div class="acc-header" onclick="toggleAcc(this)">
@@ -342,19 +369,6 @@
           </svg>
           塔婆を申し込む
         </a>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header" onclick="toggleAcc(this)">
-        <input type="checkbox" onclick="event.stopPropagation()">
-        <div class="acc-title-wrap">
-          <div class="acc-title">お位牌のサイズご連絡</div>
-        </div>
-        <div class="acc-toggle">詳細 ∨</div>
-      </div>
-      <div class="acc-body">
-        <div class="acc-detail">当寺へ作成をご依頼の場合は、お早めにご連絡ください。</div>
       </div>
     </div>
 
@@ -440,7 +454,8 @@
       </div>
     </div>
 
-    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+    <div class="section-title spacer emph">事前にご連絡いただきたいこと</div>
+    <div class="section-note">1週間前までにLINEかお電話にてお知らせください</div>
 
     <div class="accordion">
       <div class="acc-header" onclick="toggleAcc(this)">
@@ -493,10 +508,10 @@
   <!-- ────── 新盆タブ ────── -->
   <div class="tab-panel">
 
-    <div class="section-title">必ずお持ちいただくもの</div>
+    <div class="section-title">お持ち物</div>
 
-    <div class="simple-item"><input type="checkbox"><div class="simple-title">御位牌</div></div>
-    <div class="simple-item"><input type="checkbox"><div class="simple-title">御写真</div></div>
+    <div class="simple-item"><input type="checkbox"><div class="simple-title">御位牌　<span class="opt-tag">任意</span></div></div>
+    <div class="simple-item"><input type="checkbox"><div class="simple-title">御写真　<span class="opt-tag">任意</span></div></div>
     <div class="simple-item"><input type="checkbox"><div class="simple-title">数珠</div></div>
 
     <div class="accordion">
@@ -513,7 +528,8 @@
       </div>
     </div>
 
-    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+    <div class="section-title spacer emph">事前にご連絡いただきたいこと</div>
+    <div class="section-note">1週間前までにLINEかお電話にてお知らせください</div>
 
     <div class="accordion">
       <div class="acc-header" onclick="toggleAcc(this)">
@@ -620,6 +636,25 @@
     body.classList.toggle('open');
     btn.textContent = isOpen ? '詳細 ∨' : '閉じる ∧';
   }
+</script>
+<script>
+(function() {
+  var ov = document.createElement('div');
+  ov.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:1;transition:opacity 0.35s ease;pointer-events:none;';
+  document.body.appendChild(ov);
+  requestAnimationFrame(function() { requestAnimationFrame(function() { ov.style.opacity = '0'; }); });
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href === '#' || /^(https?:|tel:|mailto:)/.test(href)) return;
+    e.preventDefault();
+    ov.style.transition = 'opacity 0.25s ease';
+    ov.style.opacity = '1';
+    ov.style.pointerEvents = 'all';
+    setTimeout(function() { window.location.href = a.href; }, 260);
+  });
+})();
 </script>
 </body>
 </html>

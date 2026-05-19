@@ -216,7 +216,7 @@
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
           </span>
-          <span>3ヶ月前を目安にご相談ください。特に土日はご予約が埋まりやすいため、お早めにご相談いただけますと幸いです。</span>
+          <span><strong>3ヶ月前を目安に</strong>ご相談ください。特に土日はご予約が埋まりやすいため、お早めにご相談いただけますと幸いです。</span>
         </div>
       </div>
       <div class="menu-arrow">
@@ -312,5 +312,24 @@
   <footer class="footer-bar">© 静蓮寺</footer>
 
 </div>
+<script>
+(function() {
+  var ov = document.createElement('div');
+  ov.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:1;transition:opacity 0.35s ease;pointer-events:none;';
+  document.body.appendChild(ov);
+  requestAnimationFrame(function() { requestAnimationFrame(function() { ov.style.opacity = '0'; }); });
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href === '#' || /^(https?:|tel:|mailto:)/.test(href)) return;
+    e.preventDefault();
+    ov.style.transition = 'opacity 0.25s ease';
+    ov.style.opacity = '1';
+    ov.style.pointerEvents = 'all';
+    setTimeout(function() { window.location.href = a.href; }, 260);
+  });
+})();
+</script>
 </body>
 </html>

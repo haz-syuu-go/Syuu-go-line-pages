@@ -376,5 +376,24 @@
   <footer class="footer-bar">© 静蓮寺</footer>
 
 </div>
+<script>
+(function() {
+  var ov = document.createElement('div');
+  ov.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:1;transition:opacity 0.35s ease;pointer-events:none;';
+  document.body.appendChild(ov);
+  requestAnimationFrame(function() { requestAnimationFrame(function() { ov.style.opacity = '0'; }); });
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href === '#' || /^(https?:|tel:|mailto:)/.test(href)) return;
+    e.preventDefault();
+    ov.style.transition = 'opacity 0.25s ease';
+    ov.style.opacity = '1';
+    ov.style.pointerEvents = 'all';
+    setTimeout(function() { window.location.href = a.href; }, 260);
+  });
+})();
+</script>
 </body>
 </html>
