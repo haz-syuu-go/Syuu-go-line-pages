@@ -304,4 +304,7 @@ https://maps.google.com/maps?q=静蓮寺+東京都台東区下谷1-12-21&output=
 | 2026-05-19 | houji.html：コネクター↓矢印・準備中バッジ・3ヶ月前を目安に太字 |
 | 2026-05-19 | event.html：次の行事カードのボーダーを accent 色に強調 |
 | 2026-05-19 | chat-introduction.html：フォント拡大・ヘッダーボタン削除 |
+<<<<<<< HEAD
 | 2026-05-19 | list.html：見出しを中央揃え・下線・20px に変更（左ボーダー廃止） |
+=======
+>>>>>>> origin/main
