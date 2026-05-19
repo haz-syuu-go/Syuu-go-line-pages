@@ -180,6 +180,22 @@
     padding: 1px 6px; font-weight: 400; margin-left: 6px;
   }
 
+  /* 強調見出し（事前連絡セクション） */
+  .section-title.emph {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--accent);
+  }
+  .section-note {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: -6px 0 14px;
+    line-height: 1.8;
+    padding: 0 2px;
+  }
+
   /* チェックで斜線 */
   .simple-item input[type="checkbox"]:checked ~ .simple-title {
     text-decoration: line-through;
@@ -329,7 +345,8 @@
       <div class="simple-title">墓参花</div>
     </div>
 
-    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+    <div class="section-title spacer emph">事前にご連絡いただきたいこと</div>
+    <div class="section-note">1週間前までにLINEかお電話にてお知らせください</div>
 
     <div class="accordion">
       <div class="acc-header" onclick="toggleAcc(this)">
@@ -437,7 +454,8 @@
       </div>
     </div>
 
-    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+    <div class="section-title spacer emph">事前にご連絡いただきたいこと</div>
+    <div class="section-note">1週間前までにLINEかお電話にてお知らせください</div>
 
     <div class="accordion">
       <div class="acc-header" onclick="toggleAcc(this)">
@@ -510,7 +528,8 @@
       </div>
     </div>
 
-    <div class="section-title spacer">事前にご連絡いただきたいこと</div>
+    <div class="section-title spacer emph">事前にご連絡いただきたいこと</div>
+    <div class="section-note">1週間前までにLINEかお電話にてお知らせください</div>
 
     <div class="accordion">
       <div class="acc-header" onclick="toggleAcc(this)">
