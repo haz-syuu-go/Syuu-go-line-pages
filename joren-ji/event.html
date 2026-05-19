@@ -31,6 +31,51 @@
   }
   .wrap { max-width: 480px; margin: 0 auto; background: var(--bg); }
 
+  /* Carousel */
+  .carousel {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.6s ease-in-out;
+  }
+  .carousel-slide.active { opacity: 1; }
+  .carousel-slide img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .carousel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.35) 100%);
+    pointer-events: none;
+  }
+  .carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+  }
+  .carousel-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .carousel-dot.active {
+    background: #fff;
+    transform: scale(1.2);
+  }
+
   .page-header {
     background: var(--accent);
     color: #ffffff;
@@ -112,8 +157,26 @@
 <body>
 <div class="wrap">
 
+  <div class="carousel" id="carousel">
+    <div class="carousel-slide active">
+      <img src="./images/jorenji_carousel_1.jpg" alt="静蓮寺 本堂">
+    </div>
+    <div class="carousel-slide">
+      <img src="./images/jorenji_carousel_2.jpg" alt="静蓮寺 法要の様子">
+    </div>
+    <div class="carousel-slide">
+      <img src="./images/jorenji_carousel_3.jpg" alt="静蓮寺 住職">
+    </div>
+    <div class="carousel-overlay"></div>
+    <div class="carousel-dots">
+      <div class="carousel-dot active"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+    </div>
+  </div>
+
   <div class="page-header">
-    <div class="page-header-title">令和八年の年間行事のご案内</div>
+    <div class="page-header-title">年間行事のご案内</div>
     <div class="page-header-sub">どなたさまもお気軽にお参りください</div>
   </div>
 
@@ -201,6 +264,21 @@
 </div>
 
 <script>
+  // Carousel (slow fade, 6s interval)
+  (function() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots   = document.querySelectorAll('.carousel-dot');
+    if (slides.length < 2) return;
+    let idx = 0;
+    setInterval(() => {
+      slides[idx].classList.remove('active');
+      dots[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+      dots[idx].classList.add('active');
+    }, 6000);
+  })();
+
   document.addEventListener('DOMContentLoaded', () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -214,7 +292,7 @@
         el.classList.add('next-event');
         const badge = document.createElement('div');
         badge.className = 'next-badge';
-        badge.textContent = '次の法要';
+        badge.textContent = '次の行事';
         el.prepend(badge);
 
         const monthEl = el.closest('.tl-row').querySelector('.tl-month');
