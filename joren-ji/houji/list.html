@@ -110,12 +110,36 @@
     cursor: pointer;
     font-weight: 500;
     transition: all 0.2s;
+    position: relative;
   }
   .tab.active {
     background: var(--bg);
-    color: var(--accent);
     font-weight: 700;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.06);
+  }
+  /* 納骨 — 緑（寺の象徴色） */
+  .tab[data-color="green"].active { color: #4a7c59; }
+  .tab[data-color="green"].active::after {
+    content: ''; position: absolute; bottom: 5px; left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: 3px; border-radius: 2px;
+    background: #4a7c59;
+  }
+  /* 年忌法要 — 藍（静かな祈り） */
+  .tab[data-color="blue"].active { color: #4a629e; }
+  .tab[data-color="blue"].active::after {
+    content: ''; position: absolute; bottom: 5px; left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: 3px; border-radius: 2px;
+    background: #4a629e;
+  }
+  /* 新盆 — 琥珀（夏のお盆） */
+  .tab[data-color="amber"].active { color: #b5762c; }
+  .tab[data-color="amber"].active::after {
+    content: ''; position: absolute; bottom: 5px; left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: 3px; border-radius: 2px;
+    background: #b5762c;
   }
 
   .tab-panel { display: none; padding: 18px 16px 24px; }
@@ -243,9 +267,9 @@
   </div>
 
   <div class="tab-row">
-    <div class="tab active">納骨</div>
-    <div class="tab">年忌法要</div>
-    <div class="tab">新盆</div>
+    <div class="tab active" data-color="green">納骨</div>
+    <div class="tab" data-color="blue">年忌法要</div>
+    <div class="tab" data-color="amber">新盆</div>
   </div>
 
   <!-- ────── 納骨タブ ────── -->
@@ -392,8 +416,7 @@
     <div class="contact-box">
       <div class="contact-row"><span class="contact-name">静蓮寺</span>　<a href="tel:03-3843-4034">03-3843-4034</a> ／ FAX 03-3843-3442</div>
       <div class="contact-row"><span class="contact-name">正定寺</span>　<a href="tel:03-3841-1853">03-3841-1853</a> ／ FAX 03-3841-1777</div>
-      <div class="contact-row"><span class="contact-name">住職携帯</span>　<a href="tel:090-4064-8033">090-4064-8033</a></div>
-      <div class="contact-row"><a href="mailto:zen0801key@gmail.com">zen0801key@gmail.com</a></div>
+
     </div>
 
   </div>
@@ -507,8 +530,7 @@
     <div class="contact-box">
       <div class="contact-row"><span class="contact-name">静蓮寺</span>　<a href="tel:03-3843-4034">03-3843-4034</a> ／ FAX 03-3843-3442</div>
       <div class="contact-row"><span class="contact-name">正定寺</span>　<a href="tel:03-3841-1853">03-3841-1853</a> ／ FAX 03-3841-1777</div>
-      <div class="contact-row"><span class="contact-name">住職携帯</span>　<a href="tel:090-4064-8033">090-4064-8033</a></div>
-      <div class="contact-row"><a href="mailto:zen0801key@gmail.com">zen0801key@gmail.com</a></div>
+
     </div>
 
   </div>
@@ -581,8 +603,7 @@
     <div class="contact-box">
       <div class="contact-row"><span class="contact-name">静蓮寺</span>　<a href="tel:03-3843-4034">03-3843-4034</a> ／ FAX 03-3843-3442</div>
       <div class="contact-row"><span class="contact-name">正定寺</span>　<a href="tel:03-3841-1853">03-3841-1853</a> ／ FAX 03-3841-1777</div>
-      <div class="contact-row"><span class="contact-name">住職携帯</span>　<a href="tel:090-4064-8033">090-4064-8033</a></div>
-      <div class="contact-row"><a href="mailto:zen0801key@gmail.com">zen0801key@gmail.com</a></div>
+
     </div>
 
   </div>
