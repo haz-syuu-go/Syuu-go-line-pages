@@ -174,6 +174,11 @@
     flex-shrink: 0;
   }
   .simple-title { font-size: 17px; font-weight: 700; color: var(--text-primary); line-height: 1.5; }
+  .opt-tag {
+    font-size: 12px; color: var(--text-muted);
+    background: #f0f0f0; border-radius: 3px;
+    padding: 1px 6px; font-weight: 400; margin-left: 6px;
+  }
 
   /* Apply button */
   .apply-btn {
@@ -402,15 +407,15 @@
   <!-- ────── 年忌法要タブ ────── -->
   <div class="tab-panel">
 
-    <div class="section-title">必ずお持ちいただくもの</div>
+    <div class="section-title">お持ち物</div>
 
-    <div class="simple-item"><input type="checkbox"><div class="simple-title">御位牌</div></div>
+    <div class="simple-item"><input type="checkbox"><div class="simple-title">御位牌　<span class="opt-tag">任意</span></div></div>
 
     <div class="accordion">
       <div class="acc-header" onclick="toggleAcc(this)">
         <input type="checkbox" onclick="event.stopPropagation()">
         <div class="acc-title-wrap">
-          <div class="acc-title">御写真</div>
+          <div class="acc-title">御写真　<span class="opt-tag">任意</span></div>
         </div>
         <div class="acc-toggle">詳細 ∨</div>
       </div>
@@ -432,20 +437,6 @@
       </div>
       <div class="acc-body">
         <div class="acc-detail">お布施の金額の目安につきましては、住職までお気軽にお問い合わせください。</div>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header" onclick="toggleAcc(this)">
-        <input type="checkbox" onclick="event.stopPropagation()">
-        <div class="acc-title-wrap">
-          <div class="acc-title">名義変更のご印鑑</div>
-          <div class="acc-title-sub">施主名変更がある場合のみ</div>
-        </div>
-        <div class="acc-toggle">詳細 ∨</div>
-      </div>
-      <div class="acc-body">
-        <div class="acc-detail">施主名の変更がある場合のみ、ご印鑑をお持ちください。</div>
       </div>
     </div>
 
@@ -472,20 +463,6 @@
           </svg>
           塔婆を申し込む
         </a>
-      </div>
-    </div>
-
-    <div class="accordion">
-      <div class="acc-header" onclick="toggleAcc(this)">
-        <input type="checkbox" onclick="event.stopPropagation()">
-        <div class="acc-title-wrap">
-          <div class="acc-title">お位牌のサイズご連絡</div>
-          <div class="acc-title-sub">当寺へ作成依頼の場合</div>
-        </div>
-        <div class="acc-toggle">詳細 ∨</div>
-      </div>
-      <div class="acc-body">
-        <div class="acc-detail">当寺へ作成をご依頼の場合は、お早めにご連絡ください。</div>
       </div>
     </div>
 
