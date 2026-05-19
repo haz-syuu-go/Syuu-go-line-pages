@@ -93,54 +93,32 @@
     transition: width 0.3s ease;
   }
 
-  /* Pill tabs */
+  /* ボタン型タブ */
   .tab-row {
     display: flex;
-    background: #e8e5dd;
-    padding: 4px;
-    border-radius: 12px;
-    margin: 14px 14px 0;
-    gap: 4px;
+    gap: 8px;
+    padding: 14px 14px 0;
   }
   .tab {
     flex: 1; font-size: 15px; text-align: center;
-    padding: 11px 4px;
-    color: var(--text-secondary);
-    border-radius: 9px;
+    padding: 13px 4px;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 700;
+    border: 2px solid;
+    background: var(--bg);
     transition: all 0.2s;
     position: relative;
   }
-  .tab.active {
-    background: var(--bg);
-    font-weight: 700;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.06);
-  }
-  /* 納骨 — 緑（寺の象徴色） */
-  .tab[data-color="green"].active { color: #4a7c59; }
-  .tab[data-color="green"].active::after {
-    content: ''; position: absolute; bottom: 5px; left: 50%;
-    transform: translateX(-50%);
-    width: 28px; height: 3px; border-radius: 2px;
-    background: #4a7c59;
-  }
-  /* 年忌法要 — 藍（静かな祈り） */
-  .tab[data-color="blue"].active { color: #4a629e; }
-  .tab[data-color="blue"].active::after {
-    content: ''; position: absolute; bottom: 5px; left: 50%;
-    transform: translateX(-50%);
-    width: 28px; height: 3px; border-radius: 2px;
-    background: #4a629e;
-  }
-  /* 新盆 — 琥珀（夏のお盆） */
-  .tab[data-color="amber"].active { color: #b5762c; }
-  .tab[data-color="amber"].active::after {
-    content: ''; position: absolute; bottom: 5px; left: 50%;
-    transform: translateX(-50%);
-    width: 28px; height: 3px; border-radius: 2px;
-    background: #b5762c;
-  }
+  /* 納骨 — 緑 */
+  .tab[data-color="green"]        { border-color: #4a7c59; color: #4a7c59; }
+  .tab[data-color="green"].active { background: #4a7c59;   color: #fff; }
+  /* 年忌法要 — 藍 */
+  .tab[data-color="blue"]         { border-color: #4a629e; color: #4a629e; }
+  .tab[data-color="blue"].active  { background: #4a629e;   color: #fff; }
+  /* 新盆 — 琥珀 */
+  .tab[data-color="amber"]        { border-color: #b5762c; color: #b5762c; }
+  .tab[data-color="amber"].active { background: #b5762c;   color: #fff; }
 
   .tab-panel { display: none; padding: 18px 16px 24px; }
   .tab-panel.first { display: block; }
