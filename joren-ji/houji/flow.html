@@ -31,6 +31,18 @@
   }
   .wrap { max-width: 480px; margin: 0 auto; background: var(--bg); }
 
+  /* Back link */
+  .back-bar { padding: 12px 14px 6px; background: var(--bg); }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 4px 0;
+  }
+  .back-link:hover { color: var(--accent); }
+
   .page-header {
     background: var(--accent);
     color: #ffffff;
@@ -145,6 +157,15 @@
 </head>
 <body>
 <div class="wrap">
+
+  <div class="back-bar">
+    <a href="./houji.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      法事メニューへ戻る
+    </a>
+  </div>
 
   <div class="page-header">
     <div class="page-header-title">当日の流れ</div>
