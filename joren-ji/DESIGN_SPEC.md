@@ -192,19 +192,43 @@ joren-ji/
 - 納骨・年忌法要タブ：お位牌のサイズご連絡
 - 年忌法要タブ：名義変更のご印鑑
 
-**「事前にご連絡いただきたいこと」見出しの強調：**
+**セクション見出しデザイン：**
+
+中央揃え・下線スタイル。左ボーダーは使わない。
 
 ```css
+/* 共通（お持ち物など） */
+.section-title {
+  font-size: 20px; font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  border-bottom: 2px solid var(--accent);
+  padding: 6px 0 10px;
+  margin: 4px 0 16px;
+  line-height: 1.4;
+}
+
+/* 強調（事前にご連絡いただきたいこと） */
 .section-title.emph {
   background: var(--accent-light);
-  border-left: 4px solid var(--accent);
-  border-radius: 6px;
-  padding: 10px 12px;
-  color: var(--accent);
+  border-radius: 8px 8px 0 0;
+  border-bottom: 3px solid var(--accent);
+  padding: 14px 16px 12px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* 見出し直下の案内文 */
+.section-note {
+  font-size: 15px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 0 14px;
+  line-height: 1.8;
 }
 ```
 
-見出し直下に案内文を追加：「1週間前までにLINEかお電話にてお知らせください」
+「事前にご連絡いただきたいこと」見出し直下に案内文を追加：「1週間前までにLINEかお電話にてお知らせください」
 
 ---
 
@@ -280,3 +304,4 @@ https://maps.google.com/maps?q=静蓮寺+東京都台東区下谷1-12-21&output=
 | 2026-05-19 | houji.html：コネクター↓矢印・準備中バッジ・3ヶ月前を目安に太字 |
 | 2026-05-19 | event.html：次の行事カードのボーダーを accent 色に強調 |
 | 2026-05-19 | chat-introduction.html：フォント拡大・ヘッダーボタン削除 |
+| 2026-05-19 | list.html：見出しを中央揃え・下線・20px に変更（左ボーダー廃止） |
