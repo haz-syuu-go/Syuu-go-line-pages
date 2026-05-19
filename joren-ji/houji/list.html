@@ -31,6 +31,18 @@
   }
   .wrap { max-width: 480px; margin: 0 auto; background: var(--bg); }
 
+  /* Back link */
+  .back-bar { padding: 12px 14px 6px; background: var(--bg); }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 4px 0;
+  }
+  .back-link:hover { color: var(--accent); }
+
   .page-header {
     background: var(--accent);
     color: #ffffff;
@@ -39,20 +51,56 @@
   .page-header-title { font-size: 18px; font-weight: 700; }
   .page-header-sub   { font-size: 13px; opacity: 0.75; margin-top: 4px; line-height: 1.7; }
 
+  /* Progress bar */
+  .progress-wrap {
+    padding: 14px 16px 12px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-label {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 12px; color: var(--text-secondary);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .progress-count { color: var(--accent); font-size: 13px; }
+  .progress-bar {
+    height: 8px;
+    background: #e0e6e1;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 0%, #5a9069 100%);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  /* Pill tabs */
   .tab-row {
     display: flex;
-    border-bottom: 1px solid var(--border);
-    background: #f6f6f4;
+    background: #e8e5dd;
+    padding: 4px;
+    border-radius: 12px;
+    margin: 14px 14px 0;
+    gap: 4px;
   }
   .tab {
     flex: 1; font-size: 13px; text-align: center;
-    padding: 11px 4px; color: var(--text-muted);
-    border-bottom: 2px solid transparent; cursor: pointer;
+    padding: 11px 4px;
+    color: var(--text-secondary);
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
   }
   .tab.active {
+    background: var(--bg);
     color: var(--accent);
-    border-bottom: 2px solid var(--accent);
-    font-weight: 700; background: var(--bg);
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.06);
   }
 
   .tab-panel { display: none; padding: 18px 16px 24px; }
@@ -155,9 +203,28 @@
 <body>
 <div class="wrap">
 
+  <div class="back-bar">
+    <a href="./houji.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      法事メニューへ戻る
+    </a>
+  </div>
+
   <div class="page-header">
     <div class="page-header-title">ご法事前のチェックリスト</div>
     <div class="page-header-sub">当日にお持ちいただくもの・事前のご連絡事項をご確認ください</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>準備の進捗</span>
+      <span class="progress-count"><span id="progress-done">0</span> / <span id="progress-total">0</span> 項目</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
   </div>
 
   <div class="tab-row">
@@ -508,18 +575,42 @@
 </div>
 
 <script>
-  // Tab switching
   const tabs   = document.querySelectorAll('.tab');
   const panels = document.querySelectorAll('.tab-panel');
+
+  // Progress bar update for active panel
+  function updateProgress() {
+    const activeIndex = Array.from(tabs).findIndex(t => t.classList.contains('active'));
+    const panel = panels[activeIndex];
+    if (!panel) return;
+    const boxes = panel.querySelectorAll('input[type="checkbox"]');
+    const total = boxes.length;
+    const done  = panel.querySelectorAll('input[type="checkbox"]:checked').length;
+    const ratio = total === 0 ? 0 : (done / total) * 100;
+    document.getElementById('progress-done').textContent = done;
+    document.getElementById('progress-total').textContent = total;
+    document.getElementById('progress-fill').style.width = ratio + '%';
+  }
+
+  // Tab switching
   tabs.forEach((tab, i) => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       panels.forEach(p => p.style.display = 'none');
       tab.classList.add('active');
       panels[i].style.display = 'block';
+      updateProgress();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  // Update progress when any checkbox changes
+  document.querySelectorAll('input[type="checkbox"]').forEach(box => {
+    box.addEventListener('change', updateProgress);
+  });
+
+  // Initial progress
+  updateProgress();
 
   // Accordion toggle
   function toggleAcc(header) {

@@ -93,14 +93,18 @@
   .menu-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
 
   .menu-note {
+    display: flex; align-items: flex-start; gap: 8px;
     font-size: 13px;
-    color: #c0703a;
-    background: #fff8f3;
-    border-radius: 4px;
-    padding: 6px 8px;
-    margin-top: 6px;
-    line-height: 1.7;
+    color: #a8501a;
+    background: #fff1e0;
+    border: 1px solid #f0c896;
+    border-radius: 6px;
+    padding: 9px 10px;
+    margin-top: 8px;
+    line-height: 1.75;
+    font-weight: 500;
   }
+  .menu-note .note-icon { flex-shrink: 0; margin-top: 2px; color: #d97732; }
 
   .menu-arrow {
     flex-shrink: 0;
@@ -156,12 +160,12 @@
 
   <div class="menu-list">
 
-    <a class="menu-card disabled" href="#" aria-disabled="true">
-      <div class="num-badge gray">01</div>
+    <a class="menu-card active" href="line://lin.ee/5XPp6PB">
+      <div class="num-badge">01</div>
       <div class="menu-body">
         <div class="menu-row">
           <div class="menu-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
               <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -171,7 +175,16 @@
           <div class="menu-title">日程のご相談</div>
         </div>
         <div class="menu-desc">法要の日時をご相談・ご予約いただけます</div>
-        <div class="menu-note">3ヶ月前を目安にご相談ください。土日は混み合いますのでお早めに。</div>
+        <div class="menu-note">
+          <span class="note-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </span>
+          <span>3ヶ月前を目安にご相談ください。特に土日はご予約が埋まりやすいため、お早めにご相談いただけますと幸いです。</span>
+        </div>
       </div>
       <div class="menu-arrow">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
