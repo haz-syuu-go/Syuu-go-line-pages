@@ -54,9 +54,9 @@
 
   .line-icon { flex-shrink: 0; }
 
-  /* Chat animation area */
+  /* Chat animation area (LINE talk background) */
   .chat-anim-area {
-    background: #f0ede8;
+    background: #8caaba;
     padding: 18px 14px;
     display: flex; flex-direction: column; gap: 10px;
   }
@@ -66,14 +66,14 @@
   .bubble-row.right { flex-direction: row-reverse; }
 
   .bubble-avatar {
-    width: 32px; height: 32px; border-radius: 50%;
+    width: 36px; height: 36px; border-radius: 50%;
     background: #6b5a3e; color: #fff;
     font-size: 12px; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; overflow: hidden;
   }
   .bubble-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-  .bubble-avatar.user { background: var(--accent); }
+  .bubble-avatar.user { background: #ffffff; color: var(--accent); }
 
   .bubble {
     max-width: 70%;
@@ -178,6 +178,37 @@
   .chat-notes-list { padding-left: 18px; }
   .chat-notes-list li { margin-bottom: 4px; }
   .chat-notes-list li:last-child { margin-bottom: 0; }
+
+  /* プライバシー注意（強調版） */
+  .privacy-note {
+    margin: 14px 14px 0;
+    background: #eaf4fc;
+    border: 1.5px solid #b6d4ec;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .privacy-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #2e6ca4;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .privacy-body { flex: 1; min-width: 0; }
+  .privacy-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f4f7c;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .privacy-text {
+    font-size: 13px;
+    color: #2c3e50;
+    line-height: 1.8;
+  }
 </style>
 </head>
 <body>
@@ -258,8 +289,21 @@
   <div class="chat-note">
     <ul class="chat-notes-list">
       <li>24時間いつでもお送りいただけます</li>
-      <li>送っていただいた内容は、他の方には閲覧されません。ご安心ください。</li>
     </ul>
+  </div>
+
+  <!-- ── プライバシー注意（強調） ── -->
+  <div class="privacy-note">
+    <div class="privacy-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+    </div>
+    <div class="privacy-body">
+      <div class="privacy-title">プライバシーについて</div>
+      <div class="privacy-text">送っていただいた内容は、他の方には閲覧されません。ご安心ください。</div>
+    </div>
   </div>
 
   <!-- ── 下部LINEボタン ── -->
