@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お墓のご案内｜塔世山 四天王寺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #b8945a;
+  --accent-deep: #8a6a3d;
+  --accent-soft: #e8d8b5;
+  --accent-bg: #fbf6ec;
+  --text: #1a1a1a;
+  --text-soft: #555555;
+  --bg: #ffffff;
+  --card-bg: #ffffff;
+  --border: #e0d8c8;
+  --line-green: #06C755;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  padding-bottom: 32px;
+}
+
+/* ---- ヒーロー写真 ---- */
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, #d4b888 0%, var(--accent) 50%, #a8855a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-photo .placeholder-text {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-align: center;
+  padding: 0 24px;
+  line-height: 1.6;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- タイトルエリア ---- */
+.title-area {
+  padding: 32px 24px 24px;
+  text-align: center;
+  border-bottom: 2px solid var(--accent);
+  margin: 0 16px;
+}
+.title-area h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.title-area .sub {
+  font-size: 17px;
+  color: var(--text-soft);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+/* ---- リード ---- */
+.lead {
+  padding: 28px 24px;
+  font-size: 18px;
+  line-height: 2.0;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ---- セクション見出し ---- */
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 16px 24px 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent);
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+/* ---- お墓カード ---- */
+.grave-card {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  margin: 0 16px 16px;
+  overflow: hidden;
+}
+.card-image {
+  height: 140px;
+  background: linear-gradient(135deg, var(--accent-soft) 0%, #d4b888 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.card-body {
+  padding: 20px 22px 22px;
+}
+.card-number {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.card-catch {
+  font-size: 15px;
+  color: var(--accent-deep);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.card-features {
+  list-style: none;
+  background: var(--accent-bg);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.card-features li {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 5px 0 5px 22px;
+  position: relative;
+  line-height: 1.6;
+}
+.card-features li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 14px;
+  height: 8px;
+  border-left: 3px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
+  transform: rotate(-45deg);
+}
+.card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 26px;
+  font-size: 16px;
+  font-weight: 700;
+  min-height: 50px;
+}
+
+/* ---- 比較表 ---- */
+.compare-wrap {
+  margin: 0 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: #fff;
+}
+.compare-table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-weight: 500;
+}
+.compare-table th,
+.compare-table td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.compare-table th:last-child,
+.compare-table td:last-child { border-right: none; }
+.compare-table thead th {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.compare-table thead th:first-child {
+  background: var(--accent-deep);
+}
+.compare-table tbody th {
+  background: var(--accent-bg);
+  color: var(--accent-deep);
+  font-weight: 700;
+  text-align: left;
+  padding-left: 14px;
+  white-space: nowrap;
+}
+.scroll-hint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-soft);
+  font-weight: 500;
+  margin: 8px 16px 0;
+}
+
+/* ---- お声カード ---- */
+.voice-card {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  margin: 0 16px 12px;
+  padding: 18px 20px;
+}
+.voice-quote {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 12px;
+  padding-left: 32px;
+  position: relative;
+}
+.voice-quote::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -8px;
+  font-size: 44px;
+  color: var(--accent);
+  line-height: 1;
+  font-family: serif;
+}
+.voice-reply {
+  font-size: 15px;
+  color: var(--accent-deep);
+  font-weight: 700;
+  padding-left: 32px;
+}
+.voice-reply::before {
+  content: '→ ';
+}
+
+/* ---- CTA セクション ---- */
+.cta-section {
+  margin: 32px 16px 0;
+  padding: 28px 20px;
+  background: var(--accent-bg);
+  border-radius: 16px;
+  text-align: center;
+}
+.cta-section h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.line-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--line-green);
+  color: #fff;
+  text-decoration: none;
+  padding: 18px 24px;
+  border-radius: 32px;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.35);
+  min-height: 62px;
+}
+.line-cta svg {
+  width: 28px;
+  height: 28px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+.tel-cta, .visit-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #fff;
+  color: var(--accent-deep);
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 32px;
+  font-size: 17px;
+  font-weight: 700;
+  border: 2px solid var(--accent);
+  margin-bottom: 12px;
+  min-height: 54px;
+}
+.tel-cta .tel-label {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.tel-cta .tel-num {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ---- 注意ボックス ---- */
+.note-box {
+  margin: 18px 16px 0;
+  padding: 14px 18px;
+  border: 1px solid #d9b89a;
+  background: #fdf6ec;
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #7a5a3a;
+  font-weight: 500;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.note-box::before {
+  content: '!';
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #d9b89a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+/* ---- フッター ---- */
+footer {
+  margin: 36px 16px 0;
+  padding: 24px 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.8;
+  font-weight: 500;
+}
+footer .temple-name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+footer a {
+  color: var(--accent-deep);
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero-photo">
+    <div class="placeholder-text">写真挿入予定<br>（永代供養観音堂・境内など）</div>
+  </div>
+
+  <div class="title-area">
+    <h1>お墓のご案内</h1>
+    <p class="sub">ご状況に合わせた4つのお墓を<br>ご用意しております</p>
+  </div>
+
+  <div class="lead">
+    <p>継承の不安、遠方からのお参り、檀家入りの迷い—四天王寺では、ご家族それぞれの事情に寄り添ってご提案いたします。</p>
+  </div>
+
+  <h2 class="section-title">お墓の種類</h2>
+
+  <div class="grave-card">
+    <div class="card-image">一般墓所</div>
+    <div class="card-body">
+      <span class="card-number">01</span>
+      <div class="card-title">一般墓所</div>
+      <div class="card-catch">代々受け継ぐ伝統的なお墓</div>
+      <ul class="card-features">
+        <li>四天王寺境内にご用意</li>
+        <li>檀家として永くお付き合い</li>
+        <li>墓石・区画はご相談に応じて</li>
+      </ul>
+      <a href="#" class="card-btn">詳しく聞く</a>
+    </div>
+  </div>
+
+  <div class="grave-card">
+    <div class="card-image">永代供養観音堂</div>
+    <div class="card-body">
+      <span class="card-number">02</span>
+      <div class="card-title">永代供養観音堂</div>
+      <div class="card-catch">継承の心配なく安心</div>
+      <ul class="card-features">
+        <li>継承者は不要</li>
+        <li>四天王寺が永代にわたりご供養</li>
+        <li>檀家・非檀家を問わずご利用可</li>
+      </ul>
+      <a href="#" class="card-btn">詳しく聞く</a>
+    </div>
+  </div>
+
+  <div class="grave-card">
+    <div class="card-image">樹木葬</div>
+    <div class="card-body">
+      <span class="card-number">03</span>
+      <div class="card-title">樹木葬</div>
+      <div class="card-catch">自然に還る、新しい供養のかたち</div>
+      <ul class="card-features">
+        <li>継承者は不要</li>
+        <li>緑に包まれた静かな場所で</li>
+        <li>年間管理費なしのプランあり</li>
+      </ul>
+      <a href="#" class="card-btn">詳しく聞く</a>
+    </div>
+  </div>
+
+  <div class="grave-card">
+    <div class="card-image">動物浄苑</div>
+    <div class="card-body">
+      <span class="card-number">04</span>
+      <div class="card-title">動物浄苑</div>
+      <div class="card-catch">大切なペットも、ご縁の続くお寺で</div>
+      <ul class="card-features">
+        <li>境内の動物浄苑でご供養</li>
+        <li>住職による正式なお勤め</li>
+        <li>檀家入り不要・宗派不問</li>
+      </ul>
+      <a href="./animal-kuyou.html" class="card-btn">詳しいご案内</a>
+    </div>
+  </div>
+
+  <h2 class="section-title">かんたん比較</h2>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>一般墓所</th>
+          <th>永代供養<br>観音堂</th>
+          <th>樹木葬</th>
+          <th>動物浄苑</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>継承者</th>
+          <td>必要</td>
+          <td>不要</td>
+          <td>不要</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <th>檀家入り</th>
+          <td>必要</td>
+          <td>不問</td>
+          <td>不問</td>
+          <td>不問</td>
+        </tr>
+        <tr>
+          <th>年間管理費</th>
+          <td>要</td>
+          <td>要相談</td>
+          <td>要相談</td>
+          <td>要相談</td>
+        </tr>
+        <tr>
+          <th>費用目安</th>
+          <td>要相談</td>
+          <td>要相談</td>
+          <td>要相談</td>
+          <td>要相談</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-hint">← 横にスクロールできます →</div>
+
+  <h2 class="section-title">よくいただくお声</h2>
+
+  <div class="voice-card">
+    <div class="voice-quote">子供がいないので、お墓を継ぐ人がいなくて不安でした</div>
+    <div class="voice-reply">永代供養観音堂で安心していただいたお声、多数いただいております</div>
+  </div>
+
+  <div class="voice-card">
+    <div class="voice-quote">親のお墓が遠方で、なかなかお参りに行けない</div>
+    <div class="voice-reply">改葬のご相談も承ります。手続きから供養までお手伝いします</div>
+  </div>
+
+  <div class="voice-card">
+    <div class="voice-quote">いきなり檀家になるのは…と迷っています</div>
+    <div class="voice-reply">まずはお話を聞かせてください。檀家入りなしでもご利用いただけます</div>
+  </div>
+
+  <div class="cta-section">
+    <h2>お墓のご相談は<br>まずLINEでお気軽に</h2>
+    <a href="#" class="line-cta">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINEで相談する
+    </a>
+    <a href="tel:0592286797" class="tel-cta">
+      <span class="tel-label">お電話</span>
+      <span class="tel-num">059-228-6797</span>
+    </a>
+    <a href="./reservation.html" class="visit-cta">ご来山のご予約</a>
+  </div>
+
+  <div class="note-box">
+    <span>区画図や詳細な費用は、ご家族の状況をうかがったうえで個別にご案内しております。まずはお気軽にお声がけください。</span>
+  </div>
+
+  <footer>
+    <div class="temple-name">曹洞宗 塔世山 四天王寺</div>
+    〒514-0004 三重県津市栄町1-892<br>
+    TEL <a href="tel:0592286797">059-228-6797</a>（9:00〜16:00）<br>
+    FAX 059-229-1115
+  </footer>
+
+</div>
+</body>
+</html>

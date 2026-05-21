@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動物供養のご案内｜塔世山 四天王寺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #b8945a;
+  --accent-deep: #8a6a3d;
+  --accent-soft: #e8d8b5;
+  --accent-bg: #fbf6ec;
+  --text: #1a1a1a;
+  --text-soft: #555555;
+  --bg: #ffffff;
+  --card-bg: #ffffff;
+  --border: #e0d8c8;
+  --line-green: #06C755;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  padding-bottom: 32px;
+}
+
+/* ---- ヒーロー写真 ---- */
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, #d4b888 0%, var(--accent) 50%, #a8855a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-photo .placeholder-text {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-align: center;
+  padding: 0 24px;
+  line-height: 1.6;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- タイトルエリア ---- */
+.title-area {
+  padding: 32px 24px 24px;
+  text-align: center;
+  border-bottom: 2px solid var(--accent);
+  margin: 0 16px;
+}
+.title-area h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.title-area .sub {
+  font-size: 17px;
+  color: var(--text-soft);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+/* ---- リード ---- */
+.lead {
+  padding: 28px 24px;
+  font-size: 18px;
+  line-height: 2.0;
+  color: var(--text);
+  font-weight: 500;
+}
+.lead p {
+  margin-bottom: 14px;
+}
+.lead p:last-child { margin-bottom: 0; }
+
+/* ---- セクション見出し ---- */
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 16px 24px 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent);
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+/* ---- 特徴カード ---- */
+.feature-card {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  margin: 0 16px 12px;
+  padding: 22px;
+}
+.feature-num {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.feature-title {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--accent-deep);
+}
+.feature-desc {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ---- ステップ ---- */
+.steps { margin: 0 16px; }
+.step-item {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px 22px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.step-num {
+  position: absolute;
+  top: -12px;
+  left: 18px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 14px;
+  letter-spacing: 0.08em;
+}
+.step-title {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 8px 0 8px;
+  color: var(--text);
+}
+.step-desc {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+/* ---- アコーディオン ---- */
+.faq-item {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  margin: 0 16px 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item.open { border-color: var(--accent); }
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  min-height: 60px;
+  user-select: none;
+}
+.faq-q-label {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+.faq-q-text { flex: 1; color: var(--text); }
+.faq-toggle {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--accent-deep);
+  font-weight: 400;
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background: var(--accent-bg);
+}
+.faq-item.open .faq-answer { max-height: 400px; }
+.faq-answer-inner {
+  padding: 16px 20px 18px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  font-weight: 500;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+}
+.faq-a-label {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent-deep);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+.faq-a-text { flex: 1; }
+
+/* ---- CTA セクション ---- */
+.cta-section {
+  margin: 32px 16px 0;
+  padding: 28px 20px;
+  background: var(--accent-bg);
+  border-radius: 16px;
+  text-align: center;
+}
+.cta-section h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.line-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--line-green);
+  color: #fff;
+  text-decoration: none;
+  padding: 18px 24px;
+  border-radius: 32px;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.35);
+  min-height: 62px;
+}
+.line-cta svg {
+  width: 28px;
+  height: 28px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+.tel-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #fff;
+  color: var(--accent-deep);
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 32px;
+  font-size: 17px;
+  font-weight: 700;
+  border: 2px solid var(--accent);
+  min-height: 54px;
+}
+.tel-cta .tel-label {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.tel-cta .tel-num {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ---- 心遣いメッセージ ---- */
+.care-message {
+  margin: 18px 16px 0;
+  padding: 22px 24px;
+  background: #fdf6ec;
+  border: 1px solid #d9b89a;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #5a4530;
+  line-height: 2.0;
+}
+
+/* ---- フッター ---- */
+footer {
+  margin: 36px 16px 0;
+  padding: 24px 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.8;
+  font-weight: 500;
+}
+footer .temple-name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+footer a {
+  color: var(--accent-deep);
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero-photo">
+    <div class="placeholder-text">写真挿入予定<br>（動物浄苑・境内など）</div>
+  </div>
+
+  <div class="title-area">
+    <h1>動物供養のご案内</h1>
+    <p class="sub">大切なご家族を<br>ご縁の続くお寺で</p>
+  </div>
+
+  <div class="lead">
+    <p>四天王寺の境内には、動物浄苑（どうぶつじょうおん）がございます。緑に包まれた静かな空間で、大切なペットさまをお見送り・ご供養いただけます。</p>
+    <p>曹洞宗の作法に則り、住職が心を込めてお勤めいたします。檀家・非檀家、宗派を問わずお受けしております。</p>
+  </div>
+
+  <h2 class="section-title">動物浄苑の特徴</h2>
+
+  <div class="feature-card">
+    <span class="feature-num">01</span>
+    <div class="feature-title">境内の緑の中で</div>
+    <div class="feature-desc">本堂横の動物浄苑にて。お参りの際は本堂とあわせてお手を合わせていただけます。</div>
+  </div>
+
+  <div class="feature-card">
+    <span class="feature-num">02</span>
+    <div class="feature-title">住職による正式なご供養</div>
+    <div class="feature-desc">火葬業者の合同供養ではなく、お寺としての仏事です。ご納骨後の年忌供養も承ります。</div>
+  </div>
+
+  <div class="feature-card">
+    <span class="feature-num">03</span>
+    <div class="feature-title">檀家入りは不要</div>
+    <div class="feature-desc">はじめての方もご相談ください。宗派も問いません。</div>
+  </div>
+
+  <h2 class="section-title">ご供養の流れ</h2>
+
+  <div class="steps">
+    <div class="step-item">
+      <span class="step-num">STEP 1</span>
+      <div class="step-title">ご相談</div>
+      <div class="step-desc">LINE・お電話でお声がけください。火葬の有無やご希望をうかがいます。</div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">STEP 2</span>
+      <div class="step-title">ご法要</div>
+      <div class="step-desc">住職がご供養のお勤めをいたします。お骨をお持ちいただきます。</div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">STEP 3</span>
+      <div class="step-title">ご納骨</div>
+      <div class="step-desc">境内の動物浄苑へお納めいたします。</div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">STEP 4</span>
+      <div class="step-title">その後のお参り</div>
+      <div class="step-desc">いつでも境内にお越しいただけます。年忌のご相談も承ります。</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">よくあるご質問</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <span class="faq-q-label">Q</span>
+      <span class="faq-q-text">火葬もお願いできますか？</span>
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <span class="faq-a-label">A</span>
+        <span class="faq-a-text">お骨をお持ちいただく形となる場合がございます。詳しくはお電話・LINEでお問い合わせください。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <span class="faq-q-label">Q</span>
+      <span class="faq-q-text">どんな動物でも受け入れていただけますか？</span>
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <span class="faq-a-label">A</span>
+        <span class="faq-a-text">犬・猫をはじめ、ご家族としてともに過ごされた動物さまをお受けしております。ご相談ください。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <span class="faq-q-label">Q</span>
+      <span class="faq-q-text">他のお寺で火葬したペットでも納骨できますか？</span>
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <span class="faq-a-label">A</span>
+        <span class="faq-a-text">はい、ご相談ください。お持ちのお骨でご供養いたします。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <span class="faq-q-label">Q</span>
+      <span class="faq-q-text">費用はどのくらいかかりますか？</span>
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <span class="faq-a-label">A</span>
+        <span class="faq-a-text">プランによりご相談となります。LINE・お電話でお気軽にお問い合わせください。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <span class="faq-q-label">Q</span>
+      <span class="faq-q-text">飼い主と一緒に眠れるお墓はありますか？</span>
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <span class="faq-a-label">A</span>
+        <span class="faq-a-text">ご相談ください。ご家族のご希望に合わせてご提案いたします。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>動物供養のご相談・お申込みは</h2>
+    <a href="#" class="line-cta">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINEで相談する
+    </a>
+    <a href="tel:0592286797" class="tel-cta">
+      <span class="tel-label">お電話</span>
+      <span class="tel-num">059-228-6797</span>
+    </a>
+  </div>
+
+  <div class="care-message">
+    ペットさまをお見送りされたばかりで<br>
+    気持ちの整理がついていない方も、<br>
+    お話をうかがうだけでも構いません。<br>
+    どうぞお気軽にお声がけください。
+  </div>
+
+  <footer>
+    <div class="temple-name">曹洞宗 塔世山 四天王寺</div>
+    〒514-0004 三重県津市栄町1-892<br>
+    TEL <a href="tel:0592286797">059-228-6797</a>（9:00〜16:00）<br>
+    FAX 059-229-1115
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>
