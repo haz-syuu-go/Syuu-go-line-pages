@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四天王寺へLINEで相談する</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #b8945a;
+  --accent-deep: #8a6a3d;
+  --accent-soft: #e8d8b5;
+  --accent-bg: #fbf6ec;
+  --text: #1a1a1a;
+  --text-soft: #555555;
+  --bg: #ffffff;
+  --card-bg: #ffffff;
+  --border: #e0d8c8;
+  --line-green: #06C755;
+  /* LINEトーク画面の標準カラー */
+  --line-talk-bg: #7d99af;
+  --line-user-bubble: #9be46f;
+  --line-other-bubble: #ffffff;
+  --line-time-text: #ffffff;
+  --priest-avatar-bg: #6b5a3e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  padding-bottom: 32px;
+}
+
+/* ---- タイトルエリア ---- */
+.title-area {
+  padding: 32px 24px 24px;
+  text-align: center;
+  border-bottom: 2px solid var(--accent);
+  margin: 24px 16px 0;
+}
+.title-area h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* ---- セクション見出し ---- */
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 28px 24px 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent);
+  color: var(--text);
+}
+
+/* ---- LINEトーク画面風 ---- */
+.chat-anim-area {
+  background: var(--line-talk-bg);
+  margin: 24px 16px 0;
+  border-radius: 12px;
+  padding: 16px 14px 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* トーク画面の上部の日付バッジ */
+.chat-date-divider {
+  text-align: center;
+  margin: 4px 0 14px;
+}
+.chat-date-divider span {
+  display: inline-block;
+  background: rgba(0,0,0,0.25);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 12px;
+}
+
+.bubble-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: bubble-in-left 0.4s ease-out forwards;
+}
+.bubble-wrap:last-child { margin-bottom: 0; }
+.bubble-wrap.right {
+  flex-direction: row-reverse;
+  animation: bubble-in-right 0.4s ease-out forwards;
+}
+.bubble-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--priest-avatar-bg);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.bubble-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 寺側（相手）の名前 */
+.bubble-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+}
+.bubble-name {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 4px;
+  padding-left: 4px;
+}
+.bubble-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+.bubble-wrap.right .bubble-row {
+  flex-direction: row-reverse;
+}
+
+/* 寺側の吹き出し（白） */
+.bubble {
+  background: var(--line-other-bubble);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 4px 16px 16px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  word-wrap: break-word;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+/* ユーザー側の吹き出し（緑） */
+.bubble.right {
+  background: var(--line-user-bubble);
+  color: #1a1a1a;
+  border-radius: 16px 4px 16px 16px;
+  padding: 10px 14px;
+}
+
+/* 既読・時刻表示 */
+.bubble-time {
+  font-size: 10px;
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+  padding-bottom: 2px;
+  opacity: 0.85;
+}
+.bubble-time .read {
+  display: block;
+  font-size: 10px;
+  margin-bottom: 1px;
+}
+
+@keyframes bubble-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes bubble-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.bubble-wrap.bubble-1 { animation-delay: 0.0s; }
+.bubble-wrap.bubble-2 { animation-delay: 1.5s; }
+
+/* ---- LINE CTA ---- */
+.line-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--line-green);
+  color: #fff;
+  text-decoration: none;
+  padding: 20px 24px;
+  border-radius: 36px;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 14px 16px 0;
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.35);
+  min-height: 66px;
+}
+.line-cta svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+
+/* ---- 受付ステータス ---- */
+.reception-status {
+  margin: 28px 16px 0;
+  padding: 24px 22px;
+  background: var(--accent-bg);
+  border-radius: 16px;
+  text-align: center;
+}
+.status-badge-large {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 8px 22px;
+  border-radius: 22px;
+  margin-bottom: 16px;
+}
+.reception-meta {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--accent-soft);
+  border-bottom: 1px solid var(--accent-soft);
+}
+.reception-meta-row {
+  display: flex;
+  gap: 12px;
+  padding: 4px 0;
+}
+.reception-meta-label {
+  flex-shrink: 0;
+  width: 90px;
+  color: var(--accent-deep);
+  font-weight: 700;
+  font-size: 15px;
+}
+.reception-meta-value {
+  flex: 1;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.status-sub {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.tel-link {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent-deep);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  padding: 6px 0;
+  border-bottom: 2px solid var(--accent);
+}
+
+/* ---- プライバシー注意 ---- */
+.privacy-note {
+  margin: 20px 16px 0;
+  background: #eaf4fc;
+  border: 1.5px solid #b6d4ec;
+  border-radius: 12px;
+  padding: 14px 18px;
+  text-align: center;
+}
+.privacy-text {
+  font-size: 15px;
+  color: #1f4f7c;
+  line-height: 1.7;
+}
+.privacy-text strong {
+  font-weight: 700;
+}
+
+/* ---- フッター ---- */
+footer {
+  margin: 36px 16px 0;
+  padding: 24px 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.8;
+  font-weight: 500;
+}
+footer .temple-name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+footer a {
+  color: var(--accent-deep);
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="title-area">
+    <h1>四天王寺へ<br>LINEで相談する</h1>
+  </div>
+
+  <div class="chat-anim-area">
+
+    <div class="chat-date-divider">
+      <span>本日</span>
+    </div>
+
+    <!-- 利用者：質問（最初に表示） -->
+    <div class="bubble-wrap right bubble-1">
+      <div class="bubble-content">
+        <div class="bubble-row">
+          <div class="bubble-time"><span class="read">既読</span>14:32</div>
+          <div class="bubble right">大切な家族の供養についてご相談したいのですが…</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 住職：返信（次に表示） -->
+    <div class="bubble-wrap bubble-2">
+      <div class="bubble-avatar">
+        <img src="./images/shitennoji_priest.webp" alt="住職">
+      </div>
+      <div class="bubble-content">
+        <div class="bubble-name">四天王寺</div>
+        <div class="bubble-row">
+          <div class="bubble">ご連絡ありがとうございます。LINEメッセージでどうぞお知らせください。</div>
+          <div class="bubble-time">14:35</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- プライバシー注意 -->
+  <div class="privacy-note">
+    <div class="privacy-text"><strong>送っていただいた内容は、他の方には閲覧されません。ご安心ください。</strong></div>
+  </div>
+
+  <a href="#" class="line-cta">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    LINEでメッセージを送る
+  </a>
+
+  <!-- 受付ステータス -->
+  <div class="reception-status">
+    <span class="status-badge-large">ご相談を受付中</span>
+
+    <div class="reception-meta">
+      <div class="reception-meta-row">
+        <div class="reception-meta-label">受付時間</div>
+        <div class="reception-meta-value">24時間いつでもお送りいただけます</div>
+      </div>
+      <div class="reception-meta-row">
+        <div class="reception-meta-label">返信目安</div>
+        <div class="reception-meta-value">2日以内／日中おつとめの合間にお返事いたします</div>
+      </div>
+    </div>
+
+    <p class="status-sub">お葬式などお急ぎの場合はお電話ください。</p>
+    <a href="tel:0592286797" class="tel-link">059-228-6797</a>
+  </div>
+
+  <footer>
+    <div class="temple-name">曹洞宗 塔世山 四天王寺</div>
+    〒514-0004 三重県津市栄町1-892<br>
+    TEL <a href="tel:0592286797">059-228-6797</a>（9:00〜16:00）<br>
+    FAX 059-229-1115
+  </footer>
+
+</div>
+</body>
+</html>
