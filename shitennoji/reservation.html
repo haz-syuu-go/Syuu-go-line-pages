@@ -57,6 +57,15 @@ body {
   object-fit: cover;
   display: block;
 }
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.hero-slide.active {
+  opacity: 1;
+}
 .hero-photo .placeholder-text {
   color: #fff;
   font-size: 18px;
@@ -320,9 +329,9 @@ footer a {
 
   <!-- ヒーロー写真 -->
   <div class="hero-photo">
-    <!-- 本番では下記のplaceholderを削除し、img要素を有効化してください -->
-    <div class="placeholder-text">写真挿入予定<br>（本堂・境内など）</div>
-    <!-- <img src="./images/shitennoji_hero.jpg" alt="塔世山 四天王寺 本堂"> -->
+    <img class="hero-slide active" src="./images/houji_hero.webp" alt="塔世山 四天王寺 本堂">
+    <img class="hero-slide" src="./images/reservation_2.jpg" alt="塔世山 四天王寺 観音堂">
+    <img class="hero-slide" src="./images/reservation_3.jpg" alt="塔世山 四天王寺 観音像">
   </div>
 
   <div class="title-area">
@@ -411,5 +420,17 @@ footer a {
   </footer>
 
 </div>
+<script>
+  (function () {
+    var slides = document.querySelectorAll('.hero-slide');
+    if (slides.length < 2) return;
+    var i = 0;
+    setInterval(function () {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 1000);
+  })();
+</script>
 </body>
 </html>
