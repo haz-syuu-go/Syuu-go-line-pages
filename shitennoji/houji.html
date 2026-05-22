@@ -122,6 +122,17 @@ body {
 .step-card.active {
   border-color: var(--accent);
 }
+.step-card.has-connector::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -16px;
+  width: 3px;
+  height: 16px;
+  background: var(--accent);
+  transform: translateX(-50%);
+  z-index: 1;
+}
 .step-num {
   position: absolute;
   top: -14px;
@@ -169,6 +180,9 @@ body {
   color: #888;
   cursor: not-allowed;
 }
+.step-btn-line {
+  background: var(--line-green);
+}
 .step-status {
   display: inline-block;
   font-size: 12px;
@@ -186,8 +200,8 @@ body {
   background: #fff7e8;
   border: 1px solid #f0c982;
   border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 13px;
+  padding: 12px 16px;
+  font-size: 16px;
   color: #8a6a1f;
   font-weight: 500;
   line-height: 1.6;
@@ -399,20 +413,20 @@ footer a {
   </div>
 
   <div class="lead">
-    <p>四天王寺では、年回忌法要・納骨・新盆など、ご法事をお勤めしております。3ヶ月前を目安にご相談ください。</p>
+    <p>四天王寺では、年回忌法要・納骨・新盆など、ご法事をお勤めしております。<strong>3ヶ月前</strong>を目安にご相談ください。</p>
   </div>
 
   <h2 class="section-title">ご法事までの流れ</h2>
 
-  <div class="step-card active">
+  <div class="step-card active has-connector">
     <span class="step-num">STEP 1</span>
     <div class="step-title">日程のご相談 <span class="step-status ready">まずはここから</span></div>
     <div class="step-desc">ご希望の日程・人数・法事の種類（年回忌・納骨・新盆など）をお伝えください。LINEで候補日をお送りいただくとスムーズです。</div>
-    <div class="alert-note">3ヶ月前を目安にご相談ください。特に土日・お盆・お彼岸はご予約が埋まりやすいため、お早めにご相談いただけますと幸いです。</div>
-    <a href="#" class="step-btn">LINEで日程を相談する</a>
+    <div class="alert-note"><strong>3ヶ月前</strong>を目安にご相談ください。特に土日・お盆・お彼岸はご予約が埋まりやすいため、お早めにご相談いただけますと幸いです。</div>
+    <a href="https://line.me/R/oaMessage/@706gecyf/?" class="step-btn step-btn-line">LINEで日程を相談する</a>
   </div>
 
-  <div class="step-card">
+  <div class="step-card has-connector">
     <span class="step-num">STEP 2</span>
     <div class="step-title">塔婆のお申込み</div>
     <div class="step-desc">塔婆をご希望の場合は、ご法事の1週間前までにLINEまたはお電話でお申込みください。</div>
@@ -499,7 +513,7 @@ footer a {
 
   <div class="cta-section">
     <h2>ご法事のご相談は<br>こちらから</h2>
-    <a href="#" class="line-cta">
+    <a href="https://line.me/R/oaMessage/@706gecyf/?" class="line-cta">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
       LINEで日程を相談する
     </a>
