@@ -57,14 +57,17 @@ body {
   object-fit: cover;
   display: block;
 }
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.6s ease;
+.hero-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
-.hero-slide.active {
-  opacity: 1;
+.hero-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .hero-photo .placeholder-text {
   color: #fff;
@@ -329,9 +332,12 @@ footer a {
 
   <!-- ヒーロー写真 -->
   <div class="hero-photo">
-    <img class="hero-slide active" src="./images/houji_hero.webp" alt="塔世山 四天王寺 本堂">
-    <img class="hero-slide" src="./images/reservation_2.jpg" alt="塔世山 四天王寺 観音堂">
-    <img class="hero-slide" src="./images/reservation_3.jpg" alt="塔世山 四天王寺 観音像">
+    <div class="hero-track">
+      <img class="hero-slide" src="./images/houji_hero.webp" alt="塔世山 四天王寺 本堂">
+      <img class="hero-slide" src="./images/reservation_2.jpg" alt="塔世山 四天王寺 観音堂">
+      <img class="hero-slide" src="./images/reservation_3.jpg" alt="塔世山 四天王寺 観音像">
+      <img class="hero-slide" src="./images/houji_hero.webp" alt="塔世山 四天王寺 本堂">
+    </div>
   </div>
 
   <div class="title-area">
@@ -422,14 +428,22 @@ footer a {
 </div>
 <script>
   (function () {
-    var slides = document.querySelectorAll('.hero-slide');
-    if (slides.length < 2) return;
+    var track = document.querySelector('.hero-track');
+    if (!track) return;
+    var real = 3;
     var i = 0;
     setInterval(function () {
-      slides[i].classList.remove('active');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('active');
-    }, 1000);
+      i++;
+      track.style.transition = 'transform 1.4s ease-in-out';
+      track.style.transform = 'translateX(-' + (i * 100) + '%)';
+      if (i === real) {
+        setTimeout(function () {
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          i = 0;
+        }, 1500);
+      }
+    }, 5500);
   })();
 </script>
 </body>
