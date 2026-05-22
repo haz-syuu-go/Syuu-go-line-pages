@@ -62,6 +62,29 @@ body {
   line-height: 1.7;
 }
 
+/* ---- 写真スライダー（横スクロール） ---- */
+.photo-slider {
+  margin: 20px 0 4px;
+  overflow: hidden;
+}
+.photo-slider-track {
+  display: flex;
+  width: max-content;
+  animation: photo-slide 24s linear infinite;
+}
+.photo-slider-track img {
+  height: 150px;
+  width: auto;
+  display: block;
+  margin-right: 12px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+@keyframes photo-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* ---- タブ（カテゴリボタン選択型） ---- */
 .tab-nav {
   display: grid;
@@ -126,7 +149,7 @@ body {
   gap: 14px;
   padding: 18px 20px;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 700;
   line-height: 1.5;
   min-height: 64px;
@@ -175,7 +198,7 @@ body {
 }
 .faq-answer-inner {
   padding: 18px 20px 20px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.8;
   color: var(--text);
   font-weight: 500;
@@ -297,6 +320,17 @@ footer a {
   <div class="title-area">
     <h1>仏事のご相談</h1>
     <p class="sub">よくあるご質問をまとめました<br>お気軽にお声がけください</p>
+  </div>
+
+  <div class="photo-slider" aria-hidden="true">
+    <div class="photo-slider-track">
+      <img src="./images/soudan-1.jpg" alt="">
+      <img src="./images/soudan-2.jpg" alt="">
+      <img src="./images/soudan-3.jpg" alt="">
+      <img src="./images/soudan-1.jpg" alt="">
+      <img src="./images/soudan-2.jpg" alt="">
+      <img src="./images/soudan-3.jpg" alt="">
+    </div>
   </div>
 
   <nav class="tab-nav">
