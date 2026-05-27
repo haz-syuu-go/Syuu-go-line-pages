@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>終活よろず屋eへLINEで相談する</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent:        #4a7c59;
+    --accent-light:  #eaf2eb;
+    --accent-mid:    #c5d9c8;
+    --accent-subtle: #f2f7f3;
+    --text-primary:  #1a1a1a;
+    --text-secondary:#555555;
+    --text-muted:    #888888;
+    --border:        #e0e0e0;
+    --bg:            #ffffff;
+    --bg-surface:    #f5faf5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.9;
+    font-size: 18px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; background: var(--bg); padding-bottom: 24px; }
+
+  .page-header {
+    background: var(--accent);
+    color: #ffffff;
+    padding: 18px 16px 16px;
+  }
+  .page-header-title { font-size: 20px; font-weight: 700; line-height: 1.5; margin-bottom: 12px; }
+
+  /* LINE button */
+  .line-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: #06c755; color: #fff;
+    border-radius: 10px; padding: 14px;
+    font-size: 17px; font-weight: 700;
+    text-decoration: none;
+  }
+  .line-btn.in-header {
+    background: #ffffff;
+    color: var(--accent);
+  }
+  .line-btn.in-header svg { fill: var(--accent); }
+
+  .line-icon { flex-shrink: 0; }
+
+  /* Chat animation area (LINE talk background) */
+  .chat-anim-area {
+    background: #8caaba;
+    padding: 18px 14px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .bubble-row {
+    display: flex; gap: 8px; align-items: flex-end;
+  }
+  .bubble-row.right { flex-direction: row-reverse; }
+
+  .bubble-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #6b5a3e; color: #fff;
+    font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; overflow: hidden;
+  }
+  .bubble-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .bubble-avatar.user { background: #ffffff; color: var(--accent); }
+
+  .bubble {
+    max-width: 70%;
+    padding: 10px 13px;
+    border-radius: 14px;
+    font-size: 17px; line-height: 1.7;
+    color: var(--text-primary);
+    background: #fff;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: fadeUp 0.4s ease forwards;
+  }
+  .bubble.right {
+    background: #9be46f;
+    color: #1a1a1a;
+    border-radius: 14px 14px 2px 14px;
+  }
+  .bubble.left { border-radius: 14px 14px 14px 2px; }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .b1 { animation-delay: 0.3s; }
+  .b2 { animation-delay: 1.1s; }
+  .b3 { animation-delay: 2.2s; }
+
+  .dot-anim {
+    display: flex; gap: 4px; align-items: center;
+    padding: 4px 0;
+  }
+  .dot-anim span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #999;
+    animation: bounce 1.2s infinite;
+  }
+  .dot-anim span:nth-child(2) { animation-delay: 0.2s; }
+  .dot-anim span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+  }
+
+  /* Section padding */
+  .pad-x { padding-left: 14px; padding-right: 14px; }
+  .mt-14 { margin-top: 14px; }
+
+  /* 担当者カード */
+  .chat-info-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 14px 14px 0;
+    overflow: hidden;
+  }
+  .chat-profile {
+    padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .chat-profile-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: #6b5a3e; color: #fff;
+    font-size: 20px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; overflow: hidden;
+  }
+  .chat-profile-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .chat-profile-info { flex: 1; min-width: 0; }
+  .chat-name { font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+  .chat-status {
+    font-size: 15px; color: var(--accent);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .chat-status::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+  .chat-info-rows { padding: 4px 14px 12px; }
+  .chat-info-row {
+    display: flex; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--border);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .chat-info-row:last-child { border-bottom: none; }
+  .chat-info-label {
+    width: 72px; flex-shrink: 0;
+    font-size: 16px; color: var(--text-muted); font-weight: 700;
+    padding-top: 2px;
+  }
+  .chat-info-value { flex: 1; color: var(--text-primary); }
+
+  /* 注意書き */
+  .chat-note {
+    margin: 14px 14px 0;
+    background: var(--accent-subtle);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+  .chat-notes-list { padding-left: 18px; }
+  .chat-notes-list li { margin-bottom: 4px; }
+  .chat-notes-list li:last-child { margin-bottom: 0; }
+
+  /* プライバシー注意（強調版） */
+  .privacy-note {
+    margin: 14px 14px 0;
+    background: #eaf4fc;
+    border: 1.5px solid #b6d4ec;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .privacy-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #2e6ca4;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .privacy-body { flex: 1; min-width: 0; }
+  .privacy-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f4f7c;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .privacy-text {
+    font-size: 17px;
+    color: #2c3e50;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-header">
+    <div class="page-header-title">終活よろず屋eへLINEで相談する</div>
+  </div>
+
+  <!-- ── Chat animation ── -->
+  <div class="chat-anim-area">
+    <div class="bubble-row right">
+      <div class="bubble-avatar user">私</div>
+      <div class="bubble right b1">終活のことでご相談があります</div>
+    </div>
+
+    <div class="bubble-row">
+      <div class="bubble-avatar">
+        <img src="./images/shukatsu_yorozuya_e_staff.jpg" alt="担当" onerror="this.style.display='none';this.parentElement.textContent='終';">
+      </div>
+      <div class="bubble left b2">
+        <div class="dot-anim"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+
+    <div class="bubble-row">
+      <div class="bubble-avatar">
+        <img src="./images/shukatsu_yorozuya_e_staff.jpg" alt="担当" onerror="this.style.display='none';this.parentElement.textContent='終';">
+      </div>
+      <div class="bubble left b3">ありがとうございます。どのようなことでもお気軽にどうぞ。</div>
+    </div>
+  </div>
+
+  <!-- ── 中部LINEボタン ── -->
+  <div class="pad-x mt-14">
+    <a href="https://line.me/R/oaMessage/@925izbau/?" class="line-btn">
+      <svg class="line-icon" width="20" height="20" viewBox="0 0 24 24" fill="#fff">
+        <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.6 5.78 4.07 7.5L5 22l4.09-2.1C9.99 20.27 11 20.5 12 20.5c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
+      </svg>
+      メッセージを送る
+    </a>
+  </div>
+
+  <!-- ── 担当者情報カード ── -->
+  <div class="chat-info-card">
+    <div class="chat-profile">
+      <div class="chat-profile-avatar">
+        <img src="./images/shukatsu_yorozuya_e_staff.jpg" alt="担当" onerror="this.style.display='none';this.parentElement.textContent='終';">
+      </div>
+      <div class="chat-profile-info">
+        <div class="chat-name">担当・終活よろず屋e</div>
+        <div class="chat-status">ご相談を受け付け中</div>
+      </div>
+    </div>
+    <div class="chat-info-rows">
+      <div class="chat-info-row">
+        <div class="chat-info-label">受付時間</div>
+        <div class="chat-info-value">24時間いつでも</div>
+      </div>
+      <div class="chat-info-row">
+        <div class="chat-info-label">返信目安</div>
+        <div class="chat-info-value">2日以内にお返事いたします</div>
+      </div>
+      <div class="chat-info-row">
+        <div class="chat-info-label">その他</div>
+        <div class="chat-info-value">お急ぎの場合はお電話にてご連絡ください</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 注意書き ── -->
+  <div class="chat-note">
+    <ul class="chat-notes-list">
+      <li>24時間いつでもお送りいただけます</li>
+    </ul>
+  </div>
+
+  <!-- ── プライバシー注意（強調） ── -->
+  <div class="privacy-note">
+    <div class="privacy-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+    </div>
+    <div class="privacy-body">
+      <div class="privacy-title">プライバシーについて</div>
+      <div class="privacy-text">送っていただいた内容は、他の方には閲覧されません。ご安心ください。</div>
+    </div>
+  </div>
+
+  <!-- ── 下部LINEボタン ── -->
+  <div class="pad-x mt-14">
+    <a href="https://line.me/R/oaMessage/@925izbau/?" class="line-btn">
+      <svg class="line-icon" width="20" height="20" viewBox="0 0 24 24" fill="#fff">
+        <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.6 5.78 4.07 7.5L5 22l4.09-2.1C9.99 20.27 11 20.5 12 20.5c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
+      </svg>
+      メッセージを送る
+    </a>
+  </div>
+
+</div>
+<script>
+(function() {
+  var ov = document.createElement('div');
+  ov.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:1;transition:opacity 0.35s ease;pointer-events:none;';
+  document.body.appendChild(ov);
+  requestAnimationFrame(function() { requestAnimationFrame(function() { ov.style.opacity = '0'; }); });
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href === '#' || /^(https?:|tel:|mailto:)/.test(href)) return;
+    e.preventDefault();
+    ov.style.transition = 'opacity 0.25s ease';
+    ov.style.opacity = '1';
+    ov.style.pointerEvents = 'all';
+    setTimeout(function() { window.location.href = a.href; }, 260);
+  });
+})();
+</script>
+</body>
+</html>
