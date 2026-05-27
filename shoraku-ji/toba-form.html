@@ -424,9 +424,9 @@
         html +=
           '<div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:8px; padding:12px; margin-bottom:8px;">' +
             '<div style="font-size:0.85rem; font-weight:700; color:var(--green-dark); margin-bottom:8px;">お塔婆 ' + j + '本目</div>' +
-            '<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">' +
-              '<input type="text" class="form-input" id="kuyo-name-'+setNum+'-'+j+'" value="' + escapeAttr(old.name) + '" placeholder="お名前（例：勝楽 太郎）" style="min-width:0; padding:12px 10px; font-size:0.9rem;">' +
-              '<input type="text" class="form-input" id="kuyo-furi-'+setNum+'-'+j+'" value="' + escapeAttr(old.furi) + '" placeholder="よみがな（しょうらく たろう）" style="min-width:0; padding:12px 10px; font-size:0.9rem;">' +
+            '<div style="display:grid; grid-template-columns:1fr; gap:8px;">' +
+              '<input type="text" class="form-input" id="kuyo-name-'+setNum+'-'+j+'" value="' + escapeAttr(old.name) + '" placeholder="お名前（例：勝楽 太郎）" style="min-width:0; padding:12px 14px; font-size:0.95rem;">' +
+              '<input type="text" class="form-input" id="kuyo-furi-'+setNum+'-'+j+'" value="' + escapeAttr(old.furi) + '" placeholder="よみがな（例：しょうらく たろう）" style="min-width:0; padding:12px 14px; font-size:0.95rem;">' +
             '</div>' +
           '</div>';
       }
