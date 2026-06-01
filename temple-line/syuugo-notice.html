@@ -365,11 +365,13 @@
     font-weight:900;
     color:var(--ink);
     letter-spacing:.04em;
-    margin:0 0 10px;
+    margin:0;
+    height:0;
+    overflow:hidden;
     opacity:0;
     transition:opacity .35s ease;
   }
-  .next-label.show{ opacity:1; }
+  .next-label.show{ opacity:1; height:auto; margin:0 0 10px; }
   .next-label .big3{
     font-size:26px;
     vertical-align:-2px;
