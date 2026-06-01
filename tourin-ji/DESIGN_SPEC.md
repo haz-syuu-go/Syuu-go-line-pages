@@ -8,13 +8,13 @@ LINEのリッチメニューから遷移する東林寺のWebページ群。LINE
 
 | 項目 | 内容 |
 |---|---|
-| 正式名称 | 浄土宗 紫金山 妙雲院 東林寺 |
-| 住所 | 〒110-0004 東京都台東区下谷1-12-21 |
-| 電話 | 03-3843-4034 |
-| FAX | 03-3843-3442 |
-| メール | zen0801key@gmail.com |
-| LINE | https://lin.ee/5XPp6PB |
-| LIFF（日程相談） | https://liff.line.me/2010126434-cKECWmxF?unique_key=RGS1oQ&ts=1779148721 |
+| 正式名称 | 浄土真宗本願寺派 東林寺 |
+| 住所 | 北海道虻田郡倶知安町北五条東2丁目 |
+| 電話 | （準備中） |
+| FAX | （準備中） |
+| メール | （準備中） |
+| LINE | # |
+| LIFF（日程相談） | （準備中） |
 
 ---
 
@@ -239,10 +239,10 @@ tourin-ji/
 
 **GoogleマップURL：**
 ```
-https://maps.google.com/maps?q=東林寺+東京都台東区下谷1-12-21&output=embed
+https://maps.google.com/maps?q=東林寺+北海道虻田郡倶知安町北五条東2丁目&output=embed
 ```
 
-**Googleマップ共有リンク：** `https://share.google/mMsLqw9sCQi4Qrmm1`
+**Googleマップ共有リンク：** `#`
 
 ---
 
@@ -276,7 +276,7 @@ https://maps.google.com/maps?q=東林寺+東京都台東区下谷1-12-21&output=
 
 チャット風アニメーション + LINE送信ボタン + 住職情報カード。
 
-**LINEボタン：** `href="https://lin.ee/5XPp6PB"`（`line://` は使わない）
+**LINEボタン：** `href="#"`（`line://` は使わない）
 
 **ヘッダー：** タイトルのみ。ボタンは表示しない。
 
@@ -359,6 +359,7 @@ https://maps.google.com/maps?q=東林寺+東京都台東区下谷1-12-21&output=
 | 2026-05-19 | event.html：次の行事カードのボーダーを accent 色に強調 |
 | 2026-05-19 | chat-introduction.html：フォント拡大・ヘッダーボタン削除 |
 | 2026-06-01 | news.html（カテゴリタブ付き新着情報ページ）の仕様を追加。ファイル構成・ページ別仕様に反映。 |
+| 2026-06-01 | 東林寺セットアップ：joren-ji 雛形を tourin-ji/ に複製。年間行事17件（6月初産式〜3月彼岸会）を event.html に反映、寺院基本情報（北海道虻田郡倶知安町・浄土真宗本願寺派）を反映、未提供の連絡先（電話・FAX・メール・LINE OA・LIFF）は (準備中) にplaceholder化、関係寺院「正定寺」連絡先ブロックを削除、chat-introduction.html の住職表示を「東林寺お寺スタッフ」に変更。 |
 <<<<<<< HEAD
 | 2026-05-19 | list.html：見出しを中央揃え・下線・20px に変更（左ボーダー廃止） |
 =======
