@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>当日の流れ｜東林寺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent:        #4a7c59;
+    --accent-light:  #eaf2eb;
+    --accent-mid:    #c5d9c8;
+    --accent-subtle: #f2f7f3;
+    --text-primary:  #1a1a1a;
+    --text-secondary:#555555;
+    --text-muted:    #888888;
+    --border:        #e0e0e0;
+    --bg:            #ffffff;
+    --bg-surface:    #f5faf5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.9;
+    font-size: 18px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; background: var(--bg); }
+
+  /* Back link */
+  .back-bar { padding: 12px 14px 6px; background: var(--bg); }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 4px 0;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  /* Bottom back button */
+  .back-bottom { padding: 8px 16px 28px; }
+  .back-bottom-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%;
+    padding: 16px;
+    background: var(--bg);
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .page-header {
+    background: var(--accent);
+    color: #ffffff;
+    padding: 18px 16px 14px;
+  }
+  .page-header-title { font-size: 20px; font-weight: 700; }
+  .page-header-sub   { font-size: 15px; opacity: 0.75; margin-top: 4px; line-height: 1.7; }
+
+  .section { padding: 22px 16px 4px; }
+
+  .section-title {
+    font-size: 17px; font-weight: 700;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+    margin: 4px 0 14px;
+    line-height: 1.4;
+  }
+
+  /* Timeline */
+  .step-row { display: flex; gap: 12px; }
+  .step-left {
+    display: flex; flex-direction: column; align-items: center;
+    width: 30px; flex-shrink: 0;
+  }
+  .step-circle {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-line { width: 2px; flex: 1; background: var(--accent-mid); min-height: 20px; margin: 3px 0; }
+  .step-body { padding-bottom: 20px; flex: 1; }
+  .step-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; line-height: 1.45; }
+  .step-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.9; }
+  .step-tag {
+    display: inline-block; font-size: 13px;
+    background: var(--accent-light); color: var(--accent);
+    border-radius: 3px; padding: 2px 8px; margin-bottom: 5px; font-weight: 700;
+  }
+
+  /* Dress code */
+  .dress-box {
+    border: 1px solid var(--accent-mid);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--bg-surface);
+  }
+  .dress-item {
+    font-size: 16px; color: var(--text-primary);
+    line-height: 1.9; margin-bottom: 6px;
+    display: flex; gap: 8px;
+  }
+  .dress-item:last-child { margin-bottom: 0; }
+  .dress-key {
+    color: var(--accent); font-weight: 700;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* Info grid */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .info-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    background: var(--bg);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .info-icon { color: var(--accent); }
+  .info-label { font-size: 13px; color: var(--text-muted); font-weight: 700; }
+  .info-value { font-size: 15px; color: var(--text-primary); font-weight: 700; line-height: 1.6; }
+
+  /* Access */
+  .map-iframe {
+    width: 100%; height: 200px;
+    border: 0; border-radius: 8px;
+    display: block;
+  }
+  .map-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 10px;
+    font-size: 15px; color: var(--accent); font-weight: 700;
+    text-decoration: none;
+  }
+  .contact-list { margin-top: 14px; }
+  .contact-row {
+    display: flex; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--border);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-label {
+    width: 70px; flex-shrink: 0;
+    font-size: 14px; color: var(--text-muted); font-weight: 700;
+    padding-top: 3px;
+  }
+  .contact-value { flex: 1; color: var(--text-primary); }
+  .contact-tel { font-size: 20px; font-weight: 700; color: var(--accent); text-decoration: none; }
+
+  /* Footer */
+  .footer-bar {
+    background: var(--accent);
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    text-align: center;
+    padding: 14px;
+    margin-top: 24px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="back-bar">
+    <a href="./houji.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      法事メニューへ戻る
+    </a>
+  </div>
+
+  <div class="page-header">
+    <div class="page-header-title">当日の流れ</div>
+    <div class="page-header-sub">法要開始の15〜20分前にお越しください</div>
+  </div>
+
+  <!-- ── タイムライン ── -->
+  <div class="section">
+    <div class="section-title">当日のスケジュール</div>
+
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">開始15〜20分前</span>
+        <div class="step-title">ご集合</div>
+        <div class="step-desc">余裕をもってお越しください。</div>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">受付</div>
+        <div class="step-desc">本堂にて受付をいたします。</div>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">読経・お焼香</div>
+        <div class="step-desc">ご参列の皆様にお焼香いただきます。</div>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">4</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">法話</div>
+        <div class="step-desc">住職よりお話をさせていただきます。</div>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">5</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title">お墓参り</div>
+        <div class="step-desc">ご納骨・お墓のある方はお参りします。</div>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-left">
+        <div class="step-circle">6</div>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">任意</span>
+        <div class="step-title">お食事</div>
+        <div class="step-desc">ご家族・ご親族とのたいせつなお時間です。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 服装案内 ── -->
+  <div class="section">
+    <div class="section-title">服装について</div>
+    <div class="dress-box">
+      <div class="dress-item">
+        <span class="dress-key">ご家族のみ</span>
+        <span>平服でお越しいただけます</span>
+      </div>
+      <div class="dress-item">
+        <span class="dress-key">ご親族が集まる場合</span>
+        <span>喪服の方もいらっしゃいます</span>
+      </div>
+      <div class="dress-item">
+        <span class="dress-key">夏</span>
+        <span>熱中症予防のため平服でも構いません</span>
+      </div>
+      <div class="dress-item">
+        <span class="dress-key">冬</span>
+        <span>暖房あり。温かい服装でお越しください</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 当日のご案内 ── -->
+  <div class="section">
+    <div class="section-title">当日のご案内</div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <div class="info-label">駐車場</div>
+        <div class="info-value">駐車場はございません<br>近隣のコインパーキングをご利用ください</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12L12 3l9 9"></path>
+            <path d="M5 10v10h14V10"></path>
+          </svg>
+        </div>
+        <div class="info-label">本堂・客殿</div>
+        <div class="info-value">冷暖房完備・椅子席</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="info-label">所要時間の目安</div>
+        <div class="info-value">約1時間</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+            <circle cx="10" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="info-label">お子さま連れ</div>
+        <div class="info-value">安心してご参加ください</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── アクセス ── -->
+  <div class="section">
+    <div class="section-title">アクセス</div>
+
+    <iframe class="map-iframe"
+      src="https://maps.google.com/maps?q=%E9%9D%99%E8%93%AE%E5%AF%BA%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8F%B0%E6%9D%B1%E5%8C%BA%E4%B8%8B%E8%B0%B71-12-21&output=embed"
+      allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <a href="https://share.google/mMsLqw9sCQi4Qrmm1" target="_blank" rel="noopener" class="map-link">
+      Googleマップで開く
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    </a>
+
+    <div class="contact-list">
+      <div class="contact-row">
+        <div class="contact-label">住所</div>
+        <div class="contact-value">〒110-0004<br>東京都台東区下谷1-12-21</div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-label">電話番号</div>
+        <div class="contact-value"><a href="tel:03-3843-4034" class="contact-tel">03-3843-4034</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-bottom">
+    <a href="./houji.html" class="back-bottom-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      法事メニューへ戻る
+    </a>
+  </div>
+
+  <footer class="footer-bar">© 東林寺</footer>
+
+</div>
+<script>
+(function() {
+  var ov = document.createElement('div');
+  ov.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:9999;opacity:1;transition:opacity 0.35s ease;pointer-events:none;';
+  document.body.appendChild(ov);
+  requestAnimationFrame(function() { requestAnimationFrame(function() { ov.style.opacity = '0'; }); });
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href === '#' || /^(https?:|tel:|mailto:)/.test(href)) return;
+    e.preventDefault();
+    ov.style.transition = 'opacity 0.25s ease';
+    ov.style.opacity = '1';
+    ov.style.pointerEvents = 'all';
+    setTimeout(function() { window.location.href = a.href; }, 260);
+  });
+})();
+</script>
+</body>
+</html>
