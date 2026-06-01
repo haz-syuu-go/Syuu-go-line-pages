@@ -433,9 +433,10 @@
 
   /* ── 吹き出しポップアニメーション ── */
   @keyframes bubblePop {
-    0%   { opacity:0; transform:scale(.82); }
-    60%  { opacity:1; transform:scale(1.05); }
-    100% { opacity:1; transform:scale(1); }
+    0%   { opacity:0; transform:scale(.82); box-shadow:0 4px 12px rgba(42,39,36,.08); }
+    55%  { opacity:1; transform:scale(1.07); box-shadow:0 4px 28px rgba(245,197,24,.6),0 0 32px rgba(245,197,24,.35); }
+    80%  { box-shadow:0 4px 16px rgba(245,197,24,.18); }
+    100% { opacity:1; transform:scale(1); box-shadow:0 4px 12px rgba(42,39,36,.08); }
   }
   .bubble.reveal {
     opacity:0;
@@ -458,6 +459,21 @@
   }
   .checks li:nth-child(2).in::before { animation-delay:.6s; }
   .checks li:nth-child(3).in::before { animation-delay:.85s; }
+
+  /* ── キラキラスター ── */
+  @keyframes sparkleFly {
+    0%   { opacity:1; transform:translate(-50%,-50%) scale(1.2); }
+    100% { opacity:0; transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(0.1); }
+  }
+  .sparkle-star {
+    position:absolute;
+    pointer-events:none;
+    z-index:10;
+    line-height:1;
+    font-size:var(--sz,18px);
+    color:var(--col,#f5c518);
+    animation:sparkleFly var(--dur,.7s) ease-out var(--del,0s) forwards;
+  }
 </style>
 </head>
 <body>
@@ -681,6 +697,9 @@ function playReveal(slide){
     showing.forEach((entry,k)=>{
       entry.target.style.transitionDelay = (k*0.08)+'s'; // 同時に入る分は少しずつ遅らせて連続表示
       entry.target.classList.add('in');
+      if(entry.target.classList.contains('bubble')){
+        setTimeout(()=>addSparkles(entry.target), k*80+450);
+      }
       data.io.unobserve(entry.target);
     });
   }, { root: slide, threshold:0.12, rootMargin:'0px 0px -6% 0px' });
@@ -699,6 +718,35 @@ function updateNextVisibility(){
 }
 slides.forEach(s=>s.addEventListener('scroll', ()=>{ if(slides[idx]===s) updateNextVisibility(); }, {passive:true}));
 window.addEventListener('resize', ()=>requestAnimationFrame(updateNextVisibility));
+
+/* ===== キラキラスター ===== */
+function addSparkles(el){
+  const stage = document.querySelector('.stage');
+  const sr = stage.getBoundingClientRect();
+  const er = el.getBoundingClientRect();
+  const cx = er.left - sr.left + er.width/2;
+  const cy = er.top  - sr.top  + er.height/2;
+  const sparks=[
+    {a:-90,  d:74,sz:22,ch:'★',col:'#f5c518',dl:0},
+    {a:-45,  d:63,sz:15,ch:'✦',col:'#ffd700',dl:.06},
+    {a:  0,  d:70,sz:20,ch:'★',col:'#f5c518',dl:.10},
+    {a: 45,  d:58,sz:14,ch:'✧',col:'#ffec6e',dl:.03},
+    {a: 90,  d:66,sz:21,ch:'★',col:'#f5c518',dl:.08},
+    {a:135,  d:61,sz:15,ch:'✦',col:'#ffd700',dl:.05},
+    {a:180,  d:70,sz:18,ch:'★',col:'#f5c518',dl:.02},
+    {a:-135, d:65,sz:13,ch:'✧',col:'#ffec6e',dl:.07},
+  ];
+  sparks.forEach(({a,d,sz,ch,col,dl})=>{
+    const rad=a*Math.PI/180;
+    const tx=Math.cos(rad)*d, ty=Math.sin(rad)*d;
+    const s=document.createElement('span');
+    s.className='sparkle-star';
+    s.textContent=ch;
+    s.style.cssText=`left:${cx}px;top:${cy}px;--tx:${tx}px;--ty:${ty}px;--sz:${sz}px;--col:${col};--del:${dl}s;--dur:${(.6+Math.random()*.25).toFixed(2)}s`;
+    stage.appendChild(s);
+    s.addEventListener('animationend',()=>s.remove(),{once:true});
+  });
+}
 
 initReveal();
 render();
