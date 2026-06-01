@@ -45,6 +45,8 @@
 
 > 容量：1枚あたり200KB以下が目安。合計1MB以内に抑えること。
 
+> `news.html` の記事サムネイルは既定で SVG プレースホルダー（書類アイコン）を表示するため画像は必須ではない。実画像を載せる場合は `news.html` 内の `.news-img-placeholder` を `<img>` に差し替える。
+
 ### 1-4. 年間行事リスト
 
 event.html のタイムラインに使用。4〜5件程度。
@@ -92,6 +94,14 @@ event.html のタイムラインに使用。4〜5件程度。
 | 埋め込みURL | `https://maps.google.com/maps?q={お寺名}+{住所}&output=embed` |
 | 共有リンク | GoogleマップでURLを「共有」してコピー |
 
+### 1-8. 新着情報（news.html 用）
+
+公開時点で掲載しておきたい記事を 1〜3 件用意する。後から増減可能。
+
+| カテゴリ | 更新日 | タイトル | 抜粋（1〜2文） | 詳細URL（任意） |
+|---|---|---|---|---|
+| お知らせ / 行事・催し / その他 | YYYY.MM.DD | | | |
+
 ---
 
 ## 2. ファイル構成
@@ -100,6 +110,7 @@ event.html のタイムラインに使用。4〜5件程度。
 {寺院スラッグ}/          ← 例: joren-ji, shoraku-ji
 ├── DESIGN_SPEC.md       ← 寺院固有の設計仕様書
 ├── event.html           ← 年間行事のご案内
+├── news.html            ← 新着情報（カテゴリタブで絞り込み）
 ├── chat-introduction.html ← LINEで相談する
 ├── houji/
 │   ├── houji.html       ← ご法事のご案内（メニュー）
@@ -157,6 +168,7 @@ cp -R joren-ji/ {新しい寺院スラッグ}/
 | houji/list.html | `ご法事前のチェックリスト｜静蓮寺` | `ご法事前のチェックリスト｜{寺院名}` |
 | houji/flow.html | `当日の流れ｜静蓮寺` | `当日の流れ｜{寺院名}` |
 | event.html | `年間行事のご案内｜静蓮寺` | `年間行事のご案内｜{寺院名}` |
+| news.html | `新着情報｜静蓮寺` | `新着情報｜{寺院名}` |
 | chat-introduction.html | `静蓮寺へLINEで相談する` | `{寺院名}へLINEで相談する` |
 
 ### Step 5: event.html の年間行事を更新
@@ -183,26 +195,52 @@ cp -R joren-ji/ {新しい寺院スラッグ}/
 
 > `data-date` には当年の代表日（例：`2026-05-24`）を入れる。JSが自動的に「次の行事」バッジを付与する。
 
-### Step 6: houji/list.html のタブ・チェックリストを更新
+### Step 6: news.html の記事を更新
+
+`<div class="news-list">` 内の各 `.news-card` を新寺院の新着情報に差し替える。`data-category` の値は、タブの `data-filter` と完全一致させる（`all` 以外）。
+
+```html
+<!-- 記事1件のテンプレート -->
+<div class="news-card" data-category="{お知らせ|行事・催し|その他}">
+  <div class="news-img-placeholder">
+    <!-- 既定の書類アイコンSVGをそのまま流用、または <img src="..."> に差し替え -->
+  </div>
+  <div class="news-content">
+    <div class="news-meta">
+      <span class="news-tag">{カテゴリ}</span>
+      <span class="news-date">更新日：{YYYY.MM.DD}</span>
+    </div>
+    <div class="news-title">{記事タイトル}</div>
+    <div class="news-excerpt">{抜粋テキスト}</div>
+    <a href="{詳細URL or #}" class="news-btn">詳細を見る →</a>
+  </div>
+</div>
+```
+
+> 記事を追加・削除しても JS は自動で空表示メッセージ（「該当する記事がありません」）を切り替えるため、JS 本体は触らない。
+
+> タブ構成自体を変えたい場合は `.tab-grid` 内の `data-filter` 値と各カードの `data-category` を必ず揃える。
+
+### Step 7: houji/list.html のタブ・チェックリストを更新
 
 お寺の方針に合わせてタブ構成・各項目を編集する。
 詳細は `joren-ji/DESIGN_SPEC.md` を参照。
 
-### Step 7: houji/flow.html のアクセス情報を更新
+### Step 8: houji/flow.html のアクセス情報を更新
 
 - GoogleマップiframeのURLを新住所に変更
 - 「Googleマップで開く」の共有リンクを更新
 - 住所・電話番号を更新
 
-### Step 8: chat-introduction.html の受付情報を更新
+### Step 9: chat-introduction.html の受付情報を更新
 
 住職名・返信目安・その他案内文をお寺の実態に合わせて修正する。
 
-### Step 9: DESIGN_SPEC.md の作成
+### Step 10: DESIGN_SPEC.md の作成
 
 `joren-ji/DESIGN_SPEC.md` をコピーし、寺院固有の情報に書き換える。
 
-### Step 10: AIレビューエージェントで反映漏れをチェック
+### Step 11: AIレビューエージェントで反映漏れをチェック
 
 `agents/line-page-reviewer/CLAUDE.md` の手順に従い、自動チェックを実行する。
 
@@ -240,6 +278,16 @@ cp -R joren-ji/ {新しい寺院スラッグ}/
 - [ ] `data-date` が当年の日付になっている
 - [ ] `静蓮寺` という文字列が残っていない
 
+### news.html
+- [ ] `<title>` に寺院名が入っている（`新着情報｜{寺院名}`）
+- [ ] ヘッダーの寺院名表示が正しい（`{寺院名}｜新着情報`）
+- [ ] フッターの著作権表示が `© {寺院名}` になっている
+- [ ] 記事カードがすべて新寺院の内容に差し替えられている（寺報号数・日付・本文）
+- [ ] 各カードの `data-category` がタブの `data-filter` と一致している
+- [ ] タブのカテゴリ（お知らせ／行事・催し／その他）はお寺の運用方針に合致しているか確認した
+- [ ] `static placeholder` のままで運用するか、実画像に差し替えるか決まっている
+- [ ] `静蓮寺` という文字列が残っていない
+
 ### chat-introduction.html
 - [ ] LINEメッセージURLが3箇所すべて正しい
 - [ ] 住職アバター画像のパスが正しい（3箇所）
@@ -258,6 +306,7 @@ cp -R joren-ji/ {新しい寺院スラッグ}/
 | 関係寺院（正定寺など）が残っている | 新寺院に関係寺院がない場合は連絡先ブロックごと削除 |
 | 費用情報が更新されていない | 掲載しない場合はコストボックスを丸ごと削除する |
 | 旧寺院名が `<title>` に残っている | ブラウザタブには出るが、普段目につきにくい → チェックリストで必ず確認 |
+| news.html のタブ data-filter とカード data-category がズレ | 一方を変更したら必ずもう一方も合わせる。ズレるとそのタブで0件表示になる |
 
 ---
 
@@ -277,3 +326,4 @@ cp -R joren-ji/ {新しい寺院スラッグ}/
 | 日付 | 内容 |
 |---|---|
 | 2026-05-19 | 初版作成。静蓮寺（joren-ji）の実装を元に標準化。 |
+| 2026-06-01 | news.html（カテゴリタブ付き新着情報ページ）をセットアップ手順に追加。Step 6 として挿入し、後続を繰り上げ。 |
