@@ -301,18 +301,19 @@
   .bullets{list-style:none;margin:8px 0 4px;}
   .bullets li{
     position:relative;
-    padding:10px 0 10px 26px;
+    padding:10px 0 10px 32px;
     font-size:18px;
     font-weight:500;
     line-height:1.7;
     border-bottom:1px dashed var(--line);
   }
   .bullets li::before{
-    content:"";
+    content:"✓";
     position:absolute;
-    left:4px;top:20px;
-    width:8px;height:8px;border-radius:50%;
-    background:var(--shu);
+    left:4px;top:10px;
+    color:var(--green);
+    font-weight:900;
+    font-size:18px;
   }
 
   /* フッターのボタン */
